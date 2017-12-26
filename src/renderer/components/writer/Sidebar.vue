@@ -2,8 +2,8 @@
   #sidebar :class='{ open: open }'
     SidebarControls/
     #sidebar-content
-      SidebarFileTree :if='page == "FileTree"'/
-      SidebarThemeSelector :if='page == "ThemeSelector"'/
+      SidebarFileTree v-if='page == "FileTree"'/
+      SidebarThemeSelector v-else-if='page == "ThemeSelector"'/
 
     a#toggle @click='toggle'
       i.fa.fa-lg :class='toggleClass'
