@@ -1,6 +1,8 @@
 const state = {
-  project: {},
-  files: [],
+  filesOpen: [],
+  sidebarOpen: false,
+
+  editorSizeRatio: 50,
 }
 
 const mutations = {
