@@ -1,5 +1,6 @@
 <template lang='slm'>
-  .medium-editor
+  div[
+    :class='className']
 </template>
 
 <script>
@@ -8,9 +9,17 @@
   export default {
     name: 'Medium',
 
+    props: [ 'file', 'type' ],
+
     data () {
       return {
         editor: null
+      }
+    },
+
+    computed: {
+      className () {
+        return `medium-editor medium-${ this.type }`
       }
     },
 

@@ -12,6 +12,8 @@
   import EditorSeparator from './writer/EditorSeparator'
   import Sidebar from './writer/Sidebar'
 
+  import { Writer, Project } from './helpers/store_helper'
+
   export default {
     name: 'writer',
 
@@ -19,6 +21,12 @@
       Editor,
       EditorSeparator,
       Sidebar
+    },
+
+    created () {
+      // TODO: fetch project data from a file
+
+      this.$store.commit('newProject')
     }
   }
 </script>

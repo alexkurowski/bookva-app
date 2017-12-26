@@ -4,7 +4,12 @@ const state = {
 }
 
 const mutations = {
-
+  newProject (state) {
+    state.files = [{
+      title: '',
+      content: ''
+    }]
+  }
 }
 
 const actions = {
