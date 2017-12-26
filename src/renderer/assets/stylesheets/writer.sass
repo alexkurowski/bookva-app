@@ -1,0 +1,177 @@
+@import 'variables'
+
+$default-bg: #ffffff
+$default-fg: #404852
+
+$smooth-bg: #eaeae8
+$smooth-fg: #6a6a66
+
+$dark-bg: #333231
+$dark-fg: #d5d4d3
+
+$action: #f00
+$scrollbar-width: 6px
+
+
+@mixin scheme($bg, $fg)
+  #background
+    background: $bg
+
+  .editor-close
+    .editor-close-overlay
+      background: $bg
+
+  .medium-editor
+    color: $fg
+
+    &:after
+      color: $fg
+
+  #editor-resizer
+    background: $fg
+    border-left-color: $bg
+    border-right-color: $bg
+
+  .fa
+    color: $fg
+
+  #sidebar
+    background: $bg
+    color: $fg
+
+  #link-bar a
+    color: $fg
+    background: transparent
+
+    &:hover
+      background: darken( $bg, 6 )
+
+  #file-tree
+    .file,
+    .folder
+      &:before
+        background-color: $bg
+
+      &:hover
+        background-color: darken( $bg, 6 )
+
+        &:before
+          background-color: darken( $bg, 6 )
+
+    .file
+      .drag-handle
+        &:before,
+        &:after
+          background-color: $fg
+
+  #file-add,
+  #folder-add
+    &:hover
+      background-color: darken( $bg, 6 )
+
+  #undo-file-remove
+    background: $bg
+    color: $fg
+
+  #bottom-bar
+    color: $fg
+
+  #save-icon
+    text-shadow: 1px 1px 0px $bg
+
+
+  .editor::-webkit-scrollbar-track,
+  .reader::-webkit-scrollbar-track
+    background-color: $bg
+
+  #sidebar::-webkit-scrollbar-track
+    background-color: $bg
+
+  .editor::-webkit-scrollbar,
+  .reader::-webkit-scrollbar
+    width: $scrollbar-width
+    background-color: $bg
+
+  #sidebar::-webkit-scrollbar
+    width: $scrollbar-width
+    background-color: $bg
+
+  .editor::-webkit-scrollbar-thumb,
+  .reader::-webkit-scrollbar-thumb,
+  #sidebar::-webkit-scrollbar-thumb
+    background-color: $fg
+
+
+@mixin body($bg, $fg)
+  .medium-editor-toolbar-actions
+    background: $bg
+
+  .medium-editor-toolbar li button
+    background: $bg
+    color: $fg
+
+    &:hover
+      background: $fg
+      color: $bg
+
+    &.medium-editor-button-active
+      background: $bg
+      color: $action
+      cursor: default
+
+
+#app > .view
+  &.scheme-default
+    @include body($default-bg, $default-fg)
+    @include scheme($default-bg, $default-fg)
+
+  &.scheme-smooth
+    @include body($smooth-bg, $smooth-fg)
+    @include scheme($smooth-bg, $smooth-fg)
+
+  &.scheme-dark
+    @include body($dark-bg, $dark-fg)
+    @include scheme($dark-bg, $dark-fg)
+
+
+  &.font-family-default
+    font-family: Merriweather, serif
+
+  &.font-family-modern
+    font-family: Roboto, sans-serif
+
+  &.font-family-mono
+    font-family: PT Mono, monospace
+
+
+  &.font-size-default
+    .medium-title,
+    .medium-content h1
+      font-size: 2.5rem
+
+    .medium-content
+      font-size: 1rem
+
+  &.font-size-small
+    .medium-title,
+    .medium-content h1
+      font-size: 2.3rem
+
+    .medium-content
+      font-size: 0.8rem
+
+  &.font-size-big
+    .medium-title,
+    .medium-content h1
+      font-size: 2.7rem
+
+    .medium-content
+      font-size: 1.2rem
+
+  &.font-size-bigger
+    .medium-title,
+    .medium-content h1
+      font-size: 3rem
+
+    .medium-content
+      font-size: 1.5rem

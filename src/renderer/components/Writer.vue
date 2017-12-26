@@ -1,5 +1,7 @@
 <template lang='slm'>
-  .view
+  .view :class='className'
+    #background
+
     Editor :index='0'/
     Editor :index='1'/
     EditorSeparator/
@@ -23,6 +25,12 @@
       Sidebar
     },
 
+    computed: {
+      className () {
+        return `scheme-${ Writer.scheme } font-family-${ Writer.fontFamily } font-size-${ Writer.fontSize }`
+      }
+    },
+
     created () {
       // TODO: fetch project data from a file
 
@@ -32,4 +40,12 @@
 </script>
 
 <style lang='sass' scoped>
+  #background
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: -1000
+    pointer-events: none
 </style>
