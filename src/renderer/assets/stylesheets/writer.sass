@@ -1,5 +1,6 @@
 @import 'variables'
 
+
 $default-bg: #ffffff
 $default-fg: #404852
 
@@ -8,9 +9,6 @@ $smooth-fg: #6a6a66
 
 $dark-bg: #333231
 $dark-fg: #d5d4d3
-
-$action: #f00
-$scrollbar-width: 6px
 
 
 @mixin scheme($bg, $fg)
@@ -80,15 +78,13 @@ $scrollbar-width: 6px
     text-shadow: 1px 1px 0px $bg
 
 
-  .editor::-webkit-scrollbar-track,
-  .reader::-webkit-scrollbar-track
+  .editor::-webkit-scrollbar-track
     background-color: $bg
 
   #sidebar::-webkit-scrollbar-track
     background-color: $bg
 
-  .editor::-webkit-scrollbar,
-  .reader::-webkit-scrollbar
+  .editor::-webkit-scrollbar
     width: $scrollbar-width
     background-color: $bg
 
@@ -97,7 +93,6 @@ $scrollbar-width: 6px
     background-color: $bg
 
   .editor::-webkit-scrollbar-thumb,
-  .reader::-webkit-scrollbar-thumb,
   #sidebar::-webkit-scrollbar-thumb
     background-color: $fg
 
@@ -198,7 +193,7 @@ body
 
     &.medium-editor-button-active
       background: $dark-bg
-      color: $action
+      color: $color-action
       cursor: default
 
   .medium-editor-toolbar
