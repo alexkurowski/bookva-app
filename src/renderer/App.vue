@@ -11,4 +11,7 @@
 
 <style lang='sass'>
   @import '~normalize.css/normalize.css'
+  @import '~font-awesome/css/font-awesome.min.css'
+  @import '~medium-editor/dist/css/medium-editor.min.css'
+  @import '~medium-editor/dist/css/themes/default.min.css'
 </style>

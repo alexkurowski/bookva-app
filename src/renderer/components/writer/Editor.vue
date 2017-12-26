@@ -2,10 +2,14 @@
   .editor[
     :class='[ classHidden, classSide, classSize, classFontFamily, classFontSize ]'
     :style='style' ]
+
+    Medium :file='file' type='title'/
+    Medium :file='file' type='content'/
 </template>
 
 <script>
   import { Writer, Project } from '../helpers/store_helper'
+  import Medium from './Medium'
 
   export default {
     name: 'Editor',
@@ -13,6 +17,10 @@
     props: [
       'index'
     ],
+
+    components: {
+      Medium
+    },
 
     computed: {
       fileId () {
