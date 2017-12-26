@@ -48,4 +48,18 @@
 </script>
 
 <style lang='sass' scoped>
+  .medium-title
+    margin-bottom: 1rem
+
+  .medium-content
+    resize: none
+
+    > *
+      font-family: inherit
+
+    *
+      margin-bottom: 1em
+
+    h2
+      font-size: 150%
 </style>
