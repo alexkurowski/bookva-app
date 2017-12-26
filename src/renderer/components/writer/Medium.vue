@@ -1,6 +1,5 @@
 <template lang='slm'>
-  div[
-    :class='className']
+  div :class='className'
 </template>
 
 <script>

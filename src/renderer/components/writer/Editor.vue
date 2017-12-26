@@ -79,6 +79,7 @@
     bottom: 0
     text-align: center
     overflow-y: scroll
+    z-index: 500
 
   .medium-container
     position: relative
