@@ -102,35 +102,14 @@ $scrollbar-width: 6px
     background-color: $fg
 
 
-@mixin body($bg, $fg)
-  .medium-editor-toolbar-actions
-    background: $bg
-
-  .medium-editor-toolbar li button
-    background: $bg
-    color: $fg
-
-    &:hover
-      background: $fg
-      color: $bg
-
-    &.medium-editor-button-active
-      background: $bg
-      color: $action
-      cursor: default
-
-
 #app > .view
   &.scheme-default
-    @include body($default-bg, $default-fg)
     @include scheme($default-bg, $default-fg)
 
   &.scheme-smooth
-    @include body($smooth-bg, $smooth-fg)
     @include scheme($smooth-bg, $smooth-fg)
 
   &.scheme-dark
-    @include body($dark-bg, $dark-fg)
     @include scheme($dark-bg, $dark-fg)
 
 
@@ -175,3 +154,53 @@ $scrollbar-width: 6px
 
     .medium-content
       font-size: 1.5rem
+
+
+body
+  .medium-editor-toolbar
+    background: none
+    border: 3px solid $color-less-subtle
+    border-radius: 0
+    box-shadow: none
+
+    li:nth-child(6)
+      clear: both
+
+    li button
+      width: 42px
+      min-width: 42px
+      height: 42px
+      padding: 8px
+      border: none
+      box-shadow: none
+
+    &.medium-toolbar-arrow-over:before
+      top: -11px
+      border-color: transparent transparent $color-less-subtle transparent
+
+    &.medium-toolbar-arrow-under:after
+      border-color: $color-less-subtle transparent transparent transparent
+
+    .medium-editor-button-first,
+    .medium-editor-button-last
+      border-radius: 0 !important
+
+  .medium-editor-toolbar-actions
+    background: $dark-bg
+
+  .medium-editor-toolbar li button
+    background: $dark-bg
+    color: $dark-fg
+
+    &:hover
+      background: $dark-fg
+      color: $dark-bg
+
+    &.medium-editor-button-active
+      background: $dark-bg
+      color: $action
+      cursor: default
+
+  .medium-editor-toolbar
+    &.medium-toolbar-arrow-under:after
+      top: 87px

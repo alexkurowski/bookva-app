@@ -1,6 +1,6 @@
 <template lang='slm'>
   .editor[
-    :class='[ classHidden, classSide, classSize, classFontFamily, classFontSize ]'
+    :class='[ classHidden, classSide, classSize ]'
     :style='style' ]
 
     .medium-container
@@ -49,14 +49,6 @@
         return Writer.filesOpen.length == 2
           ? 'editor-half'
           : 'editor-full'
-      },
-
-      classFontFamily () {
-        return ''
-      },
-
-      classFontSize () {
-        return ''
       },
 
       style () {
