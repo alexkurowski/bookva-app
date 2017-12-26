@@ -25,7 +25,6 @@
 
     methods: {
       toggle () {
-        console.log("CALL toggle")
         this.$store.commit('toggleSidebar')
       }
     }

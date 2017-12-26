@@ -25,12 +25,18 @@
     mounted () {
       if (this.type == 'title') {
         this.editor = new MediumEditor(this.$el, {
+          placeholder: {
+            text: this.$t('writer.placeholder.title')
+          },
           disableReturn: true,
           toolbar: false
         })
       } else
       if (this.type == 'content') {
         this.editor = new MediumEditor(this.$el, {
+          placeholder: {
+            text: this.$t('writer.placeholder.content')
+          },
           toolbar: {
             buttons: ['bold', 'italic', 'underline', 'h1', 'h2', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'removeFormat'],
           },
