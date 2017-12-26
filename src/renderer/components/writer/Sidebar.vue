@@ -2,20 +2,36 @@
   #sidebar :class='{ open: open }'
     SidebarControls/
     #sidebar-content
+      SidebarFileTree :if='page == "FileTree"'/
+      SidebarThemeSelector :if='page == "ThemeSelector"'/
 
     a#toggle @click='toggle'
       i.fa.fa-lg :class='toggleClass'
 </template>
 
 <script>
-  import { Writer } from '../helpers/store_helper'
+  import SidebarControls from './SidebarControls'
+  import SidebarFileTree from './SidebarFileTree'
+  import SidebarThemeSelector from './SidebarThemeSelector'
+
+  import { Sidebar } from '../helpers/store_helper'
 
   export default {
     name: 'Sidebar',
 
+    components: {
+      SidebarControls,
+      SidebarFileTree,
+      SidebarThemeSelector
+    },
+
     computed: {
       open () {
-        return Writer.sidebarOpen
+        return Sidebar.sidebarOpen
+      },
+
+      page () {
+        return Sidebar.sidebarPage
       },
 
       toggleClass () {
