@@ -1,6 +1,8 @@
 <template lang='slm'>
   #sidebar :class='{ open: open }'
-    .content
+    SidebarControls/
+    #sidebar-content
+
     a#toggle @click='toggle'
       i.fa.fa-lg :class='toggleClass'
 </template>
