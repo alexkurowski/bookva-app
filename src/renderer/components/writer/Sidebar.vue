@@ -7,7 +7,7 @@
       ThemeSelector v-else-if='page == "ThemeSelector"'/
 
     a#toggle @click='toggle'
-      i.fa.fa-lg :class='toggleClass'
+      .icon :class='toggleClass'
 </template>
 
 <script>
@@ -39,8 +39,8 @@
 
       toggleClass () {
         return this.open
-          ? 'fa-arrow-left'
-          : 'fa-bars'
+          ? 'icon-arrow-left-outline'
+          : 'icon-th-menu'
       }
     },
 
@@ -62,18 +62,28 @@
     z-index: 1000
 
     #toggle
+      display: flex
+      align-items: center
+      justify-content: center
       position: fixed
-      top: .5rem
-      left: .5rem
-      padding: .5rem .75rem
+      top: 0
+      left: 0
+      width: $sidebar-controls-width
+      height: $sidebar-controls-height
       cursor: pointer
+
+      .icon
+        position: relative
+        top: -2px
+        font-size: 1.5em
 
     &.open
       left: 0
       border-right: 1px solid $color-more-subtle
 
       #toggle
-        left: $sidebar-width + 8px
+        left: $sidebar-width
+        width: $sidebar-controls-width * 0.9
 
   #sidebar,
   #toggle
