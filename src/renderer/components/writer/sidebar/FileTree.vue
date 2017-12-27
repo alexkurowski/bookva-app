@@ -2,12 +2,12 @@
   #file-tree
 
     Draggable[ id='file-list'
-               v-model='files'
+               v-model='fileList'
                :options='draggableOptions'
                @start='onDragStart'
                @end='onDragEnd' ]
 
-      .entry v-for='file in files'
+      .entry v-for='file in fileList'
         File :file='file'
 </template>
 
@@ -37,13 +37,29 @@
     },
 
     computed: {
-      files: {
-        get () {
-          return Project.files
-        },
-        set (files) {
-        }
+      /**
+       * Returns an array of all folder names in the project,
+       * including temporary ones, uniqued and sorted
+       */
+      folders () {
+        return [
+          ...new Set(
+            Project
+              .files
+              .map(file => file.folder)
+              .filter(folder => folder)
+              .concat(Project.tempFolders)
+          )
+        ].sort((a, b) => (b.order - a.order))
       },
+
+      fileList: {
+        get () {
+        },
+
+        set (fileList) {
+        }
+      }
     },
 
     methods: {
