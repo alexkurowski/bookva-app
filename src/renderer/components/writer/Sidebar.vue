@@ -70,7 +70,7 @@
 
     &.open
       left: 0
-      box-shadow: 0 0 1px 3px $color-subtle
+      border-right: 1px solid $color-more-subtle
 
       #toggle
         left: $sidebar-width + 8px
@@ -78,4 +78,12 @@
   #sidebar,
   #toggle
     transition: left .2s, opacity .2s
+
+  #sidebar-content
+    position: absolute
+    top: $sidebar-controls-height
+    left: 0
+    right: 0
+    bottom: 0
+    background: $color-more-subtle
 </style>

@@ -61,7 +61,7 @@
 
     .icon
       display: inline-block
-      font-size: 2em
+      font-size: 1.5em
       vertical-align: middle
       z-index: 1
 
