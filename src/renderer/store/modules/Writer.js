@@ -10,7 +10,7 @@ const state = {
 
 const mutations = {
   newProject (state) {
-    state.filesOpen = [0]
+    state.filesOpen = []
   },
 }
 

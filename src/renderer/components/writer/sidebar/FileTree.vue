@@ -2,13 +2,14 @@
   #file-tree
 
     Draggable[ id='file-list'
-               v-model='fileList'
+               v-model='fileTree'
                :options='draggableOptions'
                @start='onDragStart'
                @end='onDragEnd' ]
 
-      .entry v-for='file in fileList'
-        File :file='file'
+      .entry v-for='file in fileTree'
+        Folder :folder='file' v-if='file.isFolder'
+        File :file='file' v-else-if='isFolderOpen(file)'
 </template>
 
 <script>
@@ -17,6 +18,8 @@
   import Folder from './file_tree/Folder'
 
   import { Project } from '../../helpers/store_helper'
+
+  const orderSort = (a, b) => (b.order - a.order)
 
   export default {
     name: 'FileTree',
@@ -37,32 +40,47 @@
     },
 
     computed: {
-      /**
-       * Returns an array of all folder names in the project,
-       * including temporary ones, uniqued and sorted
-       */
-      folders () {
-        return [
-          ...new Set(
-            Project
-              .files
-              .map(file => file.folder)
-              .filter(folder => folder)
-              .concat(Project.tempFolders)
-          )
-        ].sort((a, b) => (b.order - a.order))
+      files () {
+        return Object
+          .values(Project.files)
+          .sort(orderSort)
       },
 
-      fileList: {
+      folders () {
+        return Object
+          .values(Project.folders)
+          .sort(orderSort)
+      },
+
+      fileTree: {
         get () {
+          let result = []
+
+          result.push( ...this.filesInFolder(null) )
+          this.folders.forEach(folder => {
+            result.push(folder)
+            result.push( ...this.filesInFolder(folder.id) )
+          })
+
+          return result
         },
 
-        set (fileList) {
+        set (fileTree) {
         }
       }
     },
 
     methods: {
+      filesInFolder (folder) {
+        return this
+          .files
+          .filter(file => file.folder === folder)
+      },
+
+      isFolderOpen (folder) {
+        return true
+      },
+
       onDragStart (event) {
       },
 
