@@ -2,9 +2,10 @@
   #sidebar :class='{ open: open }'
     Controls/
     #sidebar-content
-      FileTree v-if='page == "FileTree"'/
-      ProjectManager v-else-if='page == "ProjectManager"'/
-      ThemeSelector v-else-if='page == "ThemeSelector"'/
+      transition name='fade' mode='out-in'
+        FileTree v-if='page == "FileTree"'/
+        ProjectManager v-else-if='page == "ProjectManager"'/
+        ThemeSelector v-else-if='page == "ThemeSelector"'/
 
     a#toggle @click='toggle'
       .icon :class='toggleClass'
@@ -96,4 +97,16 @@
     right: 0
     bottom: 0
     background: $color-more-subtle
+
+  .fade-enter-active,
+  .fade-leave-active
+    transition: opacity .15s
+
+  .fade-enter-to,
+  .fade-leave
+    opacity: 1
+
+  .fade-enter,
+  .fade-leave-to
+    opacity: 0
 </style>

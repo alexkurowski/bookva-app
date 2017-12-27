@@ -22,5 +22,6 @@
     display: flex
     align-items: center
     height: $sidebar-file-tree-height
+    padding: 8px
     white-space: nowrap
 </style>

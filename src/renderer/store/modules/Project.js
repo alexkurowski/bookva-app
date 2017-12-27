@@ -6,7 +6,10 @@ const state = {
 const mutations = {
   newProject (state) {
     state.files = [{
-      title: '',
+      title: '1',
+      content: ''
+    },{
+      title: '2',
       content: ''
     }]
   }

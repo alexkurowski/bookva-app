@@ -37,8 +37,12 @@
     },
 
     computed: {
-      files () {
-        return Project.files
+      files: {
+        get () {
+          return Project.files
+        },
+        set (files) {
+        }
       },
     },
 
