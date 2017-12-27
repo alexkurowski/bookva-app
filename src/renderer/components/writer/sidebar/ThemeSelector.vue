@@ -3,7 +3,7 @@
 
 <script>
   export default {
-    name: 'SidebarFileTree'
+    name: 'ThemeSelector'
   }
 </script>
 

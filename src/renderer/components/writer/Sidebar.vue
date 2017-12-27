@@ -1,18 +1,20 @@
 <template lang='slm'>
   #sidebar :class='{ open: open }'
-    SidebarControls/
+    Controls/
     #sidebar-content
-      SidebarFileTree v-if='page == "FileTree"'/
-      SidebarThemeSelector v-else-if='page == "ThemeSelector"'/
+      FileTree v-if='page == "FileTree"'/
+      ProjectManager v-else-if='page == "ProjectManager"'/
+      ThemeSelector v-else-if='page == "ThemeSelector"'/
 
     a#toggle @click='toggle'
       i.fa.fa-lg :class='toggleClass'
 </template>
 
 <script>
-  import SidebarControls from './SidebarControls'
-  import SidebarFileTree from './SidebarFileTree'
-  import SidebarThemeSelector from './SidebarThemeSelector'
+  import Controls from './sidebar/Controls'
+  import FileTree from './sidebar/FileTree'
+  import ProjectManager from './sidebar/ProjectManager'
+  import ThemeSelector from './sidebar/ThemeSelector'
 
   import { Sidebar } from '../helpers/store_helper'
 
@@ -20,9 +22,10 @@
     name: 'Sidebar',
 
     components: {
-      SidebarControls,
-      SidebarFileTree,
-      SidebarThemeSelector
+      Controls,
+      FileTree,
+      ProjectManager,
+      ThemeSelector
     },
 
     computed: {

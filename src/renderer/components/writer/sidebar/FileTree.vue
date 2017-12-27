@@ -3,7 +3,7 @@
 
 <script>
   export default {
-    name: 'SidebarControls'
+    name: 'FileTree'
   }
 </script>
 

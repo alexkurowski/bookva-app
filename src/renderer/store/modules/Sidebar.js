@@ -1,7 +1,7 @@
 const state = {
   sidebarOpen: false,
   sidebarPage: 'FileTree',
-  sidebarPages: [ 'FileTree', 'ThemeSelector' ]
+  sidebarPages: [ 'FileTree', 'ProjectManager', 'ThemeSelector' ]
 }
 
 const mutations = {
