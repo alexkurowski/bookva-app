@@ -3,11 +3,12 @@ const state = {
   files: [],
 }
 
-const newFile = function (title, folder) {
+const newFile = function (title, folder, order) {
   return {
     title: title || '',
     content: '',
-    folder: folder || ''
+    folder: folder || '',
+    order: order || 0
   }
 }
 
