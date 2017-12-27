@@ -45,25 +45,16 @@
     justify-content: space-between
 
   .btn
+    display: flex
+    align-items: center
+    justify-content: center
     position: relative
-    display: inline-block
     width: $sidebar-controls-width
     height: $sidebar-controls-height
-    text-align: center
     cursor: pointer
 
-    &:before
-      content: ''
-      display: inline-block
-      width: 0
-      height: 100%
-      vertical-align: middle
-
     .icon
-      display: inline-block
       font-size: 1.5em
-      vertical-align: middle
-      z-index: 1
 
     &:after
       content: ''
@@ -75,7 +66,6 @@
       background: $color-subtle
       opacity: 0
       transition: opacity .3s
-      z-index: 0
 
       top: $sidebar-controls-height - 4px
       background: $color-action
