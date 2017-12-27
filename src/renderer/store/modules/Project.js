@@ -3,15 +3,17 @@ const state = {
   files: [],
 }
 
+const newFile = function (title, folder) {
+  return {
+    title: title || '',
+    content: '',
+    folder: folder || ''
+  }
+}
+
 const mutations = {
   newProject (state) {
-    state.files = [{
-      title: '1',
-      content: ''
-    },{
-      title: '2',
-      content: ''
-    }]
+    state.files = [ newFile() ]
   }
 }
 
