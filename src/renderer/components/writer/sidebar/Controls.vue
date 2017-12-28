@@ -1,21 +1,21 @@
 <template lang='slm'>
   #sidebar-controls
-    .btn[ title='Save'
+    .btn[ :title='$t("writer.sidebar.title.projectManager")'
           :class='isActive("ProjectManager")'
           @click='setSidebarPage("ProjectManager")' ]
       .icon.icon-document
 
-    .btn[ title='Files'
+    .btn[ :title='$t("writer.sidebar.title.fileTree")'
           :class='isActive("FileTree")'
           @click='setSidebarPage("FileTree")' ]
       .icon.icon-book
 
-    .btn[ title='Themes'
+    .btn[ :title='$t("writer.sidebar.title.themeSelector")'
           :class='isActive("ThemeSelector")'
           @click='setSidebarPage("ThemeSelector")' ]
       .icon.icon-adjust-contrast
 
-    .btn title='Share'
+    .btn :title='$t("writer.sidebar.title.share")'
       .icon.icon-world-outline
 </template>
 
