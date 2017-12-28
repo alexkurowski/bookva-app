@@ -33,21 +33,27 @@ const newFolder = function (params) {
 
 const mutations = {
   newProject (state) {
-    let file = newFile()
-    state.files = { [file.id]: file }
+    state.files = {}
+    state.folders = {}
 
-    let folder = newFolder()
-    state.folders = { [folder.id]: folder }
+    mutations.addFile(state)
+    mutations.addFolder(state) // TODO: remove this
   },
 
   addFile (state, params) {
-    let file = newFile()
-    state.files[file.id] = file
+    let file = newFile(params)
+    state.files = {
+      ...state.files,
+      [file.id]: file
+    }
   },
 
   addFolder (state, params) {
-    let folder = newFolder()
-    state.folders[folder.id] = folder
+    let folder = newFolder(params)
+    state.folders = {
+      ...state.folders,
+      [folder.id]: folder
+    }
   },
 }
 
