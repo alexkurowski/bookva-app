@@ -12,6 +12,10 @@ const mutations = {
   newProject (state) {
     state.filesOpen = []
   },
+
+  openFile (state, fileId) {
+    state.filesOpen = [ fileId ]
+  }
 }
 
 const actions = {

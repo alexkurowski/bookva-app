@@ -1,5 +1,5 @@
 <template lang='slm'>
-  .file
+  .file @click='openFile'
     .title {{ title }}
 </template>
 
@@ -12,6 +12,12 @@
     computed: {
       title () {
         return this.file.title || "Untitled"
+      }
+    },
+
+    methods: {
+      openFile () {
+        this.$store.commit('openFile', this.file.id)
       }
     }
   }
