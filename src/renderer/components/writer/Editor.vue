@@ -11,7 +11,7 @@
 <script>
   import Medium from './Medium'
 
-  import { Writer, Project } from '../helpers/store_helper'
+  import { Writer, Project } from '@/helpers/store_helper'
 
   export default {
     name: 'Editor',

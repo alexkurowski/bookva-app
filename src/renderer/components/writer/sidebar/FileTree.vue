@@ -17,7 +17,7 @@
   import File from './file_tree/File'
   import Folder from './file_tree/Folder'
 
-  import { Project } from '../../helpers/store_helper'
+  import { Project } from '@/helpers/store_helper'
 
   const orderSort = (a, b) => (b.order - a.order)
 

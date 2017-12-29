@@ -17,7 +17,7 @@
   import ProjectManager from './sidebar/ProjectManager'
   import ThemeSelector from './sidebar/ThemeSelector'
 
-  import { Sidebar } from '../helpers/store_helper'
+  import { Sidebar } from '@/helpers/store_helper'
 
   export default {
     name: 'Sidebar',

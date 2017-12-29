@@ -15,15 +15,23 @@
           @click='setSidebarPage("ThemeSelector")' ]
       .icon.icon-adjust-contrast
 
-    .btn :title='$t("writer.sidebar.title.share")'
+    .btn[ :title='$t("writer.sidebar.title.share")'
+          v-if='showShareButton' ]
       .icon.icon-world-outline
 </template>
 
 <script>
-  import { Sidebar } from '../../helpers/store_helper'
+  import { Sidebar } from '@/helpers/store_helper'
+  import Config from '@/config/config'
 
   export default {
     name: 'Controls',
+
+    computed: {
+      showShareButton () {
+        return Config.showShareButton
+      }
+    },
 
     methods: {
       isActive (page) {

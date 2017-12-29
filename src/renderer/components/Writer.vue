@@ -14,7 +14,7 @@
   import EditorSeparator from './writer/EditorSeparator'
   import Sidebar from './writer/Sidebar'
 
-  import { Writer, Project } from './helpers/store_helper'
+  import { Writer, Project } from '@/helpers/store_helper'
 
   export default {
     name: 'writer',
