@@ -96,8 +96,8 @@
     left: 0
     right: 0
     bottom: 0
-    background: $color-more-subtle
     padding-top: .5rem
+    overflow-y: auto
 
   .fade-enter-active,
   .fade-leave-active
