@@ -31,6 +31,19 @@ const newFolder = function (params) {
   }
 }
 
+const getNextOrder = function (type) {
+  if (Object.values(state[type]).length == 0) {
+    return 0
+  } else {
+    return
+      Math.max(
+        ...Object
+          .values(state[type])
+          .map(entry => entry.order)
+      ) + 1
+  }
+}
+
 const mutations = {
   newProject (state) {
     state.files = {}
@@ -39,10 +52,18 @@ const mutations = {
     mutations.addFile(state)
     // TODO: below lies only debug data
     mutations.addFolder(state)
-    mutations.addFile(state, { folder: Object.keys(state.folders)[0] })
+    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
+    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
+    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
+    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
+    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4) })
+    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4) })
   },
 
   addFile (state, params) {
+    params = params || {}
+    params.order = getNextOrder('files')
+
     let file = newFile(params)
     state.files = {
       ...state.files,
@@ -51,12 +72,35 @@ const mutations = {
   },
 
   addFolder (state, params) {
+    params = params || {}
+    params.order = getNextOrder('folders')
+
     let folder = newFolder(params)
     state.folders = {
       ...state.folders,
       [folder.id]: folder
     }
   },
+
+  updateFile (state, params) {
+    let file = state.files[params.id]
+    if (!file)
+      throw "ERROR: trying to update a file that's not exists"
+    state.files = {
+      ...state.files,
+      [params.id]: Object.assign(file, params)
+    }
+  },
+
+  updateFolder (state, params) {
+    let folder = state.folders[params.id]
+    if (!folder)
+      throw "ERROR: trying to update a folder that's not exists"
+    state.folders = {
+      ...state.folders,
+      [params.id]: Object.assign(folder, params)
+    }
+  }
 }
 
 const actions = {

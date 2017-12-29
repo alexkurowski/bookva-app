@@ -19,7 +19,7 @@
 
   import { Project } from '@/helpers/store_helper'
 
-  const orderSort = (a, b) => (b.order - a.order)
+  const orderSort = (a, b) => (a.order - b.order)
 
   export default {
     name: 'FileTree',
@@ -33,8 +33,7 @@
     data () {
       return {
         draggableOptions: {
-          handle: '.file',
-          filter: '.folder'
+          handle: '.entry'
         }
       }
     },
@@ -66,6 +65,31 @@
         },
 
         set (fileTree) {
+          let fileOrder   = 0
+          let folderOrder = 0
+          let folderId    = null
+
+          fileTree.forEach(entry => {
+            if (entry.isFolder) {
+
+              this.$store.commit('updateFolder', {
+                id: entry.id,
+                order: folderOrder
+              })
+              folderOrder++
+              folderId = entry.id
+
+            } else {
+
+              this.$store.commit('updateFile', {
+                id: entry.id,
+                folder: folderId,
+                order: fileOrder
+              })
+              fileOrder++
+
+            }
+          })
         }
       }
     },
