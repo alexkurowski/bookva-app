@@ -8,7 +8,7 @@
     .btn[ :title='$t("writer.sidebar.title.fileTree")'
           :class='isActive("FileTree")'
           @click='setSidebarPage("FileTree")' ]
-      .icon.icon-book
+      .icon.icon-bookmark
 
     .btn[ :title='$t("writer.sidebar.title.themeSelector")'
           :class='isActive("ThemeSelector")'
