@@ -39,6 +39,7 @@
     height: $sidebar-file-tree-height
     padding: 0 1rem
     white-space: nowrap
+    cursor: pointer
 
     i
       width: 1.5rem
