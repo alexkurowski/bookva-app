@@ -15,7 +15,7 @@
     computed: {
       className () {
         return Project.folders[this.file.folder]
-          ? 'in-folder'
+          ? ''
           : ''
       },
 
@@ -40,6 +40,6 @@
     padding: 0 1rem
     white-space: nowrap
 
-    &.in-folder
-      padding-left: 3rem
+  .in-folder .file
+    padding-left: 3rem
 </style>

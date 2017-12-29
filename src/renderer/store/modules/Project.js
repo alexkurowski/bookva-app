@@ -31,16 +31,21 @@ const newFolder = function (params) {
   }
 }
 
-const getNextOrder = function (type) {
-  if (Object.values(state[type]).length == 0) {
+const getNextOrder = function (state) {
+  let collection = [
+    ...Object.values(state.files),
+    ...Object.values(state.folders)
+  ]
+
+  if (Object.values(collection).length == 0) {
     return 0
   } else {
-    return
+    return (
       Math.max(
-        ...Object
-          .values(state[type])
+        ...collection
           .map(entry => entry.order)
       ) + 1
+    )
   }
 }
 
@@ -62,7 +67,7 @@ const mutations = {
 
   addFile (state, params) {
     params = params || {}
-    params.order = getNextOrder('files')
+    params.order = getNextOrder(state)
 
     let file = newFile(params)
     state.files = {
@@ -73,7 +78,7 @@ const mutations = {
 
   addFolder (state, params) {
     params = params || {}
-    params.order = getNextOrder('folders')
+    params.order = getNextOrder(state)
 
     let folder = newFolder(params)
     state.folders = {
