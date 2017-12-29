@@ -12,7 +12,7 @@
 
     computed: {
       title () {
-        return this.folder.title || "Untitled Folder"
+        return this.folder.title || this.$t('writer.default.title.folder')
       }
     }
   }

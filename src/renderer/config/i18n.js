@@ -6,6 +6,13 @@ export default {
         content: 'Type here...'
       },
 
+      default: {
+        title: {
+          file: 'Untitled',
+          folder: 'Untitled'
+        }
+      },
+
       sidebar: {
         title: {
           projectManager: 'Project',
