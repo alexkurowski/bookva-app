@@ -1,23 +1,30 @@
 <template lang='slm'>
   #file-tree
 
-    Draggable[ :options='draggableOptions'
+    Draggable[ :list='root'
+               :options='draggableOptions'
+               :move='onMove'
                @sort='onDrag' ]
 
-      div v-for='entry in root'
-        .entry v-if='entry.isFolder'
-          Folder :folder='entry'
+      .entry[ :data-folder-id='entry.id'
+              v-for='entry in root'
+              v-if='entry.isFolder' ]
+        Folder :folder='entry'
 
-          Draggable[ class='in-folder'
-                     :options='draggableOptions'
-                     @sort='onDrag'
-                     v-if='isFolderOpen(entry.id)' ]
+        Draggable[ :list='filesInFolder(entry.id)'
+                   :class='inFolderClass'
+                   :options='draggableOptions'
+                   :move='onMove'
+                   @sort='onDrag'
+                   v-show='isFolderOpen(entry.id)' ]
 
-            .entry v-for='file in filesInFolder(entry.id)'
-              File :file='file'
+          .entry[ :data-file-id='file.id'
+                  v-for='file in filesInFolder(entry.id)' ]
+            File :file='file'
 
-        .entry v-else='true'
-          File :file='entry'
+      .entry[ :data-file-id='entry.id'
+              v-else ]
+        File :file='entry'
 </template>
 
 <script>
@@ -43,7 +50,11 @@
         draggableOptions: {
           group: 'fileTree',
           handle: '.entry'
-        }
+        },
+
+        dragged: [],
+
+        inFolderClass: 'in-folder'
       }
     },
 
@@ -66,51 +77,6 @@
           ...this.filesInFolder(null)
         ].sort(orderSort)
       },
-
-      // fileTree: {
-      //   get () {
-      //     let result = []
-
-      //     result.push( ...this.filesInFolder(null) )
-      //     this.folders.forEach(folder => {
-      //       result.push(folder)
-      //       result.push( ...this.filesInFolder(folder.id) )
-      //     })
-
-      //     return result
-      //   },
-
-      //   set (fileTree) {
-      //     console.log("INFO before", JSON.stringify(this.fileTree.map(e => [e.title, e.folder, e.order])))
-      //     console.log("INFO new val", JSON.stringify(fileTree.map(e => [e.title, e.folder, e.order])))
-      //     let fileOrder   = 0
-      //     let folderOrder = 0
-      //     let folderId    = null
-
-      //     fileTree.forEach(entry => {
-      //       if (entry.isFolder) {
-
-      //         this.$store.commit('updateFolder', {
-      //           id: entry.id,
-      //           order: folderOrder
-      //         })
-      //         folderOrder++
-      //         folderId = entry.id
-
-      //       } else {
-
-      //         this.$store.commit('updateFile', {
-      //           id: entry.id,
-      //           folder: folderId,
-      //           order: fileOrder
-      //         })
-      //         fileOrder++
-
-      //       }
-      //     })
-      //     console.log("INFO after", JSON.stringify(this.fileTree.map(e => [e.title, e.folder, e.order])))
-      //   }
-      // }
     },
 
     methods: {
@@ -121,42 +87,71 @@
       },
 
       isFolderOpen (folder) {
-        return false
+        return true
+      },
+
+      getParentFolderId (node) {
+        let parent = node.parentNode
+        let isInFolder =
+          node
+            .parentNode
+            .className
+            .indexOf(this.inFolderClass) != -1
+
+        if (isInFolder) {
+          return node
+            .parentNode
+            .parentNode
+            .dataset
+            .folderId
+        } else {
+          return null
+        }
+      },
+
+      // FIXME: this onMove and onDrag part is a terrible hack
+      // but I couldn't think of a better way to achieve the desired FileTree behavior...
+      onMove (event, origEvent) {
+        setTimeout(() => {
+          let entries = [
+            ...document
+              .querySelectorAll('#file-tree .entry:not([style*="display:none"]):not([style*="display: none"])')
+          ]
+
+          this.dragged =
+            entries
+              .map(entry => ({
+                node: entry,
+                folder: this.getParentFolderId(entry)
+              }))
+        }, 0)
       },
 
       onDrag (event) {
-        console.log("CALL onDrag", event, this)
-      },
+        let order = 0
 
-      onUpdate (event) {
-        let fileOrder   = 0
-        let folderOrder = 0
-        let folderId    = null
-
-        document
-          .querySelectorAll('#file-tree .entry')
+        this
+          .dragged
           .forEach(entry => {
-            if (entry.dataset.fileId) {
+            if (entry.node.dataset.fileId) {
 
               this.$store.commit('updateFile', {
-                id: entry.dataset.fileId,
-                folder: folderId,
-                order: fileOrder
+                id: entry.node.dataset.fileId,
+                folder: entry.folder,
+                order: order++
               })
-              fileOrder++
 
             } else
-            if (entry.dataset.folderId) {
+            if (entry.node.dataset.folderId) {
 
               this.$store.commit('updateFolder', {
-                id: entry.dataset.folderId,
-                order: folderOrder
+                id: entry.node.dataset.folderId,
+                order: order++
               })
-              folderOrder++
-              folderId = entry.dataset.folderId
 
             }
           })
+
       },
     }
   }

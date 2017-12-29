@@ -51,7 +51,7 @@ const getNextOrder = function (state) {
 
 const mutations = {
   newProject (state) {
-    state.files = {}
+    state.files   = {}
     state.folders = {}
 
     mutations.addFile(state)
