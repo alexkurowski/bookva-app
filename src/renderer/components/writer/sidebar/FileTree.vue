@@ -32,7 +32,7 @@
   import File from './file_tree/File'
   import Folder from './file_tree/Folder'
 
-  import { Project } from '@/helpers/store_helper'
+  import { Writer, Project } from '@/helpers/store_helper'
 
   const orderSort = (a, b) => (a.order - b.order)
 
@@ -87,7 +87,7 @@
       },
 
       isFolderOpen (folder) {
-        return true
+        return Writer.foldersOpen.includes(folder)
       },
 
       getParentFolderId (node) {
