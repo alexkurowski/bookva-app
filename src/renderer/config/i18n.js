@@ -19,6 +19,11 @@ export default {
           fileTree: 'Files',
           themeSelector: 'Themes',
           share: 'Share'
+        },
+
+        new: {
+          file: '+ New file',
+          folder: '+ New folder'
         }
       }
     }

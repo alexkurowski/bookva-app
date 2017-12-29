@@ -22,9 +22,20 @@
                   v-for='file in filesInFolder(entry.id)' ]
             File :file='file'
 
+          .add-file[ slot='footer'
+                     :data-folder-id='entry.id' ]
+            | {{ $t('writer.sidebar.new.file') }}
+
       .entry[ :data-file-id='entry.id'
               v-else ]
         File :file='entry'
+
+      .add-file[ slot='footer'
+                 :data-folder-id='null' ]
+        | {{ $t('writer.sidebar.new.file') }}
+
+    .add-folder
+      | {{ $t('writer.sidebar.new.folder') }}
 </template>
 
 <script>
