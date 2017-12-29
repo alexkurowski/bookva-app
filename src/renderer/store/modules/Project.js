@@ -37,7 +37,9 @@ const mutations = {
     state.folders = {}
 
     mutations.addFile(state)
-    mutations.addFolder(state) // TODO: remove this
+    // TODO: below lies only debug data
+    mutations.addFolder(state)
+    mutations.addFile(state, { folder: Object.keys(state.folders)[0] })
   },
 
   addFile (state, params) {

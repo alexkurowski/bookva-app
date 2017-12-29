@@ -1,5 +1,6 @@
 <template lang='slm'>
   .folder
+    i.icon.icon-folder
     .title {{ title }}
 </template>
 
@@ -24,4 +25,9 @@
     height: $sidebar-file-tree-height
     padding: 0 1rem
     white-space: nowrap
+
+    i
+      width: 1.5rem
+      font-size: 1.5rem
+      padding-right: .5rem
 </style>
