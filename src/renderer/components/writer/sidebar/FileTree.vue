@@ -211,4 +211,7 @@
 
     .file
       padding-left: 5rem
+
+  .sortable-drag
+    opacity: 0.5 !important
 </style>
