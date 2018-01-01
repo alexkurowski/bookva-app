@@ -1,5 +1,6 @@
 <template lang='slm'>
-  div :class='className'
+  div[ :class='className'
+       @input='update' ]
 </template>
 
 <script>
@@ -19,6 +20,20 @@
     computed: {
       className () {
         return `medium-editor medium-${ this.type }`
+      }
+    },
+
+    methods: {
+      update (event) {
+        this.$store.commit('updateFile', {
+          id: this.file.id,
+          [this.type]: event.target.innerHTML
+        })
+      },
+
+      reset () {
+        if (this.file)
+          this.$el.innerHTML = this.file[this.type]
       }
     },
 

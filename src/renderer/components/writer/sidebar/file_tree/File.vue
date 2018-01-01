@@ -27,6 +27,7 @@
     methods: {
       openFile () {
         this.$store.commit('openFile', this.file.id)
+        this.$root.resetEditors()
       }
     }
   }

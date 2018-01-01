@@ -97,6 +97,7 @@
     right: 0
     bottom: 0
     padding-top: .5rem
+    overflow-x: hidden
     overflow-y: auto
 
   .fade-enter-active,

@@ -4,6 +4,7 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
+import mixins from './mixin'
 
 import VueI18n from 'vue-i18n'
 import i18nMessages from './config/i18n'
@@ -24,5 +25,6 @@ new Vue({
   router,
   store,
   i18n,
-  template: '<App/>'
+  mixins,
+  template: '<App/>',
 }).$mount('#app')

@@ -5,7 +5,7 @@
 
 <script>
   export default {
-    name: 'wrtr'
+    name: 'wrtr',
   }
 </script>
 
