@@ -211,4 +211,7 @@
 
   .in-folder
     min-height: $sidebar-file-tree-height
+
+    .file
+      padding-left: 3rem
 </style>

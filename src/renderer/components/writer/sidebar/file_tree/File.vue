@@ -1,6 +1,5 @@
 <template lang='slm'>
-  .file.file-tree-item[ :class='className'
-                        @click='openFile' ]
+  .file.file-tree-item @click='openFile'
     Title :editable='false' {{ title }}
 </template>
 
@@ -19,12 +18,6 @@
     },
 
     computed: {
-      className () {
-        return Project.folders[this.file.folder]
-          ? 'in-folder'
-          : ''
-      },
-
       title () {
         return this.file.title ||
                this.$t('writer.default.title.file')
@@ -41,6 +34,4 @@
 </script>
 
 <style lang='sass' scoped>
-  .in-folder
-    padding-left: 3rem
 </style>
