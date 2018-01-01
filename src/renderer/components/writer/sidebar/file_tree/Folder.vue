@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import { Writer } from '@/helpers/store_helper'
+  import { Writer, Project } from '@/helpers/store_helper'
 
   export default {
     name: 'Folder',
@@ -13,8 +13,18 @@
     props: [ 'folder' ],
 
     computed: {
-      folderIcon () {
+      isOpen () {
         return Writer.foldersOpen.includes(this.folder.id)
+      },
+
+      isEmpty () {
+        return Object.values(Project.files)
+          .filter(file => file.folder === this.folder.id)
+          .length == 0
+      },
+
+      folderIcon () {
+        return this.isOpen
           ? 'fa-folder-open-o'
           : 'fa-folder-o'
       },
@@ -46,4 +56,7 @@
       width: 1.5rem
       font-size: 1.25rem
       padding-right: .5rem
+
+  .in-folder
+      min-height: $sidebar-file-tree-height
 </style>

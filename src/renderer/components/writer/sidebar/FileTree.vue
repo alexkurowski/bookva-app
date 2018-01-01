@@ -191,4 +191,7 @@
       width: 1.5rem
       padding-right: .5rem
       text-align: center
+
+  .in-folder
+    min-height: $sidebar-file-tree-height * 0.5
 </style>
