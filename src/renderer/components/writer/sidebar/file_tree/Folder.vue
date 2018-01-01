@@ -80,7 +80,7 @@
         left: 0
         right: 0
         height: $sidebar-file-tree-height
-        padding: 0 3rem
+        padding: 0 5rem
         opacity: .5
         pointer-events: none
 </style>

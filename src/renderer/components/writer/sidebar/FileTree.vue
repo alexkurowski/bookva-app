@@ -209,5 +209,5 @@
     min-height: $sidebar-file-tree-height
 
     .file
-      padding-left: 3rem
+      padding-left: 5rem
 </style>

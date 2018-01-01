@@ -36,4 +36,6 @@
 </script>
 
 <style lang='sass' scoped>
+  .file
+    padding-left: 3rem
 </style>
