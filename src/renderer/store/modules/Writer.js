@@ -37,7 +37,7 @@ const mutations = {
     }
   },
 
-  updateScheme (state, params) {
+  updateTheme (state, params) {
     state[params.type] = params.value
   }
 }

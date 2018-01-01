@@ -58,7 +58,7 @@
         let value = event.target.value
         let type  = event.target.dataset.type
 
-        this.$store.commit('updateScheme', {
+        this.$store.commit('updateTheme', {
           value,
           type
         })
