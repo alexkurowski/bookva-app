@@ -1,5 +1,6 @@
 <template lang='slm'>
-  .folder @click='toggleFolder'
+  .folder[ :class='classEmpty'
+           @click='toggleFolder' ]
     i.fa :class='folderIcon'
     .title {{ title }}
 </template>
@@ -23,6 +24,12 @@
           .length == 0
       },
 
+      classEmpty () {
+        return this.isEmpty
+          ? 'empty'
+          : ''
+      },
+
       folderIcon () {
         return this.isOpen
           ? 'fa-folder-open-o'
@@ -44,6 +51,7 @@
 
 <style lang='sass' scoped>
   .folder
+    position: relative
     display: flex
     align-items: center
     height: $sidebar-file-tree-height
@@ -57,6 +65,17 @@
       font-size: 1.25rem
       padding-right: .5rem
 
-  .in-folder
-      min-height: $sidebar-file-tree-height
+    &.empty
+      &:after
+        content: 'Empty'
+        position: absolute
+        align-items: center
+        display: flex
+        top: 100%
+        left: 0
+        right: 0
+        height: $sidebar-file-tree-height
+        padding: 0 3rem
+        opacity: .5
+        pointer-events: none
 </style>

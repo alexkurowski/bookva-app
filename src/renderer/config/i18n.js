@@ -24,7 +24,7 @@ export default {
         new: {
           file: 'New file',
           folder: 'New folder'
-        }
+        },
       }
     }
   }

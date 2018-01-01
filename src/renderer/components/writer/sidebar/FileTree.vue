@@ -99,6 +99,12 @@
         return Writer.foldersOpen.includes(folder)
       },
 
+      isFolderEmpty (folder) {
+        return Object.values(Project.files)
+          .filter(file => file.folder === folder)
+          .length == 0
+      },
+
       getParentFolderId (node) {
         let parent = node.parentNode
         let isInFolder =
@@ -194,6 +200,15 @@
       padding-right: .5rem
       text-align: center
 
+  .empty-folder
+    display: flex
+    align-items: center
+    height: $sidebar-file-tree-height
+    padding: 0 1rem
+    padding-left: 3rem
+    opacity: .5
+    user-select: none
+
   .in-folder
-    min-height: $sidebar-file-tree-height * 0.5
+    min-height: $sidebar-file-tree-height
 </style>
