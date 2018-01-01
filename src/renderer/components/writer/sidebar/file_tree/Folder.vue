@@ -2,16 +2,22 @@
   .folder[ :class='classEmpty'
            @click='toggleFolder' ]
     i.fa :class='folderIcon'
-    .title {{ title }}
+    Title {{ title }}
 </template>
 
 <script>
+  import Title from './Title'
+
   import { Writer, Project } from '@/helpers/store_helper'
 
   export default {
     name: 'Folder',
 
     props: [ 'folder' ],
+
+    components: {
+      Title
+    },
 
     computed: {
       isOpen () {
@@ -44,7 +50,7 @@
     methods: {
       toggleFolder () {
         this.$store.commit('toggleFolder', this.folder.id)
-      }
+      },
     }
   }
 </script>

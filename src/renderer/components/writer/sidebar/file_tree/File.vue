@@ -1,16 +1,22 @@
 <template lang='slm'>
   .file[ :class='className'
          @click='openFile' ]
-    .title {{ title }}
+    Title {{ title }}
 </template>
 
 <script>
+  import Title from './Title'
+
   import { Project } from '@/helpers/store_helper'
 
   export default {
     name: 'File',
 
     props: [ 'file' ],
+
+    components: {
+      Title
+    },
 
     computed: {
       className () {
@@ -29,7 +35,7 @@
       openFile () {
         this.$store.commit('openFile', this.file.id)
         this.$root.resetEditors()
-      }
+      },
     }
   }
 </script>
