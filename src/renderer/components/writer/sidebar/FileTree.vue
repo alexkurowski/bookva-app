@@ -164,10 +164,11 @@
       },
 
       addFile () {
-        console.log("CALL addFile")
+        this.$store.commit('addFile')
       },
 
       addFolder () {
+        this.$store.commit('addFolder')
       },
     }
   }
