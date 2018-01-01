@@ -1,5 +1,6 @@
 <template lang='slm'>
-  .title[ contenteditable='true'
+  .title[ :class='className'
+          :contenteditable='contentEditable'
           @click='click'
           @keydown='keydown'
           @blur='rename' ]
@@ -10,9 +11,28 @@
   export default {
     name: 'Title',
 
+    props: [ 'editable' ],
+
+    computed: {
+      isEditable () {
+        return this.editable !== false
+      },
+
+      className () {
+        return this.isEditable
+          ? ''
+          : 'locked'
+      },
+
+      contentEditable () {
+        return this.isEditable
+      }
+    },
+
     methods: {
       click (event) {
-        event.stopPropagation()
+        if (this.isEditable)
+          event.stopPropagation()
       },
 
       keydown (event) {
@@ -48,4 +68,7 @@
     padding: .25rem 0
     overflow: hidden
     cursor: text
+
+    &.locked
+      cursor: pointer
 </style>

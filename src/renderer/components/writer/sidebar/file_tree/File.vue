@@ -1,7 +1,7 @@
 <template lang='slm'>
   .file.file-tree-item[ :class='className'
                         @click='openFile' ]
-    Title {{ title }}
+    Title :editable='false' {{ title }}
 </template>
 
 <script>
