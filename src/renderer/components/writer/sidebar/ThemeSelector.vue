@@ -28,22 +28,22 @@
     data () {
       return {
         schemes: {
-          default: 'Sharp',
-          smooth:  'Smooth',
-          dark:    'Dark',
+          sharp:  'Sharp',
+          smooth: 'Smooth',
+          dark:   'Dark',
         },
 
         fontFamilies: {
-          default: 'Merriweather',
-          modern:  'Roboto',
-          mono:    'PT Mono',
+          merriweather: 'Merriweather',
+          roboto:       'Roboto',
+          ptmono:       'PT Mono',
         },
 
         fontSizes: {
-          small:   'Small',
-          default: 'Normal',
-          big:     'Large',
-          bigger:  'Largest',
+          small:  'Small',
+          normal: 'Normal',
+          big:    'Large',
+          bigger: 'Largest',
 
         },
       }

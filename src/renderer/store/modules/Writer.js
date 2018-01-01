@@ -4,9 +4,9 @@ const state = {
 
   editorSizeRatio: 50,
 
-  scheme:     'dark', // 'default',
-  fontFamily: 'default',
-  fontSize:   'default',
+  scheme:     'dark', // 'smooth',
+  fontFamily: 'merriweather',
+  fontSize:   'normal',
 }
 
 const mutations = {

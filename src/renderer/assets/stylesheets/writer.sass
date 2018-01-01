@@ -1,8 +1,8 @@
 @import 'variables'
 
 
-$default-bg: #ffffff
-$default-fg: #404852
+$sharp-bg: #ffffff
+$sharp-fg: #404852
 
 $smooth-bg: #eaeae8
 $smooth-fg: #6a6a66
@@ -39,6 +39,8 @@ $dark-fg: #d5d4d3
 
     &.open
       border-color: darken( $bg, 6 )
+
+
 
   #link-bar a
     color: $fg
@@ -95,8 +97,8 @@ $dark-fg: #d5d4d3
 
 
 #app > .view
-  &.scheme-default
-    @include scheme($default-bg, $default-fg)
+  &.scheme-sharp
+    @include scheme($sharp-bg, $sharp-fg)
 
   &.scheme-smooth
     @include scheme($smooth-bg, $smooth-fg)
@@ -105,23 +107,15 @@ $dark-fg: #d5d4d3
     @include scheme($dark-bg, $dark-fg)
 
 
-  &.font-family-default
+  &.font-family-merriweather
     font-family: Merriweather, serif
 
-  &.font-family-modern
+  &.font-family-roboto
     font-family: Roboto, sans-serif
 
-  &.font-family-mono
+  &.font-family-ptmono
     font-family: PT Mono, monospace
 
-
-  &.font-size-default
-    .medium-title,
-    .medium-content h1
-      font-size: 2.5rem
-
-    .medium-content
-      font-size: 1rem
 
   &.font-size-small
     .medium-title,
@@ -130,6 +124,14 @@ $dark-fg: #d5d4d3
 
     .medium-content
       font-size: 0.8rem
+
+  &.font-size-normal
+    .medium-title,
+    .medium-content h1
+      font-size: 2.5rem
+
+    .medium-content
+      font-size: 1rem
 
   &.font-size-big
     .medium-title,
