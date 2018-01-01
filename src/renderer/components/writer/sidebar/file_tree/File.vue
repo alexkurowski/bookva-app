@@ -20,7 +20,8 @@
       },
 
       title () {
-        return this.file.title || this.$t('writer.default.title.file')
+        return this.file.title ||
+               this.$t('writer.default.title.file')
       }
     },
 

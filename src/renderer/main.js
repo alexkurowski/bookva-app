@@ -4,7 +4,7 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
-import mixins from './mixin'
+import mixins from './mixins'
 
 import VueI18n from 'vue-i18n'
 import i18nMessages from './config/i18n'
