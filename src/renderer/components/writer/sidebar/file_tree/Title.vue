@@ -44,10 +44,8 @@
 
 <style lang='sass' scoped>
   .title
-    max-width: 80%
-    padding: .25rem .3rem
-    margin-left: -.3rem
-    margin-right: .3rem
+    max-width: 100%
+    padding: .25rem 0
     overflow: hidden
     cursor: text
 </style>
