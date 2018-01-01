@@ -120,7 +120,7 @@
         }
       },
 
-      // FIXME: this onMove and onDrag part is a terrible hack
+      // FIXME (Alex): this onMove and onDrag part is a terrible hack
       // but I couldn't think of a better way to achieve the desired FileTree behavior...
       onMove (event, origEvent) {
         setTimeout(() => {

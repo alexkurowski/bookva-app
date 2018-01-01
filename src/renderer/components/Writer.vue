@@ -32,7 +32,7 @@
     },
 
     created () {
-      // TODO: fetch project data from a file
+      // TODO (Alex): fetch project data from a file
 
       this.$store.commit('newProject')
     }
