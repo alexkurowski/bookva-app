@@ -17,10 +17,12 @@ $contrast-fg: #fafafa
 @mixin scheme($bg, $fg)
   #background
     background: $bg
+    transition: background .3s
 
   .editor-close
     .editor-close-overlay
       background: $bg
+      transition: background .3s
 
   .medium-editor
     color: $fg
@@ -37,13 +39,12 @@ $contrast-fg: #fafafa
     color: $fg
 
   #sidebar
-    background: $bg
     color: $fg
+    background: $bg
+    transition: background .3s, border-color .3s
 
     &.open
       border-color: darken( $bg, 6 )
-
-
 
   #link-bar a
     color: $fg

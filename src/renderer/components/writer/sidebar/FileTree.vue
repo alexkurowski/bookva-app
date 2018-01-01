@@ -1,7 +1,8 @@
 <template lang='slm'>
   #file-tree
 
-    Draggable[ :list='root'
+    Draggable[ class='root'
+               :list='root'
                :options='draggableOptions'
                :move='onMove'
                @sort='onDrag' ]
@@ -186,7 +187,7 @@
 </script>
 
 <style lang='sass' scoped>
-  #file-tree > div
+  .root
     padding-bottom: 1rem
 
   .add-file,
