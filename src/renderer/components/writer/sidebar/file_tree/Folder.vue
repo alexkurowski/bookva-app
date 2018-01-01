@@ -1,6 +1,6 @@
 <template lang='slm'>
-  .folder[ :class='classEmpty'
-           @click='toggleFolder' ]
+  .folder.file-tree-item[ :class='[ classOpen, classEmpty ]'
+                          @click='toggleFolder' ]
     i.fa :class='folderIcon'
     Title {{ title }}
 </template>
@@ -30,6 +30,12 @@
           .length == 0
       },
 
+      classOpen () {
+        return this.isOpen
+          ? 'open'
+          : ''
+      },
+
       classEmpty () {
         return this.isEmpty
           ? 'empty'
@@ -57,21 +63,12 @@
 
 <style lang='sass' scoped>
   .folder
-    position: relative
-    display: flex
-    align-items: center
-    height: $sidebar-file-tree-height
-    padding: 0 1rem
-    white-space: nowrap
-    user-select: none
-    cursor: pointer
-
     i
       width: 1.5rem
       font-size: 1.25rem
       padding-right: .5rem
 
-    &.empty
+    &.open.empty
       &:after
         content: 'Empty'
         position: absolute

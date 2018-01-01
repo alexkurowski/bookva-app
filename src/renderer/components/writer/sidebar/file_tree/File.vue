@@ -1,6 +1,6 @@
 <template lang='slm'>
-  .file[ :class='className'
-         @click='openFile' ]
+  .file.file-tree-item[ :class='className'
+                        @click='openFile' ]
     Title {{ title }}
 </template>
 
@@ -21,7 +21,7 @@
     computed: {
       className () {
         return Project.folders[this.file.folder]
-          ? ''
+          ? 'in-folder'
           : ''
       },
 
@@ -41,15 +41,6 @@
 </script>
 
 <style lang='sass' scoped>
-  .file
-    display: flex
-    align-items: center
-    height: $sidebar-file-tree-height
-    padding: 0 1rem
-    white-space: nowrap
-    user-select: none
-    cursor: pointer
-
-  .in-folder .file
+  .in-folder
     padding-left: 3rem
 </style>
