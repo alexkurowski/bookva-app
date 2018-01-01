@@ -35,6 +35,10 @@ const mutations = {
         folderId
       ]
     }
+  },
+
+  updateScheme (state, params) {
+    state[params.type] = params.value
   }
 }
 
