@@ -50,13 +50,17 @@
   .file
     padding-left: 3rem
 
+    &:before
+      content: ''
+      position: absolute
+      left: 0
+      top: 0
+      bottom: 0
+      width: 4px
+      background: transparent
+
     &.open
       &:before
-        content: ''
-        position: absolute
-        left: 0
-        top: 0
-        bottom: 0
-        width: 4px
+        transition: background .3s
         background: $color-action !important
 </style>
