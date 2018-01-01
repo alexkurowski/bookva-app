@@ -26,14 +26,15 @@
               v-else ]
         File :file='entry'
 
-    .add-file[ :data-folder-id='null'
-               @click='addFile' ]
-      i.icon.icon-plus
-      | {{ $t('writer.sidebar.new.file') }}
+    .controls
+      .add-file.file-tree-item[ :data-folder-id='null'
+                 @click='addFile' ]
+        i.icon.icon-plus
+        | {{ $t('writer.sidebar.new.file') }}
 
-    .add-folder[ @click='addFolder' ]
-      i.icon.icon-plus
-      | {{ $t('writer.sidebar.new.folder') }}
+      .add-folder.file-tree-item[ @click='addFolder' ]
+        i.icon.icon-plus
+        | {{ $t('writer.sidebar.new.folder') }}
 </template>
 
 <script>
@@ -190,13 +191,6 @@
 
   .add-file,
   .add-folder
-    display: flex
-    align-items: center
-    height: $sidebar-file-tree-height
-    padding: 0 1rem !important
-    user-select: none
-    cursor: pointer
-
     i
       width: 1.5rem
       padding-right: .5rem
