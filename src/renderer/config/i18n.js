@@ -22,8 +22,8 @@ export default {
         },
 
         new: {
-          file: '+ New file',
-          folder: '+ New folder'
+          file: 'New file',
+          folder: 'New folder'
         }
       }
     }

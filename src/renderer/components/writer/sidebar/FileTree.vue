@@ -22,19 +22,17 @@
                   v-for='file in filesInFolder(entry.id)' ]
             File :file='file'
 
-          .add-file[ slot='footer'
-                     :data-folder-id='entry.id' ]
-            | {{ $t('writer.sidebar.new.file') }}
-
       .entry[ :data-file-id='entry.id'
               v-else ]
         File :file='entry'
 
-      .add-file[ slot='footer'
-                 :data-folder-id='null' ]
-        | {{ $t('writer.sidebar.new.file') }}
+    .add-file[ :data-folder-id='null'
+               @click='addFile' ]
+      i.icon.icon-plus
+      | {{ $t('writer.sidebar.new.file') }}
 
-    .add-folder
+    .add-folder[ @click='addFolder' ]
+      i.icon.icon-plus
       | {{ $t('writer.sidebar.new.folder') }}
 </template>
 
@@ -164,6 +162,13 @@
           })
 
       },
+
+      addFile () {
+        console.log("CALL addFile")
+      },
+
+      addFolder () {
+      },
     }
   }
 </script>
@@ -171,4 +176,18 @@
 <style lang='sass' scoped>
   #file-tree > div
     padding-bottom: 1rem
+
+  .add-file,
+  .add-folder
+    display: flex
+    align-items: center
+    height: $sidebar-file-tree-height
+    padding: 0 1rem !important
+    user-select: none
+    cursor: pointer
+
+    i
+      width: 1.5rem
+      padding-right: .5rem
+      text-align: center
 </style>

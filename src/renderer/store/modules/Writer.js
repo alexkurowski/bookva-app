@@ -4,7 +4,7 @@ const state = {
 
   editorSizeRatio: 50,
 
-  scheme:     'default',
+  scheme:     'dark', // 'default',
   fontFamily: 'default',
   fontSize:   'default',
 }

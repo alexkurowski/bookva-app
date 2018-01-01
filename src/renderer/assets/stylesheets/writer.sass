@@ -37,6 +37,9 @@ $dark-fg: #d5d4d3
     background: $bg
     color: $fg
 
+    &.open
+      border-color: darken( $bg, 6 )
+
   #link-bar a
     color: $fg
     background: transparent
@@ -56,14 +59,8 @@ $dark-fg: #d5d4d3
         &:before
           background-color: darken( $bg, 6 )
 
-    .file
-      .drag-handle
-        &:before,
-        &:after
-          background-color: $fg
-
-  #file-add,
-  #folder-add
+  .add-file,
+  .add-folder
     &:hover
       background-color: darken( $bg, 6 )
 
