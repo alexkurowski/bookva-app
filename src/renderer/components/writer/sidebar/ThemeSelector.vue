@@ -76,7 +76,7 @@
     width: 80%
     color: inherit
     background: inherit
-    margin-bottom: 1rem
+    margin: 1rem auto
     padding: .5rem
     border-radius: 4px
 
