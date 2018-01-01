@@ -4,6 +4,8 @@
 </template>
 
 <script>
+  require('./assets/javascripts/global.js')
+
   export default {
     name: 'wrtr',
   }
