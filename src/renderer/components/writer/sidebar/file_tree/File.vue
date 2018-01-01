@@ -1,5 +1,7 @@
 <template lang='slm'>
-  .file.file-tree-item @click='openFile'
+  .file.file-tree-item.drag-handle[
+      @click='openFile' ]
+
     Title :editable='false' {{ title }}
 </template>
 

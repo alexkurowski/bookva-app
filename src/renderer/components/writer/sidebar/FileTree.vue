@@ -58,7 +58,9 @@
       return {
         draggableOptions: {
           group: 'fileTree',
-          handle: '.entry'
+          handle: '.drag-handle',
+          animation: 300,
+          scrollSpeed: 15
         },
 
         dragged: [],
