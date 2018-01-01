@@ -85,6 +85,8 @@ const mutations = {
       ...state.folders,
       [folder.id]: folder
     }
+
+    params.id = folder.id
   },
 
   updateFile (state, params) {

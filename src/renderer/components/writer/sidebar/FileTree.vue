@@ -168,7 +168,9 @@
       },
 
       addFolder () {
-        this.$store.commit('addFolder')
+        let params = {}
+        this.$store.commit('addFolder', params)
+        this.$store.commit('toggleFolder', params.id)
       },
     }
   }
