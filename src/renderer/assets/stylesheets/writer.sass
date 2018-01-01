@@ -10,6 +10,9 @@ $smooth-fg: #6a6a66
 $dark-bg: #333231
 $dark-fg: #d5d4d3
 
+$contrast-bg: #0a0a0a
+$contrast-fg: #fafafa
+
 
 @mixin scheme($bg, $fg)
   #background
@@ -105,6 +108,9 @@ $dark-fg: #d5d4d3
 
   &.scheme-dark
     @include scheme($dark-bg, $dark-fg)
+
+  &.scheme-contrast
+    @include scheme($contrast-bg, $contrast-fg)
 
 
   &.font-family-merriweather

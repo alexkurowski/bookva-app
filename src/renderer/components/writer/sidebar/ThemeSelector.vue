@@ -10,13 +10,13 @@
       option[ v-for='name, value in fontFamilies'
               :value='value'
               :selected='isSelected(value, "fontFamily")' ]
-        | {{ name }}
+        | {{ name }} font
 
     select data-type='fontSize' @change='change'
       option[ v-for='name, value in fontSizes'
               :value='value'
               :selected='isSelected(value, "fontSize")' ]
-        | {{ name }} font
+        | {{ name }} font size
 </template>
 
 <script>
@@ -28,9 +28,10 @@
     data () {
       return {
         schemes: {
-          sharp:  'Sharp',
-          smooth: 'Smooth',
-          dark:   'Dark',
+          sharp:    'Sharp',
+          smooth:   'Smooth',
+          dark:     'Dark',
+          contrast: 'Contrast',
         },
 
         fontFamilies: {
