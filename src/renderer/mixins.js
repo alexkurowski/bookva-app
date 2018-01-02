@@ -6,7 +6,10 @@ export default [{
           .querySelectorAll('.medium-editor')
           .forEach(editor => {
             editor.__vue__.reset()
-            editor.click()
+            if (editor.innerText)
+              editor.classList.remove('medium-editor-placeholder')
+            else
+              editor.classList.add('medium-editor-placeholder')
           })
       }, 0)
     }

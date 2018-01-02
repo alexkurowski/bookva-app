@@ -18,7 +18,8 @@
         options: {
           title: {
             placeholder: {
-              text: this.$t('writer.placeholder.title')
+              text: this.$t('writer.placeholder.title'),
+              hideOnClick: false
             },
             disableReturn: true,
             imageDragging: false,
@@ -27,7 +28,8 @@
 
           content: {
             placeholder: {
-              text: this.$t('writer.placeholder.content')
+              text: this.$t('writer.placeholder.content'),
+              hideOnClick: false
             },
             imageDragging: false,
             toolbar: {
