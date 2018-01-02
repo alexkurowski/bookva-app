@@ -88,7 +88,7 @@
 
   #sidebar,
   #toggle
-    transition: left .2s ease, opacity .2s ease
+    transition: left .2s ease, opacity .2s ease, background .3s, border-color .3s
 
   #sidebar-content
     position: absolute
