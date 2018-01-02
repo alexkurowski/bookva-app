@@ -90,7 +90,7 @@
     justify-content: center
     position: fixed
     top: 0
-    left: $sidebar-width
+    left: $sidebar-width + $sidebar-controls-width
     right: 0
     bottom: 0
 
