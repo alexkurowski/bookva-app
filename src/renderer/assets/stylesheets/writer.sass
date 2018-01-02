@@ -17,12 +17,12 @@ $contrast-fg: #fafafa
 @mixin scheme($bg, $fg)
   #background
     background: $bg
-    transition: background .3s
 
-  .editor-close
-    .editor-close-overlay
-      background: $bg
-      transition: background .3s
+  .pane-overlay
+    background: $bg
+
+  .pane-close
+    color: $fg
 
   .medium-editor
     color: $fg

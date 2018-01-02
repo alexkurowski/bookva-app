@@ -1,11 +1,18 @@
 <template lang='slm'>
   .pane[
-    :class='[ classHidden, classSide, classSize ]'
-    :style='style' ]
+    :class='[ classHidden, classSide, classSize ]' ]
 
     .medium-container
       Medium :file='file' type='title'/
       Medium :file='file' type='content'/
+
+    .pane-overlay[ :class='{ shown: closeHover }' ]
+
+    .pane-close[ @mouseenter='closeHover = true'
+                 @mouseleave='closeHover = false'
+                 @click='closePane'
+                 v-if='canClose' ]
+      i.icon.icon-times
 </template>
 
 <script>
@@ -22,6 +29,12 @@
 
     components: {
       Medium
+    },
+
+    data () {
+      return {
+        closeHover: false
+      }
     },
 
     computed: {
@@ -51,12 +64,15 @@
           : 'editor-full'
       },
 
-      style () {
-        return ''
-      }
+      canClose () {
+        return Writer.filesOpen.length > 1
+      },
     },
 
-    mounted () {
+    methods: {
+      closePane () {
+        this.$store.commit('writerFileClosePane', this.index)
+      }
     }
   }
 </script>
@@ -71,6 +87,31 @@
     text-align: center
     overflow-y: scroll
     z-index: 500
+
+  .pane-overlay
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    opacity: 0
+    transition: background .3s, opacity .3s
+    pointer-events: none
+
+    &.shown
+      opacity: .6
+
+  .pane-close
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    top: 0
+    right: 0
+    width: $sidebar-controls-width
+    height: $sidebar-controls-height
+    font-size: 1.5rem
+    cursor: pointer
 
   .medium-container
     position: relative

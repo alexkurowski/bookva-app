@@ -44,5 +44,6 @@
     right: 0
     bottom: 0
     z-index: -1000
+    transition: background .3s
     pointer-events: none
 </style>

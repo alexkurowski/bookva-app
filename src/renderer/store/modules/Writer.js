@@ -17,6 +17,8 @@ const mutations = {
 
   writerFileOpenFill (state, fileId) {
     state.filesOpen = [ fileId ]
+
+    global.resetEditors()
   },
 
   writerFileOpenPane (state, params) {
@@ -32,6 +34,14 @@ const mutations = {
     }
 
     state.filesOpen = filesOpen
+    global.resetEditors()
+  },
+
+  writerFileClosePane (state, index) {
+    let filesOpen = [ ...state.filesOpen ]
+    filesOpen.splice(index, 1)
+    state.filesOpen = filesOpen
+    global.resetEditors()
   },
 
   writerToggleFolderOpen (state, folderId) {

@@ -78,8 +78,6 @@
             pane: this.dropTarget
           })
         }
-
-        this.$root.resetEditors()
       },
     }
   }
