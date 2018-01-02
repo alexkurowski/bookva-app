@@ -57,7 +57,7 @@
 
     methods: {
       toggleFolder () {
-        this.$store.commit('toggleFolder', this.folder.id)
+        this.$store.commit('writerToggleFolderOpen', this.folder.id)
       },
     }
   }

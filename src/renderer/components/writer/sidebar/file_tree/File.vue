@@ -39,7 +39,8 @@
 
     methods: {
       openFile () {
-        this.$store.commit('openFile', this.file.id)
+        // this.$store.commit('writerSetFileOpen', this.file.id)
+        this.$store.commit('writerPushFileOpen', this.file.id)
         this.$root.resetEditors()
       },
     }

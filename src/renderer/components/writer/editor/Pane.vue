@@ -1,5 +1,5 @@
 <template lang='slm'>
-  .editor-pane[
+  .pane[
     :class='[ classHidden, classSide, classSize ]'
     :style='style' ]
 
@@ -62,7 +62,7 @@
 </script>
 
 <style lang='sass' scoped>
-  .editor-pane
+  .pane
     position: absolute
     top: 0
     left: 0

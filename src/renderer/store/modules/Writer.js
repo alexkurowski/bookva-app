@@ -14,11 +14,18 @@ const mutations = {
     state.filesOpen = []
   },
 
-  openFile (state, fileId) {
+  writerSetFileOpen (state, fileId) {
     state.filesOpen = [ fileId ]
   },
 
-  toggleFolder (state, folderId) {
+  writerPushFileOpen (state, fileId) {
+    state.filesOpen = [
+      ...state.filesOpen,
+      fileId
+    ]
+  },
+
+  writerToggleFolderOpen (state, folderId) {
     if (state.foldersOpen.includes(folderId)) {
       let newFoldersOpen = [ ...state.foldersOpen ]
       newFoldersOpen
@@ -37,7 +44,7 @@ const mutations = {
     }
   },
 
-  updateTheme (state, params) {
+  writerUpdateTheme (state, params) {
     state[params.type] = params.value
   }
 }
