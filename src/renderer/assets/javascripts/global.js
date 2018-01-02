@@ -6,4 +6,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if ( event.target.className.indexOf('entry') == -1 )
       return false
   }
-});
+})
