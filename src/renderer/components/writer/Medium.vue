@@ -13,7 +13,29 @@
 
     data () {
       return {
-        editor: null
+        editor: null,
+
+        options: {
+          title: {
+            placeholder: {
+              text: this.$t('writer.placeholder.title')
+            },
+            disableReturn: true,
+            imageDragging: false,
+            toolbar: false,
+          },
+
+          content: {
+            placeholder: {
+              text: this.$t('writer.placeholder.content')
+            },
+            imageDragging: false,
+            toolbar: {
+              buttons: ['bold', 'italic', 'underline', 'h1', 'h2', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'removeFormat'],
+            },
+            buttonLabels: 'fontawesome',
+          }
+        }
       }
     },
 
@@ -38,26 +60,7 @@
     },
 
     mounted () {
-      if (this.type == 'title') {
-        this.editor = new MediumEditor(this.$el, {
-          placeholder: {
-            text: this.$t('writer.placeholder.title')
-          },
-          disableReturn: true,
-          toolbar: false
-        })
-      } else
-      if (this.type == 'content') {
-        this.editor = new MediumEditor(this.$el, {
-          placeholder: {
-            text: this.$t('writer.placeholder.content')
-          },
-          toolbar: {
-            buttons: ['bold', 'italic', 'underline', 'h1', 'h2', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'removeFormat'],
-          },
-          buttonLabels: 'fontawesome'
-        })
-      }
+      this.editor = new MediumEditor(this.$el, this.options[this.type])
     }
   }
 </script>
@@ -77,4 +80,7 @@
 
     h2
       font-size: 150%
+
+  .medium-editor-dragover
+    background: transparent
 </style>
