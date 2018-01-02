@@ -176,10 +176,15 @@
           })
       },
 
-      onStart () {
+      onStart (event) {
+        const fileId = event.item.dataset.fileId
+        const isOpen = Writer.filesOpen.includes(fileId)
+        if ( fileId && !isOpen )
+          this.$store.commit('sidebarSetDraggedFileId', fileId)
       },
 
       onEnd () {
+        this.$store.commit('sidebarSetDraggedFileId', null)
       },
 
       addFile () {

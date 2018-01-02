@@ -1,7 +1,9 @@
 const state = {
   sidebarOpen: false,
   sidebarPage: 'FileTree',
-  sidebarPages: [ 'FileTree', 'ProjectManager', 'ThemeSelector' ]
+  sidebarPages: [ 'FileTree', 'ProjectManager', 'ThemeSelector' ],
+
+  draggedFileId: null
 }
 
 const mutations = {
@@ -17,6 +19,10 @@ const mutations = {
       state.sidebarPage = value
     else
       throw `Unknown sidebar page: ${ value }`
+  },
+
+  sidebarSetDraggedFileId (state, fileId) {
+    state.draggedFileId = fileId
   }
 }
 
