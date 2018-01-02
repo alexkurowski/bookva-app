@@ -2,16 +2,13 @@
   .view :class='className'
     #background
 
-    Editor :index='0'/
-    Editor :index='1'/
-    EditorSeparator/
+    Editor/
 
     Sidebar/
 </template>
 
 <script>
   import Editor from './writer/Editor'
-  import EditorSeparator from './writer/EditorSeparator'
   import Sidebar from './writer/Sidebar'
 
   import { Writer, Project } from '@/helpers/store_helper'
@@ -21,7 +18,6 @@
 
     components: {
       Editor,
-      EditorSeparator,
       Sidebar
     },
 
