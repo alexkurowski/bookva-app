@@ -2,6 +2,7 @@ const state = {
   filesOpen: [],
   foldersOpen: [],
 
+  maxFilesOpen: 3,
   editorSizeRatio: 50,
 
   scheme:     'dark', // 'smooth',
@@ -14,15 +15,23 @@ const mutations = {
     state.filesOpen = [ Object.keys(files)[0] ]
   },
 
-  writerSetFileOpen (state, fileId) {
+  writerFileOpenFill (state, fileId) {
     state.filesOpen = [ fileId ]
   },
 
-  writerPushFileOpen (state, fileId) {
-    state.filesOpen = [
-      ...state.filesOpen,
-      fileId
-    ]
+  writerFileOpenPane (state, params) {
+    let filesOpen = [ ...state.filesOpen ]
+
+    const fileId = params.id
+    const pane   = params.pane
+
+    if (filesOpen.length < state.maxFilesOpen) {
+      filesOpen.splice(pane, 0, fileId)
+    } else {
+      filesOpen[pane] = fileId
+    }
+
+    state.filesOpen = filesOpen
   },
 
   writerToggleFolderOpen (state, folderId) {

@@ -3,7 +3,7 @@
                 @dragover='dragover'
                 @dragleave='dragleave'
                 @drop='drop' ]
-    .indicators[ :class='dropTarget'
+    .indicators[ :class='indicatorsClass'
                  v-show='showIndicator' ]
       .indicator.left
       .indicator.middle
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import { Sidebar } from '@/helpers/store_helper'
+  import { Writer, Sidebar } from '@/helpers/store_helper'
 
   export default {
     name: 'DropOpener',
@@ -19,13 +19,20 @@
     data () {
       return {
         showIndicator: false,
-        dropTarget: 'full'
+        dropTarget: -1
       }
     },
 
     computed: {
       dragged () {
         return Sidebar.draggedFileId !== null
+      },
+
+      indicatorsClass () {
+        if (this.dropTarget == -1) return 'full'
+        if (this.dropTarget ==  0) return 'left'
+        if (this.dropTarget ==  1) return 'middle'
+        if (this.dropTarget ==  2) return 'right'
       }
     },
 
@@ -35,16 +42,24 @@
 
         this.showIndicator = true
 
-        const dropRect      = this.$el.getBoundingClientRect()
-        const dragPosition  = ( event.x - dropRect.left ) / dropRect.width
-        const paneThreshold = 0.28
+        const filesOpenCount = Writer.filesOpen.length
+        const dropRect       = this.$el.getBoundingClientRect()
+        const dragX          = ( event.x - dropRect.left ) / dropRect.width
+        const dragY          = ( event.y - dropRect.top ) / dropRect.height
+        const paneThreshold  = 0.28
 
-        if (dragPosition < paneThreshold)
-          this.dropTarget = 'left'
-        else if (dragPosition > 1 - paneThreshold)
-          this.dropTarget = 'right'
-        else
-          this.dropTarget = 'full'
+        if (dragX < paneThreshold) {
+          this.dropTarget = 0
+        } else
+        if (dragX > 1 - paneThreshold) {
+          this.dropTarget = 2
+        } else
+          if ( filesOpenCount >= 2 &&
+               ( dragY < paneThreshold ||
+                 dragY > 1 - paneThreshold ) ) {
+          this.dropTarget = 1
+        } else
+          this.dropTarget = -1
       },
 
       dragleave (event) {
@@ -52,16 +67,25 @@
       },
 
       drop (event) {
-        console.log("CALL drop", event)
+        const fileId = Sidebar.draggedFileId
+        if (!fileId) return
+
+        if (this.dropTarget == -1) {
+          this.$store.commit('writerFileOpenFill', fileId)
+        } else {
+          this.$store.commit('writerFileOpenPane', {
+            id: fileId,
+            pane: this.dropTarget
+          })
+        }
+
+        this.$root.resetEditors()
       },
     }
   }
 </script>
 
 <style lang='sass' scoped>
-  $drop-width: 120px
-  $drop-height: 120px
-
   #drop-opener
     display: flex
     align-items: center
@@ -73,9 +97,11 @@
     bottom: 0
 
   .indicators
+    display: flex
+    flex-direction: row
     position: relative
-    width: $drop-width
-    height: $drop-height
+    width: 120px
+    height: 120px
     pointer-events: none
     border: 4px solid $color-action
     border-radius: 10px
@@ -85,33 +111,23 @@
       .left
         opacity: 1
 
+    &.middle
+      .middle
+        opacity: 1
+
+    &.right
+      .right
+        opacity: 1
+
     &.full
       .left,
       .middle,
       .right
         opacity: 1
 
-    &.right
-      .right
-        opacity: 1
-
   .indicator
-    position: absolute
-    top: 0
-    bottom: 0
+    flex: 1
     background: $color-action
     opacity: 0
     transition: opacity .3s
-
-    &.left
-      left: 0
-      width: $drop-width / 3
-
-    &.middle
-      left: $drop-width / 3
-      right: $drop-width / 3
-
-    &.right
-      right: 0
-      width: $drop-width / 3
 </style>
