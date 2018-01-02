@@ -1,15 +1,15 @@
 <template lang='slm'>
   .view :class='className'
     #background
-
     Editor/
-
     Sidebar/
+    StatusBar/
 </template>
 
 <script>
   import Editor from './writer/Editor'
   import Sidebar from './writer/Sidebar'
+  import StatusBar from './writer/StatusBar'
 
   import { Writer, Project } from '@/helpers/store_helper'
 
@@ -18,7 +18,8 @@
 
     components: {
       Editor,
-      Sidebar
+      Sidebar,
+      StatusBar,
     },
 
     computed: {
