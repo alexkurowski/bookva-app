@@ -1,9 +1,14 @@
+const maxFilesOpen = 3
+
+const settingsToSave = [
+  'scheme',
+  'fontFamily',
+  'fontSize'
+]
+
 const state = {
   filesOpen: [],
   foldersOpen: [],
-
-  maxFilesOpen: 3,
-  editorSizeRatio: 50,
 
   scheme:     'smooth',
   fontFamily: 'merriweather',
@@ -12,15 +17,19 @@ const state = {
 
 const mutations = {
   writerSaveSettings (state) {
-    localStorage.setItem('writer-settings-scheme',     state.scheme)
-    localStorage.setItem('writer-settings-fontFamily', state.fontFamily)
-    localStorage.setItem('writer-settings-fontSize',   state.fontSize)
+    settingsToSave.forEach(setting => {
+      localStorage.setItem(
+        `writer-settings-${ setting }`,
+        state[setting]
+      )
+    })
   },
 
   writerLoadSettings (state) {
-    state.scheme     = localStorage.getItem('writer-settings-scheme')     || state.scheme
-    state.fontFamily = localStorage.getItem('writer-settings-fontFamily') || state.fontFamily
-    state.fontSize   = localStorage.getItem('writer-settings-fontSize')   || state.fontSize
+    settingsToSave.forEach(setting => {
+      state[setting] =
+        localStorage.getItem(`writer-settings-${ setting }`)
+    })
   },
 
   writerNewProject (state, files) {
@@ -39,7 +48,7 @@ const mutations = {
     const fileId = params.id
     const pane   = params.pane
 
-    if (filesOpen.length < state.maxFilesOpen) {
+    if (filesOpen.length < maxFilesOpen) {
       filesOpen.splice(pane, 0, fileId)
     } else {
       filesOpen[pane] = fileId
