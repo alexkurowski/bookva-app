@@ -88,7 +88,7 @@
 
       #toggle
         left: $sidebar-width
-        width: $sidebar-controls-width * 0.9
+        width: $sidebar-controls-width
 
   #sidebar,
   #toggle
