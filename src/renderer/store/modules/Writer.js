@@ -5,12 +5,24 @@ const state = {
   maxFilesOpen: 3,
   editorSizeRatio: 50,
 
-  scheme:     'dark', // 'smooth',
+  scheme:     'smooth',
   fontFamily: 'merriweather',
   fontSize:   'normal',
 }
 
 const mutations = {
+  writerSaveSettings (state) {
+    localStorage.setItem('writer-settings-scheme',     state.scheme)
+    localStorage.setItem('writer-settings-fontFamily', state.fontFamily)
+    localStorage.setItem('writer-settings-fontSize',   state.fontSize)
+  },
+
+  writerLoadSettings (state) {
+    state.scheme     = localStorage.getItem('writer-settings-scheme')     || state.scheme
+    state.fontFamily = localStorage.getItem('writer-settings-fontFamily') || state.fontFamily
+    state.fontSize   = localStorage.getItem('writer-settings-fontSize')   || state.fontSize
+  },
+
   writerNewProject (state, files) {
     state.filesOpen = [ Object.keys(files)[0] ]
   },
@@ -65,11 +77,14 @@ const mutations = {
 
   writerUpdateTheme (state, params) {
     state[params.type] = params.value
-  }
+    mutations.writerSaveSettings(state)
+  },
 }
 
 const actions = {
-
+  writerLoadSettings (context) {
+    context.commit('writerLoadSettings')
+  },
 }
 
 export default {

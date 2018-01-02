@@ -28,6 +28,8 @@
     },
 
     created () {
+      this.$store.dispatch('writerLoadSettings')
+
       // TODO (Alex): fetch project data from a file
 
       this.$store.commit('projectNewProject')
