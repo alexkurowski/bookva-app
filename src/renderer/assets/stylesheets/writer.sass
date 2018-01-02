@@ -178,7 +178,7 @@ body
         width: 32px
         height: 32px
         padding: 8px
-        border: 1px solid $dark-bg
+        border: 1px solid darken( $dark-bg, 6 )
         border-radius: 2px
         transition: border-color .2s
         box-sizing: border-box
@@ -195,23 +195,23 @@ body
       border-radius: 0 !important
 
   .medium-editor-toolbar-actions
-    background: $dark-bg
+    background: darken( $dark-bg, 6 )
     padding: 1px
     border-radius: 4px
 
   .medium-editor-toolbar li button
-    background: $dark-bg
+    background: darken( $dark-bg, 6 )
     color: $dark-fg
 
     &:hover
-      background: $dark-bg
+      background: darken( $dark-bg, 6 )
       color: $dark-fg
 
       > i
         border: 1px solid rgba(255, 255, 255, 0.5)
 
     &.medium-editor-button-active
-      background: $dark-bg
+      background: darken( $dark-bg, 6 )
       color: $color-action
       padding: 0
       cursor: default
@@ -230,8 +230,8 @@ body
   .medium-editor-toolbar
     &.medium-toolbar-arrow-under:after
       top: 84px
-      border-color: $dark-bg transparent transparent transparent
+      border-color: darken( $dark-bg, 6 ) transparent transparent transparent
 
     &.medium-toolbar-arrow-over:before
       top: -8px
-      border-color: transparent transparent $dark-bg transparent
+      border-color: transparent transparent darken( $dark-bg, 6 ) transparent
