@@ -1,3 +1,4 @@
 export default {
-  showShareButton: false
+  showShareButton: false,
+  dropOpenerThreshold: 0.38
 }

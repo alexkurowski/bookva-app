@@ -12,6 +12,7 @@
 
 <script>
   import { Writer, Sidebar } from '@/helpers/store_helper'
+  import Config from '@/config/config'
 
   export default {
     name: 'DropOpener',
@@ -46,7 +47,7 @@
         const dropRect       = this.$el.getBoundingClientRect()
         const dragX          = ( event.x - dropRect.left ) / dropRect.width
         const dragY          = ( event.y - dropRect.top ) / dropRect.height
-        const paneThreshold  = 0.28
+        const paneThreshold  = Config.dropOpenerThreshold
 
         if (dragX < paneThreshold) {
           this.dropTarget = 0
