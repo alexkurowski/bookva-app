@@ -5,7 +5,9 @@
                :list='root'
                :options='draggableOptions'
                :move='onMove'
-               @sort='onDrag' ]
+               @sort='onSort'
+               @start='onStart'
+               @end='onEnd' ]
 
       .entry[ :data-folder-id='entry.id'
               v-for='entry in root'
@@ -16,7 +18,9 @@
                    :class='inFolderClass'
                    :options='draggableOptions'
                    :move='onMove'
-                   @sort='onDrag'
+                   @sort='onSort'
+                   @start='onStart'
+                   @end='onEnd'
                    v-show='isFolderOpen(entry.id)' ]
 
           .entry[ :data-file-id='file.id'
@@ -128,7 +132,7 @@
         }
       },
 
-      // FIXME (Alex): this onMove and onDrag part is a terrible hack
+      // FIXME (Alex): this onMove and onSort part is a terrible hack
       // but I couldn't think of a better way to achieve the desired FileTree behavior...
       onMove (event, origEvent) {
         setTimeout(() => {
@@ -146,7 +150,7 @@
         }, 0)
       },
 
-      onDrag (event) {
+      onSort (event) {
         let order = 0
 
         this
@@ -154,7 +158,7 @@
           .forEach(entry => {
             if (entry.node.dataset.fileId) {
 
-              this.$store.commit('updateFile', {
+              this.$store.commit('projectUpdateFile', {
                 id: entry.node.dataset.fileId,
                 folder: entry.folder,
                 order: order++
@@ -163,24 +167,29 @@
             } else
             if (entry.node.dataset.folderId) {
 
-              this.$store.commit('updateFolder', {
+              this.$store.commit('projectUpdateFolder', {
                 id: entry.node.dataset.folderId,
                 order: order++
               })
 
             }
           })
+      },
 
+      onStart () {
+      },
+
+      onEnd () {
       },
 
       addFile () {
-        this.$store.commit('addFile')
+        this.$store.commit('projectAddFile')
       },
 
       addFolder () {
         let params = {}
-        this.$store.commit('addFolder', params)
-        this.$store.commit('toggleFolder', params.id)
+        this.$store.commit('projectAddFolder', params)
+        this.$store.commit('writerToggleFolderOpen', params.id)
       },
     }
   }
@@ -214,4 +223,13 @@
 
   .sortable-drag
     opacity: 0.5 !important
+
+  .dropper
+    position: fixed
+    top: 0
+    left: $sidebar-width
+    right: 0
+    bottom: 0
+    background: $color-action
+    opacity: .5
 </style>

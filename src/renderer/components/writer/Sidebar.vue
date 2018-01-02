@@ -9,6 +9,8 @@
 
     a#toggle @click='toggle'
       .icon :class='toggleClass'
+
+    DropOpener/
 </template>
 
 <script>
@@ -16,6 +18,7 @@
   import FileTree from './sidebar/FileTree'
   import ProjectManager from './sidebar/ProjectManager'
   import ThemeSelector from './sidebar/ThemeSelector'
+  import DropOpener from './sidebar/DropOpener'
 
   import { Sidebar } from '@/helpers/store_helper'
 
@@ -26,7 +29,8 @@
       Controls,
       FileTree,
       ProjectManager,
-      ThemeSelector
+      ThemeSelector,
+      DropOpener
     },
 
     computed: {
@@ -47,7 +51,7 @@
 
     methods: {
       toggle () {
-        this.$store.commit('toggleSidebar')
+        this.$store.commit('sidebarToggle')
       }
     }
   }

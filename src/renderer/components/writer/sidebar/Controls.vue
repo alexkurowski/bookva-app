@@ -41,7 +41,7 @@
       },
 
       setSidebarPage (page) {
-        this.$store.commit('setSidebarPage', page)
+        this.$store.commit('sidebarSetPage', page)
       },
     }
   }

@@ -46,13 +46,13 @@
         let parent = event.target.parentElement.parentElement
 
         if (parent.dataset.fileId) {
-          this.$store.commit('updateFile', {
+          this.$store.commit('projectUpdateFile', {
             id: parent.dataset.fileId,
             title: event.target.innerText
           })
         } else
         if (parent.dataset.folderId) {
-          this.$store.commit('updateFolder', {
+          this.$store.commit('projectUpdateFolder', {
             id: parent.dataset.folderId,
             title: event.target.innerText
           })

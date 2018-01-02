@@ -10,8 +10,8 @@ const state = {
 }
 
 const mutations = {
-  newProject (state) {
-    state.filesOpen = []
+  writerNewProject (state, files) {
+    state.filesOpen = [ Object.keys(files)[0] ]
   },
 
   writerSetFileOpen (state, fileId) {

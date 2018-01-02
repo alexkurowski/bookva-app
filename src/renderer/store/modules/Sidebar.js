@@ -5,14 +5,14 @@ const state = {
 }
 
 const mutations = {
-  toggleSidebar (state, open) {
+  sidebarToggle (state, open) {
     if (typeof open == 'boolean')
       state.sidebarOpen = open
     else
       state.sidebarOpen = !state.sidebarOpen
   },
 
-  setSidebarPage (state, value) {
+  sidebarSetPage (state, value) {
     if (state.sidebarPages.includes(value))
       state.sidebarPage = value
     else

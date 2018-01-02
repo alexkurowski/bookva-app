@@ -30,7 +30,8 @@
     created () {
       // TODO (Alex): fetch project data from a file
 
-      this.$store.commit('newProject')
+      this.$store.commit('projectNewProject')
+      this.$store.commit('writerNewProject', Project.files)
     }
   }
 </script>

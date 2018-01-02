@@ -50,22 +50,22 @@ const getNextOrder = function (state) {
 }
 
 const mutations = {
-  newProject (state) {
+  projectNewProject (state) {
     state.files   = {}
     state.folders = {}
 
-    mutations.addFile(state)
+    mutations.projectAddFile(state)
     // TODO: below lies only debug data
-    mutations.addFolder(state)
-    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
-    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
-    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
-    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
-    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4) })
-    mutations.addFile(state, { title: Math.random().toString(36).substr(2,4) })
+    mutations.projectAddFolder(state)
+    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
+    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
+    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
+    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
+    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4) })
+    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4) })
   },
 
-  addFile (state, params) {
+  projectAddFile (state, params) {
     params = params || {}
     params.order = getNextOrder(state)
 
@@ -76,7 +76,7 @@ const mutations = {
     }
   },
 
-  addFolder (state, params) {
+  projectAddFolder (state, params) {
     params = params || {}
     params.order = getNextOrder(state)
 
@@ -89,7 +89,7 @@ const mutations = {
     params.id = folder.id
   },
 
-  updateFile (state, params) {
+  projectUpdateFile (state, params) {
     let file = state.files[params.id]
     if (!file)
       throw "ERROR: trying to update a file that's not exists"
@@ -99,7 +99,7 @@ const mutations = {
     }
   },
 
-  updateFolder (state, params) {
+  projectUpdateFolder (state, params) {
     let folder = state.folders[params.id]
     if (!folder)
       throw "ERROR: trying to update a folder that's not exists"

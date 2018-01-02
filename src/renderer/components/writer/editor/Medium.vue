@@ -49,7 +49,7 @@
 
     methods: {
       update (event) {
-        this.$store.commit('updateFile', {
+        this.$store.commit('projectUpdateFile', {
           id: this.file.id,
           [this.type]: event.target.innerHTML
         })
