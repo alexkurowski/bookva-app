@@ -4,7 +4,7 @@
 
     .spacer
 
-    .fullscreen @click='toggleFullscreen'
+    #fullscreen-toggle @click='toggleFullscreen'
       i.fa :class='fullscreenClass'
 </template>
 
@@ -58,7 +58,7 @@
   .spacer
     width: 3rem
 
-  .fullscreen
+  #fullscreen-toggle
     padding: .5rem
     cursor: pointer
     transition: opacity .3s
