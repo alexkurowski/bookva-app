@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
+document.addEventListener('keydown', (event) => {
+  if (event.key == 'F11')
+    document.getElementById('fullscreen-toggle').click()
+})
+
 global.resetEditors = function () {
   setTimeout(() => {
     document
