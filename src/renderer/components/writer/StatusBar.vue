@@ -76,6 +76,9 @@
         if (!file)
           return 0
 
+        if (file.content == '')
+          return 0
+
         return (file.content || '')
           .replace(/<[^>]*>/g, ' ')
           .replace(/\s+/g, ' ')
