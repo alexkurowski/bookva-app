@@ -32,8 +32,8 @@
         const panes =
           document.querySelectorAll('.editor')
 
-        const rectLeft  = panes[this.index - 1]
-        const rectRight = panes[this.index]
+        const paneLeft  = panes[this.index - 1]
+        const paneRight = panes[this.index]
 
         const rectLeft  = paneLeft.getBoundingClientRect()
         const rectRight = paneRight.getBoundingClientRect()
@@ -54,7 +54,6 @@
       },
 
       up (event) {
-        if (!this.dragging) return
         this.dragging = false
       },
     },
