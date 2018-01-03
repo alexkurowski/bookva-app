@@ -85,6 +85,12 @@
     background: transparent
     z-index: 1050
 
+  .line
+    width: 100%
+    height: 100%
+    opacity: .1
+    transition: opacity .3s
+
   .pane-resize
     position: absolute
     width: 1px
@@ -94,8 +100,7 @@
     cursor: col-resize
     z-index: 1000
 
-  .line
-    background: red
-    width: 100%
-    height: 100%
+    &:hover
+      .line
+        opacity: .4
 </style>
