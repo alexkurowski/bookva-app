@@ -18,6 +18,7 @@
     data () {
       return {
         dragging: false,
+        flexLimit: 0.1
       }
     },
 
@@ -41,7 +42,7 @@
         const dragPoint = event.x - rectLeft.left
         const dragWidth = rectLeft.width + rectRight.width
 
-        const flexVal = dragPoint / dragWidth
+        const flexVal = this.clamp(dragPoint / dragWidth)
         const flexSum =
           Writer.paneFlex[this.index - 1] +
           Writer.paneFlex[this.index]
@@ -55,6 +56,12 @@
 
       up (event) {
         this.dragging = false
+      },
+
+      clamp (val) {
+        const min = this.flexLimit
+        const max = 1 - this.flexLimit
+        return Math.min(Math.max(min, val), max)
       },
     },
 
