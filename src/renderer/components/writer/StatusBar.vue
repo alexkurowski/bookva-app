@@ -1,15 +1,26 @@
 <template lang='slm'>
   #status-bar
-    .info
+    .left
 
-    .spacer
+    .middle
+      .info
+        .open
+          span
+            | {{ $t('writer.statusbar.info.words') }}:
+            |  {{ wordsOpen }}
+          span
+            | {{ $t('writer.statusbar.info.total') }}:
+            |  {{ wordsProject }}
 
-    #fullscreen-toggle @click='toggleFullscreen'
-      i.fa :class='fullscreenClass'
+    .right
+      #fullscreen-toggle @click='toggleFullscreen'
+        i.fa :class='fullscreenClass'
 </template>
 
 <script>
   import electron from 'electron'
+
+  import { Project, Writer } from '@/helpers/store_helper'
 
   const getWindow = () => (
     electron
@@ -31,13 +42,46 @@
         return this.fullscreenMode
           ? 'fa-compress'
           : 'fa-expand'
-      }
+      },
+
+      wordsOpen () {
+        let result = ''
+
+        Writer.filesOpen.forEach((fileId, index) => {
+          if (index > 0)
+            result += ' | '
+
+          result += this.countWords( Project.files[fileId] )
+        })
+
+        return result
+      },
+
+      wordsProject () {
+        return Object
+          .values(Project.files)
+          .reduce((result, file) => (
+            this.countWords(file) + result
+          ), 0)
+      },
     },
 
     methods: {
       toggleFullscreen () {
         this.fullscreenMode = !this.fullscreenMode
         getWindow().setFullScreen(this.fullscreenMode)
+      },
+
+      countWords (file) {
+        if (!file)
+          return 0
+
+        return (file.content || '')
+          .replace(/<[^>]*>/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .split(' ')
+          .length
       }
     }
   }
@@ -47,7 +91,7 @@
   #status-bar
     display: flex
     align-items: center
-    justify-content: flex-end
+    justify-content: space-between
     position: fixed
     bottom: 0
     left: 0
@@ -57,6 +101,13 @@
 
   .spacer
     width: 3rem
+
+  .info
+    display: flex
+    flex-direction: row
+
+    span
+      margin: 0 1rem
 
   #fullscreen-toggle
     padding: .5rem

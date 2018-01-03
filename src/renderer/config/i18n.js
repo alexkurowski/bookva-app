@@ -25,6 +25,13 @@ export default {
           file: 'New file',
           folder: 'New folder'
         },
+      },
+
+      statusbar: {
+        info: {
+          words: 'words',
+          total: 'total'
+        }
       }
     }
   }
