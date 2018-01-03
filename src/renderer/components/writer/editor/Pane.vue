@@ -6,7 +6,8 @@
       Medium :file='file' type='title'/
       Medium :file='file' type='content'/
 
-    .pane-overlay[ :class='{ shown: closeHover }' ]
+    .pane-overlay[ :class='{ shown: closeHover }'
+                   v-if='canClose' ]
 
     .pane-close[ @mouseenter='closeHover = true'
                  @mouseleave='closeHover = false'
