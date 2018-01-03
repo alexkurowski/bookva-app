@@ -10,6 +10,8 @@ const state = {
   filesOpen: [],
   foldersOpen: [],
 
+  paneFlex: Array(maxFilesOpen).fill(1),
+
   scheme:     'smooth',
   fontFamily: 'merriweather',
   fontSize:   'normal',
@@ -88,6 +90,19 @@ const mutations = {
     state[params.type] = params.value
     mutations.writerSaveSettings(state)
   },
+
+  writerSetPaneFlex (state, params) {
+    const index = params.index
+    const value = params.value * 2
+
+    const left  = value
+    const right = 2 - value
+
+    let paneFlex = [ ...state.paneFlex ]
+    paneFlex[index - 1] = left
+    paneFlex[index]     = right
+    state.paneFlex = paneFlex
+  }
 }
 
 const actions = {

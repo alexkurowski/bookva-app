@@ -64,7 +64,7 @@
     bottom: 0
     left: -$sidebar-width
     width: $sidebar-width
-    z-index: 1000
+    z-index: 5000
 
     #toggle
       display: flex

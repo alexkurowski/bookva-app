@@ -1,11 +1,14 @@
 <template lang='slm'>
   #editor
-    .editor v-for='file, index in filesOpen'
+    .editor[ v-for='file, index in filesOpen'
+             :style='{ flex: editorStyle[index] }' ]
+      PaneResize :index='index' v-if='index > 0'
       Pane :index='index' :key='file.id'
 </template>
 
 <script>
   import Pane from './editor/Pane'
+  import PaneResize from './editor/PaneResize'
 
   import { Writer } from '@/helpers/store_helper'
 
@@ -13,13 +16,18 @@
     name: 'Editor',
 
     components: {
-      Pane
+      Pane,
+      PaneResize
     },
 
     computed: {
       filesOpen () {
         return Writer.filesOpen
-      }
+      },
+
+      editorStyle () {
+        return Writer.paneFlex
+      },
     }
   }
 </script>
