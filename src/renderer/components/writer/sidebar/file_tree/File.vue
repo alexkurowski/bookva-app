@@ -3,7 +3,7 @@
       :class='classOpen'
       @click='openFile' ]
 
-    Title :editable='false' {{ title }}
+    Title :editable='false' :content='title'
 </template>
 
 <script>

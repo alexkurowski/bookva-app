@@ -4,7 +4,7 @@
       @click='toggleFolder' ]
 
     i.fa :class='folderIcon'
-    Title {{ title }}
+    Title :content='title'
 </template>
 
 <script>
@@ -51,7 +51,8 @@
       },
 
       title () {
-        return this.folder.title || this.$t('writer.default.title.folder')
+        return this.folder.title ||
+               this.$t('writer.default.title.folder')
       }
     },
 

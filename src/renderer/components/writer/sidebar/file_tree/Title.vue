@@ -4,14 +4,14 @@
           @click='click'
           @keydown='keydown'
           @blur='rename' ]
-    slot/
+    | {{ trimmedContent }}
 </template>
 
 <script>
   export default {
     name: 'Title',
 
-    props: [ 'editable' ],
+    props: [ 'editable', 'content' ],
 
     computed: {
       isEditable () {
@@ -26,6 +26,12 @@
 
       contentEditable () {
         return this.isEditable
+      },
+
+      trimmedContent () {
+        return this
+          .content
+          .replace(/&nbsp;/g, '')
       }
     },
 
