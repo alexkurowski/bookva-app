@@ -29,40 +29,28 @@
       move (event) {
         if (!this.dragging) return
 
-        const paneCount = Writer.filesOpen.length
-        let windowWidth = window.innerWidth
-        let dragX       = event.x
+        const panes =
+          document.querySelectorAll('.editor')
 
-        if (paneCount > 2) {
-          const panes =
-            document.querySelectorAll('.editor')
+        const paneLeft  = panes[this.index - 1]
+        const paneRight = panes[this.index]
 
-          if (this.index > 1) {
-            // for each pane to the left
-            // subtract its width from dragX and windowWidth
+        const rectLeft  = paneLeft.getBoundingClientRect()
+        const rectRight = paneRight.getBoundingClientRect()
 
-            for (let i = 0; i < this.index - 1; i++) {
-              windowWidth -= panes[i].clientWidth
-              dragX       -= panes[i].clientWidth
-            }
-          }
-          if (this.index < paneCount - 1) {
-            // for each pane to the right
-            // subtract its width from windowWidth
+        const flexSum =
+          Writer.paneFlex[this.index - 1] +
+          Writer.paneFlex[this.index]
 
-            for (let i = this.index + 1; i < paneCount; i++) {
-              windowWidth -= panes[i].clientWidth
-            }
-          }
-        }
-
-        const flex = dragX / windowWidth
+        const dragX     = event.x - rectLeft.left
+        const dragWidth = rectLeft.width + rectRight.width
+        const flex      = dragX / dragWidth
 
         this.$store.commit('writerSetPaneFlex', {
           index: this.index,
-          value: flex
+          value: flex,
+          sum: flexSum
         })
-        console.log(flex)
       },
 
       up (event) {

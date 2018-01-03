@@ -93,10 +93,11 @@ const mutations = {
 
   writerSetPaneFlex (state, params) {
     const index = params.index
-    const value = params.value * 2
+    const sum   = params.sum
+    const value = params.value * sum
 
     const left  = value
-    const right = 2 - value
+    const right = sum - value
 
     let paneFlex = [ ...state.paneFlex ]
     paneFlex[index - 1] = left
