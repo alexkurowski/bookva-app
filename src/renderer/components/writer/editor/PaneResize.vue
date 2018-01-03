@@ -32,23 +32,23 @@
         const panes =
           document.querySelectorAll('.editor')
 
-        const paneLeft  = panes[this.index - 1]
-        const paneRight = panes[this.index]
+        const rectLeft  = panes[this.index - 1]
+        const rectRight = panes[this.index]
 
         const rectLeft  = paneLeft.getBoundingClientRect()
         const rectRight = paneRight.getBoundingClientRect()
 
+        const dragPoint = event.x - rectLeft.left
+        const dragWidth = rectLeft.width + rectRight.width
+
+        const flexVal = dragPoint / dragWidth
         const flexSum =
           Writer.paneFlex[this.index - 1] +
           Writer.paneFlex[this.index]
 
-        const dragX     = event.x - rectLeft.left
-        const dragWidth = rectLeft.width + rectRight.width
-        const flex      = dragX / dragWidth
-
         this.$store.commit('writerSetPaneFlex', {
           index: this.index,
-          value: flex,
+          value: flexVal,
           sum: flexSum
         })
       },
