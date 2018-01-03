@@ -3,8 +3,10 @@
                 @dragover='dragover'
                 @dragleave='dragleave'
                 @drop='drop' ]
+
     .indicators[ :class='indicatorsClass'
                  v-show='showIndicator' ]
+
       .indicator.left
       .indicator.middle
       .indicator.right
@@ -68,6 +70,8 @@
       },
 
       drop (event) {
+        this.showIndicator = false
+
         const fileId = Sidebar.draggedFileId
         if (!fileId) return
 
@@ -85,6 +89,9 @@
 </script>
 
 <style lang='sass' scoped>
+  $indicator-width: 120px
+  $indicator-height: 120px
+
   #drop-opener
     display: flex
     align-items: center
@@ -99,8 +106,8 @@
     display: flex
     flex-direction: row
     position: relative
-    width: 120px
-    height: 120px
+    width: $indicator-width
+    height: $indicator-height
     pointer-events: none
     border: 4px solid $color-action
     border-radius: 10px
