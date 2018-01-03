@@ -109,6 +109,7 @@
   .info
     display: flex
     flex-direction: row
+    white-space: nowrap
 
     span
       margin: 0 1rem
