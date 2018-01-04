@@ -99,6 +99,7 @@
     background: inherit
     padding: .4rem .5rem
     border-radius: 4px
+    cursor: pointer
     outline: none
     -webkit-appearance: none
 
