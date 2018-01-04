@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 const state = {
-  project: {},
   files: {},
   folders: {},
 }
@@ -50,12 +49,19 @@ const getNextOrder = function (state) {
 }
 
 const mutations = {
+  projectSaveProject (state) {
+  },
+
+  projectLoadProject (state, filePath) {
+  },
+
   projectNewProject (state) {
     state.files   = {}
     state.folders = {}
 
     mutations.projectAddFile(state)
-    // TODO: below lies only debug data
+
+    // TODO: below is debug data
     mutations.projectAddFolder(state)
     mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
     mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
