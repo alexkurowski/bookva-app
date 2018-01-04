@@ -22,7 +22,7 @@ Vue.directive('clickaway', {
   bind (el, binding, vnode) {
     vnode.context.clickawayEvent = (event) => {
       if ( el != event.target &&
-           !el.contains(event.target)) {
+           !el.contains(event.target) ) {
         vnode.context[binding.expression](event)
       }
     }
