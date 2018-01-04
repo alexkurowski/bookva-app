@@ -118,10 +118,7 @@ const mutations = {
   projectResyncProject (state, result) {
     if ( fs.existsSync(syncFilepath) ) {
       const dataJSON = fs.readFileSync(syncFilepath, 'utf8')
-      console.log("INFO dataJSON", dataJSON)
-
       const data = JSON.parse(dataJSON)
-      console.log("INFO data", data)
 
       if ( !data.files ||
            !data.folders ||
@@ -164,9 +161,8 @@ const mutations = {
     state.lastUpdate = Date.now()
   },
 
-  projectAddFolder (state, params) {
-    params = params || {}
-    params.order = getNextOrder(state)
+  projectAddFolder (state, result) {
+    let params = { order: getNextOrder(state) }
 
     let folder = newFolder(params)
     state.folders = {
@@ -176,7 +172,7 @@ const mutations = {
 
     state.lastUpdate = Date.now()
 
-    params.id = folder.id
+    result.folderId = folder.id
   },
 
   projectUpdateFile (state, params) {
@@ -257,6 +253,12 @@ const actions = {
     let result = { resynced: false }
     context.commit('projectResyncProject', result)
     return result.resynced
+  },
+
+  projectAddFolder (context) {
+    let result = { folderId: null }
+    context.commit('projectAddFolder', result)
+    return result.folderId
   }
 }
 

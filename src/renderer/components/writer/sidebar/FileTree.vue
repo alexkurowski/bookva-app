@@ -191,10 +191,11 @@
         this.$store.commit('projectAddFile')
       },
 
-      addFolder () {
-        let params = {}
-        this.$store.commit('projectAddFolder', params)
-        this.$store.commit('projectToggleFolderOpen', params.id)
+      async addFolder () {
+        let folderId =
+          await this.$store.dispatch('projectAddFolder')
+
+        this.$store.commit('projectToggleFolderOpen', folderId)
       },
     }
   }
