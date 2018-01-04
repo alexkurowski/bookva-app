@@ -1,8 +1,17 @@
 import Vue from 'vue'
 
+import { Writer } from '@/helpers/store_helper'
+
+import { remote } from 'electron'
+import path from 'path'
+import fs from 'fs'
+
 const state = {
   files: {},
   folders: {},
+
+  lastUpdate: 0,
+  lastSync: 0
 }
 
 const generateId = function () {
@@ -55,6 +64,41 @@ const mutations = {
   projectLoadProject (state, filePath) {
   },
 
+  projectSyncProject (state) {
+    if ( state.lastUpdate == state.lastSync ) return
+    state.lastSync = state.lastUpdate
+
+    const fileDir =
+      path.join(
+        remote.app.getPath('userData'),
+        'wrtr'
+      )
+
+    const filePath =
+      path.join(
+        fileDir,
+        'project.json'
+      )
+
+    try {
+      fs.mkdirSync(fileDir)
+    } catch (err) {
+      if (err.code != 'EEXIST')
+        throw err
+    }
+
+    const data = JSON.stringify({
+      filesOpen: Writer.filesOpen,
+      files:     state.files,
+      folders:   state.folders,
+    })
+
+    fs.writeFile(filePath, data, (err) => {
+      if (err)
+        throw err
+    })
+  },
+
   projectNewProject (state) {
     state.files   = {}
     state.folders = {}
@@ -80,6 +124,8 @@ const mutations = {
       ...state.files,
       [file.id]: file
     }
+
+    state.lastUpdate = Date.now()
   },
 
   projectAddFolder (state, params) {
@@ -92,32 +138,42 @@ const mutations = {
       [folder.id]: folder
     }
 
+    state.lastUpdate = Date.now()
+
     params.id = folder.id
   },
 
   projectUpdateFile (state, params) {
     let file = state.files[params.id]
     if (!file)
-      throw "ERROR: trying to update a file that's not exists"
+      throw "ERROR: trying to update a file that doesn't exist"
     state.files = {
       ...state.files,
       [params.id]: Object.assign(file, params)
     }
+
+    state.lastUpdate = Date.now()
   },
 
   projectUpdateFolder (state, params) {
     let folder = state.folders[params.id]
     if (!folder)
-      throw "ERROR: trying to update a folder that's not exists"
+      throw "ERROR: trying to update a folder that doesn't exist"
     state.folders = {
       ...state.folders,
       [params.id]: Object.assign(folder, params)
     }
+
+    state.lastUpdate = Date.now()
   }
 }
 
 const actions = {
-
+  projectSyncProject (context) {
+    setTimeout(() => {
+      context.commit('projectSyncProject')
+    }, 0)
+  }
 }
 
 export default {
