@@ -1,22 +1,28 @@
 <template lang='slm'>
   #theme-selector
-    select data-type='scheme' @change='change'
-      option[ v-for='name, value in schemes'
-              :value='value'
-              :selected='isSelected(value, "scheme")' ]
-        | {{ name }} colors
+    .select-container
+      select data-type='scheme' @change='change'
+        option[ v-for='name, value in schemes'
+                :value='value'
+                :selected='isSelected(value, "scheme")' ]
+          | {{ name }} colors
+      i.fa.fa-sort
 
-    select data-type='fontFamily' @change='change'
-      option[ v-for='name, value in fontFamilies'
-              :value='value'
-              :selected='isSelected(value, "fontFamily")' ]
-        | {{ name }} font
+    .select-container
+      select data-type='fontFamily' @change='change'
+        option[ v-for='name, value in fontFamilies'
+                :value='value'
+                :selected='isSelected(value, "fontFamily")' ]
+          | {{ name }} font
+      i.fa.fa-sort
 
-    select data-type='fontSize' @change='change'
-      option[ v-for='name, value in fontSizes'
-              :value='value'
-              :selected='isSelected(value, "fontSize")' ]
-        | {{ name }} font size
+    .select-container
+      select data-type='fontSize' @change='change'
+        option[ v-for='name, value in fontSizes'
+                :value='value'
+                :selected='isSelected(value, "fontSize")' ]
+          | {{ name }} font size
+      i.fa.fa-sort
 </template>
 
 <script>
@@ -74,15 +80,27 @@
 <style lang='sass' scoped>
   #theme-selector
     text-align: center
+    user-select: none
+
+  .select-container
+    position: relative
+    width: 80%
+    margin: 1rem auto 2rem
+
+    i
+      position: absolute
+      top: .5rem
+      right: .5rem
+      pointer-events: none
 
   select
-    width: 80%
+    width: 100%
     color: inherit
     background: inherit
-    margin: 1rem auto
     padding: .4rem .5rem
     border-radius: 4px
     outline: none
+    -webkit-appearance: none
 
     option
       color: #333
