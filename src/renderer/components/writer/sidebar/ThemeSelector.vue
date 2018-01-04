@@ -80,7 +80,7 @@
     color: inherit
     background: inherit
     margin: 1rem auto
-    padding: .5rem
+    padding: .4rem .5rem
     border-radius: 4px
     outline: none
 
