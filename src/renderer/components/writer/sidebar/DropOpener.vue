@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import { Sidebar } from '@/helpers/store_helper'
+  import { Project, Sidebar } from '@/helpers/store_helper'
   import Config from '@/config/config'
 
   export default {

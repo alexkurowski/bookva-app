@@ -1,4 +1,4 @@
-const maxFilesOpen = 3
+import Config from '@/config/config'
 
 const stringsToSave = [
   'scheme',
@@ -7,7 +7,7 @@ const stringsToSave = [
 ]
 
 const state = {
-  paneFlex: Array(maxFilesOpen).fill(1),
+  paneFlex: Array(Config.maxFilesOpen).fill(1),
 
   scheme:     'smooth',
   fontFamily: 'merriweather',

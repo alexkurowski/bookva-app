@@ -211,7 +211,7 @@ const mutations = {
     const fileId = params.id
     const pane   = params.pane
 
-    if (filesOpen.length < maxFilesOpen) {
+    if (filesOpen.length < Config.maxFilesOpen) {
       filesOpen.splice(pane, 0, fileId)
     } else {
       filesOpen[pane] = fileId
