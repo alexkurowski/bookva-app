@@ -1,18 +1,33 @@
 <template lang='slm'>
   #theme-selector
-    select data-type='scheme' @change='change'
+    Dropdown[ type='scheme'
+              suffix='colors'
+              :options='schemes'
+              :change='change' ]/
+
+    Dropdown[ type='fontFamily'
+              suffix='font'
+              :options='fontFamilies'
+              :change='change' ]/
+
+    Dropdown[ type='fontSize'
+              suffix='size'
+              :options='fontSizes'
+              :change='change' ]/
+
+    /select data-type='scheme' @change='changeOld'
       option[ v-for='name, value in schemes'
               :value='value'
               :selected='isSelected(value, "scheme")' ]
         | {{ name }} colors
 
-    select data-type='fontFamily' @change='change'
+    /select data-type='fontFamily' @change='changeOld'
       option[ v-for='name, value in fontFamilies'
               :value='value'
               :selected='isSelected(value, "fontFamily")' ]
         | {{ name }} font
 
-    select data-type='fontSize' @change='change'
+    /select data-type='fontSize' @change='changeOld'
       option[ v-for='name, value in fontSizes'
               :value='value'
               :selected='isSelected(value, "fontSize")' ]
@@ -20,10 +35,16 @@
 </template>
 
 <script>
+  import Dropdown from './theme_selector/Dropdown'
+
   import { Writer } from '@/helpers/store_helper'
 
   export default {
     name: 'ThemeSelector',
+
+    components: {
+      Dropdown
+    },
 
     data () {
       return {
@@ -45,17 +66,27 @@
           normal: 'Normal',
           big:    'Large',
           bigger: 'Largest',
-
         },
       }
     },
 
     methods: {
+      selected (type) {
+        return Writer[type]
+      },
+
       isSelected (value, type) {
         return Writer[type] == value
       },
 
-      change (event) {
+      change (type, value) {
+        this.$store.commit('writerUpdateTheme', {
+          value,
+          type
+        })
+      },
+
+      changeOld (event) {
         let value = event.target.value
         let type  = event.target.dataset.type
 

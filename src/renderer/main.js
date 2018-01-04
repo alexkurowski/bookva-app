@@ -18,6 +18,22 @@ const i18n = new VueI18n({
   messages: i18nMessages
 })
 
+Vue.directive('clickaway', {
+  bind (el, binding, vnode) {
+    vnode.context.clickawayEvent = (event) => {
+      if ( el != event.target &&
+           !el.contains(event.target)) {
+        vnode.context[binding.expression](event)
+      }
+    }
+    document.body.addEventListener('mouseup', vnode.context.clickawayEvent)
+  },
+
+  unbind (el, binding, vnode) {
+    document.body.removeEventListener('mouseup', vnode.context.clickawayEvent)
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   components: { App },

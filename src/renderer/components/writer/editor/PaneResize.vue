@@ -1,7 +1,8 @@
 <template lang='slm'>
   .pane-resize[ @mousedown='down'
                 @mousemove='move'
-                @mouseup='up' ]
+                @mouseup='up'
+                v-clickaway='up' ]
     .line
 
     .overlay v-if='dragging'
@@ -64,14 +65,6 @@
         return Math.min(Math.max(min, val), max)
       },
     },
-
-    mounted () {
-      window.addEventListener('mouseup', this.up)
-    },
-
-    unmounted () {
-      window.removeEventListener('mouseup', this.up)
-    }
   }
 </script>
 
