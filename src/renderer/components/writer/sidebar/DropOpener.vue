@@ -1,5 +1,6 @@
 <template lang='slm'>
   #drop-opener[ v-if='dragged'
+                :class='dropOpenerClass'
                 @dragover='dragover'
                 @dragleave='dragleave'
                 @drop='drop' ]
@@ -31,11 +32,18 @@
         return Sidebar.draggedFileId !== null
       },
 
+      dropOpenerClass () {
+        return this.showIndicator
+          ? 'full-width'
+          : ''
+      },
+
       indicatorsClass () {
         if (this.dropTarget == -1) return 'full'
         if (this.dropTarget ==  0) return 'left'
         if (this.dropTarget ==  1) return 'middle'
         if (this.dropTarget ==  2) return 'right'
+        return ''
       }
     },
 
@@ -44,6 +52,8 @@
         event.preventDefault()
 
         this.showIndicator = true
+
+        this.$store.commit('sidebarToggle', false)
 
         const filesOpenCount = Writer.filesOpen.length
         const dropRect       = this.$el.getBoundingClientRect()
@@ -101,6 +111,9 @@
     left: $sidebar-width + $sidebar-controls-width
     right: 0
     bottom: 0
+
+    &.full-width
+      left: $sidebar-controls-width
 
   .indicators
     display: flex
