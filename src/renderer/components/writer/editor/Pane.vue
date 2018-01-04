@@ -19,7 +19,7 @@
 <script>
   import Medium from './Medium'
 
-  import { Writer, Project } from '@/helpers/store_helper'
+  import { Project } from '@/helpers/store_helper'
 
   export default {
     name: 'Pane',
@@ -40,7 +40,7 @@
 
     computed: {
       fileId () {
-        return Writer.filesOpen[ this.index ]
+        return Project.filesOpen[ this.index ]
       },
 
       file () {
@@ -60,19 +60,19 @@
       },
 
       classSize () {
-        return Writer.filesOpen.length == 2
+        return Project.filesOpen.length == 2
           ? 'editor-half'
           : 'editor-full'
       },
 
       canClose () {
-        return Writer.filesOpen.length > 1
+        return Project.filesOpen.length > 1
       },
     },
 
     methods: {
       closePane () {
-        this.$store.commit('writerFileClosePane', this.index)
+        this.$store.commit('projectFileClosePane', this.index)
       }
     }
   }

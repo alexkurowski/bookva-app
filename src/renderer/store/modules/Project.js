@@ -13,8 +13,19 @@ const state = {
   files: {},
   folders: {},
 
+  filesOpen: [],
+  foldersOpen: [],
+
   lastUpdate: 0,
   lastSync: 0
+}
+
+const userPath =
+
+const syncDirectory = function () {
+}
+
+const syncPath = function () {
 }
 
 const generateId = function () {
@@ -94,9 +105,10 @@ const mutations = {
     }
 
     const data = JSON.stringify({
-      filesOpen: Writer.filesOpen,
-      files:     state.files,
-      folders:   state.folders,
+      filesOpen:  state.filesOpen,
+      folderOpen: state.folderOpen,
+      files:      state.files,
+      folders:    state.folders,
     })
 
     fs.writeFile(filePath, data, (err) => {
@@ -105,6 +117,10 @@ const mutations = {
       if (err)
         throw err
     })
+  },
+
+  projectResyncProject (state) {
+    fs.existsSync()
   },
 
   projectNewProject (state) {
@@ -121,6 +137,8 @@ const mutations = {
     mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
     mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4) })
     mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4) })
+
+    state.filesOpen = [ Object.keys(state.files)[0] ]
   },
 
   projectAddFile (state, params) {
@@ -173,14 +191,58 @@ const mutations = {
     }
 
     state.lastUpdate = Date.now()
-  }
+  },
+
+  projectFileOpenFill (state, fileId) {
+    state.filesOpen = [ fileId ]
+
+    global.resetEditors()
+  },
+
+  projectFileOpenPane (state, params) {
+    let filesOpen = [ ...state.filesOpen ]
+
+    const fileId = params.id
+    const pane   = params.pane
+
+    if (filesOpen.length < maxFilesOpen) {
+      filesOpen.splice(pane, 0, fileId)
+    } else {
+      filesOpen[pane] = fileId
+    }
+
+    state.filesOpen = filesOpen
+    global.resetEditors()
+  },
+
+  projectFileClosePane (state, index) {
+    let filesOpen = [ ...state.filesOpen ]
+    filesOpen.splice(index, 1)
+    state.filesOpen = filesOpen
+    global.resetEditors()
+  },
+
+  projectToggleFolderOpen (state, folderId) {
+    if (state.foldersOpen.includes(folderId)) {
+      let newFoldersOpen = [ ...state.foldersOpen ]
+      newFoldersOpen
+        .splice(
+          newFoldersOpen
+            .findIndex(folder => folder.id == folderId),
+          1
+        )
+
+      state.foldersOpen = newFoldersOpen
+    } else {
+      state.foldersOpen = [
+        ...state.foldersOpen,
+        folderId
+      ]
+    }
+  },
 }
 
-const actions = {
-  projectSyncProject (context) {
-    context.commit('projectSyncProject')
-  }
-}
+const actions = {}
 
 export default {
   state,

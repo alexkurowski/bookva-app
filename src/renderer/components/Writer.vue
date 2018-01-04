@@ -11,7 +11,8 @@
   import Sidebar from './writer/Sidebar'
   import StatusBar from './writer/StatusBar'
 
-  import { Writer, Project } from '@/helpers/store_helper'
+  import { Project, Writer } from '@/helpers/store_helper'
+  import Config from '@/config/config'
 
   export default {
     name: 'writer',
@@ -29,12 +30,17 @@
     },
 
     created () {
-      this.$store.dispatch('writerLoadSettings')
+      this.$store.commit('writerLoadSettings')
 
       // TODO (Alex): fetch project data from a file
 
+      this.$store.commit('projectResyncProject')
+
       this.$store.commit('projectNewProject')
-      this.$store.commit('writerNewProject', Project.files)
+
+      setInterval(() => {
+        this.$store.commit('projectSyncProject')
+      }, Config.projectSyncInterval * 1000)
     }
   }
 </script>

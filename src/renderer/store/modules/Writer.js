@@ -7,9 +7,6 @@ const stringsToSave = [
 ]
 
 const state = {
-  filesOpen: [],
-  foldersOpen: [],
-
   paneFlex: Array(maxFilesOpen).fill(1),
 
   scheme:     'smooth',
@@ -46,58 +43,6 @@ const mutations = {
       state.paneFlex = paneFlex
   },
 
-  writerNewProject (state, files) {
-    state.filesOpen = [ Object.keys(files)[0] ]
-  },
-
-  writerFileOpenFill (state, fileId) {
-    state.filesOpen = [ fileId ]
-
-    global.resetEditors()
-  },
-
-  writerFileOpenPane (state, params) {
-    let filesOpen = [ ...state.filesOpen ]
-
-    const fileId = params.id
-    const pane   = params.pane
-
-    if (filesOpen.length < maxFilesOpen) {
-      filesOpen.splice(pane, 0, fileId)
-    } else {
-      filesOpen[pane] = fileId
-    }
-
-    state.filesOpen = filesOpen
-    global.resetEditors()
-  },
-
-  writerFileClosePane (state, index) {
-    let filesOpen = [ ...state.filesOpen ]
-    filesOpen.splice(index, 1)
-    state.filesOpen = filesOpen
-    global.resetEditors()
-  },
-
-  writerToggleFolderOpen (state, folderId) {
-    if (state.foldersOpen.includes(folderId)) {
-      let newFoldersOpen = [ ...state.foldersOpen ]
-      newFoldersOpen
-        .splice(
-          newFoldersOpen
-            .findIndex(folder => folder.id == folderId),
-          1
-        )
-
-      state.foldersOpen = newFoldersOpen
-    } else {
-      state.foldersOpen = [
-        ...state.foldersOpen,
-        folderId
-      ]
-    }
-  },
-
   writerUpdateTheme (state, params) {
     state[params.type] = params.value
     mutations.writerSaveSettings(state)
@@ -120,11 +65,7 @@ const mutations = {
   }
 }
 
-const actions = {
-  writerLoadSettings (context) {
-    context.commit('writerLoadSettings')
-  },
-}
+const actions = {}
 
 export default {
   state,

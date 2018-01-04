@@ -47,7 +47,7 @@
   import File from './file_tree/File'
   import Folder from './file_tree/Folder'
 
-  import { Writer, Project } from '@/helpers/store_helper'
+  import { Project } from '@/helpers/store_helper'
 
   const orderSort = (a, b) => (a.order - b.order)
 
@@ -104,7 +104,7 @@
       },
 
       isFolderOpen (folder) {
-        return Writer.foldersOpen.includes(folder)
+        return Project.foldersOpen.includes(folder)
       },
 
       isFolderEmpty (folder) {
@@ -178,7 +178,7 @@
 
       onStart (event) {
         const fileId = event.item.dataset.fileId
-        const isOpen = Writer.filesOpen.includes(fileId)
+        const isOpen = Project.filesOpen.includes(fileId)
         if ( fileId && !isOpen )
           this.$store.commit('sidebarSetDraggedFileId', fileId)
       },
@@ -194,7 +194,7 @@
       addFolder () {
         let params = {}
         this.$store.commit('projectAddFolder', params)
-        this.$store.commit('writerToggleFolderOpen', params.id)
+        this.$store.commit('projectToggleFolderOpen', params.id)
       },
     }
   }

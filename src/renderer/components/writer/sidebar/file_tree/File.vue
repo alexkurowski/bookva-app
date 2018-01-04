@@ -9,7 +9,7 @@
 <script>
   import Title from './Title'
 
-  import { Writer, Project } from '@/helpers/store_helper'
+  import { Project } from '@/helpers/store_helper'
 
   export default {
     name: 'File',
@@ -22,7 +22,7 @@
 
     computed: {
       isOpen () {
-        return Writer.filesOpen.includes(this.file.id)
+        return Project.filesOpen.includes(this.file.id)
       },
 
       classOpen () {
@@ -39,7 +39,7 @@
 
     methods: {
       openFile () {
-        this.$store.commit('writerFileOpenFill', this.file.id)
+        this.$store.commit('projectFileOpenFill', this.file.id)
       },
     }
   }

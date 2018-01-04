@@ -10,7 +10,7 @@
 <script>
   import Title from './Title'
 
-  import { Writer, Project } from '@/helpers/store_helper'
+  import { Project } from '@/helpers/store_helper'
 
   export default {
     name: 'Folder',
@@ -23,7 +23,7 @@
 
     computed: {
       isOpen () {
-        return Writer.foldersOpen.includes(this.folder.id)
+        return Project.foldersOpen.includes(this.folder.id)
       },
 
       isEmpty () {
@@ -58,7 +58,7 @@
 
     methods: {
       toggleFolder () {
-        this.$store.commit('writerToggleFolderOpen', this.folder.id)
+        this.$store.commit('projectToggleFolderOpen', this.folder.id)
       },
     }
   }

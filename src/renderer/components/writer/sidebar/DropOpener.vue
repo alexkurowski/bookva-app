@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import { Writer, Sidebar } from '@/helpers/store_helper'
+  import { Sidebar } from '@/helpers/store_helper'
   import Config from '@/config/config'
 
   export default {
@@ -55,7 +55,7 @@
 
         this.$store.commit('sidebarToggle', false)
 
-        const filesOpenCount = Writer.filesOpen.length
+        const filesOpenCount = Project.filesOpen.length
         const dropRect       = this.$el.getBoundingClientRect()
         const dragX          = ( event.x - dropRect.left ) / dropRect.width
         const dragY          = ( event.y - dropRect.top ) / dropRect.height
@@ -86,9 +86,9 @@
         if (!fileId) return
 
         if (this.dropTarget == -1) {
-          this.$store.commit('writerFileOpenFill', fileId)
+          this.$store.commit('projectFileOpenFill', fileId)
         } else {
-          this.$store.commit('writerFileOpenPane', {
+          this.$store.commit('projectFileOpenPane', {
             id: fileId,
             pane: this.dropTarget
           })

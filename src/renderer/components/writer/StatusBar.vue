@@ -20,7 +20,7 @@
 <script>
   import electron from 'electron'
 
-  import { Project, Writer } from '@/helpers/store_helper'
+  import { Project } from '@/helpers/store_helper'
 
   const getWindow = () => (
     electron
@@ -47,7 +47,7 @@
       wordsOpen () {
         let result = ''
 
-        Writer.filesOpen.forEach((fileId, index) => {
+        Project.filesOpen.forEach((fileId, index) => {
           if (index > 0)
             result += ' | '
 
