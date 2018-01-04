@@ -1,6 +1,6 @@
 const maxFilesOpen = 3
 
-const settingsToSave = [
+const stringsToSave = [
   'scheme',
   'fontFamily',
   'fontSize'
@@ -19,19 +19,31 @@ const state = {
 
 const mutations = {
   writerSaveSettings (state) {
-    settingsToSave.forEach(setting => {
+    stringsToSave.forEach(setting => {
       localStorage.setItem(
         `writer-settings-${ setting }`,
         state[setting]
       )
     })
+
+    localStorage.setItem(
+      'writer-settings-paneFlex',
+      JSON.stringify(state.paneFlex)
+    )
   },
 
   writerLoadSettings (state) {
-    settingsToSave.forEach(setting => {
+    stringsToSave.forEach(setting => {
       state[setting] =
         localStorage.getItem(`writer-settings-${ setting }`)
     })
+
+    const paneFlex =
+      JSON.parse(
+        localStorage.getItem('writer-settings-paneFlex')
+      )
+    if (paneFlex)
+      state.paneFlex = paneFlex
   },
 
   writerNewProject (state, files) {
@@ -103,6 +115,8 @@ const mutations = {
     paneFlex[index - 1] = left
     paneFlex[index]     = right
     state.paneFlex = paneFlex
+
+    mutations.writerSaveSettings(state)
   }
 }
 
