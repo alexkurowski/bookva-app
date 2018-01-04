@@ -74,6 +74,12 @@
     padding: .25rem 0
     overflow: hidden
     cursor: text
+    border: 1px solid transparent
+    border-radius: 2px
+    outline: none
+
+    &:focus
+      border-color: $color-action
 
     &.locked
       cursor: pointer
