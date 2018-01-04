@@ -6,6 +6,9 @@ import { remote } from 'electron'
 import path from 'path'
 import fs from 'fs'
 
+let saving  = false
+let syncing = false
+
 const state = {
   files: {},
   folders: {},
@@ -65,7 +68,10 @@ const mutations = {
   },
 
   projectSyncProject (state) {
+    if ( syncing ) return
     if ( state.lastUpdate == state.lastSync ) return
+
+    syncing = true
     state.lastSync = state.lastUpdate
 
     const fileDir =
@@ -94,6 +100,8 @@ const mutations = {
     })
 
     fs.writeFile(filePath, data, (err) => {
+      syncing = false
+
       if (err)
         throw err
     })
@@ -170,9 +178,7 @@ const mutations = {
 
 const actions = {
   projectSyncProject (context) {
-    setTimeout(() => {
-      context.commit('projectSyncProject')
-    }, 0)
+    context.commit('projectSyncProject')
   }
 }
 
