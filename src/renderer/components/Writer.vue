@@ -29,14 +29,14 @@
       }
     },
 
-    created () {
+    async created () {
       this.$store.commit('writerLoadSettings')
 
-      // TODO (Alex): fetch project data from a file
+      const resynced =
+        await this.$store.dispatch('projectResyncProject')
 
-      this.$store.commit('projectResyncProject')
-
-      this.$store.commit('projectNewProject')
+      if (!resynced)
+        this.$store.commit('projectNewProject')
 
       setInterval(() => {
         this.$store.commit('projectSyncProject')

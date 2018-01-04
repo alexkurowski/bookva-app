@@ -54,7 +54,7 @@
           result += this.countWords( Project.files[fileId] )
         })
 
-        return result
+        return result || '0'
       },
 
       wordsProject () {

@@ -1,10 +1,11 @@
 import Vue from 'vue'
 
-import { Writer } from '@/helpers/store_helper'
-
 import { remote } from 'electron'
 import path from 'path'
 import fs from 'fs'
+
+import { Writer } from '@/helpers/store_helper'
+import Config from '@/config/config'
 
 let saving  = false
 let syncing = false
@@ -20,13 +21,20 @@ const state = {
   lastSync: 0
 }
 
-const userPath =
+const userPath = remote.app.getPath('userData')
 
-const syncDirectory = function () {
-}
+const syncDirectory =
+  path.join(
+    userPath,
+    Config.projectSyncDirectory
+  )
 
-const syncPath = function () {
-}
+const syncFilepath =
+  path.join(
+    userPath,
+    Config.projectSyncDirectory,
+    Config.projectSyncFilename
+  )
 
 const generateId = function () {
   return Math.random().toString(36).substr(2)
@@ -85,33 +93,21 @@ const mutations = {
     syncing = true
     state.lastSync = state.lastUpdate
 
-    const fileDir =
-      path.join(
-        remote.app.getPath('userData'),
-        'wrtr'
-      )
-
-    const filePath =
-      path.join(
-        fileDir,
-        'project.json'
-      )
-
     try {
-      fs.mkdirSync(fileDir)
+      fs.mkdirSync(syncDirectory)
     } catch (err) {
       if (err.code != 'EEXIST')
         throw err
     }
 
     const data = JSON.stringify({
-      filesOpen:  state.filesOpen,
-      folderOpen: state.folderOpen,
-      files:      state.files,
-      folders:    state.folders,
+      files:       state.files,
+      folders:     state.folders,
+      filesOpen:   state.filesOpen,
+      foldersOpen: state.foldersOpen,
     })
 
-    fs.writeFile(filePath, data, (err) => {
+    fs.writeFile(syncFilepath, data, (err) => {
       syncing = false
 
       if (err)
@@ -119,8 +115,29 @@ const mutations = {
     })
   },
 
-  projectResyncProject (state) {
-    fs.existsSync()
+  projectResyncProject (state, result) {
+    if ( fs.existsSync(syncFilepath) ) {
+      const dataJSON = fs.readFileSync(syncFilepath, 'utf8')
+      console.log("INFO dataJSON", dataJSON)
+
+      const data = JSON.parse(dataJSON)
+      console.log("INFO data", data)
+
+      if ( !data.files ||
+           !data.folders ||
+           !data.filesOpen ||
+           !data.foldersOpen )
+        throw "Sync file seems broken!"
+
+      state.files       = data.files
+      state.folders     = data.folders
+      state.filesOpen   = data.filesOpen
+      state.foldersOpen = data.foldersOpen
+
+      global.resetEditors()
+
+      result.resynced = true
+    }
   },
 
   projectNewProject (state) {
@@ -129,16 +146,9 @@ const mutations = {
 
     mutations.projectAddFile(state)
 
-    // TODO: below is debug data
-    mutations.projectAddFolder(state)
-    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
-    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
-    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
-    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4), folder: Object.keys(state.folders)[0] })
-    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4) })
-    mutations.projectAddFile(state, { title: Math.random().toString(36).substr(2,4) })
-
     state.filesOpen = [ Object.keys(state.files)[0] ]
+
+    global.resetEditors()
   },
 
   projectAddFile (state, params) {
@@ -242,7 +252,13 @@ const mutations = {
   },
 }
 
-const actions = {}
+const actions = {
+  projectResyncProject (context) {
+    let result = { resynced: false }
+    context.commit('projectResyncProject', result)
+    return result.resynced
+  }
+}
 
 export default {
   state,
