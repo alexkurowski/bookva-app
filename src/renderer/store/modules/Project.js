@@ -7,7 +7,6 @@ import { Writer } from '@/helpers/store_helper'
 import Config from '@/config/config'
 
 import {
-  userPath,
   syncDirectory,
   syncFilepath,
   fieldsToSave,
@@ -81,7 +80,6 @@ const mutations = {
     if ( state.lastUpdate == state.lastSync ) return
 
     syncBusy = true
-    state.lastSync = state.lastUpdate
 
     try {
       fs.mkdirSync(syncDirectory)
@@ -93,8 +91,12 @@ const mutations = {
     projectSaveData(
       state,
       syncFilepath,
-      () => { syncBusy = false }
+      () => {
+        syncBusy = false
+      }
     )
+
+    state.lastSync = state.lastUpdate
   },
 
   projectResyncProject (state, result) {
@@ -257,7 +259,9 @@ const actions = {
 
     remote.dialog.showSaveDialog({
     }, saveFilepath => {
-      context.commit('projectSaveAsProject', saveFilepath)
+      if (saveFilepath) {
+        context.commit('projectSaveAsProject', saveFilepath)
+      }
     })
   },
 

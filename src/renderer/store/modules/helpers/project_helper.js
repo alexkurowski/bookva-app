@@ -4,7 +4,7 @@ import path from 'path'
 
 import Config from '@/config/config'
 
-export const userPath = remote.app.getPath('userData')
+const userPath = remote.app.getPath('userData')
 
 export const syncDirectory =
   path.join(
@@ -29,7 +29,7 @@ export const fieldsToSave =
   ]
 
 export const projectSaveData = function (state, filepath, callback) {
-  let data =
+  const data =
     JSON.stringify(
       fieldsToSave.reduce((result, field) => {
         result[field] = state[field]
