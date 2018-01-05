@@ -1,16 +1,28 @@
 import Vue from 'vue'
 
 import { remote } from 'electron'
-import path from 'path'
 import fs from 'fs'
 
 import { Writer } from '@/helpers/store_helper'
 import Config from '@/config/config'
 
+import {
+  userPath,
+  syncDirectory,
+  syncFilepath,
+  fieldsToSave,
+  projectSaveData,
+  newFile,
+  newFolder,
+  getNextOrder
+} from './helpers/project_helper'
+
 let saving  = false
 let syncing = false
 
 const state = {
+  projectFile: null,
+
   files: {},
   folders: {},
 
@@ -21,66 +33,37 @@ const state = {
   lastSync: 0
 }
 
-const userPath = remote.app.getPath('userData')
-
-const syncDirectory =
-  path.join(
-    userPath,
-    Config.projectSyncDirectory
-  )
-
-const syncFilepath =
-  path.join(
-    userPath,
-    Config.projectSyncDirectory,
-    Config.projectSyncFilename
-  )
-
-const generateId = function () {
-  return Math.random().toString(36).substr(2)
-}
-
-const newFile = function (params) {
-  params = params || {}
-  return {
-    id: generateId(),
-    title: params.title || '',
-    content: '',
-    folder: params.folder || null,
-    order: params.order || 0,
-  }
-}
-
-const newFolder = function (params) {
-  params = params || {}
-  return {
-    id: generateId(),
-    title: params.title || '',
-    order: params.order || 0,
-    isFolder: true,
-  }
-}
-
-const getNextOrder = function (state) {
-  let collection = [
-    ...Object.values(state.files),
-    ...Object.values(state.folders)
-  ]
-
-  if (Object.values(collection).length == 0) {
-    return 0
-  } else {
-    return (
-      Math.max(
-        ...collection
-          .map(entry => entry.order)
-      ) + 1
-    )
-  }
-}
-
 const mutations = {
+  projectNewProject (state) {
+    state.files   = {}
+    state.folders = {}
+
+    mutations.projectAddFile(state)
+
+    state.filesOpen = [ Object.keys(state.files)[0] ]
+
+    state.lastUpdate = Date.now()
+
+    global.resetEditors()
+  },
+
   projectSaveProject (state) {
+    if ( saving ) return
+
+    saving = true
+
+    remote.dialog.showSaveDialog({
+    }, saveFilepath => {
+      fs.writeFile(saveFilepath, projectSaveData(state), (err) => {
+        saving = false
+
+        if (err)
+          throw err
+      })
+    })
+  },
+
+  projectSaveAsProject (state) {
   },
 
   projectLoadProject (state, filePath) {
@@ -100,14 +83,7 @@ const mutations = {
         throw err
     }
 
-    const data = JSON.stringify({
-      files:       state.files,
-      folders:     state.folders,
-      filesOpen:   state.filesOpen,
-      foldersOpen: state.foldersOpen,
-    })
-
-    fs.writeFile(syncFilepath, data, (err) => {
+    fs.writeFile(syncFilepath, projectSaveData(state), (err) => {
       syncing = false
 
       if (err)
@@ -120,32 +96,20 @@ const mutations = {
       const dataJSON = fs.readFileSync(syncFilepath, 'utf8')
       const data = JSON.parse(dataJSON)
 
-      if ( !data.files ||
-           !data.folders ||
-           !data.filesOpen ||
-           !data.foldersOpen )
-        throw "Sync file seems broken!"
+      const missingField =
+        fieldsToSave.find( field => !data.hasOwnProperty(field) )
 
-      state.files       = data.files
-      state.folders     = data.folders
-      state.filesOpen   = data.filesOpen
-      state.foldersOpen = data.foldersOpen
+      if (missingField)
+        throw `Sync file seems broken. Field '${ missingField }' is missing.`
+
+      fieldsToSave.forEach(field => {
+        state[field] = data[field]
+      })
 
       global.resetEditors()
 
       result.resynced = true
     }
-  },
-
-  projectNewProject (state) {
-    state.files   = {}
-    state.folders = {}
-
-    mutations.projectAddFile(state)
-
-    state.filesOpen = [ Object.keys(state.files)[0] ]
-
-    global.resetEditors()
   },
 
   projectAddFile (state, params) {

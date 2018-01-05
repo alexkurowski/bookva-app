@@ -9,7 +9,7 @@
       i.icon.icon-upload
       span Open...
 
-    .button
+    .button @click='save'
       i.icon.icon-download
       span Save
 
@@ -31,8 +31,8 @@
     name: 'ProjectManager',
 
     methods: {
-      click () {
-        this.$store.commit('projectSyncProject')
+      save () {
+        this.$store.commit('projectSaveProject')
       },
 
       quit () {
