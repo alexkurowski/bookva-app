@@ -111,11 +111,8 @@ const mutations = {
   },
 
   projectRestoreProject (state, data) {
-    console.log(fieldsToSave)
-    console.log(data)
     fieldsToSave.forEach(field => {
       state[field] = data[field]
-      console.log(field, state[field])
     })
 
     global.resetEditors()
