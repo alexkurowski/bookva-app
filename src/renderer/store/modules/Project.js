@@ -35,8 +35,11 @@ const state = {
 
 const mutations = {
   projectNewProject (state) {
-    state.files   = {}
-    state.folders = {}
+    state.projectFile = null
+    state.files       = {}
+    state.folders     = {}
+    state.filesOpen   = []
+    state.foldersOpen = []
 
     mutations.projectAddFile(state)
 
@@ -52,18 +55,28 @@ const mutations = {
 
     saving = true
 
-    remote.dialog.showSaveDialog({
-    }, saveFilepath => {
-      fs.writeFile(saveFilepath, projectSaveData(state), (err) => {
-        saving = false
+    if (state.projectFile) {
+      fs.writeFile(
+        state.projectFile,
+        projectSaveData(state),
+        err => {
+          saving = false
 
-        if (err)
-          throw err
-      })
-    })
+          if (err)
+            throw err
+        }
+      )
+    } else {
+      mutations.projectSaveAsProject(state)
+    }
   },
 
   projectSaveAsProject (state) {
+    remote.dialog.showSaveDialog({
+    }, saveFilepath => {
+      state.projectFile = saveFilepath
+      mutations.projectSaveProject(state)
+    })
   },
 
   projectLoadProject (state, filePath) {

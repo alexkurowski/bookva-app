@@ -1,25 +1,25 @@
 <template lang='slm'>
   #project-manager
 
-    .button
+    .button @click='newProject'
       i.icon.icon-document
       span New project
 
-    .button
+    .button @click='loadProject'
       i.icon.icon-upload
       span Open...
 
-    .button @click='save'
+    .button @click='saveProject'
       i.icon.icon-download
       span Save
 
-    .button
+    .button @click='saveAsProject'
       i.icon.icon-download
       span Save as...
 
     .hr
 
-    .button @click='quit'
+    .button @click='quitProject'
       i.icon.icon-times
       span Quit
 </template>
@@ -31,11 +31,26 @@
     name: 'ProjectManager',
 
     methods: {
-      save () {
+      newProject () {
+        // TODO (Alex): Show a modal 'are you sure?' question
+        this.$store.commit('projectNewProject')
+      },
+
+      loadProject () {
+        // TODO (Alex): Show a modal 'are you sure?' question
+        //              but only if current project is not saved
+        this.$store.commit('projectLoadProject')
+      },
+
+      saveProject () {
         this.$store.commit('projectSaveProject')
       },
 
-      quit () {
+      saveAsProject () {
+        this.$store.commit('projectSaveAsProject')
+      },
+
+      quitProject () {
         remote.app.quit()
       }
     }
