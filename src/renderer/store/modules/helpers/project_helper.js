@@ -1,4 +1,5 @@
 import { remote } from 'electron'
+import fs from 'fs'
 import path from 'path'
 
 import Config from '@/config/config'
@@ -27,13 +28,41 @@ export const fieldsToSave =
     'foldersOpen',
   ]
 
-export const projectSaveData = function (state) {
-  return JSON.stringify(
-    fieldsToSave.reduce((result, field) => {
-      result[field] = state[field]
-      return result
-    }, {})
+export const projectSaveData = function (state, filepath, callback) {
+  let data =
+    JSON.stringify(
+      fieldsToSave.reduce((result, field) => {
+        result[field] = state[field]
+        return result
+      }, {})
+    )
+
+  fs.writeFile(
+    filepath,
+    data,
+    err => {
+      callback()
+
+      if (err)
+        throw err
+    }
   )
+}
+
+export const projectLoadData = function (state, filepath) {
+  const dataJSON = fs.readFileSync(filepath, 'utf8')
+  const data = JSON.parse(dataJSON)
+
+  const missingField =
+    fieldsToSave.find( field => !data.hasOwnProperty(field) )
+
+  if (missingField)
+    throw `Sync file seems broken. Field '${ missingField }' is missing.`
+
+  return {
+    data,
+    error: missingField
+  }
 }
 
 const generateId = function () {

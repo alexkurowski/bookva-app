@@ -39,15 +39,15 @@
       loadProject () {
         // TODO (Alex): Show a modal 'are you sure?' question
         //              but only if current project is not saved
-        this.$store.commit('projectLoadProject')
+        this.$store.dispatch('projectLoadProject')
       },
 
       saveProject () {
-        this.$store.commit('projectSaveProject')
+        this.$store.dispatch('projectSaveProject')
       },
 
       saveAsProject () {
-        this.$store.commit('projectSaveAsProject')
+        this.$store.dispatch('projectSaveAsProject')
       },
 
       quitProject () {

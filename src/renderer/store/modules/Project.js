@@ -12,13 +12,14 @@ import {
   syncFilepath,
   fieldsToSave,
   projectSaveData,
+  projectLoadData,
   newFile,
   newFolder,
   getNextOrder
 } from './helpers/project_helper'
 
-let saving  = false
-let syncing = false
+let ioBusy   = false
+let syncBusy = false
 
 const state = {
   projectFile: null,
@@ -30,7 +31,7 @@ const state = {
   foldersOpen: [],
 
   lastUpdate: 0,
-  lastSync: 0
+  lastSync: 0,
 }
 
 const mutations = {
@@ -51,42 +52,35 @@ const mutations = {
   },
 
   projectSaveProject (state) {
-    if ( saving ) return
-
-    saving = true
-
-    if (state.projectFile) {
-      fs.writeFile(
-        state.projectFile,
-        projectSaveData(state),
-        err => {
-          saving = false
-
-          if (err)
-            throw err
-        }
-      )
-    } else {
-      mutations.projectSaveAsProject(state)
-    }
+    projectSaveData(
+      state,
+      state.projectFile,
+      () => { ioBusy = false }
+    )
   },
 
-  projectSaveAsProject (state) {
-    remote.dialog.showSaveDialog({
-    }, saveFilepath => {
-      state.projectFile = saveFilepath
-      mutations.projectSaveProject(state)
-    })
+  projectSaveAsProject (state, filepath) {
+    state.projectFile = filepath
+    mutations.projectSaveProject(state)
   },
 
-  projectLoadProject (state, filePath) {
+  projectLoadProject (state, filepath) {
+    if (!filepath) return
+
+    const { data, error } =
+      projectLoadData(state, filepath)
+
+    if (!error)
+      mutations.projectRestoreProject(state, data)
+
+    ioBusy = false
   },
 
   projectSyncProject (state) {
-    if ( syncing ) return
+    if ( syncBusy ) return
     if ( state.lastUpdate == state.lastSync ) return
 
-    syncing = true
+    syncBusy = true
     state.lastSync = state.lastUpdate
 
     try {
@@ -96,33 +90,35 @@ const mutations = {
         throw err
     }
 
-    fs.writeFile(syncFilepath, projectSaveData(state), (err) => {
-      syncing = false
-
-      if (err)
-        throw err
-    })
+    projectSaveData(
+      state,
+      syncFilepath,
+      () => { syncBusy = false }
+    )
   },
 
   projectResyncProject (state, result) {
     if ( fs.existsSync(syncFilepath) ) {
-      const dataJSON = fs.readFileSync(syncFilepath, 'utf8')
-      const data = JSON.parse(dataJSON)
+      const { data, error } =
+        projectLoadData(state, syncFilepath)
 
-      const missingField =
-        fieldsToSave.find( field => !data.hasOwnProperty(field) )
+      if (!error) {
+        mutations.projectRestoreProject(state, data)
 
-      if (missingField)
-        throw `Sync file seems broken. Field '${ missingField }' is missing.`
-
-      fieldsToSave.forEach(field => {
-        state[field] = data[field]
-      })
-
-      global.resetEditors()
-
-      result.resynced = true
+        result.resynced = true
+      }
     }
+  },
+
+  projectRestoreProject (state, data) {
+    console.log(fieldsToSave)
+    console.log(data)
+    fieldsToSave.forEach(field => {
+      state[field] = data[field]
+      console.log(field, state[field])
+    })
+
+    global.resetEditors()
   },
 
   projectAddFile (state, params) {
@@ -138,7 +134,7 @@ const mutations = {
     state.lastUpdate = Date.now()
   },
 
-  projectAddFolder (state, result) {
+  projectAddFolder (state) {
     let params = { order: getNextOrder(state) }
 
     let folder = newFolder(params)
@@ -233,17 +229,46 @@ const mutations = {
 }
 
 const actions = {
+  projectLoadProject (context) {
+    if (ioBusy) return
+    ioBusy = true
+
+    remote.dialog.showOpenDialog({
+    }, loadFilepath => {
+      if (loadFilepath && loadFilepath[0]) {
+        context.commit('projectLoadProject', loadFilepath[0])
+        ioBusy = false
+      }
+    })
+  },
+
+  projectSaveProject (context) {
+    if (ioBusy) return
+    ioBusy = true
+
+    if (context.state.projectFile) {
+      context.commit('projectSaveProject')
+    } else {
+      ioBusy = false
+      context.dispatch('projectSaveAsProject')
+    }
+  },
+
+  projectSaveAsProject (context) {
+    if (ioBusy) return
+    ioBusy = true
+
+    remote.dialog.showSaveDialog({
+    }, saveFilepath => {
+      context.commit('projectSaveAsProject', saveFilepath)
+    })
+  },
+
   projectResyncProject (context) {
     let result = { resynced: false }
     context.commit('projectResyncProject', result)
     return result.resynced
   },
-
-  projectAddFolder (context) {
-    let result = { folderId: null }
-    context.commit('projectAddFolder', result)
-    return result.folderId
-  }
 }
 
 export default {
