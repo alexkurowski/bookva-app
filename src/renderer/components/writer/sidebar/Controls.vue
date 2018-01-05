@@ -3,7 +3,7 @@
     .btn[ :title='$t("writer.sidebar.title.projectManager")'
           :class='isActive("ProjectManager")'
           @click='setSidebarPage("ProjectManager")' ]
-      .icon.icon-document
+      .icon.icon-book
 
     .btn[ :title='$t("writer.sidebar.title.fileTree")'
           :class='isActive("FileTree")'

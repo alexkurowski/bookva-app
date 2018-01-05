@@ -6,21 +6,21 @@
       span New project
 
     .button
-      i.icon.icon-upload-outline
+      i.icon.icon-upload
       span Open...
 
     .button
-      i.icon.icon-download-outline
+      i.icon.icon-download
       span Save
 
     .button
-      i.icon.icon-download-outline
+      i.icon.icon-download
       span Save as...
 
     .hr
 
     .button @click='quit'
-      i.icon.icon-times-outline
+      i.icon.icon-times
       span Quit
 </template>
 

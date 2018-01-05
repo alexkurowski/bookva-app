@@ -169,10 +169,9 @@ const mutations = {
       ...state.folders,
       [folder.id]: folder
     }
+    result.folderId = folder.id
 
     state.lastUpdate = Date.now()
-
-    result.folderId = folder.id
   },
 
   projectUpdateFile (state, params) {
@@ -203,6 +202,8 @@ const mutations = {
     state.filesOpen = [ fileId ]
 
     global.resetEditors()
+
+    state.lastUpdate = Date.now()
   },
 
   projectFileOpenPane (state, params) {
@@ -219,6 +220,8 @@ const mutations = {
 
     state.filesOpen = filesOpen
     global.resetEditors()
+
+    state.lastUpdate = Date.now()
   },
 
   projectFileClosePane (state, index) {
@@ -226,6 +229,8 @@ const mutations = {
     filesOpen.splice(index, 1)
     state.filesOpen = filesOpen
     global.resetEditors()
+
+    state.lastUpdate = Date.now()
   },
 
   projectToggleFolderOpen (state, folderId) {
@@ -245,6 +250,8 @@ const mutations = {
         folderId
       ]
     }
+
+    state.lastUpdate = Date.now()
   },
 }
 
