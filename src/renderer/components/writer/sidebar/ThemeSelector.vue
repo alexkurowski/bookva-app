@@ -36,6 +36,7 @@
         schemes: {
           sharp:    'Sharp',
           smooth:   'Smooth',
+          frost:    'Frost',
           dark:     'Dark',
           contrast: 'Contrast',
         },
