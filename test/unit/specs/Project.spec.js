@@ -13,6 +13,9 @@ const {
   projectNewProject,
   projectSyncProject,
   projectResyncProject,
+  projectFileOpenPane,
+  projectFileClosePane,
+  projectToggleFolderOpen,
 } = Project.mutations
 
 describe('Project.js', () => {
@@ -87,5 +90,53 @@ describe('Project.js', () => {
 
       done()
     }, 100)
+  })
+
+  it('projectFileOpenPane', () => {
+    const state = { filesOpen: ['a'] }
+
+    projectFileOpenPane(state, {
+      id: 'b',
+      pane: 0
+    })
+    expect(state.filesOpen).to.deep.equal(['b', 'a'])
+
+    projectFileOpenPane(state, {
+      id: 'c',
+      pane: 2
+    })
+    expect(state.filesOpen).to.deep.equal(['b', 'a', 'c'])
+
+    projectFileOpenPane(state, {
+      id: 'd',
+      pane: 1
+    })
+    expect(state.filesOpen).to.deep.equal(['b', 'd', 'c'])
+  })
+
+  it('projectFileClosePane', () => {
+    const state = { filesOpen: ['a', 'b'] }
+
+    projectFileClosePane(state, 1)
+    expect(state.filesOpen).to.deep.equal(['a'])
+
+    projectFileClosePane(state, 0)
+    expect(state.filesOpen).to.deep.equal(['a'])
+  })
+
+  it('projectToggleFolderOpen', () => {
+    const state = { foldersOpen: ['a', 'b'] }
+
+    projectToggleFolderOpen(state, 'c')
+    expect(state.foldersOpen).to.include('c')
+
+    projectToggleFolderOpen(state, 'b')
+    expect(state.foldersOpen).to.not.include('b')
+
+    projectToggleFolderOpen(state, 'a')
+    expect(state.foldersOpen).to.deep.equal(['c'])
+
+    projectToggleFolderOpen(state, 'c')
+    expect(state.foldersOpen.length).to.equal(0)
   })
 })
