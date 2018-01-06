@@ -4,7 +4,10 @@ import path from 'path'
 
 import Config from '@/config/config'
 
-const userPath = remote.app.getPath('userData')
+const userPath =
+  process.env.NODE_ENV == 'testing'
+    ? '/userData'
+    : remote.app.getPath('userData')
 
 export const syncFilepath =
   path.join(
