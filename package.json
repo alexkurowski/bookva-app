@@ -98,6 +98,7 @@
     "karma-webpack": "^2.0.1",
     "medium-editor": "^5.23.3",
     "mocha": "^3.0.2",
+    "mock-fs": "^4.4.2",
     "multispinner": "^0.2.1",
     "node-loader": "^0.6.0",
     "node-sass": "^4.7.2",
