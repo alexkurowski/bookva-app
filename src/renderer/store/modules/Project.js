@@ -7,7 +7,6 @@ import { Writer } from '@/helpers/store_helper'
 import Config from '@/config/config'
 
 import {
-  syncDirectory,
   syncFilepath,
   fieldsToSave,
   projectSaveData,
@@ -80,13 +79,6 @@ const mutations = {
     if ( state.lastUpdate == state.lastSync ) return
 
     syncBusy = true
-
-    try {
-      fs.mkdirSync(syncDirectory)
-    } catch (err) {
-      if (err.code != 'EEXIST')
-        throw err
-    }
 
     projectSaveData(
       state,

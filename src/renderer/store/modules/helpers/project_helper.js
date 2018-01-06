@@ -6,16 +6,9 @@ import Config from '@/config/config'
 
 const userPath = remote.app.getPath('userData')
 
-export const syncDirectory =
-  path.join(
-    userPath,
-    Config.projectSyncDirectory
-  )
-
 export const syncFilepath =
   path.join(
     userPath,
-    Config.projectSyncDirectory,
     Config.projectSyncFilename
   )
 

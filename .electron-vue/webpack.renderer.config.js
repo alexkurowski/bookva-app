@@ -34,14 +34,14 @@ let rendererConfig = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader'
+          use: 'css-loader!sass-loader'
         })
       },
       {
         test: /\.sass$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'sass-loader'
+          use: 'css-loader!sass-loader'
         })
       },
       {
@@ -64,7 +64,7 @@ let rendererConfig = {
           options: {
             extractCSS: process.env.NODE_ENV === 'production',
             loaders: {
-              sass: 'vue-style-loader!css-loader!sass-loader?data=@import "./src/renderer/assets/stylesheets/global"&indentedSyntax=1',
+              sass: 'vue-style-loader!css-loader!sass-loader?data=@import "./src/renderer/assets/stylesheets/global"&indentedSyntax=1'
             }
           }
         }
