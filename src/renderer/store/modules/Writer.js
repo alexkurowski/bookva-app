@@ -1,10 +1,9 @@
 import Config from '@/config/config'
 
-const stringsToSave = [
-  'scheme',
-  'fontFamily',
-  'fontSize'
-]
+import {
+  stringsToSave,
+  stringify
+} from './helpers/writer_helper'
 
 const state = {
   paneFlex: Array(Config.maxFilesOpen).fill(1),
@@ -25,7 +24,7 @@ const mutations = {
 
     localStorage.setItem(
       'writer-settings-paneFlex',
-      JSON.stringify(state.paneFlex)
+      stringify(state.paneFlex)
     )
   },
 
