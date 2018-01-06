@@ -186,6 +186,8 @@ const mutations = {
   },
 
   projectFileClosePane (state, index) {
+    if (state.filesOpen.length <= 1) return
+
     let filesOpen = [ ...state.filesOpen ]
     filesOpen.splice(index, 1)
     state.filesOpen = filesOpen
@@ -196,15 +198,13 @@ const mutations = {
 
   projectToggleFolderOpen (state, folderId) {
     if (state.foldersOpen.includes(folderId)) {
-      let newFoldersOpen = [ ...state.foldersOpen ]
-      newFoldersOpen
-        .splice(
-          newFoldersOpen
-            .findIndex(folder => folder.id == folderId),
-          1
-        )
+      const foldersOpen = [ ...state.foldersOpen ]
+      foldersOpen.splice(
+        foldersOpen.indexOf(folderId),
+        1
+      )
 
-      state.foldersOpen = newFoldersOpen
+      state.foldersOpen = foldersOpen
     } else {
       state.foldersOpen = [
         ...state.foldersOpen,
