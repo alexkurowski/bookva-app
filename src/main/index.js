@@ -1,4 +1,6 @@
 import { app, BrowserWindow } from 'electron'
+import fs from 'fs'
+import path from 'path'
 
 /**
  * Set `__static` path to static files in production
@@ -6,6 +8,27 @@ import { app, BrowserWindow } from 'electron'
  */
 if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+}
+
+function deleteChromeCache () {
+  const chromeCacheDir = path.join(app.getPath('userData'), 'Cache')
+
+  if(fs.existsSync(chromeCacheDir)) {
+    const files = fs.readdirSync(chromeCacheDir)
+
+    for(let i = 0; i < files.length; i++) {
+      let filename = path.join(chromeCacheDir, files[i])
+
+      if(fs.existsSync(filename)) {
+        try {
+          fs.unlinkSync(filename)
+        }
+        catch(error) {
+          console.log(error)
+        }
+      }
+    }
+  }
 }
 
 let mainWindow
@@ -33,6 +56,8 @@ function createWindow () {
     mainWindow = null
   })
 }
+
+deleteChromeCache()
 
 app.on('ready', createWindow)
 
