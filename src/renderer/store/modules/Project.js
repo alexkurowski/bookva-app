@@ -1,9 +1,6 @@
-import Vue from 'vue'
-
 import { remote } from 'electron'
 import fs from 'fs'
 
-import { Writer } from '@/helpers/store_helper'
 import Config from '@/config/config'
 
 import {
