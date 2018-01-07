@@ -115,10 +115,11 @@
 
       getParentFolderId (node) {
         const parent = node.parentNode
-        const isInFolder = node
-          .parentNode
-          .className
-          .indexOf(this.inFolderClass) != -1
+        const isInFolder =
+          node
+            .parentNode
+            .className
+            .indexOf(this.inFolderClass) != -1
 
         if (isInFolder) {
           return node
