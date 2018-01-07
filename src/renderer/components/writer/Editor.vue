@@ -10,7 +10,7 @@
   import Pane from './editor/Pane'
   import PaneResize from './editor/PaneResize'
 
-  import { Project, Writer } from '@/helpers/store_helper'
+  import { Project, Appearance } from '@/helpers/store_helper'
 
   export default {
     name: 'Editor',
@@ -26,7 +26,7 @@
       },
 
       editorStyle () {
-        return Writer.paneFlex
+        return Appearance.paneFlex
       },
     }
   }

@@ -48,7 +48,7 @@ const mutations = {
 
   projectSaveProject (state) {
     if (!state.projectFile)
-      throw 'ERROR: trying to save project without a file'
+      throw "ERROR: trying to save project without a file"
 
     // TODO (Alex): if the line below throws
     // we should make sure that this file can be recreated

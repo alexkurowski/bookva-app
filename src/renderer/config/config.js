@@ -4,4 +4,5 @@ export default {
   maxFilesOpen: 3,
   projectSyncInterval: 1, // seconds
   projectSyncFilename: 'project.wrtr',
+  appearanceKey: 'appearance-settings'
 }

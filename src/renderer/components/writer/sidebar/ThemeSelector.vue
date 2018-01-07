@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { Writer } from '@/helpers/store_helper'
+  import { Appearance } from '@/helpers/store_helper'
 
   export default {
     name: 'ThemeSelector',
@@ -58,18 +58,18 @@
 
     methods: {
       selected (type) {
-        return Writer[type]
+        return Appearance[type]
       },
 
       isSelected (value, type) {
-        return Writer[type] == value
+        return Appearance[type] == value
       },
 
       change (event) {
         const value = event.target.value
         const type  = event.target.dataset.type
 
-        this.$store.commit('writerUpdateTheme', {
+        this.$store.commit('appearanceUpdateTheme', {
           value,
           type
         })

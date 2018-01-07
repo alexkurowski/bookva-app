@@ -54,7 +54,7 @@
       },
 
       classSide () {
-        return this.index == 0
+        return this.index === 0
           ? 'editor-left'
           : 'editor-right'
       },

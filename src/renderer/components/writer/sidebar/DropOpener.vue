@@ -39,11 +39,11 @@
       },
 
       indicatorsClass () {
-        if (this.dropTarget == -1) return 'full'
-        if (this.dropTarget ==  0) return 'left'
-        if (this.dropTarget ==  1) return 'middle'
-        if (this.dropTarget ==  2) return 'right'
-        return ''
+        if (this.dropTarget === -1) return 'full'
+        if (this.dropTarget ===  0) return 'left'
+        if (this.dropTarget ===  1) return 'middle'
+        if (this.dropTarget ===  2) return 'right'
+        throw `ERROR: unknown dropTarget is provided: ${ this.dropTarget }`
       }
     },
 

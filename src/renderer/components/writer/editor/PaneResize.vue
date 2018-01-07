@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import { Writer } from '@/helpers/store_helper'
+  import { Appearance } from '@/helpers/store_helper'
 
   export default {
     name: 'PaneResize',
@@ -45,10 +45,10 @@
 
         const flexVal = this.clamp(dragPoint / dragWidth)
         const flexSum =
-          Writer.paneFlex[this.index - 1] +
-          Writer.paneFlex[this.index]
+          Appearance.paneFlex[this.index - 1] +
+          Appearance.paneFlex[this.index]
 
-        this.$store.commit('writerSetPaneFlex', {
+        this.$store.commit('appearanceSetPaneFlex', {
           index: this.index,
           value: flexVal,
           sum: flexSum

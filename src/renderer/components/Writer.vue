@@ -11,7 +11,7 @@
   import Sidebar from './writer/Sidebar'
   import StatusBar from './writer/StatusBar'
 
-  import { Project, Writer } from '@/helpers/store_helper'
+  import { Project, Appearance } from '@/helpers/store_helper'
   import Config from '@/config/config'
 
   export default {
@@ -25,12 +25,12 @@
 
     computed: {
       className () {
-        return `scheme-${ Writer.scheme } font-family-${ Writer.fontFamily } font-size-${ Writer.fontSize }`
+        return `scheme-${ Appearance.scheme } font-family-${ Appearance.fontFamily } font-size-${ Appearance.fontSize }`
       }
     },
 
     async created () {
-      this.$store.commit('writerLoadSettings')
+      this.$store.commit('appearanceLoadSettings')
 
       const resynced =
         await this.$store.dispatch('projectResyncProject')

@@ -1,32 +1,34 @@
 import Vue from 'vue'
-import Writer from '@/store/modules/Writer'
+import Appearance from '@/store/modules/Appearance'
 import Config from '@/config/config'
 
 const {
-  writerLoadSettings,
-  writerUpdateTheme,
-  writerSetPaneFlex
-} = Writer.mutations
+  appearanceLoadSettings,
+  appearanceUpdateTheme,
+  appearanceSetPaneFlex
+} = Appearance.mutations
 
-describe('Writer.js', () => {
-  it('writerUpdateTheme', () => {
+describe('Appearance.js', () => {
+  it('appearanceUpdateTheme', () => {
     const state = { scheme: 'smooth' }
 
-    writerUpdateTheme(state, {
+    appearanceUpdateTheme(state, {
       type: 'scheme',
       value: 'dark'
     })
     expect(state.scheme).to.equal('dark')
 
     expect(
-      localStorage.getItem('writer-settings-scheme')
-    ).to.equal('dark')
+      JSON.parse(
+        localStorage.getItem(Config.appearanceKey)
+      )
+    ).to.deep.equal(state)
   })
 
-  it('writerLoadSettings', () => {
+  it('appearanceLoadSettings', () => {
     const state = { scheme: 'smooth' }
 
-    writerUpdateTheme(state, {
+    appearanceUpdateTheme(state, {
       type: 'scheme',
       value: 'dark'
     })
@@ -34,28 +36,28 @@ describe('Writer.js', () => {
 
     state.scheme = 'smooth'
 
-    writerLoadSettings(state)
+    appearanceLoadSettings(state)
     expect(state.scheme).to.equal('dark')
   })
 
-  it('writerSetPaneFlex', () => {
-    const state = { paneFlex: Writer.state.paneFlex }
+  it('appearanceSetPaneFlex', () => {
+    const state = { paneFlex: Appearance.state.paneFlex }
 
-    writerSetPaneFlex(state, {
+    appearanceSetPaneFlex(state, {
       index: 1,
       sum: 2,
       value: 0.75
     })
     expect(state.paneFlex).to.deep.equal([1.5, 0.5, 1])
 
-    writerSetPaneFlex(state, {
+    appearanceSetPaneFlex(state, {
       index: 1,
       sum: 2,
       value: 0.25
     })
     expect(state.paneFlex).to.deep.equal([0.5, 1.5, 1])
 
-    writerSetPaneFlex(state, {
+    appearanceSetPaneFlex(state, {
       index: 2,
       sum: 2.5,
       value: 0.2
