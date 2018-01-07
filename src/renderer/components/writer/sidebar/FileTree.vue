@@ -114,12 +114,11 @@
       },
 
       getParentFolderId (node) {
-        let parent = node.parentNode
-        let isInFolder =
-          node
-            .parentNode
-            .className
-            .indexOf(this.inFolderClass) != -1
+        const parent = node.parentNode
+        const isInFolder = node
+          .parentNode
+          .className
+          .indexOf(this.inFolderClass) != -1
 
         if (isInFolder) {
           return node
@@ -136,7 +135,7 @@
       // but I couldn't think of a better way to achieve the desired FileTree behavior...
       onMove (event, origEvent) {
         setTimeout(() => {
-          let entries = [
+          const entries = [
             ...document
               .querySelectorAll('#file-tree .entry:not([style*="display:none"]):not([style*="display: none"])')
           ]

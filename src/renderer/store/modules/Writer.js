@@ -55,7 +55,7 @@ const mutations = {
     const left  = value
     const right = sum - value
 
-    let paneFlex = [ ...state.paneFlex ]
+    const paneFlex = [ ...state.paneFlex ]
     paneFlex[index - 1] = left
     paneFlex[index]     = right
     state.paneFlex = paneFlex

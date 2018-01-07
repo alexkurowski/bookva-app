@@ -49,7 +49,7 @@
       },
 
       rename (event) {
-        let parent = event.target.parentElement.parentElement
+        const parent = event.target.parentElement.parentElement
 
         if (parent.dataset.fileId) {
           this.$store.commit('projectUpdateFile', {

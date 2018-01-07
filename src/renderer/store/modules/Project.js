@@ -126,7 +126,7 @@ const mutations = {
     params = params || {}
     params.order = getNextOrder(state)
 
-    let file = newFile(params)
+    const file = newFile(params)
     state.files = {
       ...state.files,
       [file.id]: file
@@ -136,9 +136,9 @@ const mutations = {
   },
 
   projectAddFolder (state) {
-    let params = { order: getNextOrder(state) }
+    const params = { order: getNextOrder(state) }
 
-    let folder = newFolder(params)
+    const folder = newFolder(params)
     state.folders = {
       ...state.folders,
       [folder.id]: folder
@@ -149,9 +149,10 @@ const mutations = {
   },
 
   projectUpdateFile (state, params) {
-    let file = state.files[params.id]
+    const file = state.files[params.id]
     if (!file)
       throw "ERROR: trying to update a file that doesn't exist"
+
     state.files = {
       ...state.files,
       [params.id]: Object.assign(file, params)
@@ -161,9 +162,10 @@ const mutations = {
   },
 
   projectUpdateFolder (state, params) {
-    let folder = state.folders[params.id]
+    const folder = state.folders[params.id]
     if (!folder)
       throw "ERROR: trying to update a folder that doesn't exist"
+
     state.folders = {
       ...state.folders,
       [params.id]: Object.assign(folder, params)
@@ -181,7 +183,7 @@ const mutations = {
   },
 
   projectFileOpenPane (state, params) {
-    let filesOpen = [ ...state.filesOpen ]
+    const filesOpen = [ ...state.filesOpen ]
 
     const fileId = params.id
     const pane   = params.pane
@@ -201,7 +203,7 @@ const mutations = {
   projectFileClosePane (state, index) {
     if (state.filesOpen.length <= 1) return
 
-    let filesOpen = [ ...state.filesOpen ]
+    const filesOpen = [ ...state.filesOpen ]
     filesOpen.splice(index, 1)
     state.filesOpen = filesOpen
     global.resetEditors()
@@ -268,7 +270,7 @@ const actions = {
   },
 
   projectResyncProject (context) {
-    let result = { resynced: false }
+    const result = { resynced: false }
     context.commit('projectResyncProject', result)
     return result.resynced
   },

@@ -66,8 +66,8 @@
       },
 
       change (event) {
-        let value = event.target.value
-        let type  = event.target.dataset.type
+        const value = event.target.value
+        const type  = event.target.dataset.type
 
         this.$store.commit('writerUpdateTheme', {
           value,

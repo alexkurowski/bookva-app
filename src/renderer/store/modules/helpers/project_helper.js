@@ -87,7 +87,7 @@ export const newFolder = function (params) {
 }
 
 export const getNextOrder = function (state) {
-  let collection = [
+  const collection = [
     ...Object.values(state.files),
     ...Object.values(state.folders)
   ]
