@@ -16,6 +16,9 @@ const {
   projectFileOpenPane,
   projectFileClosePane,
   projectToggleFolderOpen,
+  projectSaveProject,
+  projectSaveAsProject,
+  projectLoadProject,
 } = Project.mutations
 
 describe('Project.js', () => {
@@ -24,6 +27,9 @@ describe('Project.js', () => {
       '/userData': {
         [Config.projectSyncFilename]: ''
       },
+      'save_project.test': '',
+      'save_as_project.test': '',
+      'load_project.test': '',
     })
   })
 
@@ -138,5 +144,100 @@ describe('Project.js', () => {
 
     projectToggleFolderOpen(state, 'c')
     expect(state.foldersOpen.length).to.equal(0)
+  })
+
+  it('projectSaveProject', (done) => {
+    const state = { projectFile: null }
+
+    expect(
+      projectSaveProject.bind(projectSaveProject, state)
+    ).to.throw('ERROR: trying to save project without a file')
+
+    state.projectFile = ''
+    expect(
+      projectSaveProject.bind(projectSaveProject, state)
+    ).to.throw('ERROR: trying to save project without a file')
+
+    state.files = { 'test': { title: 'TEST TITLE', content: 'test content' } }
+    state.filesOpen = ['test files open']
+    state.foldersOpen = ['test folders open']
+
+    state.projectFile = '/path/to/nonexistent/save_project.test'
+    expect(
+      projectSaveProject.bind(projectSaveProject, state)
+    ).to.throw()
+
+    state.projectFile = 'save_project.test'
+    projectSaveProject(state)
+
+    setTimeout(() => {
+      const json =
+        fs.readFileSync('save_project.test', 'utf8')
+      expect(json).to.not.equal('')
+
+      const data = JSON.parse(json)
+      fieldsToSave.forEach(field => {
+        expect(data[field]).to.deep.equal(state[field])
+      })
+
+      done()
+    }, 100)
+  })
+
+  it('projectSaveAsProject', (done) => {
+    const state = {
+      projectFile: null,
+      files: { 'test': { title: 'TEST TITLE', content: 'test content' } },
+      folders: {},
+      filesOpen: ['test files open'],
+      foldersOpen: ['test folders open']
+    }
+
+    projectSaveAsProject(state, 'save_as_project.test')
+    expect(state.projectFile).to.eq('save_as_project.test')
+
+    setTimeout(() => {
+      const json =
+        fs.readFileSync('save_as_project.test', 'utf8')
+      expect(json).to.not.equal('')
+
+      const data = JSON.parse(json)
+      fieldsToSave.forEach(field => {
+        expect(data[field]).to.deep.equal(state[field])
+      })
+
+      done()
+    }, 100)
+  })
+
+  it('projectLoadProject', (done) => {
+    const saveState = {
+      projectFile: 'load_project.test',
+      files: { 'test': { title: 'TEST TITLE', content: 'test content' } },
+      folders: {},
+      filesOpen: ['test files open'],
+      foldersOpen: ['test folders open']
+    }
+    const loadState = {}
+
+    projectSaveProject(saveState)
+
+    projectLoadProject(loadState, '')
+    expect(loadState).to.deep.equal({})
+
+    expect(
+      projectLoadProject.bind(projectLoadProject, loadState, '/path/to/invalid/file.wrtr')
+    ).to.throw()
+    expect(loadState).to.deep.equal({})
+
+    setTimeout(() => {
+      projectLoadProject(loadState, 'load_project.test')
+
+      fieldsToSave.forEach(field => {
+        expect(loadState[field]).to.deep.equal(saveState[field])
+      })
+
+      done()
+    }, 100)
   })
 })
