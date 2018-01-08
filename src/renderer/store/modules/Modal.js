@@ -38,6 +38,7 @@ const mutations = {
 
 const actions = {
   modalShow (context, params) {
+    console.log('INFO modalShow', params)
     context.commit('modalSetType', params.type)
     context.commit('modalSetContent', params.content)
     context.commit('modalSetCallback', {

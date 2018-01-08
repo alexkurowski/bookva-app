@@ -4,7 +4,8 @@
                  v-clickaway='hide' ]
 
     .item[ v-for='item, index in items'
-           @data-index='index' ]
+           :data-index='index'
+           @click='select' ]
       span {{ item.text }}
 </template>
 
@@ -32,10 +33,18 @@
     },
 
     methods: {
-      hide () {
-        if (Date.now() < ContextMenu.shownAt + 100) return
+      hide (force) {
+        if ( force !== true &&
+             Date.now() < ContextMenu.shownAt + 100 ) return
 
         this.$store.commit('contextMenuHide')
+      },
+
+      select (event) {
+        const index = Number(event.target.dataset.index)
+        const params = this.items[index]
+        this.$store.dispatch(params.callback, params.callbackArgs)
+        this.hide(true)
       }
     }
   }
@@ -44,10 +53,21 @@
 <style lang='sass' scoped>
   #context-menu
     position: fixed
-    width: 100px
-    height: 100px
+    width: 160px
     color: $dark-fg
-    background: rgba( $dark-bg, 0.6 )
+    background: rgba( $dark-bg, 0.7 )
+    border-radius: 6px
     backdrop-filter: blur(2px)
     z-index: 7500
+    overflow: hidden
+
+    .item
+      padding: .5rem .75rem
+      cursor: pointer
+
+      &:hover
+        background: $color-less-subtle
+
+      span
+        pointer-events: none
 </style>

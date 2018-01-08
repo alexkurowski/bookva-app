@@ -184,9 +184,33 @@ const mutations = {
   },
 
   projectRemoveFile (state, fileId) {
+    const files = Object.assign({}, state.files)
+    console.log(fileId)
+    delete files[fileId]
+
+    if (state.filesOpen.includes(fileId)) {
+      mutations.projectFileClosePane(
+        state,
+        state.filesOpen.indexOf(fileId)
+      )
+    }
+
+    state.files = files
+    console.log(state.files)
   },
 
-  projectRemoveFolder (state, folderId) {
+  projectRemoveFolder (state, { folderId, removeFiles }) {
+    const folders = Object.assign({}, state.folders)
+    delete folders[folderId]
+
+    if (this.foldersOpen.includes(folderId)) {
+      mutations.projectFileClosePane(
+        state,
+        this.foldersOpen.indexOf(folderId)
+      )
+    }
+
+    state.folders = folders
   },
 
   projectFileOpenFill (state, fileId) {
@@ -216,8 +240,6 @@ const mutations = {
   },
 
   projectFileClosePane (state, index) {
-    if (state.filesOpen.length <= 1) return
-
     const filesOpen = [ ...state.filesOpen ]
     filesOpen.splice(index, 1)
     state.filesOpen = filesOpen
@@ -297,6 +319,14 @@ const actions = {
     const result = { resynced: false }
     context.commit('projectResyncProject', result)
     return result.resynced
+  },
+
+  projectRemoveFile (context, fileId) {
+    context.commit('projectRemoveFile', fileId)
+  },
+
+  projectRemoveFolder (context, params) {
+    context.commit('projectRemoveFolder', params)
   },
 }
 

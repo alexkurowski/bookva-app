@@ -52,8 +52,13 @@
           items: [
             {
               text: 'Remove',
-              callback: 'projectRemoveFile',
-              callbackArgs: this.file.id
+              callback: 'modalShow',
+              callbackArgs: {
+                type: 'Confirm',
+                content: 'removeFile',
+                callback: 'projectRemoveFile',
+                callbackArgs: this.file.id
+              }
             }
           ]
         })

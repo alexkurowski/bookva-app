@@ -44,6 +44,11 @@ export default {
       loadProject: {
         header: 'Load a project',
         body: 'Unsaved changes in current project will be lost!'
+      },
+
+      removeFile: {
+        header: 'Remove a file',
+        body: 'Are you sure you want to remove this file?'
       }
     }
   }
