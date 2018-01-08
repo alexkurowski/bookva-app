@@ -6,6 +6,10 @@
     .item[ v-for='item, index in items'
            :data-index='index'
            @click='select' ]
+
+      i.icon[ v-if='!!item.icon'
+              :class='item.icon' ]
+
       span {{ item.text }}
 </template>
 
@@ -69,6 +73,10 @@
 
       &:hover
         background: $color-less-subtle
+
+      i
+        width: 1rem
+        margin-right: .25rem
 
       span
         pointer-events: none
