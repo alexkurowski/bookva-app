@@ -244,6 +244,7 @@ const actions = {
   projectNewProject (context) {
     context.commit('projectNewProject')
     context.commit('sidebarSetPage', 'FileTree')
+    context.commit('sidebarToggle', false)
   },
 
   projectLoadProject (context) {
