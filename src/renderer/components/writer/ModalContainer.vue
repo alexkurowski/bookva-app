@@ -63,7 +63,7 @@
     position: relative
     top: 2rem
     min-width: 300px
-    max-width: 75%
+    max-width: 60%
     min-height: 160px
     padding: 1rem 2rem
     color: $dark-fg

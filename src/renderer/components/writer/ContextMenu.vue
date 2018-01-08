@@ -65,6 +65,7 @@
     .item
       padding: .5rem .75rem
       cursor: pointer
+      transition: background .1s
 
       &:hover
         background: $color-less-subtle
