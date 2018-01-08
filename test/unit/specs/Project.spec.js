@@ -127,7 +127,7 @@ describe('Project.js', () => {
     expect(state.filesOpen).to.deep.equal(['a'])
 
     projectFileClosePane(state, 0)
-    expect(state.filesOpen).to.deep.equal(['a'])
+    expect(state.filesOpen).to.deep.equal([])
   })
 
   it('projectToggleFolderOpen', () => {
@@ -162,10 +162,11 @@ describe('Project.js', () => {
     state.filesOpen = ['test files open']
     state.foldersOpen = ['test folders open']
 
-    state.projectFile = '/path/to/nonexistent/save_project.test'
-    expect(
-      projectSaveProject.bind(projectSaveProject, state)
-    ).to.throw()
+    // TODO: this should just create nonexistent file
+    // state.projectFile = '/path/to/nonexistent/save_project.test'
+    // expect(
+    //   projectSaveProject.bind(projectSaveProject, state)
+    // ).to.throw()
 
     state.projectFile = 'save_project.test'
     projectSaveProject(state)
