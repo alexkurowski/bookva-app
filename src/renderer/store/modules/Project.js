@@ -347,6 +347,10 @@ const actions = {
     return result.resynced
   },
 
+  projectFileOpenFill (context, fileId) {
+    context.commit('projectFileOpenFill', fileId)
+  },
+
   projectRemoveFile (context, fileId) {
     context.commit('projectRemoveFile', fileId)
   },

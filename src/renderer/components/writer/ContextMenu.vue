@@ -55,6 +55,7 @@
     position: fixed
     width: 160px
     color: $dark-fg
+    margin: 1px
     background: rgba( $dark-bg, 0.7 )
     border-radius: 6px
     backdrop-filter: blur(2px)

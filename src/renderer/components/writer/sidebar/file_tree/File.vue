@@ -44,23 +44,33 @@
       },
 
       openMenu (event) {
+        const items = []
+
+        if (!this.isOpen) {
+          items.push({
+            text: 'Open',
+            callback: 'projectFileOpenFill',
+            callbackArgs: this.file.id
+          })
+        }
+
+        items.push({
+          text: 'Remove',
+          callback: 'modalShow',
+          callbackArgs: {
+            type: 'Confirm',
+            content: 'removeFile',
+            callback: 'projectRemoveFile',
+            callbackArgs: this.file.id
+          }
+        })
+
         this.$store.dispatch('contextMenuShow', {
           position: {
             x: event.x,
             y: event.y
           },
-          items: [
-            {
-              text: 'Remove',
-              callback: 'modalShow',
-              callbackArgs: {
-                type: 'Confirm',
-                content: 'removeFile',
-                callback: 'projectRemoveFile',
-                callbackArgs: this.file.id
-              }
-            }
-          ]
+          items: items
         })
       }
     }
