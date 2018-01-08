@@ -185,7 +185,6 @@ const mutations = {
 
   projectRemoveFile (state, fileId) {
     const files = Object.assign({}, state.files)
-    console.log(fileId)
     delete files[fileId]
 
     if (state.filesOpen.includes(fileId)) {
@@ -196,7 +195,6 @@ const mutations = {
     }
 
     state.files = files
-    console.log(state.files)
   },
 
   projectRemoveFolder (state, { folderId, removeFiles }) {
