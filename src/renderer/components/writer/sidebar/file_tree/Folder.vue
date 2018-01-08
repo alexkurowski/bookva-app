@@ -1,7 +1,8 @@
 <template lang='slm'>
   .folder.file-tree-item.drag-handle[
       :class='[ classOpen, classEmpty ]'
-      @click='toggleFolder' ]
+      @click='toggleFolder'
+      @contextmenu='openMenu' ]
 
     i.fa :class='folderIcon'
     Title :content='title'
@@ -60,6 +61,37 @@
       toggleFolder () {
         this.$store.commit('projectToggleFolderOpen', this.folder.id)
       },
+
+      openMenu (event) {
+        this.$store.dispatch('contextMenuShow', {
+          position: {
+            x: event.x,
+            y: event.y
+          },
+          items: [
+            {
+              text: 'Remove (with files)',
+              callback: 'modalShow',
+              callbackArgs: {
+                type: 'Confirm',
+                content: 'removeFolderWithFiles',
+                callback: 'projectRemoveFolderWithFiles',
+                callbackArgs: this.folder.id
+              }
+            },
+            {
+              text: 'Remove (keep files)',
+              callback: 'modalShow',
+              callbackArgs: {
+                type: 'Confirm',
+                content: 'removeFolderKeepFiles',
+                callback: 'projectRemoveFolderKeepFiles',
+                callbackArgs: this.folder.id
+              }
+            }
+          ]
+        })
+      }
     }
   }
 </script>

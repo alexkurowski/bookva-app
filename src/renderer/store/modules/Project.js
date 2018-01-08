@@ -197,17 +197,45 @@ const mutations = {
     state.files = files
   },
 
-  projectRemoveFolder (state, { folderId, removeFiles }) {
+  projectRemoveFolderWithFiles (state, folderId) {
+    const files = Object.assign({}, state.files)
+    Object.values(files)
+      .filter(file => file.folder == folderId)
+      .map(file => file.id)
+      .forEach(fileId => delete files[fileId])
+
     const folders = Object.assign({}, state.folders)
     delete folders[folderId]
 
-    if (this.foldersOpen.includes(folderId)) {
-      mutations.projectFileClosePane(
+    if (state.foldersOpen.includes(folderId)) {
+      mutations.projectToggleFolderOpen(
         state,
-        this.foldersOpen.indexOf(folderId)
+        folderId
       )
     }
 
+    state.files = files
+    state.folders = folders
+  },
+
+  projectRemoveFolderKeepFiles (state, folderId) {
+    const files = Object.assign({}, state.files)
+    Object.values(files)
+      .filter(file => file.folder == folderId)
+      .map(file => file.id)
+      .forEach(fileId => files[fileId].folder = null)
+
+    const folders = Object.assign({}, state.folders)
+    delete folders[folderId]
+
+    if (state.foldersOpen.includes(folderId)) {
+      mutations.projectToggleFolderOpen(
+        state,
+        folderId
+      )
+    }
+
+    state.files = files
     state.folders = folders
   },
 
@@ -323,8 +351,12 @@ const actions = {
     context.commit('projectRemoveFile', fileId)
   },
 
-  projectRemoveFolder (context, params) {
-    context.commit('projectRemoveFolder', params)
+  projectRemoveFolderWithFiles (context, folderId) {
+    context.commit('projectRemoveFolderWithFiles', folderId)
+  },
+
+  projectRemoveFolderKeepFiles (context, folderId) {
+    context.commit('projectRemoveFolderKeepFiles', folderId)
   },
 }
 

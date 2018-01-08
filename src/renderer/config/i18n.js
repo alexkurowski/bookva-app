@@ -49,7 +49,17 @@ export default {
       removeFile: {
         header: 'Remove a file',
         body: 'Are you sure you want to remove this file?'
-      }
+      },
+
+      removeFolderWithFiles: {
+        header: 'Remove a folder',
+        body: 'Are you sure you want to remove this folder? All files within this folder will be also removed.'
+      },
+
+      removeFolderKeepFiles: {
+        header: 'Remove a folder',
+        body: 'Are you sure you want to remove this folder? All files within this folder will be moved.'
+      },
     }
   }
 }
