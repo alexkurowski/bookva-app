@@ -22,5 +22,5 @@
 
   @import './assets/stylesheets/classes'
   @import './assets/stylesheets/layout'
-  @import './assets/stylesheets/writer'
+  @import './assets/stylesheets/appearance'
 </style>

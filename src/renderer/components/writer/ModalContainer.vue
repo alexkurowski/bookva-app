@@ -65,8 +65,9 @@
     min-width: 300px
     min-height: 160px
     padding: 1rem
-    background: white
-    border-radius: 10px
+    color: $dark-fg
+    background: $dark-bg
+    border-radius: 4px
     box-shadow: 0 1px 4px 2px $color-subtle
     transition: top .5s ease
     text-align: center
