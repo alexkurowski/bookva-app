@@ -4,18 +4,12 @@ const state = {
   modalShown: false,
   modalType: '',
 
-  modalBody: '',
+  modalContentKey: '',
+  modalStoreCallback: '',
+  modalStoreCallbackArgs: [],
 }
 
 const mutations = {
-  modalSet (state, value) {
-    if (Config.modalTypes.includes(value)) {
-      state.modalType  = value
-    } else {
-      throw `Unknown modal type: ${ value }`
-    }
-  },
-
   modalShow (state) {
     state.modalShown = true
   },
@@ -24,14 +18,33 @@ const mutations = {
     state.modalShown = false
   },
 
-  modalSetBody (state, value) {
-    state.modalBody = value
-  }
+  modalSetType (state, value) {
+    if (Config.modalTypes.includes(value)) {
+      state.modalType  = value
+    } else {
+      throw `Unknown modal type: ${ value }`
+    }
+  },
+
+  modalSetContent (state, value) {
+    state.modalContentKey = value
+  },
+
+  modalSetCallback (state, params) {
+    state.modalStoreCallback = params.callback
+    state.modalStoreCallbackArgs = params.args
+  },
 }
 
 const actions = {
-  modalShow (context, type) {
-    context.commit('modalSet', type)
+  modalShow (context, params) {
+    context.commit('modalSetType', params.type)
+    context.commit('modalSetContent', params.content)
+    context.commit('modalSetCallback', {
+      callback: params.callback || '',
+      args: params.callbackArgs || undefined
+    })
+
     setTimeout(() => {
       context.commit('modalShow')
     }, 0)

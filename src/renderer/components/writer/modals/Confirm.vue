@@ -1,10 +1,12 @@
 <template lang='slm'>
   .modal
-    .modal-header Are you sure?
+    .modal-header {{ modalHeader }}
     .modal-body {{ modalBody }}
     .modal-footer
-      .modal-choice YES
-      .modal-choice NO
+      .modal-choice @click='confirm'
+        | YES
+      .modal-choice @click='cancel'
+        | NO
 </template>
 
 <script>
@@ -14,8 +16,27 @@
     name: 'ConfirmModal',
 
     computed: {
+      modalHeader () {
+        return this.$t(`modal.${ Modal.modalContentKey }.header`)
+      },
+
       modalBody () {
-        return Modal.modalBody
+        return this.$t(`modal.${ Modal.modalContentKey }.body`)
+      },
+    },
+
+    methods: {
+      confirm () {
+        this.$store.commit(
+          Modal.modalStoreCallback,
+          Modal.modalStoreCallbackArgs
+        )
+
+        this.$store.commit('modalHide')
+      },
+
+      cancel () {
+        this.$store.commit('modalHide')
       }
     }
   }

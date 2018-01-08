@@ -34,12 +34,15 @@
 
     methods: {
       newProject () {
-        // TODO (Alex): Show a modal 'are you sure?' question
         if (Project.lastSave != Project.lastUpdate) {
-          this.$store.dispatch('modalShow', 'Confirm')
-          this.$store.commit('modalSetBody', this.$t('modal.body.newProject'))
+          this.$store.dispatch('modalShow', {
+            type: 'Confirm',
+            content: 'newProject',
+            callback: 'projectNewProject'
+          })
+        } else {
+          this.$store.commit('projectNewProject')
         }
-        // this.$store.commit('projectNewProject')
       },
 
       loadProject () {

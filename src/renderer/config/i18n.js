@@ -36,8 +36,9 @@ export default {
     },
 
     modal: {
-      body: {
-        newProject: 'Unsaved changes will be lost!'
+      newProject: {
+        header: 'Start a new project?',
+        body: 'Unsaved changes will be lost!'
       }
     }
   }
