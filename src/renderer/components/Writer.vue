@@ -4,6 +4,7 @@
     Editor/
     Sidebar/
     StatusBar/
+    ContextMenu/
     ModalContainer/
 </template>
 
@@ -11,6 +12,7 @@
   import Editor from './writer/Editor'
   import Sidebar from './writer/Sidebar'
   import StatusBar from './writer/StatusBar'
+  import ContextMenu from './writer/ContextMenu'
   import ModalContainer from './writer/ModalContainer'
 
   import { Project, Appearance } from '@/helpers/store_helper'
@@ -23,6 +25,7 @@
       Editor,
       Sidebar,
       StatusBar,
+      ContextMenu,
       ModalContainer,
     },
 

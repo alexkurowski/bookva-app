@@ -1,7 +1,8 @@
 <template lang='slm'>
   .file.file-tree-item.drag-handle[
       :class='classOpen'
-      @click='openFile' ]
+      @click='openFile'
+      @contextmenu='openMenu' ]
 
     Title :editable='false' :content='title'
 </template>
@@ -41,6 +42,22 @@
       openFile () {
         this.$store.commit('projectFileOpenFill', this.file.id)
       },
+
+      openMenu (event) {
+        this.$store.dispatch('contextMenuShow', {
+          position: {
+            x: event.x,
+            y: event.y
+          },
+          items: [
+            {
+              text: 'Remove',
+              callback: 'projectRemoveFile',
+              callbackArgs: this.file.id
+            }
+          ]
+        })
+      }
     }
   }
 </script>

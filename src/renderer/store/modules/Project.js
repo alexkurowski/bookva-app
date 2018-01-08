@@ -183,6 +183,12 @@ const mutations = {
     state.lastUpdate = Date.now()
   },
 
+  projectRemoveFile (state, fileId) {
+  },
+
+  projectRemoveFolder (state, folderId) {
+  },
+
   projectFileOpenFill (state, fileId) {
     state.filesOpen = [ fileId ]
 
