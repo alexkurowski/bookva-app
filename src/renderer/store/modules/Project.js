@@ -149,7 +149,10 @@ const mutations = {
       ...state.folders,
       [folder.id]: folder
     }
-    result.folderId = folder.id
+    state.foldersOpen = [
+      ...state.foldersOpen,
+      folder.id
+    ]
 
     state.lastUpdate = Date.now()
   },
