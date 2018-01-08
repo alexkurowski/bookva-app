@@ -41,7 +41,7 @@
             callback: 'projectNewProject'
           })
         } else {
-          this.$store.commit('projectNewProject')
+          this.$store.dispatch('projectNewProject')
         }
       },
 

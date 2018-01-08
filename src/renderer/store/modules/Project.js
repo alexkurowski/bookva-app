@@ -241,6 +241,11 @@ const mutations = {
 }
 
 const actions = {
+  projectNewProject (context) {
+    context.commit('projectNewProject')
+    context.commit('sidebarSetPage', 'FileTree')
+  },
+
   projectLoadProject (context) {
     if (ioBusy) return
     ioBusy = true
@@ -249,6 +254,7 @@ const actions = {
     }, loadFilepath => {
       if (loadFilepath && loadFilepath[0]) {
         context.commit('projectLoadProject', loadFilepath[0])
+        context.commit('sidebarSetPage', 'FileTree')
       }
       ioBusy = false
     })

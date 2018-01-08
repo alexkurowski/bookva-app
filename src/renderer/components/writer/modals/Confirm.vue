@@ -29,7 +29,7 @@
 
     methods: {
       confirm () {
-        this.$store.commit(
+        this.$store.dispatch(
           Modal.modalStoreCallback,
           Modal.modalStoreCallbackArgs
         )
