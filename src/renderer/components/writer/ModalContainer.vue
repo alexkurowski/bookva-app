@@ -44,7 +44,7 @@
     background: rgba(255, 255, 255, 0.6)
     z-index: 10000
     opacity: 0
-    transition: opacity .5s, backdrop-filter .3s
+    transition: opacity .3s, backdrop-filter .3s
     user-select: none
 
     &.shown
@@ -62,7 +62,7 @@
     justify-content: space-between
     flex-direction: column
     position: relative
-    top: 100px
+    top: 2rem
     min-width: 300px
     min-height: 160px
     padding: 1rem
