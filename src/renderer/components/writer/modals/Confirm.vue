@@ -4,9 +4,9 @@
     .modal-body {{ modalBody }}
     .modal-footer
       .modal-choice @click='confirm'
-        | YES
+        | Yes
       .modal-choice @click='cancel'
-        | NO
+        | No
 </template>
 
 <script>

@@ -103,6 +103,7 @@
     height: $status-bar-height
     border-top: 1px solid $color-more-subtle
     z-index: 2000
+    user-select: none
 
   .spacer
     width: 3rem

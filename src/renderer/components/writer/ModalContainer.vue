@@ -45,6 +45,7 @@
     z-index: 10000
     opacity: 0
     transition: opacity .5s, backdrop-filter .3s
+    user-select: none
 
     &.shown
       opacity: 1
