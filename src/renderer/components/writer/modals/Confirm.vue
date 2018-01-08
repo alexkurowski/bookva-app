@@ -4,8 +4,10 @@
     .modal-body {{ modalBody }}
     .modal-footer
       .modal-choice.secondary @click='cancel'
+        i.icon.icon-cancel
         | Cancel
       .modal-choice.primary @click='confirm'
+        i.icon.icon-tick
         | Confirm
 </template>
 
