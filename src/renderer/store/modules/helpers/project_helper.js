@@ -22,6 +22,9 @@ export const fieldsToSave =
     'folders',
     'filesOpen',
     'foldersOpen',
+    'lastUpdate',
+    'lastSync',
+    'lastSave',
   ]
 
 export const projectSaveData = function (state, filepath, callback) {
@@ -53,7 +56,9 @@ export const projectLoadData = function (state, filepath) {
     fieldsToSave.find( field => !data.hasOwnProperty(field) )
 
   if (missingField)
-    throw `Sync file seems broken. Field '${ missingField }' is missing.`
+    console.log(
+      `Sync file seems broken. Field '${ missingField }' is missing. Ignoring it.`
+    )
 
   return {
     data,

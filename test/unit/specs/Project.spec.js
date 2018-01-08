@@ -216,7 +216,10 @@ describe('Project.js', () => {
       files: { 'test': { title: 'TEST TITLE', content: 'test content' } },
       folders: {},
       filesOpen: ['test files open'],
-      foldersOpen: ['test folders open']
+      foldersOpen: ['test folders open'],
+      lastUpdate: 0,
+      lastSync: 0,
+      lastSave: 0,
     }
     const loadState = {}
 

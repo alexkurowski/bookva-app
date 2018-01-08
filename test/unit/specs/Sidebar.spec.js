@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Sidebar from '@/store/modules/Sidebar'
+import Config from '@/config/config'
 
 const {
   sidebarToggle,
@@ -27,10 +28,9 @@ describe('Sidebar.js', () => {
   })
 
   it('sidebarSetPage', () => {
-    const pages = Sidebar.state.sidebarPages
+    const pages = Config.sidebarPages
     const state = {
-      sidebarPage: 'FileTree',
-      sidebarPages: pages
+      sidebarPage: 'FileTree'
     }
 
     expect(

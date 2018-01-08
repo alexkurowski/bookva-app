@@ -1,7 +1,8 @@
+import Config from '@/config/config'
+
 const state = {
   sidebarOpen: false,
   sidebarPage: 'FileTree',
-  sidebarPages: [ 'FileTree', 'ProjectManager', 'ThemeSelector' ],
 
   draggedFileId: null
 }
@@ -15,7 +16,7 @@ const mutations = {
   },
 
   sidebarSetPage (state, value) {
-    if (state.sidebarPages.includes(value))
+    if (Config.sidebarPages.includes(value))
       state.sidebarPage = value
     else
       throw `Unknown sidebar page: ${ value }`

@@ -27,6 +27,7 @@ const state = {
 
   lastUpdate: 0,
   lastSync: 0,
+  lastSave: 0,
 }
 
 const mutations = {
@@ -36,6 +37,9 @@ const mutations = {
     state.folders     = {}
     state.filesOpen   = []
     state.foldersOpen = []
+    state.lastUpdate  = 0
+    state.lastSync    = 0
+    state.lastSave    = 0
 
     mutations.projectAddFile(state)
 
@@ -55,6 +59,8 @@ const mutations = {
     // with all the folders under it
     // this new code should be in 'projectSaveData' function
     fs.accessSync(state.projectFile)
+
+    state.lastSave = state.lastUpdate
 
     projectSaveData(
       state,
@@ -90,6 +96,8 @@ const mutations = {
 
     syncBusy = true
 
+    state.lastSync = state.lastUpdate
+
     projectSaveData(
       state,
       syncFilepath,
@@ -97,8 +105,6 @@ const mutations = {
         syncBusy = false
       }
     )
-
-    state.lastSync = state.lastUpdate
   },
 
   projectResyncProject (state, result) {
