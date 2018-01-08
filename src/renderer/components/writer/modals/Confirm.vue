@@ -3,10 +3,10 @@
     .modal-header {{ modalHeader }}
     .modal-body {{ modalBody }}
     .modal-footer
-      .modal-choice @click='confirm'
-        | Yes
-      .modal-choice @click='cancel'
-        | No
+      .modal-choice.secondary @click='cancel'
+        | Cancel
+      .modal-choice.primary @click='confirm'
+        | Confirm
 </template>
 
 <script>

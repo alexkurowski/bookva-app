@@ -46,9 +46,15 @@
       },
 
       loadProject () {
-        // TODO (Alex): Show a modal 'are you sure?' question
-        //              but only if current project is not saved
-        this.$store.dispatch('projectLoadProject')
+        if (Project.lastSave != Project.lastUpdate) {
+          this.$store.dispatch('modalShow', {
+            type: 'Confirm',
+            content: 'loadProject',
+            callback: 'projectLoadProject'
+          })
+        } else {
+          this.$store.dispatch('projectLoadProject')
+        }
       },
 
       saveProject () {

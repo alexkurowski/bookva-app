@@ -65,7 +65,7 @@
     top: 2rem
     min-width: 300px
     min-height: 160px
-    padding: 1rem
+    padding: 1rem 2rem
     color: $dark-fg
     background: $dark-bg
     border-radius: 4px

@@ -58,7 +58,7 @@ const mutations = {
     // we should make sure that this file can be recreated
     // with all the folders under it
     // this new code should be in 'projectSaveData' function
-    fs.accessSync(state.projectFile)
+    // fs.accessSync(state.projectFile)
 
     state.lastSave = state.lastUpdate
 
@@ -246,8 +246,8 @@ const actions = {
     }, loadFilepath => {
       if (loadFilepath && loadFilepath[0]) {
         context.commit('projectLoadProject', loadFilepath[0])
-        ioBusy = false
       }
+      ioBusy = false
     })
   },
 
@@ -271,6 +271,8 @@ const actions = {
     }, saveFilepath => {
       if (saveFilepath) {
         context.commit('projectSaveAsProject', saveFilepath)
+      } else {
+        ioBusy = false
       }
     })
   },
