@@ -45,7 +45,10 @@ function createWindow () {
     useContentSize: true,
     width: 1000,
     minWidth: 600,
-    minHeight: 400
+    minHeight: 400,
+    webPreferences: {
+      experimentalFeatures: true
+    }
   })
 
   mainWindow.setMenu(null)

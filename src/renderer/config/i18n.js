@@ -33,6 +33,12 @@ export default {
           total: 'total'
         }
       }
+    },
+
+    modal: {
+      body: {
+        newProject: 'Unsaved changes will be lost!'
+      }
     }
   }
 }

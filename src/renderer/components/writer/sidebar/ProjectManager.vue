@@ -27,13 +27,19 @@
 <script>
   import { remote } from 'electron'
 
+  import { Project } from '@/helpers/store_helper'
+
   export default {
     name: 'ProjectManager',
 
     methods: {
       newProject () {
         // TODO (Alex): Show a modal 'are you sure?' question
-        this.$store.commit('projectNewProject')
+        if (Project.lastSave != Project.lastUpdate) {
+          this.$store.dispatch('modalShow', 'Confirm')
+          this.$store.commit('modalSetBody', this.$t('modal.body.newProject'))
+        }
+        // this.$store.commit('projectNewProject')
       },
 
       loadProject () {

@@ -1,15 +1,17 @@
 <template lang='slm'>
   .view :class='className'
-    #background
+    #background/
     Editor/
     Sidebar/
     StatusBar/
+    ModalContainer/
 </template>
 
 <script>
   import Editor from './writer/Editor'
   import Sidebar from './writer/Sidebar'
   import StatusBar from './writer/StatusBar'
+  import ModalContainer from './writer/ModalContainer'
 
   import { Project, Appearance } from '@/helpers/store_helper'
   import Config from '@/config/config'
@@ -21,6 +23,7 @@
       Editor,
       Sidebar,
       StatusBar,
+      ModalContainer,
     },
 
     computed: {
