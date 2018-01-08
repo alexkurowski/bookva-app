@@ -53,7 +53,7 @@
 <style lang='sass' scoped>
   #context-menu
     position: fixed
-    width: 160px
+    min-width: 160px
     color: $dark-fg
     margin: 1px
     background: rgba( $dark-bg, 0.7 )

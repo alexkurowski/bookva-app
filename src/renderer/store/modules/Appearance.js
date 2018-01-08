@@ -60,7 +60,11 @@ const mutations = {
   }
 }
 
-const actions = {}
+const actions = {
+  appearanceUpdateTheme (context, params) {
+    context.commit('appearanceUpdateTheme', params)
+  }
+}
 
 export default {
   state,

@@ -1,28 +1,22 @@
 <template lang='slm'>
   #theme-selector
     .select-container
-      select data-type='scheme' @change='change'
-        option[ v-for='name, value in schemes'
-                :value='value'
-                :selected='isSelected(value, "scheme")' ]
-          | {{ name }} colors
-      i.fa.fa-sort
+      .select[ data-type='scheme'
+               @click='openMenu' ]
+        span {{ selectedValue("scheme") }} {{ suffix("scheme") }}
+        i.fa.fa-sort
 
     .select-container
-      select data-type='fontFamily' @change='change'
-        option[ v-for='name, value in fontFamilies'
-                :value='value'
-                :selected='isSelected(value, "fontFamily")' ]
-          | {{ name }} font
-      i.fa.fa-sort
+      .select[ data-type='fontFamily'
+               @click='openMenu' ]
+        span {{ selectedValue("fontFamily") }} {{ suffix("fontFamily") }}
+        i.fa.fa-sort
 
     .select-container
-      select data-type='fontSize' @change='change'
-        option[ v-for='name, value in fontSizes'
-                :value='value'
-                :selected='isSelected(value, "fontSize")' ]
-          | {{ name }} font size
-      i.fa.fa-sort
+      .select[ data-type='fontSize'
+               @click='openMenu' ]
+        span {{ selectedValue("fontSize") }} {{ suffix("fontSize") }}
+        i.fa.fa-sort
 </template>
 
 <script>
@@ -33,7 +27,7 @@
 
     data () {
       return {
-        schemes: {
+        scheme: {
           sharp:    'Sharp',
           smooth:   'Smooth',
           frost:    'Frost',
@@ -41,13 +35,13 @@
           contrast: 'Contrast',
         },
 
-        fontFamilies: {
+        fontFamily: {
           merriweather: 'Merriweather',
           roboto:       'Roboto',
           ptmono:       'PT Mono',
         },
 
-        fontSizes: {
+        fontSize: {
           small:  'Small',
           normal: 'Normal',
           big:    'Large',
@@ -57,21 +51,39 @@
     },
 
     methods: {
-      selected (type) {
-        return Appearance[type]
+      selectedValue (type) {
+        return this[type][ Appearance[type] ]
       },
 
-      isSelected (value, type) {
-        return Appearance[type] == value
+      suffix (type) {
+        switch (type) {
+          case 'scheme':     return ' colors'
+          case 'fontFamily': return ' font'
+          case 'fontSize':   return ' size'
+        }
       },
 
-      change (event) {
-        const value = event.target.value
+      openMenu (event) {
         const type  = event.target.dataset.type
+        const items = []
 
-        this.$store.commit('appearanceUpdateTheme', {
-          value,
-          type
+        for (const key in this[type]) {
+          items.push({
+            text: this[type][key] + this.suffix(type),
+            callback: 'appearanceUpdateTheme',
+            callbackArgs: {
+              value: key,
+              type
+            }
+          })
+        }
+
+        this.$store.dispatch('contextMenuShow', {
+          position: {
+            x: event.x,
+            y: event.y
+          },
+          items: items
         })
       }
     }
@@ -94,7 +106,8 @@
       right: .5rem
       pointer-events: none
 
-  select
+  select,
+  .select
     width: 100%
     color: inherit
     background: inherit
@@ -106,4 +119,12 @@
 
     option
       color: #333
+
+  .select
+    text-align: left
+    border: 1px solid $color-less-subtle
+    box-sizing: border-box
+
+    > *
+      pointer-events: none
 </style>
