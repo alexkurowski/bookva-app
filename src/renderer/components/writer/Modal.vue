@@ -1,5 +1,5 @@
 <template lang='slm'>
-  #modal-container :class='shown'
+  #modal :class='shown'
     ConfirmModal v-if='isType("Confirm")'/
 </template>
 
@@ -9,7 +9,7 @@
   import { Modal } from '@/helpers/store_helper'
 
   export default {
-    name: 'ModalContainer',
+    name: 'Modal',
 
     components: {
       ConfirmModal
@@ -32,7 +32,7 @@
 </script>
 
 <style lang='sass' scoped>
-  #modal-container
+  #modal
     display: flex
     align-items: center
     justify-content: center

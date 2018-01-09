@@ -5,7 +5,7 @@
     Sidebar/
     StatusBar/
     ContextMenu/
-    ModalContainer/
+    Modal/
 </template>
 
 <script>
@@ -13,7 +13,7 @@
   import Sidebar from './writer/Sidebar'
   import StatusBar from './writer/StatusBar'
   import ContextMenu from './writer/ContextMenu'
-  import ModalContainer from './writer/ModalContainer'
+  import Modal from './writer/Modal'
 
   import { Project, Appearance } from '@/helpers/store_helper'
   import Config from '@/config/config'
@@ -26,7 +26,7 @@
       Sidebar,
       StatusBar,
       ContextMenu,
-      ModalContainer,
+      Modal,
     },
 
     computed: {
