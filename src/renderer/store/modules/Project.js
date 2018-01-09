@@ -67,6 +67,8 @@ const mutations = {
     if (!filepath) return
 
     state.projectFile = filepath
+    state.lastUpdate = Date.now()
+
     mutations.projectSaveProject(state)
   },
 
@@ -80,7 +82,9 @@ const mutations = {
 
     if (!error) {
       mutations.projectRestoreProject(state, data)
+
       state.projectFile = filepath
+      state.lastUpdate = Date.now()
     }
 
     ioBusy = false
@@ -191,6 +195,8 @@ const mutations = {
     }
 
     state.files = files
+
+    state.lastUpdate = Date.now()
   },
 
   projectRemoveFolderWithFiles (state, folderId) {
@@ -212,6 +218,8 @@ const mutations = {
 
     state.files = files
     state.folders = folders
+
+    state.lastUpdate = Date.now()
   },
 
   projectRemoveFolderKeepFiles (state, folderId) {
@@ -233,6 +241,8 @@ const mutations = {
 
     state.files = files
     state.folders = folders
+
+    state.lastUpdate = Date.now()
   },
 
   projectFileOpenFill (state, fileId) {
@@ -326,8 +336,10 @@ const actions = {
       } catch (err) {
         ioBusy = false
         context.dispatch('projectSaveAsProject')
+        return
       }
       context.commit('projectSaveProject')
+      context.dispatch('applicationShowIOIndicator')
     } else {
       ioBusy = false
       context.dispatch('projectSaveAsProject')
@@ -346,6 +358,7 @@ const actions = {
     }, saveFilepath => {
       if (saveFilepath) {
         context.commit('projectSaveAsProject', saveFilepath)
+        context.dispatch('applicationShowIOIndicator')
       } else {
         ioBusy = false
       }

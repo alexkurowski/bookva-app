@@ -12,6 +12,11 @@
     ]
       .icon :class='toggleClass'
 
+    #io-indicator[
+      :class='ioIndicatorClass'
+    ]
+      i.fa.fa-refresh.fa-spin
+
     DropOpener/
 </template>
 
@@ -21,7 +26,7 @@
   import ThemeSelector from './sidebar/ThemeSelector'
   import DropOpener from './sidebar/DropOpener'
 
-  import { Sidebar } from '@/helpers/store_helper'
+  import { Application, Sidebar } from '@/helpers/store_helper'
   import { openProjectMenu } from '@/helpers/project_menu'
 
   export default {
@@ -47,7 +52,13 @@
         return this.open
           ? 'icon-arrow-left-outline'
           : 'icon-th-menu'
-      }
+      },
+
+      ioIndicatorClass () {
+        return Application.ioIndicatorShown
+          ? 'shown'
+          : ''
+      },
     },
 
     methods: {
@@ -87,17 +98,41 @@
         top: -2px
         font-size: 1.5em
 
+    #io-indicator
+      display: flex
+      align-items: center
+      justify-content: center
+      position: fixed
+      top: 0
+      left: $sidebar-controls-width
+      width: $sidebar-controls-width
+      height: $sidebar-controls-height
+      margin-left: -1rem
+      opacity: 0
+      pointer-events: none
+
+      &.shown
+        margin-left: 0
+        opacity: 0.5
+
+
     &.open
       left: 0
       border-right: 1px solid $color-more-subtle
 
       #toggle
         left: $sidebar-width
-        width: $sidebar-controls-width
+
+      #io-indicator
+        left: $sidebar-controls-width + $sidebar-width
 
   #sidebar,
-  #toggle
-    transition: left .2s ease, opacity .2s ease, background .3s, border-color .3s
+  #toggle,
+  #io-indicator
+    transition: left .2s ease, opacity .2s ease, background .3s, border-color .3s, margin .3s ease
+
+  #io-indicator
+
 
   #sidebar-content
     position: absolute
