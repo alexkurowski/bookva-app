@@ -302,6 +302,11 @@ const actions = {
     ioBusy = true
 
     remote.dialog.showOpenDialog({
+      title: 'Open',
+      filters: [
+        { name: 'Writer (.wrtr)', extensions: ['wrtr'] }
+      ],
+      properties: ['openFile']
     }, loadFilepath => {
       if (loadFilepath && loadFilepath[0]) {
         context.commit('projectLoadProject', loadFilepath[0])
@@ -334,6 +339,10 @@ const actions = {
     ioBusy = true
 
     remote.dialog.showSaveDialog({
+      title: 'Save',
+      filters: [
+        { name: 'Writer (.wrtr)', extensions: ['wrtr'] }
+      ]
     }, saveFilepath => {
       if (saveFilepath) {
         context.commit('projectSaveAsProject', saveFilepath)
