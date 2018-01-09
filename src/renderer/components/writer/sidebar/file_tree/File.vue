@@ -83,6 +83,10 @@
             callback: 'projectFileClosePane',
             callbackArgs: this.paneIndex
           })
+          items.push({
+            text: 'Swap panes',
+            callback: 'projectSwapOpenFiles'
+          })
         }
 
         items.push({

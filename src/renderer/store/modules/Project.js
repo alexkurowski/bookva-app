@@ -285,6 +285,15 @@ const mutations = {
     state.lastUpdate = Date.now()
   },
 
+  projectSwapOpenFiles (state) {
+    const filesOpen = [ ...state.filesOpen ]
+    filesOpen.reverse()
+    state.filesOpen = filesOpen
+    global.resetEditors()
+
+    state.lastUpdate = Date.now()
+  },
+
   projectToggleFolderOpen (state, folderId) {
     if (state.foldersOpen.includes(folderId)) {
       const foldersOpen = [ ...state.foldersOpen ]
@@ -386,6 +395,10 @@ const actions = {
 
   projectFileClosePane (context, index) {
     context.commit('projectFileClosePane', index)
+  },
+
+  projectSwapOpenFiles (context) {
+    context.commit('projectSwapOpenFiles')
   },
 
   projectRemoveFile (context, fileId) {
