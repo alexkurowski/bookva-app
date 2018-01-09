@@ -1,6 +1,7 @@
 <template lang='slm'>
   .medium-editor[
     :class='className'
+    @keydown='onKeydown'
     @input='update'
   ]
 </template>
@@ -50,6 +51,31 @@
     },
 
     methods: {
+      onKeydown (event) {
+        if (event.key == 'Tab') {
+          event.preventDefault()
+
+          const selection =
+            this
+              .$el
+              .ownerDocument
+              .defaultView
+              .getSelection()
+          const range = selection.getRangeAt(0)
+          // TODO (Alex): This is not a tab...
+          const tabNode = document.createTextNode(' ')
+
+          range.insertNode(tabNode);
+
+          range.setStartAfter(tabNode);
+          range.setEndAfter(tabNode);
+          selection.removeAllRanges();
+          selection.addRange(range);
+
+          this.update(event)
+        }
+      },
+
       update (event) {
         this.$store.commit('projectUpdateFile', {
           id: this.file.id,
