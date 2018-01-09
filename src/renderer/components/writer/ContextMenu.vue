@@ -58,9 +58,7 @@
   #context-menu
     position: fixed
     min-width: 160px
-    color: $dark-fg
     margin: 1px
-    background: rgba( $dark-bg, 0.7 )
     border-radius: 6px
     backdrop-filter: blur(2px)
     z-index: 7500
@@ -75,9 +73,11 @@
         background: $color-less-subtle
 
       i
-        width: 1rem
-        margin-right: .25rem
+        position: relative
+        display: inline-block
+        top: 1px
+        width: 1.5rem
 
-      span
+      > *
         pointer-events: none
 </style>

@@ -7,7 +7,8 @@
         ProjectManager v-else-if='page == "ProjectManager"'/
         ThemeSelector v-else-if='page == "ThemeSelector"'/
 
-    a#toggle @click='toggle'
+    a#toggle[ @click='toggle'
+              @contextmenu='openProjectMenu' ]
       .icon :class='toggleClass'
 
     DropOpener/
@@ -21,6 +22,7 @@
   import DropOpener from './sidebar/DropOpener'
 
   import { Sidebar } from '@/helpers/store_helper'
+  import { openProjectMenu } from '@/helpers/project_menu'
 
   export default {
     name: 'Sidebar',
@@ -52,6 +54,10 @@
     methods: {
       toggle () {
         this.$store.commit('sidebarToggle')
+      },
+
+      openProjectMenu (event) {
+        openProjectMenu(event, this.$store.dispatch)
       }
     }
   }

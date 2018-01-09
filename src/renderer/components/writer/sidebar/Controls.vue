@@ -2,7 +2,8 @@
   #sidebar-controls
     .btn[ :title='$t("writer.sidebar.title.projectManager")'
           :class='isActive("ProjectManager")'
-          @click='setSidebarPage("ProjectManager")' ]
+          @click='openProjectMenu'
+          @contextmenu='openProjectMenu' ]
       .icon.icon-book
 
     .btn[ :title='$t("writer.sidebar.title.fileTree")'
@@ -22,6 +23,7 @@
 
 <script>
   import { Sidebar } from '@/helpers/store_helper'
+  import { openProjectMenu } from '@/helpers/project_menu'
   import Config from '@/config/config'
 
   export default {
@@ -43,6 +45,10 @@
       setSidebarPage (page) {
         this.$store.commit('sidebarSetPage', page)
       },
+
+      openProjectMenu (event) {
+        openProjectMenu(event, this.$store.dispatch)
+      }
     }
   }
 </script>
