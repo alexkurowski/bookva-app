@@ -21,7 +21,9 @@
     data () {
       return {
         dragging: false,
-        flexLimit: 0.2
+        flexLimit: 0.2,
+        snapValue: 0.5,
+        snapThreshold: 0.02,
       }
     },
 
@@ -45,7 +47,12 @@
         const dragPoint = event.x - rectLeft.left
         const dragWidth = rectLeft.width + rectRight.width
 
-        const flexVal = this.clamp(dragPoint / dragWidth)
+        let flexVal = this.clamp(dragPoint / dragWidth)
+
+        if ( flexVal > this.snapValue - this.snapThreshold &&
+             flexVal < this.snapValue + this.snapThreshold ) {
+          flexVal = this.snapValue
+        }
 
         this.$store.commit('appearanceSetPaneFlex', {
           index: this.index,
