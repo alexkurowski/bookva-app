@@ -61,43 +61,22 @@
             callback: 'projectFileOpenFill',
             callbackArgs: this.file.id
           })
-
-          const openCount = Project.filesOpen.length
-
-          if (openCount >= 1) {
-            items.push({
-              text: 'Open in left pane',
-              callback: 'projectFileOpenPane',
-              callbackArgs: {
-                id: this.file.id,
-                pane: 0,
-                replace: openCount > 1
-              }
-            })
-          }
-
-          if (openCount >= 2) {
-            items.push({
-              text: 'Open in middle pane',
-              callback: 'projectFileOpenPane',
-              callbackArgs: {
-                id: this.file.id,
-                pane: 1
-              }
-            })
-          }
-
-          if (openCount >= 1) {
-            items.push({
-              text: 'Open in right pane',
-              callback: 'projectFileOpenPane',
-              callbackArgs: {
-                id: this.file.id,
-                pane: clamp(1, openCount - 1, 2),
-                replace: openCount > 1
-              }
-            })
-          }
+          items.push({
+            text: 'Open in left pane',
+            callback: 'projectFileOpenPane',
+            callbackArgs: {
+              id: this.file.id,
+              pane: 0
+            }
+          })
+          items.push({
+            text: 'Open in right pane',
+            callback: 'projectFileOpenPane',
+            callbackArgs: {
+              id: this.file.id,
+              pane: 1
+            }
+          })
         } else {
           items.push({
             text: 'Close',

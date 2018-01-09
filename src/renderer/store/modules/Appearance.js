@@ -44,8 +44,8 @@ const mutations = {
   },
 
   appearanceSetPaneFlex (state, params) {
+    const sum   = 2
     const index = params.index
-    const sum   = params.sum
     const value = params.value * sum
 
     const left  = value

@@ -12,7 +12,6 @@
       v-show='showIndicator'
     ]
       .indicator.left
-      .indicator.middle
       .indicator.right
 </template>
 
@@ -44,8 +43,7 @@
       indicatorsClass () {
         if (this.dropTarget === -1) return 'full'
         if (this.dropTarget ===  0) return 'left'
-        if (this.dropTarget ===  1) return 'middle'
-        if (this.dropTarget ===  2) return 'right'
+        if (this.dropTarget ===  1) return 'right'
         throw `ERROR: unknown dropTarget is provided: ${ this.dropTarget }`
       }
     },
@@ -68,11 +66,6 @@
           this.dropTarget = 0
         } else
         if (dragX > 1 - paneThreshold) {
-          this.dropTarget = 2
-        } else
-          if ( filesOpenCount >= 2 &&
-               ( dragY < paneThreshold ||
-                 dragY > 1 - paneThreshold ) ) {
           this.dropTarget = 1
         } else
           this.dropTarget = -1
@@ -133,17 +126,12 @@
       .left
         opacity: 1
 
-    &.middle
-      .middle
-        opacity: 1
-
     &.right
       .right
         opacity: 1
 
     &.full
       .left,
-      .middle,
       .right
         opacity: 1
 

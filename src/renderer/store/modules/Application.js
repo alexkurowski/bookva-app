@@ -1,12 +1,17 @@
 import { remote } from 'electron'
 
 const state = {
-  ioIndicatorShown: false
+  ioIndicatorShown: false,
+  paneCloseHoverIndex: -1,
 }
 
 const mutations = {
   applicationSetIOIndicator (state, value) {
     state.ioIndicatorShown = value
+  },
+
+  applicationSetPaneCloseHoverIndex (state, value) {
+    state.paneCloseHoverIndex = value
   }
 }
 

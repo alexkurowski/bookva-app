@@ -21,7 +21,7 @@
     data () {
       return {
         dragging: false,
-        flexLimit: 0.1
+        flexLimit: 0.2
       }
     },
 
@@ -46,14 +46,10 @@
         const dragWidth = rectLeft.width + rectRight.width
 
         const flexVal = this.clamp(dragPoint / dragWidth)
-        const flexSum =
-          Appearance.paneFlex[this.index - 1] +
-          Appearance.paneFlex[this.index]
 
         this.$store.commit('appearanceSetPaneFlex', {
           index: this.index,
-          value: flexVal,
-          sum: flexSum
+          value: flexVal
         })
       },
 

@@ -232,7 +232,10 @@ describe('Project.js', () => {
       projectLoadProject(loadState, 'load_project.test')
 
       fieldsToSave.forEach(field => {
-        expect(loadState[field]).to.deep.equal(saveState[field])
+        if (field == 'lastUpdate')
+          expect(loadState[field]).to.not.deep.equal(saveState[field])
+        else
+          expect(loadState[field]).to.deep.equal(saveState[field])
       })
 
       done()

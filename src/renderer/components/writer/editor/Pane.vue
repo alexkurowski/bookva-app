@@ -9,20 +9,12 @@
     ]
       Medium :file='file' type='title'/
       Medium :file='file' type='content'/
-
-    .pane-close[
-      @mouseenter='closeHover = true'
-      @mouseleave='closeHover = false'
-      @click='closePane'
-      v-if='canClose'
-    ]
-      i.icon.icon-times
 </template>
 
 <script>
   import Medium from './Medium'
 
-  import { Project } from '@/helpers/store_helper'
+  import { Application, Project } from '@/helpers/store_helper'
 
   export default {
     name: 'Pane',
@@ -73,7 +65,8 @@
       },
 
       mediumContainerStyle () {
-        return this.canClose && this.closeHover
+        return this.canClose &&
+               Application.paneCloseHoverIndex == this.index
           ? { opacity: 0.3 }
           : { opacity: 1 }
       },

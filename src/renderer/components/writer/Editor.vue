@@ -2,15 +2,18 @@
   #editor
     .editor[
       v-for='file, index in filesOpen'
-      :style='{ flex: editorStyle[index] }'
+      :style='editorStyle(index)'
     ]
       PaneResize :index='index' v-if='index > 0'
       Pane :index='index' :key='file.id'
+
+    PaneClose/
 </template>
 
 <script>
   import Pane from './editor/Pane'
   import PaneResize from './editor/PaneResize'
+  import PaneClose from './editor/PaneClose'
 
   import { Project, Appearance } from '@/helpers/store_helper'
 
@@ -19,16 +22,23 @@
 
     components: {
       Pane,
-      PaneResize
+      PaneResize,
+      PaneClose
     },
 
     computed: {
       filesOpen () {
         return Project.filesOpen
       },
+    },
 
-      editorStyle () {
-        return Appearance.paneFlex
+    methods: {
+      editorStyle (index) {
+        if (this.filesOpen.length <= 1) {
+          return { flex: 1 }
+        } else {
+          return { flex: Appearance.paneFlex[index] }
+        }
       },
     }
   }
@@ -48,5 +58,4 @@
     .editor
       position: relative
       flex: 1
-      min-width: 200px
 </style>

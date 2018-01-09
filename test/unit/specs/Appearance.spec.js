@@ -45,23 +45,20 @@ describe('Appearance.js', () => {
 
     appearanceSetPaneFlex(state, {
       index: 1,
-      sum: 2,
       value: 0.75
     })
-    expect(state.paneFlex).to.deep.equal([1.5, 0.5, 1])
+    expect(state.paneFlex).to.deep.equal([1.5, 0.5])
 
     appearanceSetPaneFlex(state, {
       index: 1,
-      sum: 2,
       value: 0.25
     })
-    expect(state.paneFlex).to.deep.equal([0.5, 1.5, 1])
+    expect(state.paneFlex).to.deep.equal([0.5, 1.5])
 
     appearanceSetPaneFlex(state, {
-      index: 2,
-      sum: 2.5,
+      index: 1,
       value: 0.2
     })
-    expect(state.paneFlex).to.deep.equal([0.5, 0.5, 2])
+    expect(state.paneFlex).to.deep.equal([0.4, 1.6])
   })
 })
