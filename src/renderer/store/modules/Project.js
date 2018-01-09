@@ -372,6 +372,10 @@ const actions = {
   projectRemoveFolderKeepFiles (context, folderId) {
     context.commit('projectRemoveFolderKeepFiles', folderId)
   },
+
+  projectToggleFolderOpen (context, folderId) {
+    context.commit('projectToggleFolderOpen', folderId)
+  }
 }
 
 export default {

@@ -63,33 +63,51 @@
       },
 
       openMenu (event) {
+        const items = []
+
+        items.push({
+          text: this.isOpen
+            ? 'Collapse'
+            : 'Expand',
+          callback: 'projectToggleFolderOpen',
+          callbackArgs: this.folder.id
+        })
+
+        if (this.isEmpty) {
+          items.push({
+            text: 'Remove',
+            callback: 'projectRemoveFolderKeepFiles',
+            callbackArgs: this.folder.id
+          })
+        } else {
+          items.push({
+            text: 'Remove (with files)',
+            callback: 'modalShow',
+            callbackArgs: {
+              type: 'Confirm',
+              content: 'removeFolderWithFiles',
+              callback: 'projectRemoveFolderWithFiles',
+              callbackArgs: this.folder.id
+            }
+          })
+          items.push({
+            text: 'Remove (keep files)',
+            callback: 'modalShow',
+            callbackArgs: {
+              type: 'Confirm',
+              content: 'removeFolderKeepFiles',
+              callback: 'projectRemoveFolderKeepFiles',
+              callbackArgs: this.folder.id
+            }
+          })
+        }
+
         this.$store.dispatch('contextMenuShow', {
           position: {
             x: event.x,
             y: event.y
           },
-          items: [
-            {
-              text: 'Remove (with files)',
-              callback: 'modalShow',
-              callbackArgs: {
-                type: 'Confirm',
-                content: 'removeFolderWithFiles',
-                callback: 'projectRemoveFolderWithFiles',
-                callbackArgs: this.folder.id
-              }
-            },
-            {
-              text: 'Remove (keep files)',
-              callback: 'modalShow',
-              callbackArgs: {
-                type: 'Confirm',
-                content: 'removeFolderKeepFiles',
-                callback: 'projectRemoveFolderKeepFiles',
-                callbackArgs: this.folder.id
-              }
-            }
-          ]
+          items: items
         })
       }
     }
