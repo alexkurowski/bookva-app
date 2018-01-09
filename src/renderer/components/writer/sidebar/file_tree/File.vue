@@ -35,6 +35,11 @@
       title () {
         return this.file.title ||
                this.$t('writer.default.title.file')
+      },
+
+      paneIndex () {
+        if (!this.isOpen) return null
+        return Project.filesOpen.indexOf(this.file.id)
       }
     },
 
@@ -51,6 +56,53 @@
             text: 'Open',
             callback: 'projectFileOpenFill',
             callbackArgs: this.file.id
+          })
+
+          const open1or2 =
+            Project.filesOpen.length == 1 ||
+            Project.filesOpen.length == 2
+
+          const open2or3 =
+            Project.filesOpen.length == 2 ||
+            Project.filesOpen.length == 3
+
+          if (open1or2) {
+            items.push({
+              text: 'Open in left pane',
+              callback: 'projectFileOpenPane',
+              callbackArgs: {
+                id: this.file.id,
+                pane: 0
+              }
+            })
+          }
+
+          if (open2or3) {
+            items.push({
+              text: 'Open in middle pane',
+              callback: 'projectFileOpenPane',
+              callbackArgs: {
+                id: this.file.id,
+                pane: 1
+              }
+            })
+          }
+
+          if (open1or2) {
+            items.push({
+              text: 'Open in right pane',
+              callback: 'projectFileOpenPane',
+              callbackArgs: {
+                id: this.file.id,
+                pane: 2
+              }
+            })
+          }
+        } else {
+          items.push({
+            text: 'Close',
+            callback: 'projectFileClosePane',
+            callbackArgs: this.paneIndex
           })
         }
 

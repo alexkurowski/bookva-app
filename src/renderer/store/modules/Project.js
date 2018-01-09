@@ -353,6 +353,14 @@ const actions = {
     context.commit('projectFileOpenFill', fileId)
   },
 
+  projectFileOpenPane (context, params) {
+    context.commit('projectFileOpenPane', params)
+  },
+
+  projectFileClosePane (context, index) {
+    context.commit('projectFileClosePane', index)
+  },
+
   projectRemoveFile (context, fileId) {
     context.commit('projectRemoveFile', fileId)
   },
