@@ -5,14 +5,14 @@
       @click='openProjectMenu'
       @contextmenu='openProjectMenu'
     ]
-      .icon.icon-book
+      .icon.icon-th-menu
 
     .btn[
       :title='$t("writer.sidebar.title.fileTree")'
       :class='isActive("FileTree")'
       @click='setSidebarPage("FileTree")'
     ]
-      .icon.icon-bookmark
+      .icon.icon-th-list
 
     .btn[
       :title='$t("writer.sidebar.title.themeSelector")'
@@ -75,7 +75,10 @@
     cursor: pointer
 
     .icon
-      font-size: 1.5em
+      font-size: 14px
+
+    .icon-adjust-contrast
+      font-size: 18px
 
     &:after
       content: ''

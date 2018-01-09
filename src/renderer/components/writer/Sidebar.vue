@@ -51,7 +51,7 @@
       toggleClass () {
         return this.open
           ? 'icon-arrow-left-outline'
-          : 'icon-th-menu'
+          : 'icon-chevron-right'
       },
 
       ioIndicatorClass () {
@@ -95,8 +95,8 @@
 
       .icon
         position: relative
-        top: -2px
-        font-size: 1.5em
+        top: -1px
+        font-size: 1.25em
 
     #io-indicator
       display: flex
@@ -131,16 +131,13 @@
   #io-indicator
     transition: left .2s ease, opacity .2s ease, background .3s, border-color .3s, margin .3s ease
 
-  #io-indicator
-
-
   #sidebar-content
     position: absolute
     top: $sidebar-controls-height
     left: 0
     right: 0
     bottom: 0
-    padding-top: .5rem
+    border-top: 1px solid $color-more-subtle
     overflow-x: hidden
     overflow-y: auto
 

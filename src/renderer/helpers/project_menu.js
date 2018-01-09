@@ -5,7 +5,7 @@ export function openProjectMenu (event, dispatch) {
 
   if (Project.lastSave != Project.lastUpdate) {
     items.push({
-      icon: 'icon-document',
+      icon: 'icon-book',
       text: 'New project',
       callback: 'modalShow',
       callbackArgs: {
@@ -27,7 +27,7 @@ export function openProjectMenu (event, dispatch) {
     })
   } else {
     items.push({
-      icon: 'icon-document',
+      icon: 'icon-book',
       text: 'New project',
       callback: 'projectNewProject',
     })
