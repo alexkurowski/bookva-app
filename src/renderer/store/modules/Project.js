@@ -84,8 +84,10 @@ const mutations = {
     const { data, error } =
       projectLoadData(state, filepath)
 
-    if (!error)
+    if (!error) {
       mutations.projectRestoreProject(state, data)
+      state.projectFile = filepath
+    }
 
     ioBusy = false
   },
@@ -320,6 +322,12 @@ const actions = {
     ioBusy = true
 
     if (context.state.projectFile) {
+      try {
+        fs.accessSync(state.projectFile)
+      } catch (err) {
+        ioBusy = false
+        context.dispatch('projectSaveAsProject')
+      }
       context.commit('projectSaveProject')
     } else {
       ioBusy = false
