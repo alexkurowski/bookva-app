@@ -1,20 +1,26 @@
 <template lang='slm'>
   #theme-selector
     .select-container
-      .select[ data-type='scheme'
-               @click='openMenu' ]
+      .select[
+        data-type='scheme'
+        @click='openMenu'
+      ]
         span {{ selectedValue("scheme") }} {{ suffix("scheme") }}
         i.fa.fa-sort
 
     .select-container
-      .select[ data-type='fontFamily'
-               @click='openMenu' ]
+      .select[
+        data-type='fontFamily'
+        @click='openMenu'
+      ]
         span {{ selectedValue("fontFamily") }} {{ suffix("fontFamily") }}
         i.fa.fa-sort
 
     .select-container
-      .select[ data-type='fontSize'
-               @click='openMenu' ]
+      .select[
+        data-type='fontSize'
+        @click='openMenu'
+      ]
         span {{ selectedValue("fontSize") }} {{ suffix("fontSize") }}
         i.fa.fa-sort
 </template>

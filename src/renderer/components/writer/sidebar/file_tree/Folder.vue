@@ -1,9 +1,9 @@
 <template lang='slm'>
   .folder.file-tree-item.drag-handle[
-      :class='[ classOpen, classEmpty ]'
-      @click='toggleFolder'
-      @contextmenu='openMenu' ]
-
+    :class='[ classOpen, classEmpty ]'
+    @click='toggleFolder'
+    @contextmenu='openMenu'
+  ]
     i.fa :class='folderIcon'
     Title :content='title'
 </template>

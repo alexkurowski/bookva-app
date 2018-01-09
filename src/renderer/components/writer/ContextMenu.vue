@@ -1,14 +1,20 @@
 <template lang='slm'>
-  #context-menu[ :style='style'
-                 v-if='shown'
-                 v-clickaway='hide' ]
+  #context-menu[
+    :style='style'
+    v-if='shown'
+    v-clickaway='hide'
+  ]
 
-    .item[ v-for='item, index in items'
-           :data-index='index'
-           @click='select' ]
+    .item[
+      v-for='item, index in items'
+      :data-index='index'
+      @click='select'
+    ]
 
-      i.icon[ v-if='!!item.icon'
-              :class='item.icon' ]
+      i.icon[
+        v-if='!!item.icon'
+        :class='item.icon'
+      ]
 
       span {{ item.text }}
 </template>

@@ -1,8 +1,10 @@
 <template lang='slm'>
-  .pane-resize[ @mousedown='down'
-                @mousemove='move'
-                @mouseup='up'
-                v-clickaway='up' ]
+  .pane-resize[
+    @mousedown='down'
+    @mousemove='move'
+    @mouseup='up'
+    v-clickaway='up'
+  ]
     .line
 
     .overlay v-if='dragging'

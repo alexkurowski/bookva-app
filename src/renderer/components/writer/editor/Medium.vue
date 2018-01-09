@@ -1,6 +1,8 @@
 <template lang='slm'>
-  div[ :class='className'
-       @input='update' ]
+  .medium-editor[
+    :class='className'
+    @input='update'
+  ]
 </template>
 
 <script>
@@ -43,7 +45,7 @@
 
     computed: {
       className () {
-        return `medium-editor medium-${ this.type }`
+        return `medium-${ this.type }`
       }
     },
 

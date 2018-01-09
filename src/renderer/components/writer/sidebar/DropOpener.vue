@@ -1,13 +1,16 @@
 <template lang='slm'>
-  #drop-opener[ v-if='dragged'
-                :class='dropOpenerClass'
-                @dragover='dragover'
-                @dragleave='dragleave'
-                @drop='drop' ]
+  #drop-opener[
+    v-if='dragged'
+    :class='dropOpenerClass'
+    @dragover='dragover'
+    @dragleave='dragleave'
+    @drop='drop'
+  ]
 
-    .indicators[ :class='indicatorsClass'
-                 v-show='showIndicator' ]
-
+    .indicators[
+      :class='indicatorsClass'
+      v-show='showIndicator'
+    ]
       .indicator.left
       .indicator.middle
       .indicator.right

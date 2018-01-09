@@ -6,8 +6,10 @@
         FileTree v-if='page == "FileTree"'/
         ThemeSelector v-else-if='page == "ThemeSelector"'/
 
-    a#toggle[ @click='toggle'
-              @contextmenu='openProjectMenu' ]
+    a#toggle[
+      @click='toggle'
+      @contextmenu='openProjectMenu'
+    ]
       .icon :class='toggleClass'
 
     DropOpener/

@@ -1,9 +1,11 @@
 <template lang='slm'>
-  .title[ :class='className'
-          :contenteditable='contentEditable'
-          @click='click'
-          @keydown='keydown'
-          @blur='rename' ]
+  .title[
+    :class='className'
+    :contenteditable='contentEditable'
+    @click='click'
+    @keydown='keydown'
+    @blur='rename'
+  ]
     | {{ trimmedContent }}
 </template>
 

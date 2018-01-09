@@ -1,7 +1,9 @@
 <template lang='slm'>
   #editor
-    .editor[ v-for='file, index in filesOpen'
-             :style='{ flex: editorStyle[index] }' ]
+    .editor[
+      v-for='file, index in filesOpen'
+      :style='{ flex: editorStyle[index] }'
+    ]
       PaneResize :index='index' v-if='index > 0'
       Pane :index='index' :key='file.id'
 </template>

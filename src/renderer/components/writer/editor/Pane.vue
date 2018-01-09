@@ -1,18 +1,23 @@
 <template lang='slm'>
   .pane[
-    :class='[ classHidden, classSide, classSize ]' ]
+    :class='[ classHidden, classSide, classSize ]'
+  ]
 
     .medium-container
       Medium :file='file' type='title'/
       Medium :file='file' type='content'/
 
-    .pane-overlay[ :class='{ shown: closeHover }'
-                   v-if='canClose' ]
+    .pane-overlay[
+      :class='{ shown: closeHover }'
+      v-if='canClose'
+    ]
 
-    .pane-close[ @mouseenter='closeHover = true'
-                 @mouseleave='closeHover = false'
-                 @click='closePane'
-                 v-if='canClose' ]
+    .pane-close[
+      @mouseenter='closeHover = true'
+      @mouseleave='closeHover = false'
+      @click='closePane'
+      v-if='canClose'
+    ]
       i.icon.icon-times
 </template>
 

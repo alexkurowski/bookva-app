@@ -1,22 +1,30 @@
 <template lang='slm'>
   #sidebar-controls
-    .btn[ :title='$t("writer.sidebar.title.projectMenu")'
-          @click='openProjectMenu'
-          @contextmenu='openProjectMenu' ]
+    .btn[
+      :title='$t("writer.sidebar.title.projectMenu")'
+      @click='openProjectMenu'
+      @contextmenu='openProjectMenu'
+    ]
       .icon.icon-book
 
-    .btn[ :title='$t("writer.sidebar.title.fileTree")'
-          :class='isActive("FileTree")'
-          @click='setSidebarPage("FileTree")' ]
+    .btn[
+      :title='$t("writer.sidebar.title.fileTree")'
+      :class='isActive("FileTree")'
+      @click='setSidebarPage("FileTree")'
+    ]
       .icon.icon-bookmark
 
-    .btn[ :title='$t("writer.sidebar.title.themeSelector")'
-          :class='isActive("ThemeSelector")'
-          @click='setSidebarPage("ThemeSelector")' ]
+    .btn[
+      :title='$t("writer.sidebar.title.themeSelector")'
+      :class='isActive("ThemeSelector")'
+      @click='setSidebarPage("ThemeSelector")'
+    ]
       .icon.icon-adjust-contrast
 
-    .btn[ :title='$t("writer.sidebar.title.share")'
-          v-if='showShareButton' ]
+    .btn[
+      :title='$t("writer.sidebar.title.share")'
+      v-if='showShareButton'
+    ]
       .icon.icon-world-outline
 </template>
 

@@ -1,43 +1,56 @@
 <template lang='slm'>
   #file-tree
 
-    Draggable[ class='root'
-               :list='root'
-               :options='draggableOptions'
-               :move='onMove'
-               @sort='onSort'
-               @start='onStart'
-               @end='onEnd' ]
+    Draggable [
+      class='root'
+      :list='root'
+      :options='draggableOptions'
+      :move='onMove'
+      @sort='onSort'
+      @start='onStart'
+      @end='onEnd'
+    ]
 
-      .entry[ :data-folder-id='entry.id'
-              v-for='entry in root'
-              v-if='entry.isFolder' ]
+      .entry [
+        :data-folder-id='entry.id'
+        v-for='entry in root'
+        v-if='entry.isFolder'
+      ]
         Folder :folder='entry'
 
-        Draggable[ :list='filesInFolder(entry.id)'
-                   :class='inFolderClass'
-                   :options='draggableOptions'
-                   :move='onMove'
-                   @sort='onSort'
-                   @start='onStart'
-                   @end='onEnd'
-                   v-show='isFolderOpen(entry.id)' ]
-
-          .entry[ :data-file-id='file.id'
-                  v-for='file in filesInFolder(entry.id)' ]
+        Draggable [
+          :list='filesInFolder(entry.id)'
+          :class='inFolderClass'
+          :options='draggableOptions'
+          :move='onMove'
+          @sort='onSort'
+          @start='onStart'
+          @end='onEnd'
+          v-show='isFolderOpen(entry.id)'
+        ]
+          .entry[
+            :data-file-id='file.id'
+            v-for='file in filesInFolder(entry.id)'
+          ]
             File :file='file'
 
-      .entry[ :data-file-id='entry.id'
-              v-else ]
+      .entry[
+        :data-file-id='entry.id'
+        v-else
+      ]
         File :file='entry'
 
     .controls
-      .add-file.file-tree-item[ :data-folder-id='null'
-                 @click='addFile' ]
+      .add-file.file-tree-item[
+        :data-folder-id='null'
+        @click='addFile'
+      ]
         i.icon.icon-plus
         | {{ $t('writer.sidebar.new.file') }}
 
-      .add-folder.file-tree-item[ @click='addFolder' ]
+      .add-folder.file-tree-item[
+        @click='addFolder'
+      ]
         i.icon.icon-plus
         | {{ $t('writer.sidebar.new.folder') }}
 </template>

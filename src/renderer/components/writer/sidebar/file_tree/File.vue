@@ -1,10 +1,13 @@
 <template lang='slm'>
   .file.file-tree-item.drag-handle[
-      :class='classOpen'
-      @click='openFile'
-      @contextmenu='openMenu' ]
-
-    Title :editable='false' :content='title'
+    :class='classOpen'
+    @click='openFile'
+    @contextmenu='openMenu'
+  ]
+    Title[
+      :editable='false'
+      :content='title'
+    ]
 </template>
 
 <script>
