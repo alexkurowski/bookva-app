@@ -5,6 +5,7 @@
 
     .medium-container [
       :style='mediumContainerStyle'
+      @click='mediumContainerClick'
     ]
       Medium :file='file' type='title'/
       Medium :file='file' type='content'/
@@ -81,6 +82,23 @@
     methods: {
       closePane () {
         this.$store.commit('projectFileClosePane', this.index)
+      },
+
+      mediumContainerClick (event) {
+        if (event.target.className.indexOf('medium-container') != -1) {
+          const content = event.target.children[1]
+          const contentTop = content.getBoundingClientRect().top
+
+          if (event.y > contentTop) {
+            content.focus()
+            const range = document.createRange()
+            range.selectNodeContents(content.lastElementChild || content)
+            range.collapse(false)
+            const selection = window.getSelection()
+            selection.removeAllRanges()
+            selection.addRange(range)
+          }
+        }
       }
     }
   }
