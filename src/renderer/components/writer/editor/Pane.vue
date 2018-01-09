@@ -87,9 +87,10 @@
       mediumContainerClick (event) {
         if (event.target.className.indexOf('medium-container') != -1) {
           const content = event.target.children[1]
-          const contentTop = content.getBoundingClientRect().top
+          const contentRect = content.getBoundingClientRect()
+          const contentBottom = contentRect.top + contentRect.height
 
-          if (event.y > contentTop) {
+          if (event.y > contentBottom) {
             content.focus()
             const range = document.createRange()
             range.selectNodeContents(content.lastElementChild || content)
