@@ -14,6 +14,7 @@
   import Title from './Title'
 
   import { Project } from '@/helpers/store_helper'
+  import { clamp } from '@/helpers/math_helper'
 
   export default {
     name: 'File',
@@ -69,7 +70,8 @@
               callback: 'projectFileOpenPane',
               callbackArgs: {
                 id: this.file.id,
-                pane: 0
+                pane: 0,
+                replace: openCount > 1
               }
             })
           }
@@ -91,7 +93,8 @@
               callback: 'projectFileOpenPane',
               callbackArgs: {
                 id: this.file.id,
-                pane: 2
+                pane: clamp(1, openCount - 1, 2),
+                replace: openCount > 1
               }
             })
           }

@@ -256,13 +256,18 @@ const mutations = {
   projectFileOpenPane (state, params) {
     const filesOpen = [ ...state.filesOpen ]
 
-    const fileId = params.id
-    const pane   = params.pane
+    const fileId  = params.id
+    const pane    = params.pane
+    const replace = params.replace
 
-    if (filesOpen.length < Config.maxFilesOpen) {
-      filesOpen.splice(pane, 0, fileId)
-    } else {
+    if (replace) {
       filesOpen[pane] = fileId
+    } else {
+      if (filesOpen.length < Config.maxFilesOpen) {
+        filesOpen.splice(pane, 0, fileId)
+      } else {
+        filesOpen[pane] = fileId
+      }
     }
 
     state.filesOpen = filesOpen
