@@ -54,12 +54,6 @@ const mutations = {
     if (!state.projectFile)
       throw "ERROR: trying to save project without a file"
 
-    // TODO (Alex): if the line below throws
-    // we should make sure that this file can be recreated
-    // with all the folders under it
-    // this new code should be in 'projectSaveData' function
-    // fs.accessSync(state.projectFile)
-
     state.lastSave = state.lastUpdate
 
     projectSaveData(

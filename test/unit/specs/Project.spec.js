@@ -162,12 +162,6 @@ describe('Project.js', () => {
     state.filesOpen = ['test files open']
     state.foldersOpen = ['test folders open']
 
-    // TODO: this should just create nonexistent file
-    // state.projectFile = '/path/to/nonexistent/save_project.test'
-    // expect(
-    //   projectSaveProject.bind(projectSaveProject, state)
-    // ).to.throw()
-
     state.projectFile = 'save_project.test'
     projectSaveProject(state)
 
