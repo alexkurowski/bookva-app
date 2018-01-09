@@ -1,7 +1,6 @@
 <template lang='slm'>
   #sidebar-controls
-    .btn[ :title='$t("writer.sidebar.title.projectManager")'
-          :class='isActive("ProjectManager")'
+    .btn[ :title='$t("writer.sidebar.title.projectMenu")'
           @click='openProjectMenu'
           @contextmenu='openProjectMenu' ]
       .icon.icon-book

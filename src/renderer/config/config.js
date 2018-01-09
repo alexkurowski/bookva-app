@@ -11,7 +11,6 @@ export default {
   appearanceKey: 'appearance-settings',
   sidebarPages: Enum(
     'FileTree',
-    'ProjectManager',
     'ThemeSelector'
   ),
   modalTypes: Enum(

@@ -15,7 +15,7 @@ export default {
 
       sidebar: {
         title: {
-          projectManager: 'Project',
+          projectMenu: 'Project',
           fileTree: 'Files',
           themeSelector: 'Themes',
           share: 'Share'

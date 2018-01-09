@@ -4,7 +4,6 @@
     #sidebar-content
       transition name='fade' mode='out-in'
         FileTree v-if='page == "FileTree"'/
-        ProjectManager v-else-if='page == "ProjectManager"'/
         ThemeSelector v-else-if='page == "ThemeSelector"'/
 
     a#toggle[ @click='toggle'
@@ -17,7 +16,6 @@
 <script>
   import Controls from './sidebar/Controls'
   import FileTree from './sidebar/FileTree'
-  import ProjectManager from './sidebar/ProjectManager'
   import ThemeSelector from './sidebar/ThemeSelector'
   import DropOpener from './sidebar/DropOpener'
 
@@ -30,7 +28,6 @@
     components: {
       Controls,
       FileTree,
-      ProjectManager,
       ThemeSelector,
       DropOpener
     },
