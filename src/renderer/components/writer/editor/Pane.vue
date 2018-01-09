@@ -3,14 +3,11 @@
     :class='[ classHidden, classSide, classSize ]'
   ]
 
-    .medium-container
+    .medium-container [
+      :style='mediumContainerStyle'
+    ]
       Medium :file='file' type='title'/
       Medium :file='file' type='content'/
-
-    .pane-overlay[
-      :class='{ shown: closeHover }'
-      v-if='canClose'
-    ]
 
     .pane-close[
       @mouseenter='closeHover = true'
@@ -73,6 +70,12 @@
       canClose () {
         return Project.filesOpen.length > 1
       },
+
+      mediumContainerStyle () {
+        return this.canClose && this.closeHover
+          ? { opacity: 0.3 }
+          : { opacity: 1 }
+      },
     },
 
     methods: {
@@ -89,23 +92,10 @@
     top: 0
     left: 0
     right: 0
-    bottom: 0
+    bottom: $status-bar-height
     text-align: center
     overflow-y: overlay
     z-index: 500
-
-  .pane-overlay
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    opacity: 0
-    transition: background .3s, opacity .3s
-    pointer-events: none
-
-    &.shown
-      opacity: .6
 
   .pane-close
     display: flex
@@ -120,12 +110,17 @@
     cursor: pointer
 
   .medium-container
-    position: relative
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
     max-width: 700px
     padding: 20vh .5rem 0
     margin: 0 auto
     background: transparent
-    overflow: hidden
+    overflow: visible
+    transition: opacity .3s
 
   .medium-editor
     width: 100%
