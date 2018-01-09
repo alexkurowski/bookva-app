@@ -47,6 +47,55 @@
       setInterval(() => {
         this.$store.commit('projectSyncProject')
       }, Config.projectSyncInterval * 1000)
+    },
+
+    methods: {
+      onKeydown (event) {
+        if (event.key == 'Escape')
+          this.onEsc()
+
+        if ( event.key == 'o' &&
+             event.ctrlKey )
+          this.onCtrlO()
+
+        if ( event.key == 's' &&
+             event.ctrlKey &&
+             !event.shiftKey )
+          this.onCtrlS()
+
+        if ( event.key == 'S' &&
+             event.ctrlKey &&
+             event.shiftKey )
+          this.onCtrlShiftS()
+      },
+
+      onEsc () {
+        this.$store.commit('modalHide')
+        this.$store.commit('contextMenuHide')
+      },
+
+      onCtrlO () {
+        this.onEsc()
+        this.$store.dispatch('projectLoadProject')
+      },
+
+      onCtrlS () {
+        this.onEsc()
+        this.$store.dispatch('projectSaveProject')
+      },
+
+      onCtrlShiftS () {
+        this.onEsc()
+        this.$store.dispatch('projectSaveAsProject')
+      },
+    },
+
+    mounted () {
+      document.addEventListener('keydown', this.onKeydown)
+    },
+
+    unmounted () {
+      document.removeEventListener('keydown', this.onKeydown)
     }
   }
 </script>
