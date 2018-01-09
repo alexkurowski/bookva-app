@@ -91,7 +91,7 @@
     right: 0
     bottom: 0
     text-align: center
-    overflow-y: scroll
+    overflow-y: overlay
     z-index: 500
 
   .pane-overlay
