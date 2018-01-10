@@ -98,6 +98,9 @@
         top: -1px
         font-size: 1.25em
 
+      &:hover
+        opacity: .5
+
     #io-indicator
       display: flex
       align-items: center
@@ -137,7 +140,6 @@
     left: 0
     right: 0
     bottom: 0
-    border-top: 1px solid $color-more-subtle
     overflow-x: hidden
     overflow-y: auto
 
