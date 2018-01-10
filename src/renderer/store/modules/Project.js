@@ -401,6 +401,14 @@ const actions = {
     context.commit('projectSwapOpenFiles')
   },
 
+  projectAddFile (context) {
+    context.commit('projectAddFile')
+  },
+
+  projectAddFolder (context) {
+    context.commit('projectAddFolder')
+  },
+
   projectRemoveFile (context, fileId) {
     context.commit('projectRemoveFile', fileId)
   },

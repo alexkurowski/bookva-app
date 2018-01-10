@@ -41,18 +41,10 @@
         File :file='entry'
 
     .controls
-      .add-file.file-tree-item[
-        :data-folder-id='null'
-        @click='addFile'
+      .add-menu[
+        @click='openAddMenu'
       ]
-        i.icon.icon-plus
-        | {{ $t('writer.sidebar.new.file') }}
-
-      .add-folder.file-tree-item[
-        @click='addFolder'
-      ]
-        i.icon.icon-plus
-        | {{ $t('writer.sidebar.new.folder') }}
+        .icon.icon-plus
 </template>
 
 <script>
@@ -207,20 +199,57 @@
       addFolder () {
         this.$store.commit('projectAddFolder')
       },
+
+      openAddMenu (event) {
+        this.$store.dispatch('contextMenuShow', {
+          position: {
+            x: event.x,
+            y: event.y
+          },
+          items: [
+            {
+              icon: 'icon-plus',
+              text: 'New file',
+              callback: 'projectAddFile'
+            },
+            {
+              icon: 'icon-plus',
+              text: 'New folder',
+              callback: 'projectAddFolder'
+            }
+          ]
+        })
+      },
     }
   }
 </script>
 
 <style lang='sass' scoped>
+  #file-tree
+    position: relative
+    min-height: 100%
+    padding-bottom: $sidebar-file-tree-height
+    box-sizing: border-box
+
   .root
     padding-bottom: 1rem
 
-  .add-file,
-  .add-folder
-    i
-      width: 1.5rem
-      padding-right: .5rem
-      text-align: center
+  .add-menu
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    height: $sidebar-file-tree-height
+    color: white
+    background: $color-action
+    transition: opacity .3s
+    cursor: pointer
+
+    &:hover
+      opacity: .75
 
   .empty-folder
     display: flex
