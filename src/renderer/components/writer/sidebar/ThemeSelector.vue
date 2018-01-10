@@ -113,23 +113,18 @@
       right: .5rem
       pointer-events: none
 
-  select,
   .select
     width: 100%
     color: inherit
     background: inherit
     padding: .4rem .5rem
     border-radius: 4px
+    border: 1px solid $color-less-subtle
+    text-align: left
     cursor: pointer
     outline: none
     -webkit-appearance: none
-
-    option
-      color: #333
-
-  .select
-    text-align: left
-    border: 1px solid $color-less-subtle
+    transition: border-color .3s
     box-sizing: border-box
 
     > *
