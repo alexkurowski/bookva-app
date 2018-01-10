@@ -62,8 +62,7 @@
               .defaultView
               .getSelection()
           const range = selection.getRangeAt(0)
-          // TODO (Alex): This is not a tab...
-          const tabNode = document.createTextNode(' ')
+          const tabNode = document.createTextNode("\u00a0\u00a0\u00a0\u00a0")
 
           range.insertNode(tabNode);
 
