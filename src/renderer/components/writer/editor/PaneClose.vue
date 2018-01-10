@@ -77,7 +77,7 @@
     right: 0
     width: $sidebar-controls-width
     height: $sidebar-controls-height
-    font-size: 1.5rem
+    font-size: 1.25rem
     cursor: pointer
     color: green
     transition: opacity .3s
