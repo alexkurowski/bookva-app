@@ -80,4 +80,8 @@
     font-size: 1.5rem
     cursor: pointer
     color: green
+    transition: opacity .3s
+
+    &:hover
+      opacity: .5
 </style>

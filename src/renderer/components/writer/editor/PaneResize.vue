@@ -93,8 +93,7 @@
     position: absolute
     width: 1px
     height: 100%
-    padding: 0 .5rem
-    margin-left: -.5rem
+    padding-right: .4rem
     cursor: col-resize
     z-index: 1000
 

@@ -4,7 +4,7 @@
   ]
 
     .medium-container [
-      :style='mediumContainerStyle'
+      :class='mediumContainerClass'
       @click='mediumContainerClick'
     ]
       Medium :file='file' type='title'/
@@ -64,11 +64,11 @@
         return Project.filesOpen.length > 1
       },
 
-      mediumContainerStyle () {
+      mediumContainerClass () {
         return this.canClose &&
                Application.paneCloseHoverIndex == this.index
-          ? { opacity: 0.3 }
-          : { opacity: 1 }
+          ? 'close-hover'
+          : ''
       },
     },
 
@@ -133,6 +133,9 @@
     background: transparent
     overflow: visible
     transition: opacity .3s
+
+    &.close-hover
+      opacity: .5
 
   .medium-editor
     width: 100%
