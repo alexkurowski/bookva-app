@@ -243,13 +243,13 @@
     left: 0
     right: 0
     height: $sidebar-file-tree-height
-    color: white
-    background: $color-action
-    transition: opacity .3s
+    border-top: 1px solid $color-subtle
+    transition: color .3s, background .3s
     cursor: pointer
 
     &:hover
-      opacity: .75
+      color: white
+      background: $color-action
 
   .empty-folder
     display: flex
