@@ -83,10 +83,13 @@
             callback: 'projectFileClosePane',
             callbackArgs: this.paneIndex
           })
-          items.push({
-            text: 'Swap panes',
-            callback: 'projectSwapOpenFiles'
-          })
+
+          if (Project.filesOpen.length > 1) {
+            items.push({
+              text: 'Swap panes',
+              callback: 'projectSwapOpenFiles'
+            })
+          }
         }
 
         items.push({
