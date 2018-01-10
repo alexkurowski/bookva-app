@@ -5,7 +5,7 @@ export function openProjectMenu (event, dispatch) {
 
   if (Project.lastSave != Project.lastUpdate) {
     items.push({
-      icon: 'icon-book',
+      icon: 'icon icon-book',
       text: 'New project',
       callback: 'modalShow',
       callbackArgs: {
@@ -16,7 +16,7 @@ export function openProjectMenu (event, dispatch) {
     })
 
     items.push({
-      icon: 'icon-upload',
+      icon: 'icon icon-upload',
       text: 'Open...',
       callback: 'modalShow',
       callbackArgs: {
@@ -27,30 +27,30 @@ export function openProjectMenu (event, dispatch) {
     })
   } else {
     items.push({
-      icon: 'icon-book',
+      icon: 'icon icon-book',
       text: 'New project',
       callback: 'projectNewProject',
     })
 
     items.push({
-      icon: 'icon-upload',
+      icon: 'icon icon-upload',
       text: 'Open...',
       callback: 'projectLoadProject',
     })
   }
 
   items.push({
-    icon: 'icon-download',
+    icon: 'icon icon-download',
     text: 'Save',
     callback: 'projectSaveProject'
   })
   items.push({
-    icon: 'icon-download',
+    icon: 'icon icon-download',
     text: 'Save as...',
     callback: 'projectSaveAsProject'
   })
   items.push({
-    icon: 'icon-times',
+    icon: 'icon icon-times',
     text: 'Quit',
     callback: 'applicationQuit'
   })

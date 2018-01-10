@@ -208,12 +208,12 @@
           },
           items: [
             {
-              icon: 'icon-plus',
+              icon: 'icon icon-plus',
               text: 'New file',
               callback: 'projectAddFile'
             },
             {
-              icon: 'icon-plus',
+              icon: 'icon icon-plus',
               text: 'New folder',
               callback: 'projectAddFolder'
             }

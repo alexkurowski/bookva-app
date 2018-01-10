@@ -1,7 +1,7 @@
 <template lang='slm'>
   #context-menu[
+    :class='className'
     :style='style'
-    v-if='shown'
     v-clickaway='hide'
   ]
 
@@ -11,7 +11,7 @@
       @click='select'
     ]
 
-      i.icon[
+      i[
         v-if='!!item.icon'
         :class='item.icon'
       ]
@@ -25,6 +25,13 @@
   export default {
     name: 'ContextMenu',
 
+    data () {
+      return {
+        itemWidth: 160,
+        itemHeight: 30
+      }
+    },
+
     computed: {
       shown () {
         return ContextMenu.shown
@@ -34,10 +41,32 @@
         return ContextMenu.items
       },
 
+      className () {
+        return this.shown
+          ? 'shown'
+          : ''
+      },
+
       style () {
+        let x = ContextMenu.position.x
+        let y = ContextMenu.position.y
+
+        let xKey = 'left'
+        let yKey = 'top'
+
+        if (x + this.itemWidth > window.innerWidth) {
+          xKey = 'right'
+          x = window.innerWidth - x
+        }
+
+        if (y + this.itemHeight * this.items.length > window.innerHeight) {
+          yKey = 'bottom'
+          y = window.innerHeight - y
+        }
+
         return {
-          left: ContextMenu.position.x + 'px',
-          top:  ContextMenu.position.y + 'px'
+          [xKey]: `${ x }px`,
+          [yKey]: `${ y }px`
         }
       }
     },
@@ -66,12 +95,23 @@
     min-width: 160px
     margin: 1px
     border-radius: 6px
-    backdrop-filter: blur(2px)
+    opacity: 0
     z-index: 7500
     overflow: hidden
+    transition: opacity .2s
+
+    &.shown
+      opacity: 1
+      backdrop-filter: blur(2px)
+
+    &:not(.shown)
+      pointer-events: none
 
     .item
-      padding: .5rem .75rem
+      display: flex
+      align-items: center
+      height: $context-menu-item-height
+      padding: 0 .75rem
       cursor: pointer
       transition: background .1s
 
