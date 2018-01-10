@@ -34,11 +34,12 @@
     data () {
       return {
         scheme: {
-          sharp:    'Sharp',
-          smooth:   'Smooth',
-          frost:    'Frost',
-          dark:     'Dark',
-          contrast: 'Contrast',
+          sharp:     'Sharp',
+          smooth:    'Smooth',
+          frost:     'Frost',
+          solarized: 'Solarized',
+          dark:      'Dark',
+          contrast:  'Contrast',
         },
 
         fontFamily: {
