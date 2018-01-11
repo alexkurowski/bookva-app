@@ -51,18 +51,20 @@
           if (index > 0)
             result += ' | '
 
-          result += this.countWords( Project.files[fileId] )
+          result += String(Project.files[fileId].wordCount)
         })
 
         return result || '0'
       },
 
       wordsProject () {
-        return Object
-          .values(Project.files)
-          .reduce((result, file) => (
-            this.countWords(file) + result
-          ), 0)
+        return String(
+          Object
+            .values(Project.files)
+            .reduce((result, file) => (
+              file.wordCount + result
+            ), 0)
+        )
       },
     },
 
@@ -71,22 +73,6 @@
         this.fullscreenMode = !this.fullscreenMode
         getWindow().setFullScreen(this.fullscreenMode)
       },
-
-      countWords (file) {
-        if (!file)
-          return 0
-
-        if (!file.content)
-          return 0
-
-        return file
-          .content
-          .replace(/<[^>]*>/g, ' ')
-          .replace(/\s+/g, ' ')
-          .trim()
-          .split(' ')
-          .length
-      }
     }
   }
 </script>

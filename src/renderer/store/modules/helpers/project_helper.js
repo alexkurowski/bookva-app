@@ -78,6 +78,7 @@ export const newFile = function (params) {
     content: '',
     folder: params.folder || null,
     order: params.order || 0,
+    wordCount: 0
   }
 }
 

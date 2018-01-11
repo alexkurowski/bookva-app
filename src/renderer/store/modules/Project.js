@@ -185,10 +185,20 @@ const mutations = {
     if (!file)
       throw "ERROR: trying to update a file that doesn't exist"
 
+    const html = params.element.innerHTML
+    const wordCount =
+      html
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .split(' ')
+        .length
+
     state.files = {
       ...state.files,
       [params.id]: Object.assign(file, {
-        [params.type]: params.element.innerHTML
+        [params.type]: html,
+        wordCount: wordCount
       })
     }
 
