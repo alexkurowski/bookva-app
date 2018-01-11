@@ -41,13 +41,33 @@ const mutations = {
     state.lastSync    = 0
     state.lastSave    = 0
 
-    mutations.projectAddFile(state)
+    mutations.projectAddFolder(state, {
+      title: 'Chapters'
+    })
+
+    mutations.projectAddFile(state, {
+      title: 'Chapter 1',
+      folder: Object.keys(state.folders)[0]
+    })
+
+    mutations.projectAddFolder(state, {
+      title: 'Planning'
+    })
+
+    mutations.projectAddFile(state, {
+      title: 'Notes',
+      folder: Object.keys(state.folders)[1]
+    })
 
     state.filesOpen = [ Object.keys(state.files)[0] ]
 
     state.lastUpdate = Date.now()
 
     global.resetEditors()
+
+    setTimeout(() => {
+      document.querySelector('.pane').__vue__.focusContent()
+    }, 100)
   },
 
   projectSaveProject (state) {
@@ -141,8 +161,9 @@ const mutations = {
     state.lastUpdate = Date.now()
   },
 
-  projectAddFolder (state) {
-    const params = { order: getNextOrder(state) }
+  projectAddFolder (state, params) {
+    params = params || {}
+    params.order = getNextOrder(state)
 
     const folder = newFolder(params)
     state.folders = {
