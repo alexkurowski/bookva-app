@@ -200,11 +200,9 @@ const mutations = {
   },
 
   projectRemoveFolderWithFiles (state, folderId) {
-    const files = Object.assign({}, state.files)
-    Object.values(files)
+    Object.values(state.files)
       .filter(file => file.folder == folderId)
-      .map(file => file.id)
-      .forEach(fileId => delete files[fileId])
+      .forEach(file => mutations.projectRemoveFile(state, file.id))
 
     const folders = Object.assign({}, state.folders)
     delete folders[folderId]
@@ -216,7 +214,6 @@ const mutations = {
       )
     }
 
-    state.files = files
     state.folders = folders
 
     state.lastUpdate = Date.now()

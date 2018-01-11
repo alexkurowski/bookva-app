@@ -19,6 +19,9 @@ const {
   projectSaveProject,
   projectSaveAsProject,
   projectLoadProject,
+  projectRemoveFile,
+  projectRemoveFolderWithFiles,
+  projectRemoveFolderKeepFiles
 } = Project.mutations
 
 describe('Project.js', () => {
@@ -240,5 +243,111 @@ describe('Project.js', () => {
 
       done()
     }, 100)
+  })
+
+  it('projectRemoveFile', () => {
+    const state = {
+      files: {
+        'a': {},
+        'b': {},
+        'c': {}
+      },
+      filesOpen: ['a', 'b']
+    }
+
+    projectRemoveFile(state, 'a')
+    expect(Object.keys(state.files)).to.deep.equal(['b', 'c'])
+    expect(state.filesOpen).to.deep.equal(['b'])
+
+    projectRemoveFile(state, 'a')
+    expect(Object.keys(state.files)).to.deep.equal(['b', 'c'])
+    expect(state.filesOpen).to.deep.equal(['b'])
+
+    projectRemoveFile(state, 'c')
+    expect(Object.keys(state.files)).to.deep.equal(['b'])
+    expect(state.filesOpen).to.deep.equal(['b'])
+
+    projectRemoveFile(state, 'b')
+    expect(Object.keys(state.files)).to.deep.equal([])
+    expect(state.filesOpen).to.deep.equal([])
+  })
+
+  it('projectRemoveFolderWithFiles', () => {
+    const state = {
+      files: {
+        'a': { id: 'a', folder: 'fa' },
+        'b': { id: 'b', folder: 'fa' },
+        'c': { id: 'c', folder: 'fc' },
+      },
+      filesOpen: ['a', 'b'],
+      folders: {
+        'fa': {},
+        'fb': {},
+        'fc': {}
+      },
+      foldersOpen: ['fb', 'fc']
+    }
+
+    projectRemoveFolderWithFiles(state, 'fa')
+    expect(Object.keys(state.files)).to.deep.equal(['c'])
+    expect(Object.keys(state.folders)).to.deep.equal(['fb', 'fc'])
+    expect(state.filesOpen).to.deep.equal([])
+    expect(state.foldersOpen).to.deep.equal(['fb', 'fc'])
+
+    projectRemoveFolderWithFiles(state, 'fb')
+    expect(Object.keys(state.files)).to.deep.equal(['c'])
+    expect(Object.keys(state.folders)).to.deep.equal(['fc'])
+    expect(state.filesOpen).to.deep.equal([])
+    expect(state.foldersOpen).to.deep.equal(['fc'])
+
+    projectRemoveFolderWithFiles(state, 'fc')
+    expect(Object.keys(state.files)).to.deep.equal([])
+    expect(Object.keys(state.folders)).to.deep.equal([])
+    expect(state.filesOpen).to.deep.equal([])
+    expect(state.foldersOpen).to.deep.equal([])
+  })
+
+  it('projectRemoveFolderKeepFiles', () => {
+    const state = {
+      files: {
+        'a': { id: 'a', folder: 'fa' },
+        'b': { id: 'b', folder: 'fa' },
+        'c': { id: 'c', folder: 'fc' },
+      },
+      filesOpen: ['a', 'b'],
+      folders: {
+        'fa': {},
+        'fb': {},
+        'fc': {}
+      },
+      foldersOpen: ['fb', 'fc']
+    }
+
+    projectRemoveFolderKeepFiles(state, 'fa')
+    expect(Object.keys(state.files)).to.deep.equal(['a', 'b', 'c'])
+    expect(Object.keys(state.folders)).to.deep.equal(['fb', 'fc'])
+    expect(state.files.a.folder).to.equal(null)
+    expect(state.files.b.folder).to.equal(null)
+    expect(state.files.c.folder).to.equal('fc')
+    expect(state.filesOpen).to.deep.equal(['a', 'b'])
+    expect(state.foldersOpen).to.deep.equal(['fb', 'fc'])
+
+    projectRemoveFolderKeepFiles(state, 'fb')
+    expect(Object.keys(state.files)).to.deep.equal(['a', 'b', 'c'])
+    expect(Object.keys(state.folders)).to.deep.equal(['fc'])
+    expect(state.files.a.folder).to.equal(null)
+    expect(state.files.b.folder).to.equal(null)
+    expect(state.files.c.folder).to.equal('fc')
+    expect(state.filesOpen).to.deep.equal(['a', 'b'])
+    expect(state.foldersOpen).to.deep.equal(['fc'])
+
+    projectRemoveFolderKeepFiles(state, 'fc')
+    expect(Object.keys(state.files)).to.deep.equal(['a', 'b', 'c'])
+    expect(Object.keys(state.folders)).to.deep.equal([])
+    expect(state.files.a.folder).to.equal(null)
+    expect(state.files.b.folder).to.equal(null)
+    expect(state.files.c.folder).to.equal(null)
+    expect(state.filesOpen).to.deep.equal(['a', 'b'])
+    expect(state.foldersOpen).to.deep.equal([])
   })
 })
