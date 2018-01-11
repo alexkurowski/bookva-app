@@ -16,5 +16,4 @@ export default {
   modalTypes: Enum(
     'Confirm'
   ),
-  mediumUpdateDelay: 1, // seconds
 }

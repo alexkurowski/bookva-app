@@ -43,8 +43,6 @@
             buttonLabels: 'fontawesome',
           }
         },
-
-        lastUpdate: 0,
       }
     },
 
@@ -80,15 +78,11 @@
       },
 
       update (event) {
-        if (Date.now() < this.lastUpdate + Config.mediumUpdateDelay * 1000) return
-
         this.$store.dispatch('projectUpdateFile', {
           id: this.file.id,
           type: this.type,
           element: event.target
         })
-
-        this.lastUpdate = Date.now()
       },
 
       reset () {
