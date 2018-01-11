@@ -210,12 +210,12 @@
             {
               icon: 'icon icon-plus',
               text: 'New file',
-              callback: 'projectAddFile'
+              commit: 'projectAddFile'
             },
             {
               icon: 'icon icon-plus',
               text: 'New folder',
-              callback: 'projectAddFolder'
+              commit: 'projectAddFolder'
             }
           ]
         })

@@ -29,10 +29,19 @@
 
     methods: {
       confirm () {
-        this.$store.dispatch(
-          Modal.modalStoreCallback,
-          Modal.modalStoreCallbackArgs
-        )
+        if (Modal.modalStoreCommit) {
+          this.$store.commit(
+            Modal.modalStoreCommit,
+            Modal.modalStoreParams
+          )
+        }
+
+        if (Modal.modalStoreDispatch) {
+          this.$store.dispatch(
+            Modal.modalStoreDispatch,
+            Modal.modalStoreParams
+          )
+        }
 
         this.$store.commit('modalHide')
       },

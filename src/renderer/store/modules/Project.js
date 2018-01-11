@@ -384,46 +384,6 @@ const actions = {
     context.commit('projectResyncProject', result)
     return result.resynced
   },
-
-  projectFileOpenFill (context, fileId) {
-    context.commit('projectFileOpenFill', fileId)
-  },
-
-  projectFileOpenPane (context, params) {
-    context.commit('projectFileOpenPane', params)
-  },
-
-  projectFileClosePane (context, index) {
-    context.commit('projectFileClosePane', index)
-  },
-
-  projectSwapOpenFiles (context) {
-    context.commit('projectSwapOpenFiles')
-  },
-
-  projectAddFile (context) {
-    context.commit('projectAddFile')
-  },
-
-  projectAddFolder (context) {
-    context.commit('projectAddFolder')
-  },
-
-  projectRemoveFile (context, fileId) {
-    context.commit('projectRemoveFile', fileId)
-  },
-
-  projectRemoveFolderWithFiles (context, folderId) {
-    context.commit('projectRemoveFolderWithFiles', folderId)
-  },
-
-  projectRemoveFolderKeepFiles (context, folderId) {
-    context.commit('projectRemoveFolderKeepFiles', folderId)
-  },
-
-  projectToggleFolderOpen (context, folderId) {
-    context.commit('projectToggleFolderOpen', folderId)
-  }
 }
 
 export default {

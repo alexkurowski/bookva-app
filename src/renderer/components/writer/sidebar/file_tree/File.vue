@@ -58,21 +58,21 @@
         if (!this.isOpen) {
           items.push({
             text: 'Open',
-            callback: 'projectFileOpenFill',
-            callbackArgs: this.file.id
+            commit: 'projectFileOpenFill',
+            params: this.file.id
           })
           items.push({
             text: 'Open in left pane',
-            callback: 'projectFileOpenPane',
-            callbackArgs: {
+            commit: 'projectFileOpenPane',
+            params: {
               id: this.file.id,
               pane: 0
             }
           })
           items.push({
             text: 'Open in right pane',
-            callback: 'projectFileOpenPane',
-            callbackArgs: {
+            commit: 'projectFileOpenPane',
+            params: {
               id: this.file.id,
               pane: 1
             }
@@ -80,26 +80,26 @@
         } else {
           items.push({
             text: 'Close',
-            callback: 'projectFileClosePane',
-            callbackArgs: this.paneIndex
+            commit: 'projectFileClosePane',
+            params: this.paneIndex
           })
 
           if (Project.filesOpen.length > 1) {
             items.push({
               text: 'Swap panes',
-              callback: 'projectSwapOpenFiles'
+              commit: 'projectSwapOpenFiles'
             })
           }
         }
 
         items.push({
           text: 'Remove',
-          callback: 'modalShow',
-          callbackArgs: {
+          dispatch: 'modalShow',
+          params: {
             type: 'Confirm',
             content: 'removeFile',
-            callback: 'projectRemoveFile',
-            callbackArgs: this.file.id
+            commit: 'projectRemoveFile',
+            params: this.file.id
           }
         })
 

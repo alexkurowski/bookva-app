@@ -7,52 +7,52 @@ export function openProjectMenu (event, dispatch) {
     items.push({
       icon: 'icon icon-book',
       text: 'New project',
-      callback: 'modalShow',
-      callbackArgs: {
+      dispatch: 'modalShow',
+      params: {
         type: 'Confirm',
         content: 'newProject',
-        callback: 'projectNewProject'
+        dispatch: 'projectNewProject'
       }
     })
 
     items.push({
       icon: 'icon icon-upload',
       text: 'Open...',
-      callback: 'modalShow',
-      callbackArgs: {
+      dispatch: 'modalShow',
+      params: {
         type: 'Confirm',
         content: 'newProject',
-        callback: 'projectLoadProject'
+        dispatch: 'projectLoadProject'
       }
     })
   } else {
     items.push({
       icon: 'icon icon-book',
       text: 'New project',
-      callback: 'projectNewProject',
+      dispatch: 'projectNewProject',
     })
 
     items.push({
       icon: 'icon icon-upload',
       text: 'Open...',
-      callback: 'projectLoadProject',
+      dispatch: 'projectLoadProject',
     })
   }
 
   items.push({
     icon: 'icon icon-download',
     text: 'Save',
-    callback: 'projectSaveProject'
+    dispatch: 'projectSaveProject'
   })
   items.push({
     icon: 'icon icon-download',
     text: 'Save as...',
-    callback: 'projectSaveAsProject'
+    dispatch: 'projectSaveAsProject'
   })
   items.push({
     icon: 'icon icon-times',
     text: 'Quit',
-    callback: 'applicationQuit'
+    dispatch: 'applicationQuit'
   })
 
   dispatch('contextMenuShow', {

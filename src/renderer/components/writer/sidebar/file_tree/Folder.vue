@@ -69,35 +69,35 @@
           text: this.isOpen
             ? 'Collapse'
             : 'Expand',
-          callback: 'projectToggleFolderOpen',
-          callbackArgs: this.folder.id
+          commit: 'projectToggleFolderOpen',
+          params: this.folder.id
         })
 
         if (this.isEmpty) {
           items.push({
             text: 'Remove',
-            callback: 'projectRemoveFolderKeepFiles',
-            callbackArgs: this.folder.id
+            commit: 'projectRemoveFolderKeepFiles',
+            params: this.folder.id
           })
         } else {
           items.push({
             text: 'Remove (with files)',
-            callback: 'modalShow',
-            callbackArgs: {
+            dispatch: 'modalShow',
+            params: {
               type: 'Confirm',
               content: 'removeFolderWithFiles',
-              callback: 'projectRemoveFolderWithFiles',
-              callbackArgs: this.folder.id
+              commit: 'projectRemoveFolderWithFiles',
+              params: this.folder.id
             }
           })
           items.push({
             text: 'Remove (keep files)',
-            callback: 'modalShow',
-            callbackArgs: {
+            dispatch: 'modalShow',
+            params: {
               type: 'Confirm',
               content: 'removeFolderKeepFiles',
-              callback: 'projectRemoveFolderKeepFiles',
-              callbackArgs: this.folder.id
+              commit: 'projectRemoveFolderKeepFiles',
+              params: this.folder.id
             }
           })
         }

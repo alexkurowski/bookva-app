@@ -8,7 +8,7 @@
     .item[
       v-for='item, index in items'
       :data-index='index'
-      @click='select'
+      @mouseup='select'
     ]
 
       i[
@@ -81,8 +81,16 @@
 
       select (event) {
         const index = Number(event.target.dataset.index)
-        const params = this.items[index]
-        this.$store.dispatch(params.callback, params.callbackArgs)
+        const item  = this.items[index]
+
+        if (item.commit) {
+          this.$store.commit(item.commit, item.params)
+        }
+
+        if (item.dispatch) {
+          this.$store.dispatch(item.dispatch, item.params)
+        }
+
         this.hide(true)
       }
     }

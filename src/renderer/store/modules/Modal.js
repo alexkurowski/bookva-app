@@ -5,8 +5,9 @@ const state = {
   modalType: '',
 
   modalContentKey: '',
-  modalStoreCallback: '',
-  modalStoreCallbackArgs: [],
+  modalStoreCommit: '',
+  modalStoreDispatch: '',
+  modalStoreParams: undefined,
 }
 
 const mutations = {
@@ -31,8 +32,9 @@ const mutations = {
   },
 
   modalSetCallback (state, params) {
-    state.modalStoreCallback = params.callback
-    state.modalStoreCallbackArgs = params.args
+    state.modalStoreCommit = params.commit
+    state.modalStoreDispatch = params.dispatch
+    state.modalStoreParams = params.params
   },
 }
 
@@ -41,8 +43,9 @@ const actions = {
     context.commit('modalSetType', params.type)
     context.commit('modalSetContent', params.content)
     context.commit('modalSetCallback', {
-      callback: params.callback || '',
-      args: params.callbackArgs || undefined
+      commit: params.commit || '',
+      dispatch: params.dispatch || '',
+      params: params.params || undefined
     })
 
     setTimeout(() => {

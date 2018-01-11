@@ -77,8 +77,8 @@
         for (const key in this[type]) {
           items.push({
             text: this[type][key] + this.suffix(type),
-            callback: 'appearanceUpdateTheme',
-            callbackArgs: {
+            commit: 'appearanceUpdateTheme',
+            params: {
               value: key,
               type
             }
