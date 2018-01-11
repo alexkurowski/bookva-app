@@ -65,9 +65,11 @@ const mutations = {
 
     global.resetEditors()
 
-    setTimeout(() => {
-      document.querySelector('.pane').__vue__.focusContent()
-    }, 100)
+    if (process.env.NODE_ENV != 'testing') {
+      setTimeout(() => {
+        document.querySelector('.pane').__vue__.focusContent()
+      }, 100)
+    }
   },
 
   projectSaveProject (state) {

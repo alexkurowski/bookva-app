@@ -90,18 +90,12 @@
 
       mediumContainerClick (event) {
         if (event.target.className.indexOf('medium-container') != -1) {
-          const content = event.target.children[1]
-          const contentRect = content.getBoundingClientRect()
+          const content       = event.target.lastChild
+          const contentRect   = content.getBoundingClientRect()
           const contentBottom = contentRect.top + contentRect.height
 
           if (event.y > contentBottom) {
-            content.focus()
-            const range = document.createRange()
-            range.selectNodeContents(content.lastElementChild || content)
-            range.collapse(false)
-            const selection = window.getSelection()
-            selection.removeAllRanges()
-            selection.addRange(range)
+            this.focusContent()
           }
         }
       }

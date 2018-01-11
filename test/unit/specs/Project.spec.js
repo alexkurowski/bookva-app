@@ -50,7 +50,7 @@ describe('Project.js', () => {
     projectNewProject(state)
     expect(
       Object.keys(state.files).length
-    ).to.equal(1)
+    ).to.equal(2)
     expect(state.filesOpen[0]).to.equal(
       Object.keys(state.files)[0]
     )
