@@ -164,7 +164,9 @@ const mutations = {
 
     state.files = {
       ...state.files,
-      [params.id]: Object.assign(file, params)
+      [params.id]: Object.assign(file, {
+        [params.type]: params.element.innerHTML
+      })
     }
 
     state.lastUpdate = Date.now()
@@ -374,6 +376,18 @@ const actions = {
         ioBusy = false
       }
     })
+  },
+
+  projectUpdateFile (context, params) {
+    setTimeout(() => {
+      context.commit('projectUpdateFile', params)
+    }, 0)
+  },
+
+  projectSyncProject (context) {
+    setTimeout(() => {
+      context.commit('projectSyncProject')
+    }, 0)
   },
 
   projectResyncProject (context) {

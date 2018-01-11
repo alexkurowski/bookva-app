@@ -45,7 +45,7 @@
         this.$store.commit('projectNewProject')
 
       setInterval(() => {
-        this.$store.commit('projectSyncProject')
+        this.$store.dispatch('projectSyncProject')
       }, Config.projectSyncInterval * 1000)
     },
 

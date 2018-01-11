@@ -9,6 +9,8 @@
 <script>
   import MediumEditor from 'medium-editor/dist/js/medium-editor.min'
 
+  import Config from '@/config/config'
+
   export default {
     name: 'Medium',
 
@@ -40,7 +42,9 @@
             },
             buttonLabels: 'fontawesome',
           }
-        }
+        },
+
+        lastUpdate: 0,
       }
     },
 
@@ -76,10 +80,15 @@
       },
 
       update (event) {
-        this.$store.commit('projectUpdateFile', {
+        if (Date.now() < this.lastUpdate + Config.mediumUpdateDelay * 1000) return
+
+        this.$store.dispatch('projectUpdateFile', {
           id: this.file.id,
-          [this.type]: event.target.innerHTML
+          type: this.type,
+          element: event.target
         })
+
+        this.lastUpdate = Date.now()
       },
 
       reset () {
