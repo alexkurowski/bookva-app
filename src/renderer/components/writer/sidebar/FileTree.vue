@@ -11,7 +11,7 @@
       @end='onEnd'
     ]
 
-      .entry [
+      .entry.root-entry [
         :data-folder-id='entry.id'
         v-for='entry in root'
         v-if='entry.isFolder'
@@ -34,7 +34,7 @@
           ]
             File :file='file'
 
-      .entry[
+      .entry.root-entry[
         :data-file-id='entry.id'
         v-else
       ]
@@ -70,6 +70,7 @@
         draggableOptions: {
           group: 'fileTree',
           handle: '.drag-handle',
+          draggable: '.entry',
           animation: 300,
           scrollSpeed: 15
         },
@@ -184,11 +185,17 @@
       onStart (event) {
         const fileId = event.item.dataset.fileId
         const isOpen = Project.filesOpen.includes(fileId)
+
+        if ( !fileId )
+          this.draggableOptions.draggable = '.root-entry'
+
         if ( fileId && !isOpen )
           this.$store.commit('sidebarSetDraggedFileId', fileId)
       },
 
       onEnd () {
+        this.draggableOptions.draggable = '.entry'
+
         this.$store.commit('sidebarSetDraggedFileId', null)
       },
 
