@@ -199,13 +199,17 @@ const mutations = {
       throw "ERROR: trying to update a file that doesn't exist"
 
     const html = params.element.innerHTML
-    const wordCount =
+    const text =
       html
         .replace(/<[^>]*>/g, ' ')
         .replace(/\s+/g, ' ')
         .trim()
-        .split(' ')
-        .length
+    const wordCount =
+      text == ' ' ||
+      text == ''  ||
+      text == "\n"
+        ? 0
+        : text.split(' ').length
 
     state.files = {
       ...state.files,
