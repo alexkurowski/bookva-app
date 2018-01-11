@@ -426,7 +426,7 @@ const actions = {
 
   projectUpdateFileContent (context, params) {
     setTimeout(() => {
-      context.commit('projectUpdateFile', params)
+      context.commit('projectUpdateFileContent', params)
     }, 0)
   },
 
