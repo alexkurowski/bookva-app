@@ -78,7 +78,7 @@
       },
 
       update (event) {
-        this.$store.dispatch('projectUpdateFile', {
+        this.$store.dispatch('projectUpdateFileContent', {
           id: this.file.id,
           type: this.type,
           element: event.target

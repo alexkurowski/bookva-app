@@ -185,6 +185,19 @@ const mutations = {
     if (!file)
       throw "ERROR: trying to update a file that doesn't exist"
 
+    state.files = {
+      ...state.files,
+      [params.id]: Object.assign(file, params)
+    }
+
+    state.lastUpdate = Date.now()
+  },
+
+  projectUpdateFileContent (state, params) {
+    const file = state.files[params.id]
+    if (!file)
+      throw "ERROR: trying to update a file that doesn't exist"
+
     const html = params.element.innerHTML
     const wordCount =
       html
@@ -411,7 +424,7 @@ const actions = {
     })
   },
 
-  projectUpdateFile (context, params) {
+  projectUpdateFileContent (context, params) {
     setTimeout(() => {
       context.commit('projectUpdateFile', params)
     }, 0)

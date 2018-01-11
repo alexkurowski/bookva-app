@@ -1,6 +1,6 @@
 <template lang='slm'>
   .folder.file-tree-item.drag-handle[
-    :class='[ classOpen, classEmpty ]'
+    :class='[ classOpen, classOpenFiles, classEmpty ]'
     @click='toggleFolder'
     @contextmenu='openMenu'
   ]
@@ -37,6 +37,18 @@
         return this.isOpen
           ? 'open'
           : ''
+      },
+
+      classOpenFiles () {
+        if (this.isEmpty) return ''
+
+        return Object
+          .values(Project.files)
+          .filter(file => file.folder == this.folder.id)
+          .filter(file => Project.filesOpen.includes(file.id))
+          .length > 0
+            ? 'has-open-files'
+            : ''
       },
 
       classEmpty () {
@@ -134,4 +146,18 @@
         padding: 0 5rem
         opacity: .5
         pointer-events: none
+
+    &:before
+      content: ''
+      position: absolute
+      left: 0
+      top: 0
+      bottom: 0
+      width: 4px
+      background: transparent
+
+    &.has-open-files
+      &:before
+        transition: background .3s
+        background: $color-action !important
 </style>
