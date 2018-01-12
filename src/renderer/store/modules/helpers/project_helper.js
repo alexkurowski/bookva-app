@@ -48,7 +48,7 @@ export const projectSaveData = function (state, filepath, callback) {
   )
 }
 
-export const projectLoadData = function (state, filepath) {
+export const projectLoadData = function (filepath) {
   const dataJSON = fs.readFileSync(filepath, 'utf8')
   const data = JSON.parse(dataJSON)
 
@@ -64,6 +64,13 @@ export const projectLoadData = function (state, filepath) {
     data,
     error: missingField
   }
+}
+
+export const projectExportData = function (state, filepath) {
+}
+
+export const projectImportData = function (filepath) {
+  const dataJSON = fs.readFileSync(filepath, 'utf8')
 }
 
 const generateId = function () {

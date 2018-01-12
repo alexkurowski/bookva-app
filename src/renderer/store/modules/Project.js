@@ -8,6 +8,8 @@ import {
   fieldsToSave,
   projectSaveData,
   projectLoadData,
+  projectExportData,
+  projectImportData,
   newFile,
   newFolder,
   getNextOrder
@@ -100,7 +102,7 @@ const mutations = {
     fs.accessSync(filepath)
 
     const { data, error } =
-      projectLoadData(state, filepath)
+      projectLoadData(filepath)
 
     if (!error) {
       mutations.projectRestoreProject(state, data)
@@ -110,6 +112,20 @@ const mutations = {
     }
 
     ioBusy = false
+  },
+
+  projectExportFiles (state, filepath) {
+    // TODO
+  },
+
+  projectImportFiles (state, filepaths) {
+    filepaths.forEach(filepath => {
+      const { data, error } =
+        projectImportData(filepath)
+
+      console.log("INFO import data", data)
+      console.log("INFO import error", error)
+    })
   },
 
   projectSyncProject (state) {
@@ -132,7 +148,7 @@ const mutations = {
   projectResyncProject (state, result) {
     if ( fs.existsSync(syncFilepath) ) {
       const { data, error } =
-        projectLoadData(state, syncFilepath)
+        projectLoadData(syncFilepath)
 
       if (!error) {
         mutations.projectRestoreProject(state, data)
@@ -201,14 +217,12 @@ const mutations = {
     const html = params.element.innerHTML
     const text =
       html
-        .replace(/(<[^>]*>|\s+|&nbsp;)/g, ' ')
+        .replace(/(<[^>]*>|&nbsp;)/g, '')
         .trim()
     const wordCount =
-      text == ' ' ||
-      text == ''  ||
-      text == "\n"
+      /^\s*$/.test(text)
         ? 0
-        : text.split(' ').length
+        : text.split(/\s+/).length
 
     state.files = {
       ...state.files,
@@ -428,6 +442,16 @@ const actions = {
   },
 
   projectImportFiles (context) {
+    remote.dialog.showOpenDialog({
+      title: 'Import',
+      filters: [
+        { name: 'Text (.txt)', extensions: ['txt'] },
+        { name: 'Markdown (.md, .markdown)', extensions: ['md', 'markdown'] },
+      ],
+      properties: [ 'openFile', 'multiSelections' ]
+    }, importFilepaths => {
+      context.commit('projectImportFiles', importFilepaths)
+    })
   },
 
   projectExportFiles (context) {
