@@ -16,4 +16,6 @@ export default {
   modalTypes: Enum(
     'Confirm'
   ),
+  autohideInitialDelay: 5, // seconds
+  autohideThreshold: 200, // pixels
 }

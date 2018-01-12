@@ -1,5 +1,8 @@
 <template lang='slm'>
-  .view :class='className'
+  .view[
+    :class='[ className, classAutohide ]'
+    @mousemove='onMousemove'
+  ]
     #background/
     Editor/
     Sidebar/
@@ -15,7 +18,7 @@
   import ContextMenu from './writer/ContextMenu'
   import Modal from './writer/Modal'
 
-  import { Project, Appearance } from '@/helpers/store_helper'
+  import { Project, Sidebar as SidebarStore, Appearance } from '@/helpers/store_helper'
   import Config from '@/config/config'
 
   export default {
@@ -29,10 +32,35 @@
       Modal,
     },
 
+    data () {
+      return {
+        autohideInitialShow: true,
+        autohideShowTop: false,
+        autohideShowBottom: false,
+      }
+    },
+
     computed: {
       className () {
-        return `scheme-${ Appearance.scheme } font-family-${ Appearance.fontFamily } font-size-${ Appearance.fontSize }`
-      }
+        return `
+        scheme-${ Appearance.scheme }
+        font-family-${ Appearance.fontFamily }
+        font-size-${ Appearance.fontSize }
+        `
+      },
+
+      classAutohide () {
+        if (this.autohideInitialShow)
+          return 'autohide-show-top autohide-show-bottom'
+
+        if (SidebarStore.sidebarOpen)
+          return 'autohide-show-top autohide-show-bottom'
+
+        return {
+          'autohide-show-top':    this.autohideShowTop,
+          'autohide-show-bottom': this.autohideShowBottom
+        }
+      },
     },
 
     async created () {
@@ -88,10 +116,22 @@
         this.onEsc()
         this.$store.dispatch('projectSaveAsProject')
       },
+
+      onMousemove (event) {
+        this.autohideShowTop =
+          event.y < Config.autohideThreshold
+
+        this.autohideShowBottom =
+          event.y > window.innerHeight - Config.autohideThreshold
+      },
     },
 
     mounted () {
       document.addEventListener('keydown', this.onKeydown)
+
+      setTimeout(() => {
+        this.autohideInitialShow = false
+      }, Config.autohideInitialDelay * 1000)
     },
 
     unmounted () {
@@ -110,4 +150,21 @@
     z-index: -1000
     transition: background .3s
     pointer-events: none
+</style>
+
+<style lang='sass'>
+  .view
+    #toggle,
+    .pane-close,
+    #status-bar
+      opacity: 0
+
+    &.autohide-show-top
+      #toggle,
+      .pane-close
+        opacity: 1
+
+    &.autohide-show-bottom
+      #status-bar
+        opacity: 1
 </style>
