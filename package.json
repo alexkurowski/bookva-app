@@ -103,6 +103,7 @@
     "node-loader": "^0.6.0",
     "node-sass": "^4.7.2",
     "require-dir": "^0.3.0",
+    "sanitize-html": "^1.16.3",
     "sass-loader": "^6.0.6",
     "slim-lang-loader": "0.0.7",
     "slm": "^1.0.0",

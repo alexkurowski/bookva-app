@@ -120,11 +120,15 @@ const mutations = {
 
   projectImportFiles (state, filepaths) {
     filepaths.forEach(filepath => {
-      const { data, error } =
+      const { name, data, error } =
         projectImportData(filepath)
 
-      console.log("INFO import data", data)
-      console.log("INFO import error", error)
+      if (!error) {
+        mutations.projectAddFile(state, {
+          title: name,
+          content: data
+        })
+      }
     })
   },
 

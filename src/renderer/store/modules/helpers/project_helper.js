@@ -2,6 +2,8 @@ import { remote } from 'electron'
 import fs from 'fs'
 import path from 'path'
 
+import { txt2html } from './import_helper'
+
 import Config from '@/config/config'
 
 const userPath =
@@ -70,7 +72,22 @@ export const projectExportData = function (state, filepath) {
 }
 
 export const projectImportData = function (filepath) {
-  const dataJSON = fs.readFileSync(filepath, 'utf8')
+  const data = fs.readFileSync(filepath, 'utf8')
+  const name = filepath.split('/').pop().split('.')[0]
+  const ext  = filepath.split('.').pop()
+
+  if (ext == 'txt') {
+    return {
+      name,
+      data: txt2html(data)
+    }
+  }
+
+  return {
+    name,
+    data: data,
+    error: 'Error: unknown file format'
+  }
 }
 
 const generateId = function () {
@@ -82,7 +99,7 @@ export const newFile = function (params) {
   return {
     id: generateId(),
     title: params.title || '',
-    content: '',
+    content: params.content || '',
     folder: params.folder || null,
     order: params.order || 0,
     wordCount: 0
