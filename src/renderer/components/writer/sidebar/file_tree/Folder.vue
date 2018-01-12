@@ -84,6 +84,13 @@
           commit: 'projectToggleFolderOpen',
           params: this.folder.id
         })
+        items.push({
+          text: 'Add file here',
+          commit: 'projectAddFile',
+          params: {
+            folder: this.folder.id
+          }
+        })
 
         if (this.isEmpty) {
           items.push({
