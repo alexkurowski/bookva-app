@@ -114,13 +114,6 @@ const mutations = {
     ioBusy = false
   },
 
-  projectExportFiles (state, filepath) {
-    // TODO
-  },
-
-  projectImportFiles (state, filepaths) {
-  },
-
   projectSyncProject (state) {
     if ( syncBusy ) return
     if ( state.lastUpdate == state.lastSync ) return
@@ -443,15 +436,17 @@ const actions = {
       ],
       properties: [ 'openFile', 'multiSelections' ]
     }, importFilepaths => {
-      filepaths.forEach(async filepath => {
+      importFilepaths.forEach(async filepath => {
         const { name, data, error } =
           await projectImportData(filepath)
 
         if (!error) {
-          mutations.projectAddFile(state, {
+          context.commit('projectAddFile', {
             title: name,
             content: data
           })
+        } else {
+          throw error
         }
       })
       context.commit('projectImportFiles', importFilepaths)

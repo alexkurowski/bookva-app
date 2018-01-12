@@ -18,13 +18,11 @@ export const txt = function (text) {
 }
 
 export const pandoc = function (filepath, format) {
-  const args = `-f ${ format } -t html`
+  return new Promise(resolve => {
+    const args = `-f ${ format } -t html`
 
-  nodePandoc(filepath, args, (error, result) => {
-    if (error)
-      return throw error
-
-    // TODO (Alex): figure out how to return result to outer function
-    console.log(result)
+    nodePandoc(filepath, args, (error, result) => {
+      resolve({ data: result, error })
+    })
   })
 }

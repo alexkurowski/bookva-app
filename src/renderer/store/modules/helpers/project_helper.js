@@ -71,7 +71,7 @@ export const projectLoadData = function (filepath) {
 export const projectExportData = function (state, filepath) {
 }
 
-export const projectImportData = function (filepath) {
+export const projectImportData = async function (filepath) {
   const name = filepath.split('/').pop().split('.')[0]
   const ext  = filepath.split('.').pop()
 
@@ -84,8 +84,8 @@ export const projectImportData = function (filepath) {
 
   if ( ext == 'md' ||
        ext == 'markdown' ) {
-    const data = pandoc(filepath, 'markdown')
-    return { name, data }
+    const { data, error } = await pandoc(filepath, 'markdown')
+    return { name, data, error }
   }
 
 
