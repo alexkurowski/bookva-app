@@ -132,6 +132,9 @@
         top: 1px
         width: 1.5rem
 
+        &.icon-arrow-back
+          transform: scaleY(-1)
+
       > *
         pointer-events: none
 </style>

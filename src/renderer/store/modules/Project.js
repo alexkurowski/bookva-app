@@ -427,6 +427,12 @@ const actions = {
     })
   },
 
+  projectImportFiles (context) {
+  },
+
+  projectExportFiles (context) {
+  },
+
   projectUpdateFileContent (context, params) {
     setTimeout(() => {
       context.commit('projectUpdateFileContent', params)

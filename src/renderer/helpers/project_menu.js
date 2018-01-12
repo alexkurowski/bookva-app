@@ -49,6 +49,18 @@ export function openProjectMenu (event, dispatch) {
     text: 'Save as...',
     dispatch: 'projectSaveAsProject'
   })
+
+  items.push({
+    icon: 'icon icon-arrow-back',
+    text: 'Import',
+    dispatch: 'projectImportFiles'
+  })
+  items.push({
+    icon: 'icon icon-arrow-forward',
+    text: 'Export',
+    dispatch: 'projectExportFiles'
+  })
+
   items.push({
     icon: 'icon icon-times',
     text: 'Quit',
