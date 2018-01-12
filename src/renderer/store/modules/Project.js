@@ -201,8 +201,7 @@ const mutations = {
     const html = params.element.innerHTML
     const text =
       html
-        .replace(/<[^>]*>/g, ' ')
-        .replace(/\s+/g, ' ')
+        .replace(/(<[^>]*>|\s+|&nbsp;)/g, ' ')
         .trim()
     const wordCount =
       text == ' ' ||
