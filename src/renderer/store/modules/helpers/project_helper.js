@@ -2,7 +2,7 @@ import { remote } from 'electron'
 import fs from 'fs'
 import path from 'path'
 
-import { txt2html } from './import_helper'
+import { txt, pandoc } from './import_helper'
 
 import Config from '@/config/config'
 
@@ -72,20 +72,24 @@ export const projectExportData = function (state, filepath) {
 }
 
 export const projectImportData = function (filepath) {
-  const data = fs.readFileSync(filepath, 'utf8')
   const name = filepath.split('/').pop().split('.')[0]
   const ext  = filepath.split('.').pop()
 
   if (ext == 'txt') {
-    return {
-      name,
-      data: txt2html(data)
-    }
+    const data = txt(
+      fs.readFileSync(filepath, 'utf8')
+    )
+    return { name, data }
   }
 
+  if ( ext == 'md' ||
+       ext == 'markdown' ) {
+    const data = pandoc(filepath, 'markdown')
+    return { name, data }
+  }
+
+
   return {
-    name,
-    data: data,
     error: 'Error: unknown file format'
   }
 }

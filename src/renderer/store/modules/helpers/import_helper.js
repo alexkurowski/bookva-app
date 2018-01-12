@@ -1,6 +1,7 @@
 import sanitizeHtml from 'sanitize-html'
+import nodePandoc from 'node-pandoc'
 
-export const txt2html = function (text) {
+export const txt = function (text) {
   return sanitizeHtml(text, {
       allowedTags: [],
       allowedAttributes: []
@@ -14,4 +15,16 @@ export const txt2html = function (text) {
         return `<p>${ paragraph }</p>`
     })
     .join('')
+}
+
+export const pandoc = function (filepath, format) {
+  const args = `-f ${ format } -t html`
+
+  nodePandoc(filepath, args, (error, result) => {
+    if (error)
+      return throw error
+
+    // TODO (Alex): figure out how to return result to outer function
+    console.log(result)
+  })
 }

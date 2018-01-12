@@ -119,17 +119,6 @@ const mutations = {
   },
 
   projectImportFiles (state, filepaths) {
-    filepaths.forEach(filepath => {
-      const { name, data, error } =
-        projectImportData(filepath)
-
-      if (!error) {
-        mutations.projectAddFile(state, {
-          title: name,
-          content: data
-        })
-      }
-    })
   },
 
   projectSyncProject (state) {
@@ -454,6 +443,17 @@ const actions = {
       ],
       properties: [ 'openFile', 'multiSelections' ]
     }, importFilepaths => {
+      filepaths.forEach(async filepath => {
+        const { name, data, error } =
+          await projectImportData(filepath)
+
+        if (!error) {
+          mutations.projectAddFile(state, {
+            title: name,
+            content: data
+          })
+        }
+      })
       context.commit('projectImportFiles', importFilepaths)
     })
   },
