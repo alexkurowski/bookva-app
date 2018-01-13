@@ -8,15 +8,20 @@
     .item[
       v-for='item, index in items'
       :data-index='index'
+      :class='{ divider: item.text == "hr" }'
       @mouseup='select'
     ]
 
-      i[
-        v-if='!!item.icon'
-        :class='item.icon'
+      div[
+        v-if='item.text != "hr"'
       ]
 
-      span {{ item.text }}
+        i[
+          v-if='!!item.icon'
+          :class='item.icon'
+        ]
+
+        span {{ item.text }}
 </template>
 
 <script>
@@ -119,12 +124,20 @@
       display: flex
       align-items: center
       height: $context-menu-item-height
-      padding: 0 .75rem
       cursor: pointer
       transition: background .1s
 
-      &:hover
+      &.divider
         background: $color-less-subtle
+        width: 100%
+        height: 1px
+        margin: .25rem 0
+
+      &:not(.divider)
+        padding: 0 .75rem
+
+        &:hover
+          background: $color-less-subtle
 
       i
         position: relative

@@ -40,6 +40,10 @@ export function openProjectMenu (event, dispatch) {
   }
 
   items.push({
+    text: 'hr'
+  })
+
+  items.push({
     icon: 'icon icon-download',
     text: 'Save',
     dispatch: 'projectSaveProject'
@@ -51,6 +55,10 @@ export function openProjectMenu (event, dispatch) {
   })
 
   items.push({
+    text: 'hr'
+  })
+
+  items.push({
     icon: 'icon icon-arrow-back',
     text: 'Import',
     dispatch: 'projectImportFiles'
@@ -59,6 +67,10 @@ export function openProjectMenu (event, dispatch) {
     icon: 'icon icon-arrow-forward',
     text: 'Export',
     dispatch: 'projectExportFiles'
+  })
+
+  items.push({
+    text: 'hr'
   })
 
   items.push({
