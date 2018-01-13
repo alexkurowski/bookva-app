@@ -431,14 +431,22 @@ const actions = {
     remote.dialog.showOpenDialog({
       title: 'Import',
       filters: [
-        { name: 'Text (.txt)', extensions: ['txt'] },
-        { name: 'Markdown (.md, .markdown)', extensions: ['md', 'mkd', 'mkdn', 'mdown', 'markdown'] },
-        { name: 'MS Word (.docx)', extensions: ['docx'] },
+        { name: 'All Supported Formats',    extensions: ['epub',
+                                                         'docx',
+                                                         'md', 'mkd', 'mkdn', 'mdown', 'markdown',
+                                                         'odt',
+                                                         'txt'] },
+        { name: 'EPUB (.epub)',             extensions: ['epub'] },
+        { name: 'MS Word (.docx)',          extensions: ['docx'] },
+        { name: 'Markdown (.md)',           extensions: ['md', 'mkd', 'mkdn', 'mdown', 'markdown'] },
         { name: 'OpenDocument Text (.odt)', extensions: ['odt'] },
-        { name: 'EPUB (.epub)', extensions: ['epub'] },
+        { name: 'Text (.txt)',              extensions: ['txt'] },
       ],
       properties: [ 'openFile', 'multiSelections' ]
     }, importFilepaths => {
+      if ( !importFilepaths ||
+           importFilepaths.length == 0 ) return
+
       importFilepaths.forEach(async filepath => {
         const { name, data, error } =
           await projectImportData(filepath)
