@@ -68,12 +68,9 @@ export const projectLoadData = function (filepath) {
   }
 }
 
-export const projectExportData = function (state, filepath) {
-}
-
 export const projectImportData = async function (filepath) {
   const name = filepath.split('/').pop().split('.')[0]
-  const ext  = filepath.split('.').pop()
+  const ext  = filepath.split('.').pop().toLowerCase()
 
   if (ext == 'txt') {
     const data = txt(
@@ -83,15 +80,35 @@ export const projectImportData = async function (filepath) {
   }
 
   if ( ext == 'md' ||
+       ext == 'mkd' ||
+       ext == 'mkdn' ||
+       ext == 'mdown' ||
        ext == 'markdown' ) {
     const { data, error } = await pandoc(filepath, 'markdown')
     return { name, data, error }
   }
 
+  if ( ext == 'docx' ) {
+    const { data, error } = await pandoc(filepath, 'docx')
+    return { name, data, error }
+  }
+
+  if ( ext == 'odt' ) {
+    const { data, error } = await pandoc(filepath, 'odt')
+    return { name, data, error }
+  }
+
+  if ( ext == 'epub' ) {
+    const { data, error } = await pandoc(filepath, 'epub')
+    return { name, data, error }
+  }
 
   return {
     error: 'Error: unknown file format'
   }
+}
+
+export const projectExportData = function (state, filepath) {
 }
 
 const generateId = function () {

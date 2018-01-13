@@ -60,7 +60,7 @@ export function openProjectMenu (event, dispatch) {
 
   items.push({
     icon: 'icon icon-arrow-back',
-    text: 'Import',
+    text: 'Import...',
     dispatch: 'projectImportFiles'
   })
   items.push({

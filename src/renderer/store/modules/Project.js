@@ -432,7 +432,10 @@ const actions = {
       title: 'Import',
       filters: [
         { name: 'Text (.txt)', extensions: ['txt'] },
-        { name: 'Markdown (.md, .markdown)', extensions: ['md', 'markdown'] },
+        { name: 'Markdown (.md, .markdown)', extensions: ['md', 'mkd', 'mkdn', 'mdown', 'markdown'] },
+        { name: 'MS Word (.docx)', extensions: ['docx'] },
+        { name: 'OpenDocument Text (.odt)', extensions: ['odt'] },
+        { name: 'EPUB (.epub)', extensions: ['epub'] },
       ],
       properties: [ 'openFile', 'multiSelections' ]
     }, importFilepaths => {
