@@ -1,7 +1,7 @@
 <template lang='slm'>
   #modal :class='shown'
     ConfirmModal v-if='isType("Confirm")'/
-    ExportManagerModal v-if='isType("ExportManager")'/
+    ExportManagerModal v-else-if='isType("ExportManager")'/
 </template>
 
 <script>
@@ -55,7 +55,7 @@
       backdrop-filter: blur(2px)
 
       .modal
-        top: 0 !important
+        top: 0
 
     &:not(.shown)
       pointer-events: none
@@ -73,5 +73,4 @@
     border-radius: 4px
     box-shadow: 0 1px 4px 2px $color-subtle
     transition: top .5s ease
-    text-align: center
 </style>

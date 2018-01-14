@@ -10,13 +10,12 @@
         Chapters/
 
     .modal-footer
-      .modal-footer
-        .modal-choice.secondary @click='cancel'
-          i.icon.icon-cancel
-          | Cancel
-        .modal-choice.primary @click='confirm'
-          i.icon.icon-tick
-          | Export
+      .modal-choice.primary @click='confirm'
+        i.icon.icon-tick
+        | Export
+      .modal-choice.secondary @click='cancel'
+        i.icon.icon-cancel
+        | Cancel
 </template>
 
 <script>
@@ -48,11 +47,9 @@
 
   .modal-body
     flex: 1
-    padding: 1rem 2rem
-    margin: 3rem -2rem
     text-align: left
     overflow-y: auto
 
     .section
-      margin-bottom: 2rem
+      margin: 2rem 0
 </style>

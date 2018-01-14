@@ -24,35 +24,38 @@
 
 .modal-header
   text-align: left
+  height: 2.25rem
   margin-top: .5rem
   font-size: 1.5rem
 
+.modal-footer
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  margin: 0 -1rem
+
 .modal-choice
-  display: inline-block
-  padding: .75rem 1rem
-  margin: 0 1rem
-  width: 5rem
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 7rem
+  height: 2.75rem
   color: white
   border-radius: 2px
   cursor: pointer
   transition: background .2s
 
-  &.primary
-    background: $color-action
+  &:hover
+    &.primary
+      background: $color-action
 
-    &:hover
-      background: lighten( $color-action, 10 )
-
-  &.secondary
-    background: $color-less-subtle
-
-    &:hover
-      background: lighten( $color-less-subtle, 10 )
+    &.secondary
+      background: $color-less-subtle
 
   i
     display: inline-block
     position: relative
-    top: 1px
+    top: -1px
     margin-right: .2rem
 
 .medium-editor-toolbar
