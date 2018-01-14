@@ -56,5 +56,4 @@
 <style lang='sass' scoped>
   .modal
     max-width: 60%
-    margin: auto
 </style>

@@ -10,6 +10,8 @@
 
   #{ $elem }::-webkit-scrollbar-thumb
     background-color: rgba( $fg, .25 )
+    border: 1px solid $bg
+    border-radius: $scrollbar-width / 2
 
 
 @mixin scheme($bg, $fg)
@@ -55,7 +57,7 @@
 
   @include scrollbar('.editor .pane',    $bg, $fg)
   @include scrollbar('#sidebar-content', $bg, $fg)
-  @include scrollbar('#modal',           $bg, $fg)
+  @include scrollbar('#modal',           darken( $bg, 6 ), $fg)
 
 
 #app
