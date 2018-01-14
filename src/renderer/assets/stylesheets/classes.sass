@@ -23,6 +23,7 @@
   transition: background .2s
 
 .modal-header
+  text-align: left
   margin-top: .5rem
   font-size: 1.5rem
 
@@ -53,3 +54,81 @@
     position: relative
     top: 1px
     margin-right: .2rem
+
+.medium-editor-toolbar
+  background: none
+  border: none
+  box-shadow: none
+
+  li:nth-child(6)
+    clear: both
+
+  li button
+    width: 42px
+    min-width: 42px
+    height: 42px
+    padding: 0
+    border: none
+    box-shadow: none
+
+    > i
+      width: 32px
+      height: 32px
+      padding: 8px
+      border: 1px solid darken( $dark-bg, 6 )
+      border-radius: 2px
+      transition: border-color .2s
+      box-sizing: border-box
+
+  &.medium-toolbar-arrow-over:before
+    top: -11px
+    border-color: transparent transparent $color-less-subtle transparent
+
+  &.medium-toolbar-arrow-under:after
+    border-color: $color-less-subtle transparent transparent transparent
+
+  .medium-editor-button-first,
+  .medium-editor-button-last
+    border-radius: 0 !important
+
+.medium-editor-toolbar-actions
+  background: darken( $dark-bg, 6 )
+  padding: 1px
+  border-radius: 4px
+
+.medium-editor-toolbar li button
+  background: darken( $dark-bg, 6 )
+  color: $dark-fg
+
+  &:hover
+    background: darken( $dark-bg, 6 )
+    color: $dark-fg
+
+    > i
+      border: 1px solid rgba(255, 255, 255, 0.5)
+
+  &.medium-editor-button-active
+    background: darken( $dark-bg, 6 )
+    color: $color-action
+    padding: 0
+    cursor: default
+
+    > i
+      border: 1px solid rgba(255, 255, 255, 0.25)
+
+.medium-editor-action-h1,
+.medium-editor-action-h2
+  i
+    &:before,
+    sup
+      position: relative
+      left: -2px
+
+.medium-editor-toolbar
+  &.medium-toolbar-arrow-under:after
+    top: 84px
+    border-color: darken( $dark-bg, 6 ) transparent transparent transparent
+
+  &.medium-toolbar-arrow-over:before
+    top: -8px
+    border-color: transparent transparent darken( $dark-bg, 6 ) transparent

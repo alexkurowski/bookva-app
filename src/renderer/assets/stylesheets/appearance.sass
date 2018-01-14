@@ -46,8 +46,7 @@
       background: darken( rgba( $bg, 0.6 ), 10 )
 
       .modal
-        color: $bg
-        background: $fg
+        background: $bg
 
 
   #export-manager
@@ -56,8 +55,7 @@
 
   @include scrollbar('.editor .pane',    $bg, $fg)
   @include scrollbar('#sidebar-content', $bg, $fg)
-
-  @include scrollbar('.modal-body', $fg, $bg)
+  @include scrollbar('#modal',           $bg, $fg)
 
 
 #app

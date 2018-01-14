@@ -45,12 +45,11 @@
 <style lang='sass' scoped>
   .modal
     width: 80%
-    height: 80%
 
   .modal-body
     flex: 1
-    padding: 0 2rem
-    margin: 2rem -2rem
+    padding: 1rem 2rem
+    margin: 3rem -2rem
     text-align: left
     overflow-y: auto
 

@@ -37,7 +37,7 @@
 <style lang='sass' scoped>
   #modal
     display: flex
-    align-items: center
+    align-items: flex-start
     justify-content: center
     position: fixed
     top: 0
@@ -48,6 +48,7 @@
     opacity: 0
     transition: opacity .3s, backdrop-filter .3s
     user-select: none
+    overflow-y: auto
 
     &.shown
       opacity: 1
@@ -68,8 +69,7 @@
     min-width: 300px
     min-height: 160px
     padding: 1rem 2rem
-    color: $dark-fg
-    background: $dark-bg
+    margin: 4rem 0
     border-radius: 4px
     box-shadow: 0 1px 4px 2px $color-subtle
     transition: top .5s ease
