@@ -1,6 +1,6 @@
 <template lang='slm'>
   .view[
-    :class='[ className, classAutohide ]'
+    :class='classAutohide'
     @mousemove='onMousemove'
   ]
     #background/
@@ -41,14 +41,6 @@
     },
 
     computed: {
-      className () {
-        return `
-        scheme-${ Appearance.scheme }
-        font-family-${ Appearance.fontFamily }
-        font-size-${ Appearance.fontSize }
-        `
-      },
-
       classAutohide () {
         if (this.autohideInitialShow)
           return 'autohide-show-top autohide-show-bottom'

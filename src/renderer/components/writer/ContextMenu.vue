@@ -96,6 +96,10 @@
           this.$store.dispatch(item.dispatch, item.params)
         }
 
+        if (item.fn) {
+          item.fn()
+        }
+
         this.hide(true)
       }
     }

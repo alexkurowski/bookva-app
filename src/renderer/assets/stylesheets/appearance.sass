@@ -1,19 +1,14 @@
 @import 'variables'
 
 @mixin scheme($bg, $fg)
-  #background
-    background: $bg
-
-  .pane-close
-    color: $fg
+  color: $fg
+  background: $bg
 
   .pane-resize
     .line
       background: $fg
 
   .medium-editor
-    color: $fg
-
     &:after
       color: $fg
 
@@ -22,11 +17,7 @@
     border-left-color: $bg
     border-right-color: $bg
 
-  .fa
-    color: $fg
-
   #sidebar
-    color: $fg
     background: $bg
     border-color: transparent
 
@@ -59,7 +50,6 @@
       border-color: rgba( $fg, 0.35 )
 
   #status-bar
-    color: $fg
     background: $bg
     border-color: darken( $bg, 6 )
 
@@ -97,7 +87,7 @@
     background-color: $fg
 
 
-#app > .view
+#app
   &.scheme-sharp
     @include scheme($sharp-bg, $sharp-fg)
 

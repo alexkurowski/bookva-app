@@ -66,7 +66,7 @@ export function openProjectMenu (event, dispatch) {
   items.push({
     icon: 'icon icon-arrow-forward',
     text: 'Export',
-    dispatch: 'projectExportFiles'
+    fn: () => { document.getElementById('app').__vue__.$router.push('/export') }
   })
 
   items.push({
