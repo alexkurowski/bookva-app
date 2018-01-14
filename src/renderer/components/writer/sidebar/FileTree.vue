@@ -235,28 +235,29 @@
   #file-tree
     position: relative
     min-height: 100%
-    padding-bottom: $sidebar-file-tree-height
+    padding-bottom: $status-bar-height
     box-sizing: border-box
 
   .root
     padding-bottom: 1rem
 
-  .add-menu
+  .controls
     display: flex
-    align-items: center
-    justify-content: center
+    justify-content: flex-end
     position: absolute
     bottom: 0
     left: 0
     right: 0
-    height: $sidebar-file-tree-height
-    border-top: 1px solid $color-subtle
-    transition: color .3s, background .3s
+    height: $status-bar-height
+    // border-top: 1px solid $color-subtle
+
+  .add-menu
+    padding: .5rem
     cursor: pointer
+    transition: opacity .3s
 
     &:hover
-      color: white
-      background: $color-action
+      opacity: .5
 
   .empty-folder
     display: flex
