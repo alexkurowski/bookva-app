@@ -126,10 +126,12 @@
       top: 0
       bottom: 0
       width: 4px
+      opacity: 0
       background: transparent
 
     &.open
       &:before
+        opacity: 1
         transition: background .3s
         background: $color-action !important
 </style>
