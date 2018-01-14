@@ -79,7 +79,6 @@
     height: $sidebar-controls-height
     font-size: 1.25rem
     cursor: pointer
-    color: green
     transition: opacity .5s
 
     &:hover

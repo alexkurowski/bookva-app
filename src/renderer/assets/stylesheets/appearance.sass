@@ -2,7 +2,15 @@
 
 @mixin scheme($bg, $fg)
   color: $fg
-  background: $bg
+
+  #writer
+    #background,
+    #sidebar,
+    #status-bar
+      background: $bg
+
+  #export-manager
+    background: $bg
 
   .pane-resize
     .line
