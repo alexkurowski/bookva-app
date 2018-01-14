@@ -79,13 +79,13 @@
 
         items.push({
           text: this.isOpen
-            ? 'Collapse'
-            : 'Expand',
+            ? this.$t('contextMenu.folder.close')
+            : this.$t('contextMenu.folder.open'),
           commit: 'projectToggleFolderOpen',
           params: this.folder.id
         })
         items.push({
-          text: 'Add file here',
+          text: this.$t('contextMenu.folder.addFile'),
           commit: 'projectAddFile',
           params: {
             folder: this.folder.id
@@ -94,13 +94,13 @@
 
         if (this.isEmpty) {
           items.push({
-            text: 'Remove',
+            text: this.$t('contextMenu.folder.remove'),
             commit: 'projectRemoveFolderKeepFiles',
             params: this.folder.id
           })
         } else {
           items.push({
-            text: 'Remove (with files)',
+            text: this.$t('contextMenu.folder.removeWithFiles'),
             dispatch: 'modalShow',
             params: {
               type: 'Confirm',
@@ -110,7 +110,7 @@
             }
           })
           items.push({
-            text: 'Remove (keep files)',
+            text: this.$t('contextMenu.folder.removeKeepFiles'),
             dispatch: 'modalShow',
             params: {
               type: 'Confirm',

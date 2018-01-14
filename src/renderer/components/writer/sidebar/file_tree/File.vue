@@ -57,12 +57,12 @@
 
         if (!this.isOpen) {
           items.push({
-            text: 'Open',
+            text: this.$t('contextMenu.file.openFill'),
             commit: 'projectFileOpenFill',
             params: this.file.id
           })
           items.push({
-            text: 'Open in left pane',
+            text: this.$t('contextMenu.file.openLeft'),
             commit: 'projectFileOpenPane',
             params: {
               id: this.file.id,
@@ -70,7 +70,7 @@
             }
           })
           items.push({
-            text: 'Open in right pane',
+            text: this.$t('contextMenu.file.openRight'),
             commit: 'projectFileOpenPane',
             params: {
               id: this.file.id,
@@ -79,21 +79,21 @@
           })
         } else {
           items.push({
-            text: 'Close',
+            text: this.$t('contextMenu.file.close'),
             commit: 'projectFileClosePane',
             params: this.paneIndex
           })
 
           if (Project.filesOpen.length > 1) {
             items.push({
-              text: 'Swap panes',
+              text: this.$t('contextMenu.file.swap'),
               commit: 'projectSwapOpenFiles'
             })
           }
         }
 
         items.push({
-          text: 'Remove',
+          text: this.$t('contextMenu.file.remove'),
           dispatch: 'modalShow',
           params: {
             type: 'Confirm',

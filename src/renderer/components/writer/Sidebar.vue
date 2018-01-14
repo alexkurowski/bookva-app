@@ -67,7 +67,7 @@
       },
 
       openProjectMenu (event) {
-        openProjectMenu(event, this.$store.dispatch)
+        openProjectMenu(event, this.$store.dispatch, this.$t)
       }
     }
   }

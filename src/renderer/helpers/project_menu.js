@@ -1,12 +1,12 @@
 import { Project } from './store_helper'
 
-export function openProjectMenu (event, dispatch) {
+export function openProjectMenu (event, dispatch, t) {
   const items = []
 
   if (Project.lastSave != Project.lastUpdate) {
     items.push({
       icon: 'icon icon-book',
-      text: 'New project',
+      text: t('contextMenu.project.new'),
       dispatch: 'modalShow',
       params: {
         type: 'Confirm',
@@ -17,7 +17,7 @@ export function openProjectMenu (event, dispatch) {
 
     items.push({
       icon: 'icon icon-upload',
-      text: 'Open...',
+      text: t('contextMenu.project.open'),
       dispatch: 'modalShow',
       params: {
         type: 'Confirm',
@@ -28,13 +28,13 @@ export function openProjectMenu (event, dispatch) {
   } else {
     items.push({
       icon: 'icon icon-book',
-      text: 'New project',
+      text: t('contextMenu.project.new'),
       dispatch: 'projectNewProject',
     })
 
     items.push({
       icon: 'icon icon-upload',
-      text: 'Open...',
+      text: t('contextMenu.project.open'),
       dispatch: 'projectLoadProject',
     })
   }
@@ -45,12 +45,12 @@ export function openProjectMenu (event, dispatch) {
 
   items.push({
     icon: 'icon icon-download',
-    text: 'Save',
+    text: t('contextMenu.project.save'),
     dispatch: 'projectSaveProject'
   })
   items.push({
     icon: 'icon icon-download',
-    text: 'Save as...',
+    text: t('contextMenu.project.saveAs'),
     dispatch: 'projectSaveAsProject'
   })
 
@@ -60,12 +60,12 @@ export function openProjectMenu (event, dispatch) {
 
   items.push({
     icon: 'icon icon-arrow-back',
-    text: 'Import...',
+    text: t('contextMenu.project.import'),
     dispatch: 'projectImportFiles'
   })
   items.push({
     icon: 'icon icon-arrow-forward',
-    text: 'Export',
+    text: t('contextMenu.project.export'),
     fn: () => { document.getElementById('app').__vue__.$router.push('/export') }
   })
 
@@ -75,7 +75,7 @@ export function openProjectMenu (event, dispatch) {
 
   items.push({
     icon: 'icon icon-times',
-    text: 'Quit',
+    text: t('contextMenu.project.close'),
     dispatch: 'applicationQuit'
   })
 

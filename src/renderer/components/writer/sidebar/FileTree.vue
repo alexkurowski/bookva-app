@@ -216,12 +216,12 @@
           items: [
             {
               icon: 'icon icon-plus',
-              text: 'New file',
+              text: this.$t('contextMenu.add.file'),
               commit: 'projectAddFile'
             },
             {
               icon: 'icon icon-plus',
-              text: 'New folder',
+              text: this.$t('contextMenu.add.folder'),
               commit: 'projectAddFolder'
             }
           ]
