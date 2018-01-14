@@ -1,5 +1,17 @@
 @import 'variables'
 
+@mixin scrollbar($elem, $bg, $fg)
+  #{ $elem }::-webkit-scrollbar
+    width: $scrollbar-width
+    background-color: $bg
+
+  #{ $elem }::-webkit-scrollbar-track
+    background-color: $bg
+
+  #{ $elem }::-webkit-scrollbar-thumb
+    background-color: rgba( $fg, .25 )
+
+
 @mixin scheme($bg, $fg)
   color: $fg
 
@@ -42,18 +54,10 @@
     background: $bg
 
 
-  .editor .pane::-webkit-scrollbar,
-  #sidebar-content::-webkit-scrollbar
-    width: $scrollbar-width
-    background-color: $bg
+  @include scrollbar('.editor .pane',    $bg, $fg)
+  @include scrollbar('#sidebar-content', $bg, $fg)
 
-  .editor .pane::-webkit-scrollbar-track,
-  #sidebar-content::-webkit-scrollbar-track
-    background-color: $bg
-
-  .editor .pane::-webkit-scrollbar-thumb,
-  #sidebar-content::-webkit-scrollbar-thumb
-    background-color: rgba( $fg, .25 )
+  @include scrollbar('.modal-body', $fg, $bg)
 
 
 #app
@@ -120,83 +124,3 @@
 
     .medium-content
       font-size: 1.5rem
-
-
-body
-  .medium-editor-toolbar
-    background: none
-    border: none
-    box-shadow: none
-
-    li:nth-child(6)
-      clear: both
-
-    li button
-      width: 42px
-      min-width: 42px
-      height: 42px
-      padding: 0
-      border: none
-      box-shadow: none
-
-      > i
-        width: 32px
-        height: 32px
-        padding: 8px
-        border: 1px solid darken( $dark-bg, 6 )
-        border-radius: 2px
-        transition: border-color .2s
-        box-sizing: border-box
-
-    &.medium-toolbar-arrow-over:before
-      top: -11px
-      border-color: transparent transparent $color-less-subtle transparent
-
-    &.medium-toolbar-arrow-under:after
-      border-color: $color-less-subtle transparent transparent transparent
-
-    .medium-editor-button-first,
-    .medium-editor-button-last
-      border-radius: 0 !important
-
-  .medium-editor-toolbar-actions
-    background: darken( $dark-bg, 6 )
-    padding: 1px
-    border-radius: 4px
-
-  .medium-editor-toolbar li button
-    background: darken( $dark-bg, 6 )
-    color: $dark-fg
-
-    &:hover
-      background: darken( $dark-bg, 6 )
-      color: $dark-fg
-
-      > i
-        border: 1px solid rgba(255, 255, 255, 0.5)
-
-    &.medium-editor-button-active
-      background: darken( $dark-bg, 6 )
-      color: $color-action
-      padding: 0
-      cursor: default
-
-      > i
-        border: 1px solid rgba(255, 255, 255, 0.25)
-
-  .medium-editor-action-h1,
-  .medium-editor-action-h2
-    i
-      &:before,
-      sup
-        position: relative
-        left: -2px
-
-  .medium-editor-toolbar
-    &.medium-toolbar-arrow-under:after
-      top: 84px
-      border-color: darken( $dark-bg, 6 ) transparent transparent transparent
-
-    &.medium-toolbar-arrow-over:before
-      top: -8px
-      border-color: transparent transparent darken( $dark-bg, 6 ) transparent

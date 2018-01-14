@@ -1,7 +1,14 @@
 <template lang='slm'>
   .modal
     .modal-header {{ $t('export.header.big') }}
+
     .modal-body
+      .section
+        Title/
+
+      .section
+        Chapters/
+
     .modal-footer
       .modal-footer
         .modal-choice.secondary @click='cancel'
@@ -39,4 +46,14 @@
   .modal
     width: 80%
     height: 80%
+
+  .modal-body
+    flex: 1
+    padding: 0 2rem
+    margin: 2rem -2rem
+    text-align: left
+    overflow-y: auto
+
+    .section
+      margin-bottom: 2rem
 </style>

@@ -32,4 +32,8 @@
 
     &:focus
       border-color: $color-action
+
+    &::placeholder
+      color: currentColor
+      opacity: .6
 </style>

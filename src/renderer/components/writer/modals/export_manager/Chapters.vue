@@ -1,10 +1,21 @@
 <template lang='slm'>
   .chapters
     .export-file-tree
-      .entry.root-entry [
+      .entry [
         v-for='entry in root'
+        v-if='entry.isFolder'
       ]
-        | {{ entry.title }}
+        span Folder: {{ entry.title }}
+
+        .entry.in-folder [
+          v-for='entry in filesInFolder(entry.id)'
+        ]
+          span -- File: {{ entry.title }}
+
+      .entry [
+        v-else
+      ]
+        span File: {{ entry.title }}
 </template>
 
 <script>
@@ -35,12 +46,6 @@
       },
 
       root () {
-        console.log(
-        [
-          ...this.folders,
-          ...this.filesInFolder(null)
-        ].sort(orderSort)
-        )
         return [
           ...this.folders,
           ...this.filesInFolder(null)
@@ -59,4 +64,6 @@
 </script>
 
 <style lang='sass' scoped>
+  .entry
+    min-height: 64px
 </style>
