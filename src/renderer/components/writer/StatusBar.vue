@@ -87,8 +87,7 @@
     left: 0
     right: 0
     height: $status-bar-height
-    border-top: 1px solid $color-more-subtle
-    transition: background .3s, border-color .3s, opacity .5s
+    transition: background .3s, opacity .5s
     z-index: 2000
     user-select: none
 
