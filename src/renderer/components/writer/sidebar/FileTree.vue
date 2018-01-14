@@ -243,13 +243,12 @@
 
   .controls
     display: flex
-    justify-content: flex-end
+    justify-content: flex-start
     position: absolute
     bottom: 0
     left: 0
     right: 0
     height: $status-bar-height
-    // border-top: 1px solid $color-subtle
 
   .add-menu
     padding: .5rem
