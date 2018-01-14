@@ -1,10 +1,12 @@
 <template lang='slm'>
   #modal :class='shown'
     ConfirmModal v-if='isType("Confirm")'/
+    ExportManagerModal v-if='isType("ExportManager")'/
 </template>
 
 <script>
   import ConfirmModal from './modals/Confirm'
+  import ExportManagerModal from './modals/ExportManager'
 
   import { Modal } from '@/helpers/store_helper'
 
@@ -12,7 +14,8 @@
     name: 'Modal',
 
     components: {
-      ConfirmModal
+      ConfirmModal,
+      ExportManagerModal
     },
 
     computed: {
@@ -63,7 +66,6 @@
     position: relative
     top: 2rem
     min-width: 300px
-    max-width: 60%
     min-height: 160px
     padding: 1rem 2rem
     color: $dark-fg

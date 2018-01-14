@@ -11,11 +11,6 @@ export default new Router({
       component: require('@/components/Writer').default
     },
     {
-      path: '/export',
-      name: 'export',
-      component: require('@/components/ExportManager').default
-    },
-    {
       path: '*',
       redirect: '/'
     }

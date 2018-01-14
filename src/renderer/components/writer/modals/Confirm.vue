@@ -54,4 +54,6 @@
 </script>
 
 <style lang='sass' scoped>
+  .modal
+    max-width: 60%
 </style>

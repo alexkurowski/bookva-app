@@ -66,7 +66,10 @@ export function openProjectMenu (event, dispatch, t) {
   items.push({
     icon: 'icon icon-arrow-forward',
     text: t('contextMenu.project.export'),
-    fn: () => { document.getElementById('app').__vue__.$router.push('/export') }
+    dispatch: 'modalShow',
+    params: {
+      type: 'ExportManager'
+    }
   })
 
   items.push({

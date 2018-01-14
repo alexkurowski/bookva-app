@@ -14,7 +14,8 @@ export default {
     'ThemeSelector'
   ),
   modalTypes: Enum(
-    'Confirm'
+    'Confirm',
+    'ExportManager'
   ),
   autohideInitialDelay: 5, // seconds
   autohideThreshold: 200, // pixels
