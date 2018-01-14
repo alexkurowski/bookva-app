@@ -60,6 +60,20 @@ export default {
         header: 'Remove a folder',
         body: 'Are you sure you want to remove this folder? All files within this folder will be moved.'
       },
+    },
+
+    export: {
+      header: {
+        big: 'Export manager',
+        small: 'Choose below which files you wish to export them and in what order they shall appear in the exported file.'
+      },
+
+      body: {
+        title: {
+          label: 'Title',
+          placeholder: 'Tilte of exported book'
+        }
+      }
     }
   }
 }

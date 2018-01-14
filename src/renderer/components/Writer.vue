@@ -1,5 +1,5 @@
 <template lang='slm'>
-  .view[
+  #writer.view [
     :class='classAutohide'
     @mousemove='onMousemove'
   ]
