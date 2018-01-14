@@ -9,81 +9,46 @@
     #status-bar
       background: $bg
 
-  #export-manager
-    background: $bg
+    #sidebar
+      background: $bg
+      border-color: transparent
 
-  .pane-resize
-    .line
-      background: $fg
+      &.open
+        border-color: darken( $bg, 6 )
 
-  .medium-editor
-    &:after
-      color: $fg
-
-  #editor-resizer
-    background: $fg
-    border-left-color: $bg
-    border-right-color: $bg
-
-  #sidebar
-    background: $bg
-    border-color: transparent
-
-    &.open
-      border-color: darken( $bg, 6 )
-
-  #file-tree
-    .file,
-    .folder
-      &:before
-        background-color: $bg
-
+    .file-tree-item
       &:hover
         background-color: darken( $bg, 6 )
 
-        &:before
-          background-color: darken( $bg, 6 )
+    #theme-selector .select
+      border-color: rgba( $fg, 0.75 )
 
-  .file-tree-item
-    &:hover
-      background-color: darken( $bg, 6 )
+      &:hover
+        border-color: rgba( $fg, 0.35 )
 
-  #theme-selector .select
-    border-color: rgba( $fg, 0.75 )
+    #context-menu
+      color: $bg
+      background: rgba( $fg, 0.9 )
 
-    &:hover
-      border-color: rgba( $fg, 0.35 )
+    #modal
+      background: darken( rgba( $bg, 0.6 ), 10 )
 
-  #status-bar
+      .modal
+        color: $bg
+        background: $fg
+
+
+  #export-manager
     background: $bg
 
-  #save-icon
-    text-shadow: 1px 1px 0px $bg
 
-  #context-menu
-    color: $bg
-    background: rgba( $fg, 0.9 )
-
-  #modal
-    background: darken( rgba( $bg, 0.6 ), 10 )
-
-    .modal
-      color: $bg
-      background: $fg
-
-
-  .editor .pane::-webkit-scrollbar-track
-    background-color: $bg
-
-  #sidebar-content::-webkit-scrollbar-track
-    background-color: $bg
-
-  .editor .pane::-webkit-scrollbar
-    width: $scrollbar-width
-    background-color: $bg
-
+  .editor .pane::-webkit-scrollbar,
   #sidebar-content::-webkit-scrollbar
     width: $scrollbar-width
+    background-color: $bg
+
+  .editor .pane::-webkit-scrollbar-track,
+  #sidebar-content::-webkit-scrollbar-track
     background-color: $bg
 
   .editor .pane::-webkit-scrollbar-thumb,

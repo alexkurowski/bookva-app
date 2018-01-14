@@ -128,10 +128,10 @@
       width: 4px
       opacity: 0
       background: transparent
+      transition: background .3s
 
     &.open
       &:before
         opacity: 1
-        transition: background .3s
-        background: $color-action !important
+        background: $color-action
 </style>

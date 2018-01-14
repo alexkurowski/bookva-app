@@ -86,6 +86,7 @@
   .line
     width: 100%
     height: 100%
+    background: currentColor
     opacity: .1
     transition: opacity .3s
 

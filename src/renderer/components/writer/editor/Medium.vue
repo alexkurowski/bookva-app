@@ -98,6 +98,10 @@
 </script>
 
 <style lang='sass' scoped>
+  .medium-editor
+    &:after
+      color: currentColor
+
   .medium-title
     margin-bottom: 1rem
 
