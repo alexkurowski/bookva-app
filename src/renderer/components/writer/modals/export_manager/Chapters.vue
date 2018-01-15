@@ -1,49 +1,53 @@
 <template lang='slm'>
   .chapters
 
-    .export-file-tree
-      table
-        tr
-          th.icon
-          th.icon
-          th.left-aligned Title
-          th Words
+    .table-container.export-file-tree
+      .table
+        .header.row
+          .item.icon
+          .item.icon
+          .item.left-aligned.max-width Title
+          .item.words Words
 
-        tr [
+        .row [
           v-for='entry in fileTree'
           @click='toggle(entry)'
         ]
-          td
+          .item.icon.left-aligned
             i.fa.fa-fw.fa-check-square-o [
               v-if='isSelected(entry)'
             ]
             i.fa.fa-fw.fa-square-o [
               v-else
             ]
-          td
+
+          .item.icon
             i.fa.fa-fw.fa-folder-open-o [ v-if='entry.isFolder' ]
-          td.left-aligned [
+
+          .item.max-width.left-aligned.no-wrap [
             :class='{ "in-folder": !entry.isFolder && entry.folder }'
           ]
             | {{ entry.title || 'Untitled' }}
-          td
+
+          .item.words.right-aligned
             span [
               v-if='!entry.isFolder'
             ]
               | {{ entry.wordCount }}
 
-    .selected-files
-      table
-        tr
-          th Chapters to export
+    .table-container.selected-files
+      .table
+        .header.row
+          th.left-aligned Chapters to export
 
         Draggable [
           v-model='selected'
         ]
-          .entry [
+          .row.entry [
             v-for='file in selected'
           ]
-            | {{ file.title || 'Untitled' }}
+            span.no-wrap
+              | {{ file.title || 'Untitled' }}
 </template>
 
 <script>
@@ -155,58 +159,69 @@
   .chapters
     display: flex
 
-  .export-file-tree
+  .table-container
     flex: 1
+    width: 50%
     padding: 1rem
+    box-sizing: border-box
 
-    .fa-fw
-      width: 1rem
-      margin-right: .5rem
-      text-align: left
+  .table
+    display: flex
+    flex-direction: column
 
-  .selected-files
-    flex: 1
-    padding: 1rem
+  .header
+    font-weight: bold
 
-    .entry
-      display: flex
-      align-items: center
-      justify-content: flex-start
-      height: $item-height
-      padding: 0 .5rem
-      cursor: pointer
-
-      &:hover
-        background: $color-subtle
-
-  table
-    width: 100%
-    border-collapse: collapse
-
-  tr
+  .row
+    display: flex
     height: $item-height
+    align-items: center
+    max-width: 100%
+    overflow: hidden
     cursor: pointer
 
     &:hover
       background: $color-subtle
 
-  th,
-  td
-    text-align: center
-    vertical-align: middle
+  .item
+    display: block
+    padding: 0 .5rem
 
-  td.in-folder
-    padding-left: 1rem
+    &.icon
+      width: 1rem
 
-  .icon
-    width: 2rem
+      .fa-fw
+        width: 0
+
+    &.max-width
+      flex: 1
+
+    &.words
+      width: 3rem
+      text-align: center
+
+    &.in-folder
+      padding-left: 1.5rem
+
+
+  .entry
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    height: $item-height
+    padding: 0 .5rem
+    cursor: pointer
 
   .left-aligned
-    text-align: left
+    text-align: left !important
 
   .right-aligned
-    text-align: right
+    text-align: right !important
 
-  .big-size
-    font-size: 1.5rem
+  .max-width
+    width: 100%
+
+  .no-wrap
+    white-space: nowrap
+    overflow: hidden
 </style>
