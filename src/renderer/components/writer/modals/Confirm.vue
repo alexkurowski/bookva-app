@@ -5,10 +5,10 @@
     .modal-footer
       .modal-choice.primary @click='confirm'
         i.icon.icon-tick
-        | Confirm
+        | {{ $t('modal.confirm.confirm') }}
       .modal-choice.secondary @click='cancel'
         i.icon.icon-cancel
-        | Cancel
+        | {{ $t('modal.confirm.cancel') }}
 </template>
 
 <script>

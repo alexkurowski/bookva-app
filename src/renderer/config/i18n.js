@@ -60,6 +60,16 @@ export default {
         header: 'Remove a folder',
         body: 'Are you sure you want to remove this folder? All files within this folder will be moved.'
       },
+
+      confirm: {
+        confirm: 'Confirm',
+        cancel: 'Cancel'
+      },
+
+      exportManager: {
+        confirm: 'Export',
+        cancel: 'Cancel'
+      },
     },
 
     export: {
@@ -77,6 +87,14 @@ export default {
         author: {
           label: 'Author',
           placeholder: 'Your pen name'
+        },
+
+        chapters: {
+          header: {
+            title: 'Title',
+            wordCount: 'Words',
+            order: 'Chapters to export',
+          }
         }
       }
     },

@@ -12,10 +12,10 @@
     .modal-footer
       .modal-choice.primary @click='confirm'
         i.icon.icon-tick
-        | Export
+        | {{ $t('modal.exportManager.confirm') }}
       .modal-choice.secondary @click='cancel'
         i.icon.icon-cancel
-        | Cancel
+        | {{ $t('modal.exportManager.cancel') }}
 </template>
 
 <script>

@@ -6,8 +6,8 @@
         .header.row
           .item.icon
           .item.icon
-          .item.left-aligned.max-width Title
-          .item.words Words
+          .item.left-aligned.max-width {{ $t('export.body.chapters.header.title') }}
+          .item.words {{ $t('export.body.chapters.header.wordCount') }}
 
         .row [
           v-for='entry in fileTree'
@@ -39,7 +39,7 @@
     .table-container.selected-files
       .table
         .header.row
-          th.left-aligned Chapters to export
+          th.left-aligned {{ $t('export.body.chapters.header.order') }}
 
         Draggable [
           v-model='selected'
