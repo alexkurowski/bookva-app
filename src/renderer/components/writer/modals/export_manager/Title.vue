@@ -1,8 +1,8 @@
 <template lang='slm'>
   .export-title
+
     label {{ $t('export.body.title.label') }}
-    input [
-      name='export-title'
+    input#export-title [
       :placeholder='$t("export.body.title.placeholder")'
     ]
 </template>

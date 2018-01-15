@@ -464,7 +464,31 @@ const actions = {
     })
   },
 
-  projectExportFiles (context) {
+  projectExportFiles (context, params) {
+    ioBusy = true
+    context.commit('modalHide')
+
+    remote.dialog.showSaveDialog({
+      title: 'Export',
+      filters: [
+        { name: 'EPUB (.epub)',             extensions: ['epub'] },
+        { name: 'MS Word (.docx)',          extensions: ['docx'] },
+        { name: 'Markdown (.md)',           extensions: ['md', 'mkd', 'mkdn', 'mdown', 'markdown'] },
+        { name: 'OpenDocument Text (.odt)', extensions: ['odt'] },
+        { name: 'Text (.txt)',              extensions: ['txt'] },
+      ],
+    }, exportFilepath => {
+      if (exportFilepath) {
+        projectExportData(
+          context.state,
+          params,
+          exportFilepath,
+          () => { ioBusy = false }
+        )
+      } else {
+        ioBusy = false
+      }
+    })
   },
 
   projectUpdateFileContent (context, params) {

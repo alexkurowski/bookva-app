@@ -17,11 +17,21 @@ export const txt = function (text) {
     .join('')
 }
 
-export const pandoc = function (filepath, format) {
+export const pandocLoad = function (source, fromFormat, toFormat) {
   return new Promise(resolve => {
-    const args = `-f ${ format } -t html`
+    const args = `-f ${ fromFormat } -t ${ toFormat }`
 
-    nodePandoc(filepath, args, (error, result) => {
+    nodePandoc(source, args, (error, result) => {
+      resolve({ data: result, error })
+    })
+  })
+}
+
+export const pandocSave = function (filepath, source, fromFormat, toFormat) {
+  return new Promise(resolve => {
+    const args = `-f ${ fromFormat } -t ${ toFormat } -o ${ filepath }`
+
+    nodePandoc(source, args, (error, result) => {
       resolve({ data: result, error })
     })
   })

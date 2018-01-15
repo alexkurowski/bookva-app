@@ -43,9 +43,11 @@
 
         Draggable [
           v-model='selected'
+          id='export-chapters'
         ]
           .row.entry [
             v-for='file in selected'
+            :data-file-id='file.id'
           ]
             span.no-wrap {{ title(file) }}
 </template>

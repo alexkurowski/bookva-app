@@ -2,7 +2,11 @@ import { remote } from 'electron'
 import fs from 'fs'
 import path from 'path'
 
-import { txt, pandoc } from './import_helper'
+import {
+  txt,
+  pandocLoad,
+  pandocSave
+} from './import_export_helper'
 
 import Config from '@/config/config'
 
@@ -28,6 +32,22 @@ export const fieldsToSave =
     'lastSync',
     'lastSave',
   ]
+
+const formats = {
+  'markdown': [ 'md', 'mkd', 'mkdn', 'mdown', 'markdown' ],
+  'docx':     [ 'docx' ],
+  'odt':      [ 'odt' ],
+  'epub':     [ 'epub' ],
+}
+
+const getFormat = function (ext) {
+  for (let key in formats) {
+    if (formats[key].includes(ext))
+      return key
+  }
+  throw `Error: format for ${ ext } extension is not found`
+  return ''
+}
 
 export const projectSaveData = function (state, filepath, callback) {
   const data =
@@ -69,8 +89,9 @@ export const projectLoadData = function (filepath) {
 }
 
 export const projectImportData = async function (filepath) {
-  const name = filepath.split('/').pop().split('.')[0]
-  const ext  = filepath.split('.').pop().toLowerCase()
+  const name   = filepath.split('/').pop().split('.')[0]
+  const ext    = filepath.split('.').pop().toLowerCase()
+  const format = getFormat(ext)
 
   if (ext == 'txt') {
     const data = txt(
@@ -79,36 +100,28 @@ export const projectImportData = async function (filepath) {
     return { name, data }
   }
 
-  if ( ext == 'md' ||
-       ext == 'mkd' ||
-       ext == 'mkdn' ||
-       ext == 'mdown' ||
-       ext == 'markdown' ) {
-    const { data, error } = await pandoc(filepath, 'markdown')
-    return { name, data, error }
-  }
-
-  if ( ext == 'docx' ) {
-    const { data, error } = await pandoc(filepath, 'docx')
-    return { name, data, error }
-  }
-
-  if ( ext == 'odt' ) {
-    const { data, error } = await pandoc(filepath, 'odt')
-    return { name, data, error }
-  }
-
-  if ( ext == 'epub' ) {
-    const { data, error } = await pandoc(filepath, 'epub')
-    return { name, data, error }
-  }
-
-  return {
-    error: 'Error: unknown file format'
-  }
+  const { data, error } = await pandocLoad(filepath, format, 'html')
+  return { name, data, error }
 }
 
-export const projectExportData = function (state, filepath) {
+export const projectExportData = async function (state, params, filepath, callback) {
+  const ext    = filepath.split('.').pop().toLowerCase()
+  const format = getFormat(ext)
+
+  let data =
+    `<h1>${ params.title }</h1>`
+
+  params
+    .files
+    .map(file => state.files[file])
+    .forEach(file => {
+      data += `<h1>${ file.title }</h1>`
+      data += `${ file.content }`
+    })
+
+  if (format) {
+    await pandocSave(filepath, data, 'html', format)
+  }
 }
 
 const generateId = function () {

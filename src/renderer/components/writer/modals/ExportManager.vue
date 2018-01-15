@@ -32,6 +32,21 @@
 
     methods: {
       confirm () {
+        const title =
+          document.getElementById('export-title').value
+
+        const files =
+          [ ...document.getElementById('export-chapters').children ]
+            .map(node => node.dataset.fileId)
+
+        if ( title && files.length ) {
+          this.$store.dispatch('projectExportFiles', {
+            title: title,
+            files: files
+          })
+        } else {
+          console.log("Gotta set title and choose files")
+        }
       },
 
       cancel () {
