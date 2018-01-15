@@ -115,6 +115,8 @@
   .info
     text-align: center
     margin-bottom: 2rem
+    font-weight: bold
+    opacity: .75
 
   label
     text-align: left
