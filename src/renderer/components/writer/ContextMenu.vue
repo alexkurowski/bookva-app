@@ -116,6 +116,7 @@
     z-index: 7500
     overflow: hidden
     transition: opacity .2s
+    user-select: none
 
     &.shown
       opacity: 1

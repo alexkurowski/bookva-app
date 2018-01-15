@@ -40,17 +40,28 @@
     data () {
       return {
         scheme: {
-          sharp:     'Sharp',
-          smooth:    'Smooth',
-          frost:     'Frost',
-          solarized: 'Solarized',
-          dark:      'Dark',
-          contrast:  'Contrast',
+          sharp:          'Sharp',
+          smooth:         'Smooth',
+          frost:          'Frost',
+          solarizedLight: 'Solarized Light',
+          solarizedDark:  'Solarized Dark',
+          night:          'Blue Night',
+          dark:           'Dark',
+          contrast:       'Contrast',
         },
 
         fontFamily: {
+          // serif
           merriweather: 'Merriweather',
+          slabo:        'Slabo',
+          sourceserif:  'Source Serif Pro',
+          // sans-serif
           roboto:       'Roboto',
+          lato:         'Lato',
+          ptsans:       'PT Sans',
+          // monospace
+          sharetech:    'Share Tech',
+          overpass:     'Overpass',
           ptmono:       'PT Mono',
         },
 

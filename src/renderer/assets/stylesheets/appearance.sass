@@ -70,8 +70,14 @@
   &.scheme-frost
     @include scheme($frost-bg, $frost-fg)
 
-  &.scheme-solarized
-    @include scheme($solarized-bg, $solarized-fg)
+  &.scheme-solarizedLight
+    @include scheme($solarized-light-bg, $solarized-light-fg)
+
+  &.scheme-solarizedDark
+    @include scheme($solarized-dark-bg, $solarized-dark-fg)
+
+  &.scheme-night
+    @include scheme($night-bg, $night-fg)
 
   &.scheme-dark
     @include scheme($dark-bg, $dark-fg)
@@ -84,9 +90,33 @@
     .medium-editor
       font-family: Merriweather, serif
 
+  &.font-family-slabo
+    .medium-editor
+      font-family: Slabo, serif
+
+  &.font-family-sourceserif
+    .medium-editor
+      font-family: Source Serif Pro, serif
+
   &.font-family-roboto
     .medium-editor
       font-family: Roboto, sans-serif
+
+  &.font-family-lato
+    .medium-editor
+      font-family: Lato, sans-serif
+
+  &.font-family-ptsans
+    .medium-editor
+      font-family: PT Sans, sans-serif
+
+  &.font-family-sharetech
+    .medium-editor
+      font-family: Share Tech, monospace
+
+  &.font-family-overpass
+    .medium-editor
+      font-family: Overpass, monospace
 
   &.font-family-ptmono
     .medium-editor
