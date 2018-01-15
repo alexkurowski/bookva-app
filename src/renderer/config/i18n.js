@@ -25,6 +25,15 @@ export default {
           file: 'New file',
           folder: 'New folder'
         },
+
+        themeSelector: {
+          info: 'Configurations',
+          label: {
+            scheme: 'Theme',
+            fontFamily: 'Font',
+            fontSize: 'Font size'
+          }
+        }
       },
 
       statusbar: {

@@ -1,27 +1,33 @@
 <template lang='slm'>
   #theme-selector
+    .info
+      | {{ $t('writer.sidebar.themeSelector.info') }}
+
+    label {{ $t('writer.sidebar.themeSelector.label.scheme') }}
     .select-container
       .select[
         data-type='scheme'
         @click='openMenu'
       ]
-        span {{ selectedValue("scheme") }} {{ suffix("scheme") }}
+        span {{ selectedValue("scheme") }}
         i.fa.fa-sort
 
+    label {{ $t('writer.sidebar.themeSelector.label.fontFamily') }}
     .select-container
       .select[
         data-type='fontFamily'
         @click='openMenu'
       ]
-        span {{ selectedValue("fontFamily") }} {{ suffix("fontFamily") }}
+        span {{ selectedValue("fontFamily") }}
         i.fa.fa-sort
 
+    label {{ $t('writer.sidebar.themeSelector.label.fontSize') }}
     .select-container
       .select[
         data-type='fontSize'
         @click='openMenu'
       ]
-        span {{ selectedValue("fontSize") }} {{ suffix("fontSize") }}
+        span {{ selectedValue("fontSize") }}
         i.fa.fa-sort
 </template>
 
@@ -62,21 +68,13 @@
         return this[type][ Appearance[type] ]
       },
 
-      suffix (type) {
-        switch (type) {
-          case 'scheme':     return ' colors'
-          case 'fontFamily': return ' font'
-          case 'fontSize':   return ' size'
-        }
-      },
-
       openMenu (event) {
         const type  = event.target.dataset.type
         const items = []
 
         for (const key in this[type]) {
           items.push({
-            text: this[type][key] + this.suffix(type),
+            text: this[type][key],
             commit: 'appearanceUpdateTheme',
             params: {
               value: key,
@@ -99,13 +97,22 @@
 
 <style lang='sass' scoped>
   #theme-selector
-    text-align: center
+    width: 80%
+    margin: 0 auto
     user-select: none
+
+  .info
+    text-align: center
+    margin-bottom: 2rem
+
+  label
+    text-align: left
+    padding-left: .25rem
 
   .select-container
     position: relative
-    width: 80%
-    margin: 1rem auto 2rem
+    width: 100%
+    margin: .5rem 0 2rem
 
     i
       position: absolute
