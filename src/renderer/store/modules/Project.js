@@ -465,7 +465,9 @@ const actions = {
   },
 
   projectExportFiles (context, params) {
+    if (ioBusy) return
     ioBusy = true
+
     context.commit('modalHide')
 
     remote.dialog.showSaveDialog({
