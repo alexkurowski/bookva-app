@@ -27,13 +27,14 @@
           .item.max-width.left-aligned.no-wrap [
             :class='{ "in-folder": !entry.isFolder && entry.folder }'
           ]
-            | {{ entry.title || 'Untitled' }}
+            | {{ title(entry) }}
 
           .item.words.right-aligned
             span [
               v-if='!entry.isFolder'
-            ]
-              | {{ entry.wordCount }}
+            ] {{ entry.wordCount }}
+
+    .table-divider
 
     .table-container.selected-files
       .table
@@ -46,8 +47,7 @@
           .row.entry [
             v-for='file in selected'
           ]
-            span.no-wrap
-              | {{ file.title || 'Untitled' }}
+            span.no-wrap {{ title(file) }}
 </template>
 
 <script>
@@ -148,6 +148,13 @@
         } else {
           return this.selected.includes(entry)
         }
+      },
+
+      title (entry) {
+        return (
+          (entry.title || 'Untitled')
+            .replace(/&nbsp;/, '')
+        )
       }
     }
   }
@@ -165,12 +172,22 @@
     padding: 1rem
     box-sizing: border-box
 
+  .table-divider
+    width: 1px
+    align-items: stretch
+    background: currentColor
+    margin-top: 4.5rem
+    margin-bottom: 2rem
+    margin-right: -1px
+    opacity: .5
+
   .table
     display: flex
     flex-direction: column
 
   .header
     font-weight: bold
+    padding: 0 .5rem
 
   .row
     display: flex
