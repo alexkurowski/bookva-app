@@ -24,6 +24,8 @@ export const syncFilepath =
 export const fieldsToSave =
   [
     'projectFile',
+    'projectTitle',
+    'projectAuthor',
     'files',
     'folders',
     'filesOpen',

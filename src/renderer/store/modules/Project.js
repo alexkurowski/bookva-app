@@ -20,6 +20,8 @@ let syncBusy = false
 
 const state = {
   projectFile: null,
+  projectTitle: '',
+  projectAuthor: '',
 
   files: {},
   folders: {},
@@ -34,14 +36,16 @@ const state = {
 
 const mutations = {
   projectNewProject (state) {
-    state.projectFile = null
-    state.files       = {}
-    state.folders     = {}
-    state.filesOpen   = []
-    state.foldersOpen = []
-    state.lastUpdate  = 0
-    state.lastSync    = 0
-    state.lastSave    = 0
+    state.projectFile   = null
+    state.projectTitle  = ''
+    state.projectAuthor = ''
+    state.files         = {}
+    state.folders       = {}
+    state.filesOpen     = []
+    state.foldersOpen   = []
+    state.lastUpdate    = 0
+    state.lastSync      = 0
+    state.lastSave      = 0
 
     mutations.projectAddFolder(state, {
       title: 'Chapters'
@@ -150,6 +154,14 @@ const mutations = {
     })
 
     global.resetEditors()
+  },
+
+  projectUpdateInfo (state, info) {
+    if (info.hasOwnProperty('title'))
+      state.projectTitle  = info.title
+
+    if (info.hasOwnProperty('author'))
+      state.projectAuthor = info.author
   },
 
   projectAddFile (state, params) {
@@ -481,6 +493,10 @@ const actions = {
       ],
     }, exportFilepath => {
       if (exportFilepath) {
+        context.commit('projectUpdateInfo', {
+          title:  params.title,
+          author: params.author
+        })
         projectExportData(
           context.state,
           params,

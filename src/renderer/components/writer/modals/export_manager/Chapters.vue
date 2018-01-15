@@ -57,6 +57,8 @@
 
   import { Project } from '@/helpers/store_helper'
 
+  const orderSort = (a, b) => (a.order - b.order)
+
   export default {
     name: 'Chapters',
 
@@ -95,7 +97,7 @@
         return [
           ...this.files,
           ...this.folders
-        ].sort((a, b) => (a.order - b.order))
+        ].sort(orderSort)
       },
     },
 
@@ -109,6 +111,7 @@
         this
           .files
           .filter(file => file.folder == folder.id)
+          .sort(orderSort)
           .forEach(file => this.selectFile(file))
       },
 
@@ -122,6 +125,7 @@
         this
           .files
           .filter(file => file.folder == folder.id)
+          .sort(orderSort)
           .forEach(file => this.deselectFile(file))
       },
 
@@ -190,6 +194,7 @@
   .header
     font-weight: bold
     padding: 0 .5rem
+    opacity: .75
 
   .row
     display: flex

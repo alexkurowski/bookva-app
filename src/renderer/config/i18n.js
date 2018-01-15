@@ -72,6 +72,11 @@ export default {
         title: {
           label: 'Title',
           placeholder: 'Tilte of exported book'
+        },
+
+        author: {
+          label: 'Author',
+          placeholder: 'Your pen name'
         }
       }
     },

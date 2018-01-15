@@ -4,7 +4,7 @@
 
     .modal-body
       .section
-        Title/
+        Info/
 
       .section
         Chapters/
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-  import Title from './export_manager/Title'
+  import Info from './export_manager/Info'
   import Chapters from './export_manager/Chapters'
 
   export default {
     name: 'ExportManagerModal',
 
     components: {
-      Title,
+      Info,
       Chapters
     },
 
@@ -35,14 +35,16 @@
         const title =
           document.getElementById('export-title').value
 
+        const author =
+          document.getElementById('export-author').value
+
         const files =
           [ ...document.getElementById('export-chapters').children ]
             .map(node => node.dataset.fileId)
 
         if ( title && files.length ) {
           this.$store.dispatch('projectExportFiles', {
-            title: title,
-            files: files
+            title, author, files
           })
         } else {
           console.log("Gotta set title and choose files")
