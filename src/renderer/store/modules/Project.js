@@ -485,6 +485,7 @@ const actions = {
           exportFilepath,
           () => { ioBusy = false }
         )
+        context.dispatch('applicationShowIOIndicator')
       } else {
         ioBusy = false
       }
