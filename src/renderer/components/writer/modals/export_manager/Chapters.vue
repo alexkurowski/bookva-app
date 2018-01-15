@@ -94,14 +94,33 @@
       },
 
       fileTree () {
-        return [
-          ...this.files,
-          ...this.folders
+        let result = [
+          ...this.folders,
+          ...this.filesInFolder(null)
         ].sort(orderSort)
+
+        for (let i = result.length - 1; i >= 0; i--) {
+          if (result[i].isFolder) {
+            result.splice(
+              i + 1,
+              0,
+              ...this.filesInFolder(result[i].id)
+            )
+          }
+        }
+
+        return result
       },
     },
 
     methods: {
+      filesInFolder (folder) {
+        return this
+          .files
+          .filter(file => file.folder === folder)
+          .sort(orderSort)
+      },
+
       selectFile (file) {
         if (!this.isSelected(file))
           this.selected.push(file)
