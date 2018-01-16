@@ -56,7 +56,7 @@ const actions = {
     context.commit('modalHide')
     setTimeout(() => {
       context.commit('modalSetType', '')
-    }, 500)
+    }, 300)
   }
 }
 
