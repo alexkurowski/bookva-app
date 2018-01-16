@@ -17,9 +17,9 @@
         .icon.icon-th-list
 
       .btn[
-        :title='$t("writer.sidebar.title.themeSelector")'
-        :class='isActive("ThemeSelector")'
-        @click='setSidebarPage("ThemeSelector")'
+        :title='$t("writer.sidebar.title.configurations")'
+        :class='isActive("Configurations")'
+        @click='setSidebarPage("Configurations")'
       ]
         .icon.icon-adjust-contrast
 

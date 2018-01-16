@@ -11,7 +11,7 @@ export default {
   appearanceKey: 'appearance-settings',
   sidebarPages: Enum(
     'FileTree',
-    'ThemeSelector'
+    'Configurations'
   ),
   modalTypes: Enum(
     'Confirm',

@@ -1,9 +1,9 @@
 <template lang='slm'>
-  #theme-selector
+  #configurations
     .info
-      | {{ $t('writer.sidebar.themeSelector.info') }}
+      | {{ $t('writer.sidebar.configurations.info') }}
 
-    label {{ $t('writer.sidebar.themeSelector.label.scheme') }}
+    label {{ $t('writer.sidebar.configurations.label.scheme') }}
     .select-container
       .select[
         data-type='scheme'
@@ -12,7 +12,7 @@
         span {{ selectedValue("scheme") }}
         i.fa.fa-sort
 
-    label {{ $t('writer.sidebar.themeSelector.label.fontFamily') }}
+    label {{ $t('writer.sidebar.configurations.label.fontFamily') }}
     .select-container
       .select[
         data-type='fontFamily'
@@ -21,7 +21,7 @@
         span {{ selectedValue("fontFamily") }}
         i.fa.fa-sort
 
-    label {{ $t('writer.sidebar.themeSelector.label.fontSize') }}
+    label {{ $t('writer.sidebar.configurations.label.fontSize') }}
     .select-container
       .select[
         data-type='fontSize'
@@ -35,7 +35,7 @@
   import { Appearance } from '@/helpers/store_helper'
 
   export default {
-    name: 'ThemeSelector',
+    name: 'Configurations',
 
     data () {
       return {
@@ -107,7 +107,7 @@
 </script>
 
 <style lang='sass' scoped>
-  #theme-selector
+  #configurations
     width: 80%
     margin: 0 auto
     user-select: none

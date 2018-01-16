@@ -4,7 +4,7 @@
     #sidebar-content
       transition name='fade' mode='out-in'
         FileTree v-if='page == "FileTree"'/
-        ThemeSelector v-else-if='page == "ThemeSelector"'/
+        Configurations v-else-if='page == "Configurations"'/
 
     a#toggle[
       :title='$t("writer.sidebar.title.toggle")'
@@ -24,7 +24,7 @@
 <script>
   import Controls from './sidebar/Controls'
   import FileTree from './sidebar/FileTree'
-  import ThemeSelector from './sidebar/ThemeSelector'
+  import Configurations from './sidebar/Configurations'
   import DropOpener from './sidebar/DropOpener'
 
   import { Application, Sidebar } from '@/helpers/store_helper'
@@ -36,7 +36,7 @@
     components: {
       Controls,
       FileTree,
-      ThemeSelector,
+      Configurations,
       DropOpener
     },
 

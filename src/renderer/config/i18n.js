@@ -17,7 +17,7 @@ export default {
         title: {
           projectMenu: 'Project',
           fileTree: 'Files',
-          themeSelector: 'Themes',
+          configurations: 'Configurations',
           share: 'Share',
           toggle: 'Toggle sidebar'
         },
@@ -33,7 +33,7 @@ export default {
           }
         },
 
-        themeSelector: {
+        configurations: {
           info: 'Configurations',
           label: {
             scheme: 'Theme',
