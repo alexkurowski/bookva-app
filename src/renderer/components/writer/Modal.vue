@@ -2,11 +2,13 @@
   #modal :class='shown'
     ConfirmModal v-if='isType("Confirm")'/
     ExportManagerModal v-else-if='isType("ExportManager")'/
+    AboutModal v-else-if='isType("About")'/
 </template>
 
 <script>
   import ConfirmModal from './modals/Confirm'
   import ExportManagerModal from './modals/ExportManager'
+  import AboutModal from './modals/About'
 
   import { Modal } from '@/helpers/store_helper'
 
@@ -15,7 +17,8 @@
 
     components: {
       ConfirmModal,
-      ExportManagerModal
+      ExportManagerModal,
+      AboutModal
     },
 
     computed: {

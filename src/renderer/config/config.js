@@ -15,7 +15,8 @@ export default {
   ),
   modalTypes: Enum(
     'Confirm',
-    'ExportManager'
+    'ExportManager',
+    'About'
   ),
   autohideInitialDelay: 5, // seconds
   autohideThreshold: 200, // pixels

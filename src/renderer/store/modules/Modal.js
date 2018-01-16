@@ -17,6 +17,7 @@ const mutations = {
 
   modalHide (state) {
     state.modalShown = false
+    state.modalType = ''
   },
 
   modalSetType (state, value) {

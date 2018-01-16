@@ -90,6 +90,12 @@ export default {
         confirm: 'Export',
         cancel: 'Cancel'
       },
+
+      about: {
+        header: 'WRTR',
+        body: 'Placeholder "about" text',
+        ok: 'Ok'
+      }
     },
 
     export: {
@@ -127,6 +133,7 @@ export default {
         saveAs: 'Save as...',
         import: 'Import...',
         export: 'Export...',
+        about: 'About...',
         close: 'Quit',
       },
 

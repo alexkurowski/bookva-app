@@ -1,0 +1,25 @@
+<template lang='slm'>
+  .modal
+    .modal-header {{ $t('modal.about.header') }}
+    .modal-body {{ $t('modal.about.body') }}
+    .modal-footer
+      .empty
+      .modal-choice.secondary @click='hide'
+        | {{ $t('modal.about.ok') }}
+      .empty
+</template>
+
+<script>
+  export default {
+    name: 'AboutModal',
+
+    methods: {
+      hide () {
+        this.$store.commit('modalHide')
+      }
+    }
+  }
+</script>
+
+<style lang='sass' scoped>
+</style>

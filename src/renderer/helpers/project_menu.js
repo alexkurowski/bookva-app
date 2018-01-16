@@ -77,6 +77,19 @@ export function openProjectMenu (event, dispatch, t) {
   })
 
   items.push({
+    icon: 'icon icon-info',
+    text: t('contextMenu.project.about'),
+    dispatch: 'modalShow',
+    params: {
+      type: 'About'
+    }
+  })
+
+  items.push({
+    text: 'hr'
+  })
+
+  items.push({
     icon: 'icon icon-times',
     text: t('contextMenu.project.close'),
     dispatch: 'applicationQuit'
