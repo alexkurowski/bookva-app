@@ -18,12 +18,19 @@ export default {
           projectMenu: 'Project',
           fileTree: 'Files',
           themeSelector: 'Themes',
-          share: 'Share'
+          share: 'Share',
+          toggle: 'Toggle sidebar'
         },
 
         new: {
           file: 'New file',
           folder: 'New folder'
+        },
+
+        fileTree: {
+          title: {
+            add: 'Add files & folders'
+          }
         },
 
         themeSelector: {
@@ -40,6 +47,10 @@ export default {
         info: {
           words: 'words',
           total: 'total'
+        },
+
+        title: {
+          fullscreen: 'Toggle fullscreen mode'
         }
       }
     },

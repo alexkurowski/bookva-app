@@ -13,7 +13,10 @@
             |  {{ wordsProject }}
 
     .right
-      #fullscreen-toggle @click='toggleFullscreen'
+      #fullscreen-toggle [
+        :title='$t("writer.statusbar.title.fullscreen")'
+        @click='toggleFullscreen'
+      ]
         i.fa :class='fullscreenClass'
 </template>
 

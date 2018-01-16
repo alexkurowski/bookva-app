@@ -7,6 +7,7 @@
         ThemeSelector v-else-if='page == "ThemeSelector"'/
 
     a#toggle[
+      :title='$t("writer.sidebar.title.toggle")'
       @click='toggle'
       @contextmenu='openProjectMenu'
     ]

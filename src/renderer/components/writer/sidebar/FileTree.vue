@@ -42,6 +42,7 @@
 
     .controls
       .add-menu[
+        :title='$t("writer.sidebar.fileTree.title.add")'
         @click='openAddMenu'
       ]
         .icon.icon-plus
