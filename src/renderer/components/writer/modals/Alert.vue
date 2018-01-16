@@ -5,6 +5,7 @@
     .modal-footer
       .empty
       .modal-choice.secondary @click='hide'
+        | {{ $t('modal.alert.ok') }}
 </template>
 
 <script>

@@ -86,6 +86,10 @@ export default {
         cancel: 'Cancel'
       },
 
+      alert: {
+        ok: 'Ok'
+      },
+
       exportManager: {
         confirm: 'Export',
         cancel: 'Cancel'
