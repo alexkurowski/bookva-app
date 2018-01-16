@@ -6,6 +6,9 @@ const state = {
   scheme:     'smooth',
   fontFamily: 'merriweather',
   fontSize:   'normal',
+
+  statusbar:  'autohide',
+  width:      'normal',
 }
 
 const mutations = {

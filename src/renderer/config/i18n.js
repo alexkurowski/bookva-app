@@ -38,7 +38,9 @@ export default {
           label: {
             scheme: 'Theme',
             fontFamily: 'Font',
-            fontSize: 'Font size'
+            fontSize: 'Font size',
+            statusbar: 'Status bar',
+            width: 'Column width',
           }
         }
       },

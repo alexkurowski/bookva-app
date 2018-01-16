@@ -21,7 +21,7 @@
         :class='isActive("Configurations")'
         @click='setSidebarPage("Configurations")'
       ]
-        .icon.icon-adjust-contrast
+        .icon.icon-cog
 
       .btn[
         :title='$t("writer.sidebar.title.share")'
@@ -84,7 +84,7 @@
     .icon
       font-size: 14px
 
-    .icon-adjust-contrast
+    .icon-cog
       font-size: 18px
 
     &.active,

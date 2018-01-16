@@ -29,6 +29,14 @@
       ]
         span {{ selectedValue("fontSize") }}
         i.fa.fa-sort
+
+    label {{ $t('writer.sidebar.configurations.label.statusbar') }}
+    .select-container
+      | ayy
+
+    label {{ $t('writer.sidebar.configurations.label.width') }}
+    .select-container
+      | lmao
 </template>
 
 <script>
@@ -71,6 +79,17 @@
           big:    'Large',
           bigger: 'Largest',
         },
+
+        statusbar: {
+          always:   'Always shown',
+          autohide: 'Auto hide',
+          never:    'Always hidden',
+        },
+
+        width: {
+          normal: 'Normal',
+          wide:   'Wide',
+        }
       }
     },
 
