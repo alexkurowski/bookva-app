@@ -92,6 +92,10 @@
           }
         })
 
+        items.push({
+          text: 'hr'
+        })
+
         if (this.isEmpty) {
           items.push({
             text: this.$t('contextMenu.folder.remove'),

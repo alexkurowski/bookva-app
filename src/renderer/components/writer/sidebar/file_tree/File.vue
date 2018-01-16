@@ -93,6 +93,10 @@
         }
 
         items.push({
+          text: 'hr'
+        })
+
+        items.push({
           text: this.$t('contextMenu.file.remove'),
           dispatch: 'modalShow',
           params: {
