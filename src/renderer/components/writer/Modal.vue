@@ -3,12 +3,14 @@
     :class='modalClass'
   ]
     ConfirmModal v-if='isType("Confirm")'/
+    AlertModal v-if='isType("Alert")'/
     ExportManagerModal v-else-if='isType("ExportManager")'/
     AboutModal v-else-if='isType("About")'/
 </template>
 
 <script>
   import ConfirmModal from './modals/Confirm'
+  import AlertModal from './modals/Alert'
   import ExportManagerModal from './modals/ExportManager'
   import AboutModal from './modals/About'
 
@@ -19,6 +21,7 @@
 
     components: {
       ConfirmModal,
+      AlertModal,
       ExportManagerModal,
       AboutModal
     },
