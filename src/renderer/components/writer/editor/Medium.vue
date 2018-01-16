@@ -54,7 +54,17 @@
 
     methods: {
       onKeydown (event) {
-        if (event.key == 'Tab') {
+        if ( this.type == 'title' &&
+             event.key == 'Enter' ) {
+          this
+            .$el
+            .parentNode
+            .lastChild
+            .focus()
+        }
+
+        if ( this.type == 'content' &&
+             event.key == 'Tab' ) {
           event.preventDefault()
 
           const selection = document.getSelection()
