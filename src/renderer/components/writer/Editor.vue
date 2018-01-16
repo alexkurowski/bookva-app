@@ -1,6 +1,8 @@
 <template lang='slm'>
-  #editor
-    .editor[
+  #editor [
+    :class='{ "sidebar-open": sidebarOpen }'
+  ]
+    .editor [
       v-for='file, index in filesOpen'
       :style='editorStyle(index)'
     ]
@@ -15,7 +17,7 @@
   import PaneResize from './editor/PaneResize'
   import PaneClose from './editor/PaneClose'
 
-  import { Project, Appearance } from '@/helpers/store_helper'
+  import { Project, Sidebar, Appearance } from '@/helpers/store_helper'
 
   export default {
     name: 'Editor',
@@ -27,6 +29,10 @@
     },
 
     computed: {
+      sidebarOpen () {
+        return Sidebar.sidebarOpen
+      },
+
       filesOpen () {
         return Project.filesOpen
       },
@@ -54,6 +60,10 @@
     left: 0
     right: 0
     bottom: 0
+    transition: left .2s ease
+
+    &.sidebar-open
+      left: $sidebar-width
 
     .editor
       position: relative

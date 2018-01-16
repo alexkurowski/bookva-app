@@ -57,14 +57,9 @@
         if (event.key == 'Tab') {
           event.preventDefault()
 
-          const selection =
-            this
-              .$el
-              .ownerDocument
-              .defaultView
-              .getSelection()
-          const range = selection.getRangeAt(0)
-          const tabNode = document.createTextNode("\u00a0\u00a0\u00a0\u00a0")
+          const selection = document.getSelection()
+          const range     = selection.getRangeAt(0)
+          const tabNode   = document.createTextNode("\u00a0\u00a0\u00a0\u00a0")
 
           range.insertNode(tabNode);
 

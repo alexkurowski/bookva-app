@@ -1,5 +1,6 @@
 <template lang='slm'>
   #pane-close[
+    :class='{ "sidebar-open": sidebarOpen }'
     v-if='filesOpenCount > 1'
   ]
     .pane-close-container[
@@ -15,12 +16,16 @@
 </template>
 
 <script>
-  import { Appearance, Project } from '@/helpers/store_helper'
+  import { Appearance, Sidebar, Project } from '@/helpers/store_helper'
 
   export default {
     name: 'PaneClose',
 
     computed: {
+      sidebarOpen () {
+        return Sidebar.sidebarOpen
+      },
+
       filesOpen () {
         return Project.filesOpen
       },
@@ -63,6 +68,10 @@
     right: 0
     height: 0
     z-index: 750
+    transition: left .2s ease
+
+    &.sidebar-open
+      left: $sidebar-width
 
   .pane-close-container
     height: 0
