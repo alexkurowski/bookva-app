@@ -70,23 +70,37 @@
     },
 
     methods: {
+      check (event, ...keys) {
+        if ( keys.pop() != event.key )
+          return false
+        else if ( keys.includes('ctrl') != event.ctrlKey )
+          return false
+        else if ( keys.includes('shift') != event.shiftKey )
+          return false
+        else if ( keys.includes('alt') != event.altKey )
+          return false
+        else
+          return true
+      },
+
       onKeydown (event) {
         if (event.key == 'Escape')
           this.onEsc()
 
-        if ( event.key == 'o' &&
-             event.ctrlKey )
+        else if (this.check(event, 'ctrl', 'o'))
           this.onCtrlO()
 
-        if ( event.key == 's' &&
-             event.ctrlKey &&
-             !event.shiftKey )
+        else if (this.check(event, 'ctrl', 's'))
           this.onCtrlS()
 
-        if ( event.key == 'S' &&
-             event.ctrlKey &&
-             event.shiftKey )
+        else if (this.check(event, 'ctrl', 'shift', 's'))
           this.onCtrlShiftS()
+
+        else if (this.check(event, 'ctrl', 'f'))
+          this.onCtrlF()
+
+        else if (this.check(event, 'ctrl', 'r'))
+          this.onCtrlR()
       },
 
       onEsc () {
@@ -107,6 +121,14 @@
       onCtrlShiftS () {
         this.onEsc()
         this.$store.dispatch('projectSaveAsProject')
+      },
+
+      onCtrlF () {
+        console.log("CTRL+F")
+      },
+
+      onCtrlR () {
+        console.log("CTRL+R")
       },
 
       onMousemove (event) {
