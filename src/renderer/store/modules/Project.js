@@ -480,7 +480,7 @@ const actions = {
     if (ioBusy) return
     ioBusy = true
 
-    context.commit('modalHide')
+    context.dispatch('modalHide')
 
     remote.dialog.showSaveDialog({
       title: 'Export',

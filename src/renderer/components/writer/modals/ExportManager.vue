@@ -52,7 +52,7 @@
       },
 
       cancel () {
-        this.$store.commit('modalHide')
+        this.$store.dispatch('modalHide')
       },
     }
   }

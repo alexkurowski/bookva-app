@@ -1,5 +1,7 @@
 <template lang='slm'>
-  #modal :class='shown'
+  #modal [
+    :class='modalClass'
+  ]
     ConfirmModal v-if='isType("Confirm")'/
     ExportManagerModal v-else-if='isType("ExportManager")'/
     AboutModal v-else-if='isType("About")'/
@@ -22,7 +24,7 @@
     },
 
     computed: {
-      shown () {
+      modalClass () {
         return Modal.modalShown
           ? 'shown'
           : ''

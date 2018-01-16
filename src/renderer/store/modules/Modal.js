@@ -17,12 +17,12 @@ const mutations = {
 
   modalHide (state) {
     state.modalShown = false
-    state.modalType = ''
   },
 
   modalSetType (state, value) {
-    if (Config.modalTypes.includes(value)) {
-      state.modalType  = value
+    if ( value === '' ||
+         Config.modalTypes.includes(value) ) {
+      state.modalType = value
     } else {
       throw `Unknown modal type: ${ value }`
     }
@@ -49,9 +49,14 @@ const actions = {
       params: params.params || undefined
     })
 
+    context.commit('modalShow')
+  },
+
+  modalHide (context) {
+    context.commit('modalHide')
     setTimeout(() => {
-      context.commit('modalShow')
-    }, 0)
+      context.commit('modalSetType', '')
+    }, 500)
   }
 }
 

@@ -104,7 +104,7 @@
       },
 
       onEsc () {
-        this.$store.commit('modalHide')
+        this.$store.dispatch('modalHide')
         this.$store.commit('contextMenuHide')
       },
 

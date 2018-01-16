@@ -43,11 +43,11 @@
           )
         }
 
-        this.$store.commit('modalHide')
+        this.$store.dispatch('modalHide')
       },
 
       cancel () {
-        this.$store.commit('modalHide')
+        this.$store.dispatch('modalHide')
       }
     }
   }
