@@ -77,6 +77,17 @@
         this.$store.commit('projectFileClosePane', this.index)
       },
 
+      focusTitle () {
+        const title = this.$el.firstChild.firstChild
+        title.focus()
+        const range = document.createRange()
+        range.selectNodeContents(title.lastElementChild || title)
+        range.collapse(false)
+        const selection = window.getSelection()
+        selection.removeAllRanges()
+        selection.addRange(range)
+      },
+
       focusContent () {
         const content = this.$el.firstChild.lastChild
         content.focus()
@@ -96,6 +107,8 @@
 
           if (event.y > contentBottom) {
             this.focusContent()
+          } else {
+            this.focusTitle()
           }
         }
       }
@@ -138,6 +151,7 @@
     background: transparent
     overflow: visible
     transition: opacity .3s
+    cursor: text
 
     &.close-hover
       opacity: .5
