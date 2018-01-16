@@ -77,7 +77,7 @@ export function openProjectMenu (event, dispatch, t) {
   })
 
   items.push({
-    icon: 'icon icon-info',
+    icon: 'icon icon-info-large',
     text: t('contextMenu.project.about'),
     dispatch: 'modalShow',
     params: {
