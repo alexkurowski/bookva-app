@@ -1,3 +1,5 @@
+import commandExists from 'command-exists'
+
 import { Project } from './store_helper'
 
 export function openProjectMenu (event, dispatch, t) {
@@ -58,19 +60,40 @@ export function openProjectMenu (event, dispatch, t) {
     text: 'hr'
   })
 
-  items.push({
-    icon: 'icon icon-arrow-back',
-    text: t('contextMenu.project.import'),
-    dispatch: 'projectImportFiles'
-  })
-  items.push({
-    icon: 'icon icon-arrow-forward',
-    text: t('contextMenu.project.export'),
-    dispatch: 'modalShow',
-    params: {
-      type: 'ExportManager'
-    }
-  })
+  if ( commandExists.sync('pandoc') ) {
+    items.push({
+      icon: 'icon icon-arrow-back',
+      text: t('contextMenu.project.import'),
+      dispatch: 'projectImportFiles'
+    })
+    items.push({
+      icon: 'icon icon-arrow-forward',
+      text: t('contextMenu.project.export'),
+      dispatch: 'modalShow',
+      params: {
+        type: 'ExportManager'
+      }
+    })
+  } else {
+    items.push({
+      icon: 'icon icon-arrow-back',
+      text: t('contextMenu.project.import'),
+      dispatch: 'modalShow',
+      params: {
+        type: 'Alert',
+        content: 'noPandoc'
+      }
+    })
+    items.push({
+      icon: 'icon icon-arrow-forward',
+      text: t('contextMenu.project.export'),
+      dispatch: 'modalShow',
+      params: {
+        type: 'Alert',
+        content: 'noPandoc'
+      }
+    })
+  }
 
   items.push({
     text: 'hr'

@@ -93,6 +93,11 @@ export default {
         body: 'An error occured while loading a file. Make sure it\'s an actual WRTR file!'
       },
 
+      noPandoc: {
+        header: 'No pandoc found',
+        body: 'Please follow instructions at <a href="https://pandoc.org/installing.html" target="_blank">pandoc.org/installing.html</a> in order to install pandoc.'
+      },
+
       alert: {
         ok: 'Ok'
       },

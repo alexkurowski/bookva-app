@@ -138,10 +138,18 @@
         this.autohideShowBottom =
           event.y > window.innerHeight - Config.autohideThreshold
       },
+
+      onLinkOpen (event) {
+        if (event.target instanceof HTMLAnchorElement) {
+          this.$store.dispatch('applicationOpenLink', event.target.href)
+          event.preventDefault()
+        }
+      }
     },
 
     mounted () {
       document.addEventListener('keydown', this.onKeydown)
+      document.addEventListener('click', this.onLinkOpen)
 
       setTimeout(() => {
         this.autohideInitialShow = false
@@ -150,6 +158,7 @@
 
     unmounted () {
       document.removeEventListener('keydown', this.onKeydown)
+      document.removeEventListener('click', this.onLinkOpen)
     }
   }
 </script>

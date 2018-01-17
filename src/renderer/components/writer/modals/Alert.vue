@@ -1,7 +1,7 @@
 <template lang='slm'>
   .modal
     .modal-header {{ modalHeader }}
-    .modal-body {{ modalBody }}
+    .modal-body v-html='modalBody'
     .modal-footer
       .empty
       .modal-choice.secondary @click='hide'

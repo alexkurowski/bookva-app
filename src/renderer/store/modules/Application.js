@@ -1,4 +1,4 @@
-import { remote } from 'electron'
+import { remote, shell } from 'electron'
 
 const state = {
   ioIndicatorShown: false,
@@ -21,6 +21,10 @@ const actions = {
     setTimeout(() => {
       context.commit('applicationSetIOIndicator', false)
     }, 1000)
+  },
+
+  applicationOpenLink (context, link) {
+    shell.openExternal(link)
   },
 
   applicationQuit (context) {
