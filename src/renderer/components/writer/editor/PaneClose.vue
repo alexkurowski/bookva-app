@@ -50,7 +50,7 @@
 
       closePane (index) {
         if (this.filesOpenCount > 1) {
-          this.$store.commit('projectFileClosePane', this.index)
+          this.$store.commit('projectFileClosePane', index)
           this.$store.commit('applicationSetPaneCloseHoverIndex', -1)
         }
       }
