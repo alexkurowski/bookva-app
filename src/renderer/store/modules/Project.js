@@ -398,7 +398,6 @@ const actions = {
           context.commit('projectLoadProject', loadFilepath[0])
           context.commit('sidebarSetPage', 'FileTree')
         } catch (err) {
-          console.log(err)
           context.dispatch('modalShow', {
             type: 'Alert',
             content: 'badLoad'
