@@ -5,45 +5,51 @@
 
     label {{ $t('writer.sidebar.configurations.label.scheme') }}
     .select-container
-      .select[
-        data-type='scheme'
-        @click='openMenu'
+      Select [
+        type='scheme'
+        :items='scheme'
       ]
-        span {{ selectedValue("scheme") }}
-        i.fa.fa-sort
 
     label {{ $t('writer.sidebar.configurations.label.fontFamily') }}
     .select-container
-      .select[
-        data-type='fontFamily'
-        @click='openMenu'
+      Select [
+        type='fontFamily'
+        :items='fontFamily'
       ]
-        span {{ selectedValue("fontFamily") }}
-        i.fa.fa-sort
 
     label {{ $t('writer.sidebar.configurations.label.fontSize') }}
     .select-container
-      .select[
-        data-type='fontSize'
-        @click='openMenu'
+      Select [
+        type='fontSize'
+        :items='fontSize'
       ]
-        span {{ selectedValue("fontSize") }}
-        i.fa.fa-sort
 
     label {{ $t('writer.sidebar.configurations.label.statusbar') }}
     .select-container
-      | ayy
+      Select [
+        type='statusbar'
+        :items='statusbar'
+      ]
 
     label {{ $t('writer.sidebar.configurations.label.width') }}
     .select-container
-      | lmao
+      Select [
+        type='width'
+        :items='width'
+      ]
 </template>
 
 <script>
+  import Select from './configurations/Select'
+
   import { Appearance } from '@/helpers/store_helper'
 
   export default {
     name: 'Configurations',
+
+    components: {
+      Select
+    },
 
     data () {
       return {
@@ -92,36 +98,6 @@
         }
       }
     },
-
-    methods: {
-      selectedValue (type) {
-        return this[type][ Appearance[type] ]
-      },
-
-      openMenu (event) {
-        const type  = event.target.dataset.type
-        const items = []
-
-        for (const key in this[type]) {
-          items.push({
-            text: this[type][key],
-            commit: 'appearanceUpdateTheme',
-            params: {
-              value: key,
-              type
-            }
-          })
-        }
-
-        this.$store.dispatch('contextMenuShow', {
-          position: {
-            x: event.x,
-            y: event.y
-          },
-          items: items
-        })
-      }
-    }
   }
 </script>
 
@@ -145,27 +121,4 @@
     position: relative
     width: 100%
     margin: .5rem 0 2rem
-
-    i
-      position: absolute
-      top: .5rem
-      right: .5rem
-      pointer-events: none
-
-  .select
-    width: 100%
-    color: inherit
-    background: inherit
-    padding: .4rem .5rem
-    border-radius: 4px
-    border: 1px solid $color-less-subtle
-    text-align: left
-    cursor: pointer
-    outline: none
-    -webkit-appearance: none
-    transition: border-color .3s
-    box-sizing: border-box
-
-    > *
-      pointer-events: none
 </style>
