@@ -98,9 +98,6 @@
 
         else if (this.check(event, 'ctrl', 'f'))
           this.onCtrlF()
-
-        else if (this.check(event, 'ctrl', 'r'))
-          this.onCtrlR()
       },
 
       onEsc () {
@@ -125,10 +122,6 @@
 
       onCtrlF () {
         console.log("CTRL+F")
-      },
-
-      onCtrlR () {
-        console.log("CTRL+R")
       },
 
       onMousemove (event) {
