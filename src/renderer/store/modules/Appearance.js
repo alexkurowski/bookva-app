@@ -28,16 +28,19 @@ const mutations = {
       )
 
     const stateKeys = Object.keys(state)
-    const missingField =
-      stateKeys.find(field => {
+    const missingFields =
+      stateKeys.filter(field => {
         return !data.hasOwnProperty(field)
       })
 
-    if (missingField)
-      return console.log(`Appearance settings seems broken. Field ${ missingField } is missing.`)
+    if (missingFields.length == 1)
+      console.log(`Appearance settings seems broken. Field ${ missingFields.join('') } is missing.`)
+    else if (missingFields.length > 1)
+      console.log(`Appearance settings seems broken. Fields ${ missingFields.join(', ') } are missing.`)
 
     stateKeys.forEach(field => {
-      state[field] = data[field]
+      if (data.hasOwnProperty(field))
+        state[field] = data[field]
     })
   },
 
