@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import { Modal } from '@/helpers/store_helper'
+
   export default {
     name: 'AlertModal',
 
