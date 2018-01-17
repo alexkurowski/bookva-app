@@ -110,9 +110,13 @@ export const projectExportData = async function (state, params, filepath, callba
   const ext    = filepath.split('.').pop().toLowerCase()
   const format = getFormat(ext)
 
-  let data =
-    `<h1>${ params.title }</h1>
-     <h2>By ${ params.author }</h2>`
+  let data = ''
+
+  if (params.title)
+    data += `<h1>${ params.title }</h1>`
+
+  if (params.author)
+    data += `<h2>By ${ params.author }</h2>`
 
   params
     .files

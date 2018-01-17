@@ -42,12 +42,10 @@
           [ ...document.getElementById('export-chapters').children ]
             .map(node => node.dataset.fileId)
 
-        if ( title && files.length ) {
+        if (files.length > 0) {
           this.$store.dispatch('projectExportFiles', {
             title, author, files
           })
-        } else {
-          console.log("Gotta set title and choose files")
         }
       },
 
