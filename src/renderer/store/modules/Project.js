@@ -389,7 +389,7 @@ const actions = {
     remote.dialog.showOpenDialog({
       title: 'Open',
       filters: [
-        { name: 'Writer (.wrtr)', extensions: ['wrtr'] }
+        { name: 'Bookva (.bkv)', extensions: ['bkv'] }
       ],
       properties: ['openFile']
     }, loadFilepath => {
@@ -435,7 +435,7 @@ const actions = {
     remote.dialog.showSaveDialog({
       title: 'Save',
       filters: [
-        { name: 'Writer (.wrtr)', extensions: ['wrtr'] }
+        { name: 'Bookva (.bkv)', extensions: ['bkv'] }
       ]
     }, saveFilepath => {
       if (saveFilepath) {

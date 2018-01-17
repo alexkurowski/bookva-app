@@ -3,11 +3,12 @@ const Enum = (...args) => {
 }
 
 export default {
+  appTitle: 'Bookva',
   showShareButton: false,
   dropOpenerThreshold: 0.38,
   maxFilesOpen: 2,
   projectSyncInterval: 2, // seconds
-  projectSyncFilename: 'project.wrtr',
+  projectSyncFilename: 'project.bkv',
   appearanceKey: 'appearance-settings',
   sidebarPages: Enum(
     'FileTree',

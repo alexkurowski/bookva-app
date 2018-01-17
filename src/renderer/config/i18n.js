@@ -90,7 +90,7 @@ export default {
 
       badLoad: {
         header: 'Error',
-        body: 'An error occured while loading a file. Make sure it\'s an actual WRTR file!'
+        body: 'An error occured while loading a file. Make sure it\'s an actual Bookva file!'
       },
 
       noPandoc: {
@@ -108,7 +108,7 @@ export default {
       },
 
       about: {
-        header: 'WRTR',
+        header: 'Bookva',
         body: 'Placeholder "about" text',
         ok: 'Ok'
       }

@@ -11,7 +11,7 @@
   import { Appearance } from '@/helpers/store_helper'
 
   export default {
-    name: 'wrtr',
+    name: 'Bookva',
 
     computed: {
       appearanceClass () {
