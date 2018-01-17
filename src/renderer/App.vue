@@ -19,6 +19,8 @@
         scheme-${ Appearance.scheme }
         font-family-${ Appearance.fontFamily }
         font-size-${ Appearance.fontSize }
+        statusbar-${ Appearance.statusbar }
+        width-${ Appearance.width }
         `
       }
     }
@@ -37,4 +39,17 @@
   @import './assets/stylesheets/classes'
   @import './assets/stylesheets/layout'
   @import './assets/stylesheets/appearance'
+
+  #app
+    &.statusbar-always
+      #status-bar
+        opacity: 1 !important
+
+    &.statusbar-never
+      #status-bar
+        opacity: 0 !important
+
+    &.width-wide
+      .medium-container
+        max-width: 100% !important
 </style>
