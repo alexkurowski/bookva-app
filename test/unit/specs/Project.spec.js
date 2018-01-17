@@ -211,6 +211,8 @@ describe('Project.js', () => {
   it('projectLoadProject', (done) => {
     const saveState = {
       projectFile: 'load_project.test',
+      projectTitle: 'Project title',
+      projectAuthor: 'Project author',
       files: { 'test': { title: 'TEST TITLE', content: 'test content' } },
       folders: {},
       filesOpen: ['test files open'],
