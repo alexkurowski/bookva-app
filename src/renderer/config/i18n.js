@@ -88,6 +88,11 @@ export default {
         cancel: 'Cancel'
       },
 
+      badLoad: {
+        header: 'Error',
+        body: 'An error occured while loading a file. Make sure it\'s an actual WRTR file!'
+      },
+
       alert: {
         ok: 'Ok'
       },

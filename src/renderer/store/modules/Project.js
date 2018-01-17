@@ -394,8 +394,16 @@ const actions = {
       properties: ['openFile']
     }, loadFilepath => {
       if (loadFilepath && loadFilepath[0]) {
-        context.commit('projectLoadProject', loadFilepath[0])
-        context.commit('sidebarSetPage', 'FileTree')
+        try {
+          context.commit('projectLoadProject', loadFilepath[0])
+          context.commit('sidebarSetPage', 'FileTree')
+        } catch (err) {
+          console.log(err)
+          context.dispatch('modalShow', {
+            type: 'Alert',
+            content: 'badLoad'
+          })
+        }
       }
       ioBusy = false
     })
