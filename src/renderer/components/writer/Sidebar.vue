@@ -6,7 +6,7 @@
         FileTree v-if='page == "FileTree"'/
         Configurations v-else-if='page == "Configurations"'/
 
-    a#toggle[
+    #toggle[
       :title='$t("writer.sidebar.title.toggle")'
       @click='toggle'
       @contextmenu='openProjectMenu'
