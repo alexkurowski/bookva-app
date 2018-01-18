@@ -1,5 +1,5 @@
 {
-  "name": "wrtr",
+  "name": "bookva",
   "version": "0.0.0",
   "author": "Alex <alex.zneue@gmail.com>",
   "description": "Writing application",
@@ -20,7 +20,7 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "wrtr",
+    "productName": "bookva",
     "appId": "org.simulatedgreg.electron-vue",
     "directories": {
       "output": "build"

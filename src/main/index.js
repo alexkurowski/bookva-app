@@ -46,6 +46,8 @@ function createWindow () {
     width: 1000,
     minWidth: 600,
     minHeight: 400,
+    backgroundColor: '#333231',
+    icon: path.join(__dirname, '/static/icon64.png'),
     webPreferences: {
       experimentalFeatures: true
     }
