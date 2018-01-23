@@ -14,21 +14,10 @@
     border-radius: $scrollbar-width / 2
 
 
-@mixin scheme($bg, $fg)
-  color: $fg
-
+@mixin scheme-sidebar($bg, $fg)
   #writer
-    #background,
-    #sidebar,
-    #status-bar
-      background: $bg
-
     #sidebar
       background: $bg
-      border-color: transparent
-
-      &.open
-        border-color: darken( $bg, 6 )
 
     .file-tree-item
       &:hover
@@ -40,6 +29,15 @@
       &:hover
         border-color: rgba( $fg, 0.35 )
 
+
+@mixin scheme($bg, $fg)
+  color: $fg
+
+  #writer
+    #background,
+    #status-bar
+      background: $bg
+
     #context-menu
       color: $bg
       background: rgba( $fg, 0.9 )
@@ -49,6 +47,13 @@
 
       .modal
         background: $bg
+
+
+  &.scheme-sidebar-light
+    @include scheme-sidebar( desaturate( lighten($bg, 5), 0), $fg )
+
+  &.scheme-sidebar-dark
+    @include scheme-sidebar( desaturate( darken($bg, 3), 0), $fg )
 
 
   @include scrollbar('.editor .pane',    $bg, $fg)

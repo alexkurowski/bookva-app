@@ -13,10 +13,28 @@
   export default {
     name: 'Bookva',
 
+    data () {
+      return {
+        darkSchemes: [
+          'solarizedDark',
+          'night',
+          'dark',
+          'contrast'
+        ]
+      }
+    },
+
     computed: {
+      schemeSidebar () {
+        return this.darkSchemes.includes(Appearance.scheme)
+          ? 'light'
+          : 'dark'
+      },
+
       appearanceClass () {
         return `
         scheme-${ Appearance.scheme }
+        scheme-sidebar-${ this.schemeSidebar }
         font-family-${ Appearance.fontFamily }
         font-size-${ Appearance.fontSize }
         statusbar-${ Appearance.statusbar }

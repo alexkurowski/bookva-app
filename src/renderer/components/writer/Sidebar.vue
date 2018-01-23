@@ -122,7 +122,6 @@
 
     &.open
       left: 0
-      border-right: 1px solid $color-more-subtle
 
       #toggle
         left: $sidebar-width
