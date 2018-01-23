@@ -24,7 +24,7 @@
 <style lang='sass' scoped>
   .modal-header
     margin-bottom: 1rem
-    font-family: Josefin Slab
+    font-family: Raleway
     font-size: 3rem
     text-align: center
 </style>
