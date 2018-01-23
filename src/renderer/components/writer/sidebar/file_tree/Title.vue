@@ -5,6 +5,7 @@
     @click='click'
     @keydown='keydown'
     @blur='rename'
+    @paste='paste'
   ]
     | {{ trimmedContent }}
 </template>
@@ -65,6 +66,12 @@
             title: event.target.innerText
           })
         }
+      },
+
+      paste (event) {
+        event.preventDefault()
+        const text = event.clipboardData.getData('text/plain')
+        document.execCommand('insertHTML', false, text)
       }
     }
   }
