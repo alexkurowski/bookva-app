@@ -49,7 +49,13 @@ global.stripSearch = function (html) {
 
 global.removeSearch = function () {
   const content = document.querySelector('.medium-content')
-  content.innerHTML = stripSearch(content.innerHTML)
+  const anySearch = content.innerHTML.indexOf('<span class="search">') != -1
+
+  // TODO (Alex): if content is focused, we have to keep the caret at the same place.
+  //              right now it jumps to the beginning of the content
+
+  if (anySearch)
+    content.innerHTML = stripSearch(content.innerHTML)
 }
 
 global.applySearch = function (searchFor) {
