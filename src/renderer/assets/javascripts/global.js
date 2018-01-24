@@ -1,3 +1,5 @@
+import sanitizeHtml from 'sanitize-html'
+
 document.addEventListener('DOMContentLoaded', () => {
   document.body.ondragstart = (event) => {
     if ( !event.target.className )
@@ -27,16 +29,39 @@ global.resetEditors = function () {
   }, 0)
 }
 
-global.findBarFocus = function () {
+global.searchBarFocus = function () {
   setTimeout(() => {
-    const findInput = document.querySelector('#find-bar input')
-    if (findInput)
-      findInput.focus()
+    const searchInput = document.querySelector('#search-bar input')
+    if (searchInput)
+      searchInput.focus()
   }, 0)
 }
 
-global.findBarOnHide = function () {
-  const findInput = document.querySelector('#find-bar input')
-  if (findInput)
-    findInput.value = ""
+global.searchBarOnHide = function () {
+  const searchInput = document.querySelector('#search-bar input')
+  if (searchInput)
+    searchInput.value = ""
+}
+
+global.stripSearch = function (html) {
+  return html.replace(/<span class="search">(.*?)<\/span>/g, '$1')
+}
+
+global.removeSearch = function () {
+  const content = document.querySelector('.medium-content')
+  content.innerHTML = stripSearch(content.innerHTML)
+}
+
+global.applySearch = function (searchFor) {
+  removeSearch()
+
+  const content = document.querySelector('.medium-content')
+  const lookahead = "(?=[^>]*<)" // Check that there is a tag openning and no tag closing (i.e. we're not inside a tag)
+  const regex = new RegExp(`${ sanitizeHtml(searchFor) }${ lookahead }`, 'g')
+
+  content.innerHTML =
+    content
+      .innerHTML
+      .replace(regex, `<span class="search">${ searchFor }</span>`)
+  console.log(content.innerHTML)
 }

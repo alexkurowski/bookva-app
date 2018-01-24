@@ -214,10 +214,11 @@ const mutations = {
 
     const html = params.element.innerHTML
     const text =
-      html
-        .replace(/<(p|h1|h2)[^>]*>/g, ' ')
-        .replace(/(<[^>]*>|&nbsp;)/g, '')
-        .trim()
+      stripSearch(
+        html
+          .replace(/<(p|h1|h2)[^>]*>/g, ' ')
+          .replace(/(<[^>]*>|&nbsp;)/g, '')
+      ).trim()
     const wordCount =
       /^\s*$/.test(text)
         ? 0

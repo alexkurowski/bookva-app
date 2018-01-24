@@ -7,7 +7,7 @@
     Editor/
     Sidebar/
     StatusBar/
-    FindBar/
+    SearchBar/
     ContextMenu/
     Modal/
 </template>
@@ -16,7 +16,7 @@
   import Editor from './writer/Editor'
   import Sidebar from './writer/Sidebar'
   import StatusBar from './writer/StatusBar'
-  import FindBar from './writer/FindBar'
+  import SearchBar from './writer/SearchBar'
   import ContextMenu from './writer/ContextMenu'
   import Modal from './writer/Modal'
 
@@ -30,7 +30,7 @@
       Editor,
       Sidebar,
       StatusBar,
-      FindBar,
+      SearchBar,
       ContextMenu,
       Modal,
     },
@@ -106,7 +106,7 @@
       onEsc () {
         this.$store.dispatch('modalHide')
         this.$store.commit('contextMenuHide')
-        this.$store.commit('applicationHideFindBar')
+        this.$store.commit('searchHideSearchBar')
       },
 
       onCtrlO () {
@@ -125,7 +125,7 @@
       },
 
       onCtrlF () {
-        this.$store.commit('applicationShowFindBar')
+        this.$store.commit('searchShowSearchBar')
       },
 
       onMousemove (event) {

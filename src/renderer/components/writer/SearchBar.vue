@@ -1,9 +1,11 @@
 <template lang='slm'>
-  #find-bar.flex-item [
+  #search-bar.flex-item [
     v-if='shown'
     :class='className'
   ]
-    input
+    input [
+      @input='input'
+    ]
 
     button.prev-btn
       i.fa.fa-angle-left
@@ -19,14 +21,14 @@
 </template>
 
 <script>
-  import { Application, Sidebar } from '@/helpers/store_helper'
+  import { Search, Sidebar } from '@/helpers/store_helper'
 
   export default {
-    name: 'FindBar',
+    name: 'SearchBar',
 
     computed: {
       shown () {
-        return Application.findBarShown
+        return Search.searchBarOpen
       },
 
       className () {
@@ -37,8 +39,13 @@
     },
 
     methods: {
+      input (event) {
+        const searchFor = event.target.value
+        applySearch(searchFor)
+      },
+
       hide () {
-        this.$store.commit('applicationHideFindBar')
+        this.$store.commit('searchHideSearchBar')
       }
     }
   }
@@ -47,7 +54,7 @@
 <style lang='sass' scoped>
   $next-prev-width: 2rem
 
-  #find-bar
+  #search-bar
     align-items: center
     justify-content: space-between
     position: fixed

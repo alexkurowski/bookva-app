@@ -6,3 +6,4 @@ export const Appearance  = store.state.Appearance
 export const Sidebar     = store.state.Sidebar
 export const Modal       = store.state.Modal
 export const ContextMenu = store.state.ContextMenu
+export const Search      = store.state.Search
