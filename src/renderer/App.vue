@@ -66,6 +66,7 @@
     &.statusbar-never
       #status-bar
         opacity: 0 !important
+        pointer-events: none !important
 
     &.width-wide
       .medium-container

@@ -14,10 +14,13 @@
     border-radius: $scrollbar-width / 2
 
 
-@mixin scheme-sidebar($bg, $fg)
+@mixin scheme-sidebar($bg, $fg, $border)
   #writer
     #sidebar
       background: $bg
+
+      &.open
+        border-right: 1px solid $border
 
     .file-tree-item
       &:hover
@@ -35,8 +38,13 @@
 
   #writer
     #background,
-    #status-bar
+    #status-bar,
+    #find-bar
       background: $bg
+
+    #find-bar
+      input
+        background: rgba( $fg, 0.1 )
 
     #context-menu
       color: $bg
@@ -50,10 +58,10 @@
 
 
   &.scheme-sidebar-light
-    @include scheme-sidebar( desaturate( lighten($bg, 5), 0), $fg )
+    @include scheme-sidebar( desaturate( lighten($bg, 5), 0), $fg, lighten( $bg, 10 ) )
 
   &.scheme-sidebar-dark
-    @include scheme-sidebar( desaturate( darken($bg, 3), 0), $fg )
+    @include scheme-sidebar( desaturate( darken($bg, 3), 0), $fg, darken( $bg, 10 ) )
 
 
   @include scrollbar('.editor .pane',    $bg, $fg)

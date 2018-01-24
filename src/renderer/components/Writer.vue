@@ -7,6 +7,7 @@
     Editor/
     Sidebar/
     StatusBar/
+    FindBar/
     ContextMenu/
     Modal/
 </template>
@@ -15,6 +16,7 @@
   import Editor from './writer/Editor'
   import Sidebar from './writer/Sidebar'
   import StatusBar from './writer/StatusBar'
+  import FindBar from './writer/FindBar'
   import ContextMenu from './writer/ContextMenu'
   import Modal from './writer/Modal'
 
@@ -28,6 +30,7 @@
       Editor,
       Sidebar,
       StatusBar,
+      FindBar,
       ContextMenu,
       Modal,
     },
@@ -103,6 +106,7 @@
       onEsc () {
         this.$store.dispatch('modalHide')
         this.$store.commit('contextMenuHide')
+        this.$store.commit('applicationHideFindBar')
       },
 
       onCtrlO () {
@@ -121,7 +125,7 @@
       },
 
       onCtrlF () {
-        console.log("CTRL+F")
+        this.$store.commit('applicationShowFindBar')
       },
 
       onMousemove (event) {
@@ -171,9 +175,12 @@
 <style lang='sass'>
   .view
     #toggle,
-    .pane-close,
+    .pane-close
+      opacity: 0
+
     #status-bar
       opacity: 0
+      pointer-events: none
 
     &.autohide-show-top
       #toggle,
@@ -183,4 +190,5 @@
     &.autohide-show-bottom
       #status-bar
         opacity: 1
+        pointer-events: auto
 </style>

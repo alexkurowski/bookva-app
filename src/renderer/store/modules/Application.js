@@ -3,6 +3,7 @@ import { remote, shell } from 'electron'
 const state = {
   ioIndicatorShown: false,
   paneCloseHoverIndex: -1,
+  findBarShown: false,
 }
 
 const mutations = {
@@ -12,7 +13,17 @@ const mutations = {
 
   applicationSetPaneCloseHoverIndex (state, value) {
     state.paneCloseHoverIndex = value
-  }
+  },
+
+  applicationShowFindBar (state) {
+    state.findBarShown = true
+    findBarFocus()
+  },
+
+  applicationHideFindBar (state) {
+    findBarOnHide()
+    state.findBarShown = false
+  },
 }
 
 const actions = {

@@ -26,3 +26,17 @@ global.resetEditors = function () {
       })
   }, 0)
 }
+
+global.findBarFocus = function () {
+  setTimeout(() => {
+    const findInput = document.querySelector('#find-bar input')
+    if (findInput)
+      findInput.focus()
+  }, 0)
+}
+
+global.findBarOnHide = function () {
+  const findInput = document.querySelector('#find-bar input')
+  if (findInput)
+    findInput.value = ""
+}
