@@ -212,13 +212,13 @@ const mutations = {
     if (!file)
       throw "ERROR: trying to update a file that doesn't exist"
 
-    const html = params.element.innerHTML
+    const html =
+      stripSearch(params.element.innerHTML)
     const text =
-      stripSearch(
-        html
-          .replace(/<(p|h1|h2)[^>]*>/g, ' ')
-          .replace(/(<[^>]*>|&nbsp;)/g, '')
-      ).trim()
+      html
+        .replace(/<(p|h1|h2)[^>]*>/g, ' ')
+        .replace(/(<[^>]*>|&nbsp;)/g, '')
+        .trim()
     const wordCount =
       /^\s*$/.test(text)
         ? 0

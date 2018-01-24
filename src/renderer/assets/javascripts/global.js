@@ -55,13 +55,17 @@ global.removeSearch = function () {
 global.applySearch = function (searchFor) {
   removeSearch()
 
+  if (searchFor.length <= 1) return
+
   const content = document.querySelector('.medium-content')
   const lookahead = "(?=[^>]*<)" // Check that there is a tag openning and no tag closing (i.e. we're not inside a tag)
   const regex = new RegExp(`${ sanitizeHtml(searchFor) }${ lookahead }`, 'g')
 
-  content.innerHTML =
+  const result =
     content
       .innerHTML
       .replace(regex, `<span class="search">${ searchFor }</span>`)
-  console.log(content.innerHTML)
+  console.log("SEARCH RESULT HTML:", result)
+
+  content.innerHTML = result
 }
