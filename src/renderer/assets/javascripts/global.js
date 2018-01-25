@@ -1,4 +1,4 @@
-import sanitizeHtml from 'sanitize-html'
+import sanitizeRegexp from '@/helpers/regexp_escape'
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.ondragstart = (event) => {
@@ -65,13 +65,12 @@ global.applySearch = function (searchFor) {
 
   const content = document.querySelector('.medium-content')
   const lookahead = "(?=[^>]*<)" // Check that there is a tag openning and no tag closing (i.e. we're not inside a tag)
-  const regex = new RegExp(`${ sanitizeHtml(searchFor) }${ lookahead }`, 'g')
+  const regex = new RegExp(`(${ sanitizeRegexp(searchFor) })${ lookahead }`, 'g')
 
   const result =
     content
       .innerHTML
-      .replace(regex, `<span class="search">${ searchFor }</span>`)
-  console.log("SEARCH RESULT HTML:", result)
+      .replace(regex, '<span class="search">$1</span>')
 
   content.innerHTML = result
 }
