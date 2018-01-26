@@ -20,6 +20,7 @@ export function openProjectMenu (event, dispatch, t) {
     items.push({
       icon: 'icon icon-upload',
       text: t('contextMenu.project.open'),
+      title: '(Ctrl+O)',
       dispatch: 'modalShow',
       params: {
         type: 'Confirm',
@@ -37,6 +38,7 @@ export function openProjectMenu (event, dispatch, t) {
     items.push({
       icon: 'icon icon-upload',
       text: t('contextMenu.project.open'),
+      title: '(Ctrl+O)',
       dispatch: 'projectLoadProject',
     })
   }
@@ -48,11 +50,13 @@ export function openProjectMenu (event, dispatch, t) {
   items.push({
     icon: 'icon icon-download',
     text: t('contextMenu.project.save'),
+    title: '(Ctrl+S)',
     dispatch: 'projectSaveProject'
   })
   items.push({
     icon: 'icon icon-download',
     text: t('contextMenu.project.saveAs'),
+    title: '(Ctrl+Shift+S)',
     dispatch: 'projectSaveAsProject'
   })
 
@@ -115,6 +119,7 @@ export function openProjectMenu (event, dispatch, t) {
   items.push({
     icon: 'icon icon-times',
     text: t('contextMenu.project.close'),
+    title: '(Alt+F4)',
     dispatch: 'applicationQuit'
   })
 

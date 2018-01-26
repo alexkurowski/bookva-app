@@ -7,6 +7,7 @@
 
     .item[
       v-for='item, index in items'
+      :title='itemTitle(item.title)'
       :data-index='index'
       :class='{ divider: item.text == "hr" }'
       @mouseup='select'
@@ -77,6 +78,14 @@
     },
 
     methods: {
+      itemTitle (title) {
+        if (!title) return ''
+
+        return process.platform == 'darwin'
+          ? title.replace('Ctrl', 'Cmd')
+          : title
+      },
+
       hide (force) {
         if ( force !== true &&
              Date.now() < ContextMenu.shownAt + 100 ) return
