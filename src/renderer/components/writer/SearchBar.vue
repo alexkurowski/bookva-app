@@ -7,13 +7,20 @@
       @input='input'
     ]
 
-    button.prev-btn
+    button.prev-btn [
+      @click='selectPrev'
+    ]
       i.fa.fa-angle-left
-    button.next-btn
+
+    button.next-btn [
+      @click='selectNext'
+    ]
       i.fa.fa-angle-right
 
-    button.find-btn
+    button.find-btn [
+    ]
       | Find
+
     button.close-btn [
       @click='hide'
     ]
@@ -42,6 +49,12 @@
       input (event) {
         const searchFor = event.target.value
         applySearch(searchFor)
+      },
+
+      selectPrev () {
+      },
+
+      selectNext () {
       },
 
       hide () {

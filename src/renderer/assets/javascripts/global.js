@@ -1,3 +1,4 @@
+import { Application } from '@/helpers/store_helper'
 import sanitizeRegexp from '@/helpers/regexp_escape'
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,23 +48,52 @@ global.stripSearch = function (html) {
   return html.replace(/<span class="search">(.*?)<\/span>/g, '$1')
 }
 
-global.removeSearch = function () {
-  const content = document.querySelector('.medium-content')
-  const anySearch = content.innerHTML.indexOf('<span class="search">') != -1
+global.removeSearch = function (content) {
+  const searches = content.querySelectorAll('span.search')
+  if (searches.length == 0) return
 
-  // TODO (Alex): if content is focused, we have to keep the caret at the same place.
-  //              right now it jumps to the beginning of the content
+  const selection       = document.getSelection()
+  const contentSelected = content.contains(selection.anchorNode)
 
-  if (anySearch)
-    content.innerHTML = stripSearch(content.innerHTML)
+  const anchorNode   = selection.anchorNode
+  const anchorOffset = selection.anchorOffset
+  const focusNode    = selection.focusNode
+  const focusOffset  = selection.focusOffset
+
+  searches.forEach(search => {
+    const parentNode = search.parentNode
+    if (!parentNode) return
+    parentNode.insertBefore(search.firstChild, search)
+    parentNode.removeChild(search)
+  })
+
+  if (contentSelected) {
+    const range = document.createRange()
+    range.setStart(anchorNode, anchorOffset)
+    range.setEnd(focusNode, focusOffset)
+    selection.removeAllRanges()
+    selection.addRange(range)
+  }
+}
+
+global.removeAllSearch = function () {
+  document
+    .querySelectorAll('.medium-content')
+    .forEach(content => removeSearch(content))
 }
 
 global.applySearch = function (searchFor) {
-  removeSearch()
+  removeAllSearch()
 
   if (searchFor.length <= 1) return
 
-  const content = document.querySelector('.medium-content')
+  const content =
+    document.querySelector(
+      `.medium-content.medium-editor-index-${ Application.lastPaneFocused }`
+    )
+
+  if (!content) return
+
   const lookahead = "(?=[^>]*<)" // Check that there is a tag openning and no tag closing (i.e. we're not inside a tag)
   const regex = new RegExp(`(${ sanitizeRegexp(searchFor) })${ lookahead }`, 'g')
 

@@ -10,7 +10,7 @@ const mutations = {
 
   searchHideSearchBar (state) {
     searchBarOnHide()
-    removeSearch()
+    removeAllSearch()
     state.searchBarOpen = false
   },
 }

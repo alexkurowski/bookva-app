@@ -1,6 +1,7 @@
 <template lang='slm'>
   .medium-editor[
     :class='className'
+    @focus='onFocus'
     @keydown='onKeydown'
     @input='update'
   ]
@@ -14,7 +15,7 @@
   export default {
     name: 'Medium',
 
-    props: [ 'file', 'type' ],
+    props: [ 'index', 'file', 'type' ],
 
     data () {
       return {
@@ -48,11 +49,18 @@
 
     computed: {
       className () {
-        return `medium-${ this.type }`
+        return `
+        medium-${ this.type }
+        medium-editor-index-${ this.index }
+        `
       }
     },
 
     methods: {
+      onFocus () {
+        this.$store.commit('applicationSetLastPaneFocused', this.index)
+      },
+
       onKeydown (event) {
         if ( this.type == 'title' &&
              event.key == 'Enter' ) {

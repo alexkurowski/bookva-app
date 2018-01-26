@@ -3,6 +3,7 @@ import { remote, shell } from 'electron'
 const state = {
   ioIndicatorShown: false,
   paneCloseHoverIndex: -1,
+  lastPaneFocused: 0,
 }
 
 const mutations = {
@@ -12,6 +13,10 @@ const mutations = {
 
   applicationSetPaneCloseHoverIndex (state, value) {
     state.paneCloseHoverIndex = value
+  },
+
+  applicationSetLastPaneFocused (state, value) {
+    state.lastPaneFocused = value
   },
 }
 

@@ -37,10 +37,10 @@ const html = {
 
 const regex = RegExp('[' + specials.join('\\') + ']', 'g')
 
-function escapeHtml (str) {
-  return str.replace(/[&<>"']/g, (ch) => html[ch])
-}
+const escapeHtml = (str) => (
+  str.replace(/[&<>"']/g, (ch) => html[ch])
+)
 
-export default function (str) {
-  return escapeHtml(str).replace(regex, "\\$&")
-}
+export default (str) => (
+  escapeHtml(str).replace(regex, "\\$&")
+)

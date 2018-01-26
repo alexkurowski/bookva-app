@@ -7,8 +7,16 @@
       :class='mediumContainerClass'
       @click='mediumContainerClick'
     ]
-      Medium :file='file' type='title'/
-      Medium :file='file' type='content'/
+      Medium [
+        :index='index'
+        :file='file'
+        type='title'
+      ]
+      Medium [
+        :index='index'
+        :file='file'
+        type='content'
+      ]
 </template>
 
 <script>
