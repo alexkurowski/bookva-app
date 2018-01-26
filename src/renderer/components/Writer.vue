@@ -90,7 +90,7 @@
         if (event.key == 'Escape')
           this.onEsc()
 
-        else if (event.key == 'F11')
+        else if (this.check(event, 'F11'))
           this.onF11()
 
         else if (this.check(event, 'F3'))
