@@ -58,108 +58,12 @@
         this.currentSelect = null
       },
 
-      scrollToNode (node) {
-        if (!node) return
-
-        const pane = node.closest('.pane')
-
-        const scrollTo =
-          node.getBoundingClientRect().top +
-          pane.scrollTop -
-          window.innerHeight * 0.5
-
-        node
-          .closest('.pane')
-          .scroll({
-            top: scrollTo,
-            left: 0,
-            behavior: 'smooth'
-          })
-
-        setTimeout(() => {
-          this.currentSelect = node
-          const range = document.createRange()
-          range.selectNodeContents(node)
-          const selection = document.getSelection()
-          selection.removeAllRanges()
-          selection.addRange(range)
-        }, 350)
-      },
-
       selectPrev () {
-        if (!document.querySelector('span.search')) return
-
-        let node = null
-
-        if (this.currentSelect) {
-          let previousSpan = null
-          document
-            .querySelectorAll('span.search')
-            .forEach(span => {
-              if (node)
-                return
-
-              if (span == this.currentSelect && previousSpan)
-                return node = previousSpan
-
-              previousSpan = span
-            })
-        } else {
-          document
-            .querySelectorAll('span.search')
-            .forEach(span => {
-              if (node)
-                return
-
-              if (span.getBoundingClientRect().top >= 0)
-                node = span
-            })
-        }
-
-        if (!node) {
-          const searches = document.querySelectorAll('span.search')
-          node = searches[searches.length - 1]
-        }
-
-        this.scrollToNode(node)
+        this.$store.dispatch('searchSelectPrev')
       },
 
       selectNext () {
-        if (!document.querySelector('span.search')) return
-
-        let node = null
-
-        if (this.currentSelect) {
-          let foundCurrent = false
-          document
-            .querySelectorAll('span.search')
-            .forEach(span => {
-              if (node)
-                return
-
-              if (foundCurrent)
-                return node = span
-
-              if (span == this.currentSelect)
-                foundCurrent = true
-            })
-        } else {
-          document
-            .querySelectorAll('span.search')
-            .forEach(span => {
-              if (node)
-                return
-
-              if (span.getBoundingClientRect().top >= 0)
-                node = span
-            })
-        }
-
-        if (!node) {
-          node = document.querySelector('span.search')
-        }
-
-        this.scrollToNode(node)
+        this.$store.dispatch('searchSelectNext')
       },
 
       hide () {

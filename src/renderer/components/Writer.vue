@@ -20,7 +20,7 @@
   import ContextMenu from './writer/ContextMenu'
   import Modal from './writer/Modal'
 
-  import { Project, Sidebar as SidebarStore, Appearance } from '@/helpers/store_helper'
+  import { Project, Search, Sidebar as SidebarStore, Appearance } from '@/helpers/store_helper'
   import Config from '@/config/config'
 
   export default {
@@ -90,6 +90,15 @@
         if (event.key == 'Escape')
           this.onEsc()
 
+        else if (event.key == 'F11')
+          this.onF11()
+
+        else if (this.check(event, 'F3'))
+          this.onF3()
+
+        else if (this.check(event, 'shift', 'F3'))
+          this.onShiftF3()
+
         else if (this.check(event, 'ctrl', 'o'))
           this.onCtrlO()
 
@@ -107,6 +116,20 @@
         this.$store.dispatch('modalHide')
         this.$store.commit('contextMenuHide')
         this.$store.commit('searchHideSearchBar')
+      },
+
+      onF3 () {
+        if (Search.searchBarOpen)
+          this.$store.dispatch('searchSelectNext')
+      },
+
+      onShiftF3 () {
+        if (Search.searchBarOpen)
+          this.$store.dispatch('searchSelectPrev')
+      },
+
+      onF11 () {
+        document.getElementById('fullscreen-toggle').click()
       },
 
       onCtrlO () {
