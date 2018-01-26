@@ -55,10 +55,22 @@ global.removeSearch = function (content) {
   const selection       = document.getSelection()
   const contentSelected = content.contains(selection.anchorNode)
 
-  const anchorNode   = selection.anchorNode
-  const anchorOffset = selection.anchorOffset
-  const focusNode    = selection.focusNode
-  const focusOffset  = selection.focusOffset
+  let anchorNode   = selection.anchorNode
+  let anchorOffset = selection.anchorOffset
+  let focusNode    = selection.focusNode
+  let focusOffset  = selection.focusOffset
+
+  if ( anchorNode.classList &&
+       anchorNode.classList.contains('search') ) {
+    anchorNode = anchorNode.childNodes[0]
+    anchorOffset = 0
+  }
+
+  if ( focusNode.classList &&
+       focusNode.classList.contains('search') ) {
+    focusNode = focusNode.childNodes[0]
+    focusOffset = 0
+  }
 
   searches.forEach(search => {
     const parentNode = search.parentNode
@@ -87,10 +99,15 @@ global.applySearch = function (searchFor) {
 
   if (searchFor.length <= 1) return
 
-  const content =
+  const lastPane =
     document.querySelector(
       `.medium-content.medium-editor-index-${ Application.lastPaneFocused }`
     )
+  const firstPane =
+    document.querySelector('.medium-content')
+
+  const content =
+    lastPane || firstPane
 
   if (!content) return
 

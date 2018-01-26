@@ -1,6 +1,7 @@
 <template lang='slm'>
   .pane[
     :class='[ classHidden, classSide, classSize ]'
+    @contextmenu='openPaneContextMenu'
   ]
 
     .medium-container [
@@ -83,6 +84,10 @@
     methods: {
       closePane () {
         this.$store.commit('projectFileClosePane', this.index)
+      },
+
+      openPaneContextMenu () {
+        this.$store.commit('applicationSetLastPaneFocused', this.index)
       },
 
       focusTitle () {
