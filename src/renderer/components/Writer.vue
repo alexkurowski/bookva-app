@@ -90,13 +90,13 @@
         if (event.key == 'Escape')
           this.onEsc()
 
-        else if (this.check(event, 'F11'))
+        else if (this.check(event, 'f11'))
           this.onF11()
 
-        else if (this.check(event, 'F3'))
+        else if (this.check(event, 'f3'))
           this.onF3()
 
-        else if (this.check(event, 'shift', 'F3'))
+        else if (this.check(event, 'shift', 'f3'))
           this.onShiftF3()
 
         else if (this.check(event, 'ctrl', 'n'))
