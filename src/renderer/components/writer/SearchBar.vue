@@ -121,7 +121,8 @@
     display: flex
     align-items: center
     justify-content: center
-    height: $status-bar-height
+    height: $status-bar-height - 6px
+    margin-left: 2px
     cursor: pointer
     transition: opacity .3s
 
@@ -141,6 +142,10 @@
     min-width: $status-bar-height
     padding: 0
 
+  .close-btn,
+  .prev-btn
+    margin-left: 1rem
+
   .case-sensitivity,
   .close-btn
     width: $status-bar-height * 2
@@ -151,6 +156,8 @@
     white-space: nowrap
 
   .case-sensitivity
+    width: $status-bar-height
+    min-width: $status-bar-height
     position: relative
 
     .first-letter,
@@ -161,8 +168,8 @@
       text-align: center
 
     .first-letter
-      left: 22px
+      left: 6px
 
     .last-letter
-      right: 22px
+      right: 5px
 </style>
