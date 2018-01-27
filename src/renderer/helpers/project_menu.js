@@ -9,6 +9,7 @@ export function openProjectMenu (event, dispatch, t) {
     items.push({
       icon: 'icon icon-book',
       text: t('contextMenu.project.new'),
+      title: '(Ctrl+Shift+N)',
       dispatch: 'modalShow',
       params: {
         type: 'Confirm',
@@ -32,6 +33,7 @@ export function openProjectMenu (event, dispatch, t) {
     items.push({
       icon: 'icon icon-book',
       text: t('contextMenu.project.new'),
+      title: '(Ctrl+Shift+N)',
       dispatch: 'projectNewProject',
     })
 

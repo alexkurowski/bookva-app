@@ -74,7 +74,7 @@
 
     methods: {
       check (event, ...keys) {
-        if ( keys.pop() != event.key )
+        if ( keys.pop() != event.key.toLowerCase() )
           return false
         else if ( keys.includes('ctrl') != event.ctrlKey )
           return false
@@ -98,6 +98,12 @@
 
         else if (this.check(event, 'shift', 'F3'))
           this.onShiftF3()
+
+        else if (this.check(event, 'ctrl', 'n'))
+          this.onCtrlN()
+
+        else if (this.check(event, 'ctrl', 'shift', 'n'))
+          this.onCtrlShiftN()
 
         else if (this.check(event, 'ctrl', 'o'))
           this.onCtrlO()
@@ -130,6 +136,19 @@
 
       onF11 () {
         document.getElementById('fullscreen-toggle').click()
+      },
+
+      onCtrlN () {
+        // create a new file and open it
+        // maybe
+      },
+
+      onCtrlShiftN () {
+        this.$store.dispatch('modalShow', {
+          type: 'Confirm',
+          content: 'newProject',
+          dispatch: 'projectNewProject'
+        })
       },
 
       onCtrlO () {
