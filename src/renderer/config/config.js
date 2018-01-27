@@ -4,6 +4,7 @@ const Enum = (...args) => {
 
 export default {
   appTitle: 'Bookva',
+  appVersion: '0.5.0',
   showShareButton: false,
   dropOpenerThreshold: 0.38,
   maxFilesOpen: 2,
