@@ -1,6 +1,7 @@
 const state = {
   searchBarOpen: false,
-  currentSelect: null
+  currentSelect: null,
+  caseSensitivity: true,
 }
 
 const mutations = {
@@ -18,6 +19,10 @@ const mutations = {
   searchSetCurrentSelect (state, value) {
     state.currentSelect = value
   },
+
+  searchToggleCaseSensitivity (state) {
+    state.caseSensitivity = !state.caseSensitivity
+  }
 }
 
 const actions = {

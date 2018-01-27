@@ -4,8 +4,20 @@
     :class='className'
   ]
     input [
+      ref='searchFor'
       @input='input'
     ]
+
+    button.case-sensitivity [
+      @click='toggleCaseSensitivity'
+    ]
+      span.first-letter [
+        v-if='caseSensitivity'
+      ] a
+      span.first-letter [
+        v-else
+      ] A
+      span.last-letter a
 
     button.prev-btn [
       @click='selectPrev'
@@ -16,10 +28,6 @@
       @click='selectNext'
     ]
       i.fa.fa-angle-right
-
-    button.find-btn [
-    ]
-      | Find
 
     button.close-btn [
       @click='hide'
@@ -33,12 +41,6 @@
   export default {
     name: 'SearchBar',
 
-    data () {
-      return {
-        currentSelect: null
-      }
-    },
-
     computed: {
       shown () {
         return Search.searchBarOpen
@@ -48,14 +50,22 @@
         return Sidebar.sidebarOpen
           ? 'sidebar-open'
           : ''
-      }
+      },
+
+      caseSensitivity () {
+        return Search.caseSensitivity
+      },
     },
 
     methods: {
-      input (event) {
-        const searchFor = event.target.value
+      input () {
+        const searchFor = this.$refs.searchFor.value
         applySearch(searchFor)
-        this.currentSelect = null
+      },
+
+      toggleCaseSensitivity () {
+        this.$store.commit('searchToggleCaseSensitivity')
+        this.input()
       },
 
       selectPrev () {
@@ -133,10 +143,28 @@
     min-width: $status-bar-height
     padding: 0
 
-  .find-btn,
+  .case-sensitivity,
   .close-btn
     width: $status-bar-height * 2
     min-width: $status-bar-height * 2
     padding: 0
+    text-align: center
     font-family: Cabin
+    white-space: nowrap
+
+  .case-sensitivity
+    position: relative
+
+    .first-letter,
+    .last-letter
+      display: inline-block
+      position: absolute
+      width: 10px
+      text-align: center
+
+    .first-letter
+      left: 22px
+
+    .last-letter
+      right: 22px
 </style>

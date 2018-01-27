@@ -1,4 +1,4 @@
-import { Application } from '@/helpers/store_helper'
+import { Application, Search } from '@/helpers/store_helper'
 import sanitizeRegexp from '@/helpers/regexp_escape'
 
 global.searchBarFocus = function () {
@@ -31,13 +31,15 @@ global.removeSearch = function (content) {
   let focusNode    = selection.focusNode
   let focusOffset  = selection.focusOffset
 
-  if ( anchorNode.classList &&
+  if ( anchorNode &&
+       anchorNode.classList &&
        anchorNode.classList.contains('search') ) {
     anchorNode = anchorNode.childNodes[0]
     anchorOffset = 0
   }
 
-  if ( focusNode.classList &&
+  if ( focusNode &&
+       focusNode.classList &&
        focusNode.classList.contains('search') ) {
     focusNode = focusNode.childNodes[0]
     focusOffset = 0
@@ -88,7 +90,10 @@ global.applySearch = function (searchFor) {
   if (!content) return
 
   const lookahead = "(?=[^>]*<)" // Check that there is a tag openning and no tag closing (i.e. we're not inside a tag)
-  const regex = new RegExp(`(${ sanitizeRegexp(searchFor) })${ lookahead }`, 'g')
+  const flags = Search.caseSensitivity
+    ? 'g'
+    : 'gi'
+  const regex = new RegExp(`(${ sanitizeRegexp(searchFor) })${ lookahead }`, flags)
 
   const result =
     content
