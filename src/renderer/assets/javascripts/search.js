@@ -126,16 +126,12 @@ const scrollToAndSelectSearchNode = function (node) {
       behavior: 'smooth'
     })
 
-  setTimeout(() => {
-    const range = document.createRange()
-    range.selectNodeContents(node)
-    const selection = document.getSelection()
-    selection.removeAllRanges()
-    selection.addRange(range)
-    // FIXME (Alex): When clicking through too quickly
-    // this selection will result in medium editor context menu
-    // to show up in a wrong place
-  }, 350)
+  const range = document.createRange()
+  range.selectNodeContents(node)
+  range.collapse(true)
+  const selection = document.getSelection()
+  selection.removeAllRanges()
+  selection.addRange(range)
 }
 
 const findFirstSearchNodeOnScreen = function () {

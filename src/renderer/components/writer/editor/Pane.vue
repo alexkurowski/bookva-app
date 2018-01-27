@@ -1,6 +1,7 @@
 <template lang='slm'>
   .pane[
     :class='[ classHidden, classSide, classSize ]'
+    @scroll='onScroll'
     @contextmenu='openPaneContextMenu'
   ]
 
@@ -84,6 +85,10 @@
     methods: {
       closePane () {
         this.$store.commit('projectFileClosePane', this.index)
+      },
+
+      onScroll (event) {
+        // TODO (Alex): Fix medium editor toolbar position if it's open
       },
 
       openPaneContextMenu () {
