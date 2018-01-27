@@ -3,8 +3,7 @@
     v-if='shown'
     :class='className'
   ]
-    input [
-      ref='searchFor'
+    input#search-input [
       @input='input'
     ]
 
@@ -59,13 +58,12 @@
 
     methods: {
       input () {
-        const searchFor = this.$refs.searchFor.value
-        applySearch(searchFor)
+        applySearch()
       },
 
       toggleCaseSensitivity () {
         this.$store.commit('searchToggleCaseSensitivity')
-        this.input()
+        applySearch()
       },
 
       selectPrev () {

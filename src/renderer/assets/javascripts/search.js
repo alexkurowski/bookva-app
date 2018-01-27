@@ -72,10 +72,14 @@ global.removeAllSearch = function () {
  * and replaces it with `<span class="search">${ searchFor }</span>`
  * all safe and sanitized.
  */
-global.applySearch = function (searchFor) {
+global.applySearch = function () {
   removeAllSearch()
 
-  if (searchFor.length <= 1) return
+  const searchInput = document.getElementById('search-input')
+  if (!searchInput) return
+
+  const searchFor = searchInput.value
+  if (!searchFor || searchFor.length <= 1) return
 
   const lastPane =
     document.querySelector(
