@@ -24,7 +24,7 @@
         ] {{ $t('modal.about.body.noUpdate') }}
 
         a [
-          href='https://www.google.com/'
+          :href='updateUrl'
           v-else-if='updateCheckerState == "yes-update"'
         ] {{ $t('modal.about.body.yesUpdate') }}
 
@@ -52,6 +52,10 @@
       version () {
         return `${ this.$t('modal.about.body.version') } ${ Config.appVersion }`
       },
+
+      updateUrl () {
+        return Config.serverUrl + '/#download-section'
+      }
     },
 
     methods: {
