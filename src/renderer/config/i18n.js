@@ -109,7 +109,13 @@ export default {
 
       about: {
         header: 'Bookva',
-        body: 'Placeholder "about" text',
+        body: {
+          author: 'Made with ❤ by Alex Kurowski',
+          version: 'Version:',
+          update: 'Check for updates',
+          yesUpdate: 'New version of Bookva is available',
+          noUpdate: 'Running the latest version'
+        },
         ok: 'Ok'
       }
     },

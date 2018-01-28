@@ -1,7 +1,33 @@
 <template lang='slm'>
   .modal
     .modal-header {{ $t('modal.about.header') }}
-    .modal-body {{ $t('modal.about.body') }}
+    .modal-body
+      .about-line
+        span {{ $t('modal.about.body.author') }}
+
+      .about-line
+        span {{ version }}
+
+      .about-line
+        span.update-checker [
+          v-if='updateCheckerState == "standby"'
+          @click='checkUpdate'
+        ] {{ $t('modal.about.body.update') }}
+
+        span [
+          v-else-if='updateCheckerState == "working"'
+        ]
+          i.update-checker-working.fa.fa-refresh.fa-spin
+
+        span [
+          v-else-if='updateCheckerState == "no-update"'
+        ] {{ $t('modal.about.body.noUpdate') }}
+
+        a [
+          href='https://www.google.com/'
+          v-else-if='updateCheckerState == "yes-update"'
+        ] {{ $t('modal.about.body.yesUpdate') }}
+
     .modal-footer
       .empty
       .modal-choice.secondary @click='hide'
@@ -10,10 +36,40 @@
 </template>
 
 <script>
+  import Config from '@/config/config'
+  import serverFetch from '@/helpers/server_fetch'
+
   export default {
     name: 'AboutModal',
 
+    data () {
+      return {
+        updateCheckerState: 'standby', // working, no-update
+      }
+    },
+
+    computed: {
+      version () {
+        return `${ this.$t('modal.about.body.version') } ${ Config.appVersion }`
+      },
+    },
+
     methods: {
+      checkUpdate () {
+        this.updateCheckerState = 'working'
+        serverFetch('app_version')
+          .then(response =>
+            response.text()
+          ).then(response => {
+            if ( response == Config.appVersion )
+              this.updateCheckerState = 'no-update'
+            else
+              this.updateCheckerState = 'yes-update'
+          }).catch(error => {
+            console.log("ERROR server fetch error", error)
+          })
+      },
+
       hide () {
         this.$store.dispatch('modalHide')
       }
@@ -27,4 +83,19 @@
     font-family: Raleway
     font-size: 3rem
     text-align: center
+
+  .modal-body
+    margin: 1rem 0
+    line-height: 2rem
+
+  .about-line
+    text-align: center
+
+  .update-checker
+    position: relative
+    text-decoration: underline
+    cursor: pointer
+
+    &:hover
+      text-decoration: none
 </style>
