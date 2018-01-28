@@ -25,14 +25,20 @@
         const items = []
 
         for (const key in this.items) {
-          items.push({
-            text: this.items[key],
-            commit: 'appearanceUpdateTheme',
-            params: {
-              value: key,
-              type: this.type
-            }
-          })
+          if (this.items[key] == 'hr') {
+            items.push({
+              text: 'hr'
+            })
+          } else {
+            items.push({
+              text: this.items[key],
+              commit: 'appearanceUpdateTheme',
+              params: {
+                value: key,
+                type: this.type
+              }
+            })
+          }
         }
 
         this.$store.dispatch('contextMenuShow', {

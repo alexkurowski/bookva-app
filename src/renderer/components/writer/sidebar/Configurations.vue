@@ -66,17 +66,22 @@
 
         fontFamily: {
           // serif
+          ptserif:      'PT Serif',
           merriweather: 'Merriweather',
-          slabo:        'Slabo',
-          sourceserif:  'Source Serif Pro',
+          // slabo:        'Slabo',
+          // sourceserif:  'Source Serif Pro',
+
+          hr1:          'hr',
           // sans-serif
-          roboto:       'Roboto',
-          lato:         'Lato',
           ptsans:       'PT Sans',
+          roboto:       'Roboto',
+          //lato:         'Lato',
+
+          hr2:          'hr',
           // monospace
-          sharetech:    'Share Tech',
-          overpass:     'Overpass',
           ptmono:       'PT Mono',
+          sharetech:    'Share Tech',
+          // overpass:     'Overpass',
         },
 
         fontSize: {
