@@ -114,7 +114,9 @@ export default {
           version: 'Version:',
           update: 'Check for updates',
           yesUpdate: 'New version of Bookva is available',
-          noUpdate: 'Running the latest version'
+          noUpdate: 'Running the latest version',
+          website: 'Website',
+          feedback: 'Feedback'
         },
         ok: 'Ok'
       }

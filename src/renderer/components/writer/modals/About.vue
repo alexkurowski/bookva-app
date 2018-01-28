@@ -28,6 +28,18 @@
           v-else-if='updateCheckerState == "yes-update"'
         ] {{ $t('modal.about.body.yesUpdate') }}
 
+      .about-line
+        a [
+          :href='websiteUrl'
+        ] {{ $t('modal.about.body.website') }}
+
+        span.separator •
+
+        a [
+          :href='feedbackUrl'
+        ] {{ $t('modal.about.body.feedback') }}
+
+
     .modal-footer
       .empty
       .modal-choice.secondary @click='hide'
@@ -55,7 +67,15 @@
 
       updateUrl () {
         return Config.serverUrl + '/#download-section'
-      }
+      },
+
+      websiteUrl () {
+        return Config.serverUrl
+      },
+
+      feedbackUrl () {
+        return Config.serverUrl + '/#contact-section'
+      },
     },
 
     methods: {
@@ -93,7 +113,11 @@
     line-height: 2rem
 
   .about-line
+    font-weight: bold
     text-align: center
+
+    .separator
+      margin: 0 .5rem
 
   .update-checker
     position: relative
