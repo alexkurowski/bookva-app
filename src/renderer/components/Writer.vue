@@ -22,6 +22,7 @@
 
   import { Project, Search, Sidebar as SidebarStore, Appearance } from '@/helpers/store_helper'
   import Config from '@/config/config'
+  import { osx } from '@/helpers/platform_helper'
 
   export default {
     name: 'writer',
@@ -76,7 +77,7 @@
       check (event, ...keys) {
         if ( keys.pop() != event.key.toLowerCase() )
           return false
-        else if ( keys.includes('ctrl') != event.ctrlKey )
+        else if ( keys.includes('ctrl') != osx ? event.metaKey : event.ctrlKey )
           return false
         else if ( keys.includes('shift') != event.shiftKey )
           return false
@@ -87,6 +88,7 @@
       },
 
       onKeydown (event) {
+        console.log(event)
         if (event.key == 'Escape')
           this.onEsc()
 

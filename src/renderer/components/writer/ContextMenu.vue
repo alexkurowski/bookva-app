@@ -27,6 +27,7 @@
 
 <script>
   import { ContextMenu } from '@/helpers/store_helper'
+  import { osx } from '@/helpers/platform_helper'
 
   export default {
     name: 'ContextMenu',
@@ -81,7 +82,7 @@
       itemTitle (title) {
         if (!title) return ''
 
-        return process.platform == 'darwin'
+        return osx
           ? title.replace('Ctrl', 'Cmd')
           : title
       },
