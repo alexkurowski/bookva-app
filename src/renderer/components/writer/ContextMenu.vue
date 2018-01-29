@@ -10,7 +10,7 @@
       :title='itemTitle(item.title)'
       :data-index='index'
       :class='{ divider: item.text == "hr" }'
-      @mouseup='select'
+      @click='select'
     ]
 
       div[
