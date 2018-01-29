@@ -4,21 +4,21 @@
       | {{ $t('writer.sidebar.configurations.info') }}
 
     label {{ $t('writer.sidebar.configurations.label.scheme') }}
-    .select-container
+    .schemes.select-container
       Select [
         type='scheme'
         :items='scheme'
       ]
 
     label {{ $t('writer.sidebar.configurations.label.fontFamily') }}
-    .select-container
+    .font-families.select-container
       Select [
         type='fontFamily'
         :items='fontFamily'
       ]
 
     label {{ $t('writer.sidebar.configurations.label.fontSize') }}
-    .select-container
+    .font-sizes.select-container
       Select [
         type='fontSize'
         :items='fontSize'
