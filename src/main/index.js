@@ -41,13 +41,13 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
     useContentSize: true,
     width: 1000,
+    height: 563,
     minWidth: 600,
     minHeight: 400,
     backgroundColor: '#333231',
-    icon: path.join(__dirname, '/static/icon64.png'),
+    icon: path.join(__dirname, 'icons/512x512.png'),
     webPreferences: {
       experimentalFeatures: true
     }
