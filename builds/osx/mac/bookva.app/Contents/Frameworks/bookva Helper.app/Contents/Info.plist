@@ -23,8 +23,8 @@
     <key>NSSupportsAutomaticGraphicsSwitching</key>
     <true/>
     <key>CFBundleExecutable</key>
-    <string>bookva Helper</string>
+    <string>Bookva Helper</string>
     <key>CFBundleDisplayName</key>
-    <string>bookva Helper</string>
+    <string>Bookva Helper</string>
   </dict>
 </plist>

@@ -20,7 +20,7 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "bookva",
+    "productName": "Bookva",
     "appId": "com.mapico.bookva",
     "directories": {
       "buildResources": "build",

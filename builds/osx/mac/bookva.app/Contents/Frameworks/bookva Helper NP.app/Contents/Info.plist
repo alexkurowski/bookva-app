@@ -5,9 +5,9 @@
     <key>BuildMachineOSBuild</key>
     <string>16G29</string>
     <key>CFBundleDisplayName</key>
-    <string>bookva Helper NP</string>
+    <string>Bookva Helper NP</string>
     <key>CFBundleExecutable</key>
-    <string>bookva Helper NP</string>
+    <string>Bookva Helper NP</string>
     <key>CFBundleIdentifier</key>
     <string>com.mapico.bookva.helper.NP</string>
     <key>CFBundleName</key>

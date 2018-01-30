@@ -5,17 +5,17 @@
     <key>BuildMachineOSBuild</key>
     <string>16G29</string>
     <key>CFBundleDisplayName</key>
-    <string>bookva</string>
+    <string>Bookva</string>
     <key>CFBundleExecutable</key>
-    <string>bookva</string>
+    <string>Bookva</string>
     <key>CFBundleIconFile</key>
-    <string>bookva.icns</string>
+    <string>Bookva.icns</string>
     <key>CFBundleIdentifier</key>
     <string>com.mapico.bookva</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>bookva</string>
+    <string>Bookva</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
