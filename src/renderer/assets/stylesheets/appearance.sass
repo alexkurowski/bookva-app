@@ -32,6 +32,7 @@
       &:hover
         border-color: rgba( $fg, 0.35 )
 
+  @include scrollbar('#sidebar-content', $bg, $fg)
 
 @mixin scheme($bg, $fg)
   color: $fg
@@ -81,7 +82,6 @@
 
 
   @include scrollbar('.editor .pane',    $bg, $fg)
-  @include scrollbar('#sidebar-content', $bg, $fg)
   @include scrollbar('#modal', darken( $bg, 6 ), $fg)
 
 
