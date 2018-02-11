@@ -75,9 +75,11 @@
 
     methods: {
       check (event, ...keys) {
+        const ctrlKey = osx ? event.metaKey : event.ctrlKey
+
         if ( keys.pop() != event.key.toLowerCase() )
           return false
-        else if ( keys.includes('ctrl') != osx ? event.metaKey : event.ctrlKey )
+        else if ( keys.includes('ctrl') != ctrlKey )
           return false
         else if ( keys.includes('shift') != event.shiftKey )
           return false
