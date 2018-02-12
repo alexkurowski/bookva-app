@@ -1,5 +1,5 @@
 <template lang='slm'>
-  #drop-opener[
+  #drop-opener [
     v-if='dragged'
     :class='dropOpenerClass'
     @dragover='dragover'
@@ -7,7 +7,7 @@
     @drop='drop'
   ]
 
-    .indicators[
+    .indicators [
       :class='indicatorsClass'
       v-show='showIndicator'
     ]

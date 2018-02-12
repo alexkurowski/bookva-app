@@ -1,5 +1,5 @@
 <template lang='slm'>
-  .medium-editor[
+  .medium-editor [
     :class='className'
     @focus='onFocus'
     @keydown='onKeydown'
@@ -131,7 +131,4 @@
 
     h2
       font-size: 150%
-
-  .medium-editor-dragover
-    background: transparent
 </style>

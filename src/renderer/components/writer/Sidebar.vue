@@ -1,31 +1,32 @@
 <template lang='slm'>
-  #sidebar :class='{ open: open }'
-    Controls/
-    #sidebar-content
-      transition name='fade' mode='out-in'
-        FileTree v-if='page == "FileTree"'/
-        Configurations v-else-if='page == "Configurations"'/
+  #sidebar-container [
+    :class='{ open: open }'
+  ]
+    #sidebar
+      Controls/
+      #sidebar-content
+        transition name='fade' mode='out-in'
+          FileTree v-if='page == "FileTree"'/
+          Configurations v-else-if='page == "Configurations"'/
 
-    #toggle[
+    #toggle [
       :title='$t("writer.sidebar.title.toggle")'
       @click='toggle'
       @contextmenu='openProjectMenu'
     ]
       .icon :class='toggleClass'
 
-    #io-indicator[
+    #io-indicator [
       :class='ioIndicatorClass'
     ]
       i.fa.fa-refresh.fa-spin
 
-    DropOpener/
 </template>
 
 <script>
   import Controls from './sidebar/Controls'
   import FileTree from './sidebar/FileTree'
   import Configurations from './sidebar/Configurations'
-  import DropOpener from './sidebar/DropOpener'
 
   import { Application, Sidebar } from '@/helpers/store_helper'
   import { openProjectMenu } from '@/helpers/project_menu'
@@ -37,7 +38,6 @@
       Controls,
       FileTree,
       Configurations,
-      DropOpener
     },
 
     computed: {
@@ -83,56 +83,57 @@
     width: $sidebar-width
     z-index: 5000
 
-    #toggle
-      display: flex
-      align-items: center
-      justify-content: center
-      position: fixed
-      top: 0
-      left: 0
-      width: $sidebar-controls-width
-      height: $sidebar-controls-height
-      cursor: pointer
+  #toggle
+    display: flex
+    align-items: center
+    justify-content: center
+    position: fixed
+    top: 0
+    left: 0
+    width: $sidebar-controls-width
+    height: $sidebar-controls-height
+    cursor: pointer
 
-      .icon
-        position: relative
-        top: -1px
-        font-size: 1.25em
+    .icon
+      position: relative
+      top: -1px
+      font-size: 1.25em
 
-      &:hover
-        opacity: .5
+    &:hover
+      opacity: .5
 
-    #io-indicator
-      display: flex
-      align-items: center
-      justify-content: center
-      position: fixed
-      top: 0
-      left: $sidebar-controls-width
-      width: $sidebar-controls-width
-      height: $sidebar-controls-height
-      margin-left: -1rem
-      opacity: 0
-      pointer-events: none
+  #io-indicator
+    display: flex
+    align-items: center
+    justify-content: center
+    position: fixed
+    top: 0
+    left: $sidebar-controls-width
+    width: $sidebar-controls-width
+    height: $sidebar-controls-height
+    margin-left: -1rem
+    opacity: 0
+    pointer-events: none
 
-      &.shown
-        margin-left: 0
-        opacity: 0.5
+    &.shown
+      margin-left: 0
+      opacity: 0.5
 
+  #sidebar,
+  #toggle,
+  #io-indicator
+    transition: left .2s ease, opacity .2s ease, background .3s, border-color .3s, margin .3s ease
 
+  #sidebar-container
     &.open
-      left: 0
+      #sidebar
+        left: 0
 
       #toggle
         left: $sidebar-width
 
       #io-indicator
         left: $sidebar-controls-width + $sidebar-width
-
-  #sidebar,
-  #toggle,
-  #io-indicator
-    transition: left .2s ease, opacity .2s ease, background .3s, border-color .3s, margin .3s ease
 
   #sidebar-content
     position: absolute

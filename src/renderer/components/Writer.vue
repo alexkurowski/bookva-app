@@ -6,6 +6,7 @@
     #background/
     Editor/
     Sidebar/
+    DropOpener/
     StatusBar/
     SearchBar/
     ContextMenu/
@@ -15,6 +16,7 @@
 <script>
   import Editor from './writer/Editor'
   import Sidebar from './writer/Sidebar'
+  import DropOpener from './writer/DropOpener'
   import StatusBar from './writer/StatusBar'
   import SearchBar from './writer/SearchBar'
   import ContextMenu from './writer/ContextMenu'
@@ -30,6 +32,7 @@
     components: {
       Editor,
       Sidebar,
+      DropOpener,
       StatusBar,
       SearchBar,
       ContextMenu,
