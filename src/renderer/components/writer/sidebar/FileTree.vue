@@ -28,20 +28,20 @@
           @end='onEnd'
           v-show='isFolderOpen(entry.id)'
         ]
-          .entry[
+          .entry [
             :data-file-id='file.id'
             v-for='file in filesInFolder(entry.id)'
           ]
             File :file='file'
 
-      .entry.root-entry[
+      .entry.root-entry [
         :data-file-id='entry.id'
         v-else
       ]
         File :file='entry'
 
     .controls
-      .add-menu[
+      .add-menu [
         :title='$t("writer.sidebar.fileTree.title.add")'
         @click='openAddMenu'
       ]

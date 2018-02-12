@@ -1,5 +1,5 @@
 <template lang='slm'>
-  .title[
+  .title [
     :class='className'
     :contenteditable='contentEditable'
     @click='click'

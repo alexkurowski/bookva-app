@@ -1,10 +1,10 @@
 <template lang='slm'>
-  .file.file-tree-item.drag-handle[
+  .file.file-tree-item.drag-handle [
     :class='classOpen'
     @click='openFile'
     @contextmenu='openMenu'
   ]
-    Title[
+    Title [
       :editable='false'
       :content='title'
     ]

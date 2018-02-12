@@ -1,5 +1,5 @@
 <template lang='slm'>
-  #app[
+  #app [
     :class='appearanceClass'
   ]
     router-view/

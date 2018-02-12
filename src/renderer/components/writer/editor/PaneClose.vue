@@ -1,13 +1,13 @@
 <template lang='slm'>
-  #pane-close[
+  #pane-close [
     :class='{ "sidebar-open": sidebarOpen }'
     v-if='filesOpenCount > 1'
   ]
-    .pane-close-container[
+    .pane-close-container [
       v-for='_, index in filesOpen'
       :style='{ flex: paneFlex[index] }'
     ]
-      .pane-close[
+      .pane-close [
         @mouseenter='onMouseEnter(index)'
         @mouseleave='onMouseLeave'
         @click='closePane(index)'

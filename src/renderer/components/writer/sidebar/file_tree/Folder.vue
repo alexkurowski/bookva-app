@@ -1,5 +1,5 @@
 <template lang='slm'>
-  .folder.file-tree-item.drag-handle[
+  .folder.file-tree-item.drag-handle [
     :class='[ classOpen, classOpenFiles, classEmpty ]'
     @click='toggleFolder'
     @contextmenu='openMenu'

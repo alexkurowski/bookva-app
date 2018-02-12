@@ -1,11 +1,11 @@
 <template lang='slm'>
-  #context-menu[
+  #context-menu [
     :class='className'
     :style='style'
     v-clickaway='hide'
   ]
 
-    .item[
+    .item [
       v-for='item, index in items'
       :title='itemTitle(item.title)'
       :data-index='index'
@@ -13,11 +13,11 @@
       @click='select'
     ]
 
-      div[
+      div [
         v-if='item.text != "hr"'
       ]
 
-        i[
+        i [
           v-if='!!item.icon'
           :class='item.icon'
         ]

@@ -1,7 +1,7 @@
 <template lang='slm'>
   #sidebar-controls
     .btns
-      .btn[
+      .btn [
         :title='$t("writer.sidebar.title.projectMenu")'
         @click='openProjectMenu'
         @contextmenu='openProjectMenu'
@@ -9,21 +9,21 @@
         .icon.icon-th-menu
 
     .btns
-      .btn[
+      .btn [
         :title='$t("writer.sidebar.title.fileTree")'
         :class='isActive("FileTree")'
         @click='setSidebarPage("FileTree")'
       ]
         .icon.icon-th-list
 
-      .btn[
+      .btn [
         :title='$t("writer.sidebar.title.configurations")'
         :class='isActive("Configurations")'
         @click='setSidebarPage("Configurations")'
       ]
         .icon.icon-cog
 
-      .btn[
+      .btn [
         :title='$t("writer.sidebar.title.share")'
         v-if='showShareButton'
       ]

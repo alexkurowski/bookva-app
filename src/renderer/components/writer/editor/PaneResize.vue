@@ -1,5 +1,5 @@
 <template lang='slm'>
-  .pane-resize[
+  .pane-resize [
     @mousedown='down'
     @mousemove='move'
     @mouseup='up'

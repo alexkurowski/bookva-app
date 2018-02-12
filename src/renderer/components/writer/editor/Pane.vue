@@ -1,5 +1,5 @@
 <template lang='slm'>
-  .pane[
+  .pane [
     :class='[ classHidden, classSide, classSize ]'
     @scroll='onScroll'
     @contextmenu='openPaneContextMenu'
