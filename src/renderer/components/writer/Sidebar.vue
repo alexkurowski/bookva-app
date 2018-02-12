@@ -1,13 +1,12 @@
 <template lang='slm'>
-  #sidebar-container [
+  #sidebar [
     :class='{ open: open }'
   ]
-    #sidebar
-      Controls/
-      #sidebar-content
-        transition name='fade' mode='out-in'
-          FileTree v-if='page == "FileTree"'/
-          Configurations v-else-if='page == "Configurations"'/
+    Controls/
+    #sidebar-content
+      transition name='fade' mode='out-in'
+        FileTree v-if='page == "FileTree"'/
+        Configurations v-else-if='page == "Configurations"'/
 
     #toggle [
       :title='$t("writer.sidebar.title.toggle")'
@@ -124,10 +123,9 @@
   #io-indicator
     transition: left .2s ease, opacity .2s ease, background .3s, border-color .3s, margin .3s ease
 
-  #sidebar-container
+  #sidebar
     &.open
-      #sidebar
-        left: 0
+      left: 0
 
       #toggle
         left: $sidebar-width
