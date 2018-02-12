@@ -102,7 +102,6 @@
       },
 
       onKeydown (event) {
-        console.log(event)
         if (event.key == 'Escape')
           this.onEsc()
 
