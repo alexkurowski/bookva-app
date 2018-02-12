@@ -91,6 +91,8 @@
       },
 
       update (event) {
+        this.$store.commit('applicationEnterFocusMode')
+
         this.$store.dispatch('projectUpdateFileContent', {
           id: this.file.id,
           type: this.type,

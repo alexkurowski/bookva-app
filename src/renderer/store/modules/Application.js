@@ -4,6 +4,7 @@ const state = {
   ioIndicatorShown: false,
   paneCloseHoverIndex: -1,
   lastPaneFocused: 0,
+  focusMode: false,
 }
 
 const mutations = {
@@ -17,6 +18,14 @@ const mutations = {
 
   applicationSetLastPaneFocused (state, value) {
     state.lastPaneFocused = value
+  },
+
+  applicationEnterFocusMode (state) {
+    state.focusMode = true
+  },
+
+  applicationExitFocusMode (state) {
+    state.focusMode = false
   },
 }
 

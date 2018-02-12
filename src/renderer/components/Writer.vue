@@ -1,6 +1,6 @@
 <template lang='slm'>
   #writer.view [
-    :class='classAutohide'
+    :class='[ classAutohide, classFocusMode ]'
     @mousemove='onMousemove'
   ]
     #background/
@@ -20,7 +20,7 @@
   import ContextMenu from './writer/ContextMenu'
   import Modal from './writer/Modal'
 
-  import { Project, Search, Sidebar as SidebarStore, Appearance } from '@/helpers/store_helper'
+  import { Application, Project, Search, Sidebar as SidebarStore, Appearance } from '@/helpers/store_helper'
   import Config from '@/config/config'
   import { osx } from '@/helpers/platform_helper'
 
@@ -52,11 +52,20 @@
         if (SidebarStore.sidebarOpen)
           return 'autohide-show-top autohide-show-bottom'
 
+        if (Application.focusMode)
+          return ''
+
         return {
           'autohide-show-top':    this.autohideShowTop,
           'autohide-show-bottom': this.autohideShowBottom
         }
       },
+
+      classFocusMode () {
+        return Application.focusMode
+          ? 'focus-mode'
+          : ''
+      }
     },
 
     async created () {
@@ -175,6 +184,8 @@
       },
 
       onMousemove (event) {
+        this.$store.commit('applicationExitFocusMode')
+
         this.autohideShowTop =
           event.y < Config.autohideThreshold
 
@@ -237,4 +248,10 @@
       #status-bar
         opacity: 1
         pointer-events: auto
+
+    &.focus-mode
+      cursor: none
+
+      *
+        cursor: none !important
 </style>
