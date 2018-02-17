@@ -44,7 +44,7 @@ const mutations = {
     })
   },
 
-  appearanceUpdateTheme (state, params) {
+  appearanceUpdateValue (state, params) {
     state[params.type] = params.value
     mutations.appearanceSaveSettings(state)
   },

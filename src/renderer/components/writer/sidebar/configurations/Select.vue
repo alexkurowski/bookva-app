@@ -32,7 +32,7 @@
           } else {
             items.push({
               text: this.items[key],
-              commit: 'appearanceUpdateTheme',
+              commit: 'appearanceUpdateValue',
               params: {
                 value: key,
                 type: this.type
