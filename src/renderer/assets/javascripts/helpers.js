@@ -1,3 +1,5 @@
+import { Application } from '@/helpers/store_helper'
+
 global.resetEditors = function () {
   setTimeout(() => {
     document
@@ -10,6 +12,25 @@ global.resetEditors = function () {
           editor.classList.add('medium-editor-placeholder')
       })
   }, 0)
+}
+
+global.focusAndSelectEnd = function (el) {
+  el.focus()
+  const range = document.createRange()
+  range.selectNodeContents(el.lastElementChild || el)
+  range.collapse(false)
+  const selection = window.getSelection()
+  selection.removeAllRanges()
+  selection.addRange(range)
+}
+
+global.resetSelection = function () {
+  const content =
+    document.querySelector(
+      `.medium-content.medium-editor-index-${ Application.lastPaneFocused }`
+    )
+
+  focusAndSelectEnd(content)
 }
 
 global.stripSearch = function (html) {

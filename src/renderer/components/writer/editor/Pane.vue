@@ -97,24 +97,12 @@
 
       focusTitle () {
         const title = this.$el.firstChild.firstChild
-        title.focus()
-        const range = document.createRange()
-        range.selectNodeContents(title.lastElementChild || title)
-        range.collapse(false)
-        const selection = window.getSelection()
-        selection.removeAllRanges()
-        selection.addRange(range)
+        focusAndSelectEnd(title)
       },
 
       focusContent () {
         const content = this.$el.firstChild.lastChild
-        content.focus()
-        const range = document.createRange()
-        range.selectNodeContents(content.lastElementChild || content)
-        range.collapse(false)
-        const selection = window.getSelection()
-        selection.removeAllRanges()
-        selection.addRange(range)
+        focusAndSelectEnd(content)
       },
 
       mediumContainerClick (event) {

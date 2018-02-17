@@ -110,8 +110,8 @@
           this.update(event)
         }
 
-        if ( this.typewriterMode &&
-             this.type == 'content' &&
+        if ( this.type == 'content' &&
+             this.typewriterMode &&
              this.typewriterKeys.includes(event.key) ) {
           event.preventDefault()
         }
@@ -128,17 +128,10 @@
       },
 
       preventSelection (event) {
-        if (this.typewriterMode) {
+        if ( this.type == 'content' &&
+             this.typewriterMode ) {
           event.preventDefault()
-
-          const content = this.$el
-          content.focus()
-          const range = document.createRange()
-          range.selectNodeContents(content.lastElementChild || content)
-          range.collapse(false)
-          const selection = window.getSelection()
-          selection.removeAllRanges()
-          selection.addRange(range)
+          focusAndSelectEnd(this.$el)
         }
       },
 

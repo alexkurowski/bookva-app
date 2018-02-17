@@ -86,7 +86,7 @@
     methods: {
       toggleTypewriter () {
         this.$store.commit('applicationSetTypewriterMode', !this.typewriterMode)
-        // TODO (Alex): Remove existing selections when entering typewriter mode
+        resetSelection()
       },
 
       toggleFullscreen () {
