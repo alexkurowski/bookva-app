@@ -145,18 +145,6 @@
     overflow-y: overlay
     z-index: 500
 
-  .pane-close
-    display: flex
-    align-items: center
-    justify-content: center
-    position: absolute
-    top: 0
-    right: 0
-    width: $sidebar-controls-width
-    height: $sidebar-controls-height
-    font-size: 1.5rem
-    cursor: pointer
-
   .medium-container
     position: absolute
     top: 0
@@ -173,23 +161,4 @@
 
     &.close-hover
       opacity: .5
-
-  .medium-editor
-    width: 100%
-    border: none
-    outline: none
-    cursor: text
-    line-height: 1.75
-    text-align: left
-
-    // medium-editor placeholder
-    &:after
-      font-style: normal
-      cursor: text
-      transition: opacity .2s
-      opacity: .5
-
-    &:hover
-      &:after
-        opacity: .2
 </style>

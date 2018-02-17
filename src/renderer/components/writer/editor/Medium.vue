@@ -114,8 +114,23 @@
 
 <style lang='sass' scoped>
   .medium-editor
+    width: 100%
+    border: none
+    outline: none
+    cursor: text
+    line-height: 1.75
+    text-align: left
+
     &:after
       color: currentColor
+      font-style: normal
+      cursor: text
+      transition: opacity .2s
+      opacity: .5
+
+    &:hover
+      &:after
+        opacity: .2
 
   .medium-title
     margin-bottom: 1rem
