@@ -119,9 +119,6 @@ const mutations = {
   },
 
   projectSyncProject (state) {
-    if ( syncBusy ) return
-    if ( state.lastUpdate == state.lastSync ) return
-
     syncBusy = true
 
     state.lastSync = state.lastUpdate
@@ -527,6 +524,10 @@ const actions = {
 
   projectSyncProject (context) {
     setTimeout(() => {
+      if ( syncBusy ||
+           context.state.lastUpdate == context.state.lastSync )
+        return
+
       context.commit('projectSyncProject')
     }, 0)
   },

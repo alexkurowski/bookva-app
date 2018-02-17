@@ -186,7 +186,8 @@
       },
 
       onMousemove (event) {
-        this.$store.commit('applicationExitFocusMode')
+        if (Application.focusMode)
+          this.$store.commit('applicationExitFocusMode')
 
         this.autohideShowTop =
           event.y < Config.autohideThreshold
