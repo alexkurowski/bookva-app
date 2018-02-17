@@ -85,6 +85,7 @@
 
     methods: {
       toggleTypewriter () {
+        this.$store.commit('searchHideSearchBar')
         this.$store.commit('applicationSetTypewriterMode', !this.typewriterMode)
         resetSelection()
       },

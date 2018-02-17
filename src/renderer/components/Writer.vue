@@ -189,7 +189,8 @@
       },
 
       onCtrlF () {
-        this.$store.commit('searchShowSearchBar')
+        if (!Application.typewriterMode)
+          this.$store.commit('searchShowSearchBar')
       },
 
       onMousemove (event) {
