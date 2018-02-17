@@ -4,6 +4,8 @@
     @focus='onFocus'
     @keydown='onKeydown'
     @input='update'
+    @mousedown='preventSelection'
+    @selectstart='preventSelection'
   ]
 </template>
 
@@ -11,6 +13,8 @@
   import MediumEditor from 'medium-editor/dist/js/medium-editor.min'
 
   import Config from '@/config/config'
+
+  import { Application } from '@/helpers/store_helper'
 
   export default {
     name: 'Medium',
@@ -44,6 +48,19 @@
             buttonLabels: 'fontawesome',
           }
         },
+
+        typewriterKeys: [
+          'ArrowUp',
+          'ArrowDown',
+          'ArrowLeft',
+          'ArrowRight',
+          'Home',
+          'End',
+          'PageUp',
+          'PageDown',
+          'Delete',
+          'Backspace'
+        ]
       }
     },
 
@@ -53,7 +70,11 @@
         medium-${ this.type }
         medium-editor-index-${ this.index }
         `
-      }
+      },
+
+      typewriterMode () {
+        return Application.typewriterMode
+      },
     },
 
     methods: {
@@ -88,6 +109,12 @@
 
           this.update(event)
         }
+
+        if ( this.typewriterMode &&
+             this.type == 'content' &&
+             this.typewriterKeys.includes(event.key) ) {
+          event.preventDefault()
+        }
       },
 
       update (event) {
@@ -98,6 +125,21 @@
           type: this.type,
           element: event.target
         })
+      },
+
+      preventSelection (event) {
+        if (this.typewriterMode) {
+          event.preventDefault()
+
+          const content = this.$el
+          content.focus()
+          const range = document.createRange()
+          range.selectNodeContents(content.lastElementChild || content)
+          range.collapse(false)
+          const selection = window.getSelection()
+          selection.removeAllRanges()
+          selection.addRange(range)
+        }
       },
 
       reset () {

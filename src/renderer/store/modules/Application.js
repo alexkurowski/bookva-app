@@ -5,6 +5,7 @@ const state = {
   paneCloseHoverIndex: -1,
   lastPaneFocused: 0,
   focusMode: false,
+  typewriterMode: false,
 }
 
 const mutations = {
@@ -26,6 +27,10 @@ const mutations = {
 
   applicationExitFocusMode (state) {
     state.focusMode = false
+  },
+
+  applicationSetTypewriterMode (state, value) {
+    state.typewriterMode = value
   },
 }
 

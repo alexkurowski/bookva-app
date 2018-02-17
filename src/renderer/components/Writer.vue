@@ -105,6 +105,9 @@
         if (event.key == 'Escape')
           this.onEsc()
 
+        else if (this.check(event, 'f10'))
+          this.onF10()
+
         else if (this.check(event, 'f11'))
           this.onF11()
 
@@ -147,6 +150,10 @@
       onShiftF3 () {
         if (Search.searchBarOpen)
           this.$store.dispatch('searchSelectPrev')
+      },
+
+      onF10 () {
+        document.getElementById('typewriter-toggle').click()
       },
 
       onF11 () {

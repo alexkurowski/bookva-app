@@ -52,7 +52,8 @@ export default {
         },
 
         title: {
-          fullscreen: 'Toggle fullscreen mode'
+          typewriter: 'Toggle typewriter mode (F10)',
+          fullscreen: 'Toggle fullscreen mode (F11)'
         }
       }
     },

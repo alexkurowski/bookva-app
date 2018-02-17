@@ -13,17 +13,25 @@
             |  {{ wordsProject }}
 
     .right
-      #fullscreen-toggle [
-        :title='$t("writer.statusbar.title.fullscreen")'
-        @click='toggleFullscreen'
-      ]
-        i.fa :class='fullscreenClass'
+      .modes
+        #typewriter-toggle [
+          :title='$t("writer.statusbar.title.typewriter")'
+          :class='{ active: typewriterMode }'
+          @click='toggleTypewriter'
+        ]
+          i.fa.fa-keyboard-o
+
+        #fullscreen-toggle [
+          :title='$t("writer.statusbar.title.fullscreen")'
+          @click='toggleFullscreen'
+        ]
+          i.fa :class='fullscreenClass'
 </template>
 
 <script>
   import electron from 'electron'
 
-  import { Project } from '@/helpers/store_helper'
+  import { Application, Project } from '@/helpers/store_helper'
 
   const getWindow = () => (
     electron
@@ -45,6 +53,10 @@
         return this.fullscreenMode
           ? 'fa-compress'
           : 'fa-expand'
+      },
+
+      typewriterMode () {
+        return Application.typewriterMode
       },
 
       wordsOpen () {
@@ -72,6 +84,11 @@
     },
 
     methods: {
+      toggleTypewriter () {
+        this.$store.commit('applicationSetTypewriterMode', !this.typewriterMode)
+        // TODO (Alex): Remove existing selections when entering typewriter mode
+      },
+
       toggleFullscreen () {
         this.fullscreenMode = !this.fullscreenMode
         getWindow().setFullScreen(this.fullscreenMode)
@@ -105,6 +122,11 @@
     span
       margin: 0 1rem
 
+  .modes
+    display: flex
+    flex-direction: row
+
+  #typewriter-toggle,
   #fullscreen-toggle
     padding: .5rem
     cursor: pointer
@@ -112,4 +134,7 @@
 
     &:hover
       opacity: .5
+
+  #typewriter-toggle.active
+    color: $color-action
 </style>
