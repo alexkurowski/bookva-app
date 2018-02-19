@@ -22,6 +22,9 @@ global.focusAndSelectEnd = function (el) {
   const selection = window.getSelection()
   selection.removeAllRanges()
   selection.addRange(range)
+
+  const parent = el.parentNode.parentNode
+  parent.scrollTop = parent.scrollHeight
 }
 
 global.resetSelection = function () {
