@@ -111,6 +111,9 @@
         if (event.key == 'Escape')
           this.onEsc()
 
+        else if (this.check(event, 'f8'))
+          this.onF8()
+
         else if (this.check(event, 'f10'))
           this.onF10()
 
@@ -156,6 +159,10 @@
       onShiftF3 () {
         if (Search.searchBarOpen)
           this.$store.dispatch('searchSelectPrev')
+      },
+
+      onF8 () {
+        this.$store.commit('sidebarToggle')
       },
 
       onF10 () {

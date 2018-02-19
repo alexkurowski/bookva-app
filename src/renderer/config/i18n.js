@@ -19,7 +19,7 @@ export default {
           fileTree: 'Files',
           configurations: 'Configurations',
           share: 'Share',
-          toggle: 'Toggle sidebar'
+          toggle: 'Toggle sidebar (F8)'
         },
 
         new: {
