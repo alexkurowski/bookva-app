@@ -16,6 +16,7 @@ global.resetEditors = function () {
 
 global.scrollEditorToBottom = function (editor) {
   const parent = editor.closest('.pane')
+  parent.scrollTop = parent.scrollHeight
   setTimeout(() => {
     parent.scrollTop = parent.scrollHeight
   }, 0)
