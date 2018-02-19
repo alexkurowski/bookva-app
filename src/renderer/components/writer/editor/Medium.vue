@@ -111,9 +111,11 @@
         }
 
         if ( this.type == 'content' &&
-             this.typewriterMode &&
-             this.typewriterKeys.includes(event.key) ) {
-          event.preventDefault()
+             this.typewriterMode ) {
+          if (this.typewriterKeys.includes(event.key))
+            event.preventDefault()
+
+          scrollEditorToBottom(this.$el)
         }
       },
 

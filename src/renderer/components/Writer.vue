@@ -1,6 +1,6 @@
 <template lang='slm'>
   #writer.view [
-    :class='[ classAutohide, classFocusMode ]'
+    :class='[ classAutohide, classFocusMode, classTypewriterMode ]'
     @mousemove='onMousemove'
   ]
     #background/
@@ -68,7 +68,13 @@
         return Application.focusMode
           ? 'focus-mode'
           : ''
-      }
+      },
+
+      classTypewriterMode () {
+        return Application.typewriterMode
+          ? 'typewriter-mode'
+          : ''
+      },
     },
 
     async created () {
@@ -265,4 +271,8 @@
 
       *
         cursor: none !important
+
+    &.typewriter-mode
+      .medium-content
+        margin-bottom: 45vh
 </style>

@@ -14,6 +14,13 @@ global.resetEditors = function () {
   }, 0)
 }
 
+global.scrollEditorToBottom = function (editor) {
+  const parent = editor.closest('.pane')
+  setTimeout(() => {
+    parent.scrollTop = parent.scrollHeight
+  }, 0)
+}
+
 global.focusAndSelectEnd = function (el) {
   el.focus()
   const range = document.createRange()
@@ -23,8 +30,7 @@ global.focusAndSelectEnd = function (el) {
   selection.removeAllRanges()
   selection.addRange(range)
 
-  const parent = el.parentNode.parentNode
-  parent.scrollTop = parent.scrollHeight
+  scrollEditorToBottom(el)
 }
 
 global.resetSelection = function () {
