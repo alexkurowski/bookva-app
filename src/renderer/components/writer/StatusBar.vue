@@ -19,7 +19,7 @@
           :class='{ active: typewriterMode }'
           @click='toggleTypewriter'
         ]
-          i.fa.fa-keyboard-o
+          i.fi.flaticon-typewriter-1
 
         #fullscreen-toggle [
           :title='$t("writer.statusbar.title.fullscreen")'

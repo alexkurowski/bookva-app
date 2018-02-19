@@ -52,6 +52,7 @@
   @import '~medium-editor/dist/css/themes/default.min.css'
 
   @import './assets/stylesheets/icomoon'
+  @import './assets/stylesheets/flaticon'
   @import './assets/stylesheets/fonts'
 
   @import './assets/stylesheets/classes'
