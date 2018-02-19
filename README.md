@@ -45,3 +45,9 @@ npm test
 - Add a new `&.font-family-*new-font-name-here* > .medium-editor` rule at `src/assets/stylesheets/appearance.sass` with your font-family that matches font-face defined in previous step
 
 - Lastly, add a dropdown option to Configurations component at `src/renderer/components/writer/sidebar/Configurations.vue`
+
+---
+
+### Icon
+
+To make icon files, first, create a 1024x1024 png image, then convert it into icons using https://iconverticons.com/online/
