@@ -1,13 +1,13 @@
 <template lang='slm'>
   .pane [
     :class='[ classHidden, classSide, classSize ]'
+    @click='onClick'
     @scroll='onScroll'
     @contextmenu='openPaneContextMenu'
   ]
 
     .medium-container [
       :class='mediumContainerClass'
-      @click='mediumContainerClick'
     ]
       Medium [
         :index='index'
@@ -87,6 +87,21 @@
         this.$store.commit('projectFileClosePane', this.index)
       },
 
+      onClick (event) {
+        if (event.target.classList.contains('pane') ||
+            event.target.classList.contains('medium-container') ) {
+          const content       = event.target.querySelector('.medium-content')
+          const contentRect   = content.getBoundingClientRect()
+          const contentBottom = contentRect.top + contentRect.height
+
+          if (event.y > contentBottom) {
+            this.focusContent()
+          } else {
+            this.focusTitle()
+          }
+        }
+      },
+
       onScroll (event) {
         // TODO (Alex): Fix medium editor toolbar position if it's open
       },
@@ -104,20 +119,6 @@
         const content = this.$el.firstChild.lastChild
         focusAndSelectEnd(content)
       },
-
-      mediumContainerClick (event) {
-        if (event.target.className.indexOf('medium-container') != -1) {
-          const content       = event.target.lastChild
-          const contentRect   = content.getBoundingClientRect()
-          const contentBottom = contentRect.top + contentRect.height
-
-          if (event.y > contentBottom) {
-            this.focusContent()
-          } else {
-            this.focusTitle()
-          }
-        }
-      }
     }
   }
 </script>
