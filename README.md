@@ -2,13 +2,13 @@
 
 > Writing application
 
-### Build Preparations
+## Build Preparations
 
 - Install `slim-lang` gem
 
 - Install `pandoc`
 
-### Build Setup
+## Build Setup
 
 ``` bash
 # install dependencies
@@ -26,7 +26,7 @@ npm test
 
 ---
 
-### How to add new color schemes
+## How to add new color schemes
 
 - Define colors at `src/renderer/assets/stylesheets/variables.sass`
 
@@ -36,7 +36,7 @@ npm test
 
 - If scheme is dark, make sure to add its name at `src/renderer/App.vue` in darkSchemes array
 
-### How to add new fonts
+## How to add new fonts
 
 - Create a new folder at `src/renderer/assets/fonts/` and add there files for regular, bold, italic and bolditalic
 
@@ -48,6 +48,20 @@ npm test
 
 ---
 
-### Icon
+## Icon
 
 To make icon files, first, create a 1024x1024 png image, then convert it into icons using https://iconverticons.com/online/
+
+---
+
+## Contributing
+
+1. Fork this repository
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
+
+## Contributors
+
+- [github](https://github.com/alexkurowski) | [gitlab](https://gitlab.com/mapimopi) Alex Kurowski - creator, maintainer
