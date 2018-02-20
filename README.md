@@ -24,8 +24,6 @@ npm run build
 npm test
 ```
 
----
-
 ## How to add new color schemes
 
 - Define colors at `src/renderer/assets/stylesheets/variables.sass`
@@ -46,13 +44,9 @@ npm test
 
 - Lastly, add a dropdown option to Configurations component at `src/renderer/components/writer/sidebar/Configurations.vue`
 
----
-
 ## Icon
 
 To make icon files, first, create a 1024x1024 png image, then convert it into icons using https://iconverticons.com/online/
-
----
 
 ## Contributing
 
@@ -64,4 +58,4 @@ To make icon files, first, create a 1024x1024 png image, then convert it into ic
 
 ## Contributors
 
-- [github](https://github.com/alexkurowski) | [gitlab](https://gitlab.com/mapimopi) Alex Kurowski - creator, maintainer
+- ( [github](https://github.com/alexkurowski) | [gitlab](https://gitlab.com/mapimopi) ) Alex Kurowski - creator, maintainer
