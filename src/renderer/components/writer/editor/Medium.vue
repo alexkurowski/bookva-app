@@ -49,7 +49,7 @@
           }
         },
 
-        typewriterKeys: [
+        typewriterDisabledKeys: [
           'ArrowUp',
           'ArrowDown',
           'ArrowLeft',
@@ -60,7 +60,17 @@
           'PageDown',
           'Delete',
           'Backspace'
-        ]
+        ],
+
+        typewriterNoScrollKeys: [
+          'Ctrl',
+          'Shift',
+          'Alt',
+          'Meta',
+          'WakeUp',
+          'NumLock',
+          'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',
+        ],
       }
     },
 
@@ -112,10 +122,11 @@
 
         if ( this.type == 'content' &&
              this.typewriterMode ) {
-          if (this.typewriterKeys.includes(event.key))
+          if (this.typewriterDisabledKeys.includes(event.key))
             event.preventDefault()
 
-          scrollEditorToBottom(this.$el)
+          if (!this.typewriterNoScrollKeys.includes(event.key))
+            scrollEditorToBottom(this.$el)
         }
       },
 
