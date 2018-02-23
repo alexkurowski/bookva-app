@@ -40,8 +40,8 @@ export default {
             fontFamily: 'Font',
             fontSize: 'Font size',
             indent: 'Indentation',
-            statusbar: 'Status bar',
             width: 'Column width',
+            statusbar: 'Status bar',
           }
         }
       },

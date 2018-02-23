@@ -31,18 +31,18 @@
         :items='indent'
       ]
 
-    label {{ $t('writer.sidebar.configurations.label.statusbar') }}
-    .select-container
-      Select [
-        type='statusbar'
-        :items='statusbar'
-      ]
-
     label {{ $t('writer.sidebar.configurations.label.width') }}
     .select-container
       Select [
         type='width'
         :items='width'
+      ]
+
+    label {{ $t('writer.sidebar.configurations.label.statusbar') }}
+    .select-container
+      Select [
+        type='statusbar'
+        :items='statusbar'
       ]
 </template>
 
@@ -104,15 +104,15 @@
           x2: 'Wide',
         },
 
+        width: {
+          normal: 'Normal',
+          wide:   'Wide',
+        },
+
         statusbar: {
           always:   'Always shown',
           autohide: 'Auto hide',
           never:    'Always hidden',
-        },
-
-        width: {
-          normal: 'Normal',
-          wide:   'Wide',
         },
       }
     },
