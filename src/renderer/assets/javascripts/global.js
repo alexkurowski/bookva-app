@@ -1,3 +1,3 @@
 import './events'
-import './helpers'
+import './medium'
 import './search'
