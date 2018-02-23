@@ -39,6 +39,7 @@ export default {
             scheme: 'Theme',
             fontFamily: 'Font',
             fontSize: 'Font size',
+            indent: 'Indentation',
             statusbar: 'Status bar',
             width: 'Column width',
           }

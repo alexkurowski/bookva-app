@@ -39,6 +39,7 @@
         font-size-${ Appearance.fontSize }
         statusbar-${ Appearance.statusbar }
         width-${ Appearance.width }
+        indent-${ Appearance.indent }
         `
       }
     }

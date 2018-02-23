@@ -9,6 +9,7 @@ const state = {
 
   statusbar:  'autohide',
   width:      'normal',
+  indent:     'x0',
 }
 
 const mutations = {

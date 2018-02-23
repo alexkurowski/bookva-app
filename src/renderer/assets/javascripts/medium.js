@@ -22,16 +22,16 @@ global.scrollEditorToBottom = function (editor) {
   }, 0)
 }
 
-global.focusAndSelectEnd = function (el) {
-  el.focus()
+global.focusAndSelectEnd = function (editor) {
+  editor.focus()
   const range = document.createRange()
-  range.selectNodeContents(el.lastElementChild || el)
+  range.selectNodeContents(editor.lastElementChild || editor)
   range.collapse(false)
   const selection = window.getSelection()
   selection.removeAllRanges()
   selection.addRange(range)
 
-  scrollEditorToBottom(el)
+  scrollEditorToBottom(editor)
 }
 
 global.resetSelection = function () {
@@ -45,4 +45,17 @@ global.resetSelection = function () {
 
 global.stripSearch = function (html) {
   return html.replace(/<span class="search">(.*?)<\/span>/g, '$1')
+}
+
+global.insertTab = function () {
+  const selection = document.getSelection()
+  const range     = selection.getRangeAt(0)
+  const tabNode   = document.createTextNode("\u2003")
+
+  range.insertNode(tabNode);
+
+  range.setStartAfter(tabNode);
+  range.setEndAfter(tabNode);
+  selection.removeAllRanges();
+  selection.addRange(range);
 }

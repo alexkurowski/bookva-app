@@ -24,6 +24,13 @@
         :items='fontSize'
       ]
 
+    label {{ $t('writer.sidebar.configurations.label.indent') }}
+    .select-container
+      Select [
+        type='indent'
+        :items='indent'
+      ]
+
     label {{ $t('writer.sidebar.configurations.label.statusbar') }}
     .select-container
       Select [
@@ -91,6 +98,12 @@
           bigger: 'Largest',
         },
 
+        indent: {
+          x0: 'None',
+          x1: 'Normal',
+          x2: 'Wide',
+        },
+
         statusbar: {
           always:   'Always shown',
           autohide: 'Auto hide',
@@ -100,7 +113,7 @@
         width: {
           normal: 'Normal',
           wide:   'Wide',
-        }
+        },
       }
     },
   }
