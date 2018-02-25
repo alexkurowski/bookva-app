@@ -96,8 +96,6 @@
 
           if (event.y > contentBottom) {
             this.focusContent()
-          } else {
-            this.focusTitle()
           }
         }
       },
@@ -108,11 +106,6 @@
 
       openPaneContextMenu () {
         this.$store.commit('applicationSetLastPaneFocused', this.index)
-      },
-
-      focusTitle () {
-        const title = this.$el.firstChild.firstChild
-        focusAndSelectEnd(title)
       },
 
       focusContent () {
