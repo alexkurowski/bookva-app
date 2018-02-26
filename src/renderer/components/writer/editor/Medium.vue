@@ -180,9 +180,6 @@
     > *
       font-family: inherit
 
-    *
-      margin-bottom: 1em
-
     h2
       font-size: 150%
 </style>
