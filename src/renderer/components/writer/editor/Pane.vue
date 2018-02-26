@@ -101,6 +101,9 @@
       },
 
       onScroll (event) {
+        const toolbar = document.querySelector('.medium-editor-toolbar-active')
+        if (!toolbar) return
+
         // TODO (Alex): Fix medium editor toolbar position if it's open
       },
 
