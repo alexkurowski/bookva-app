@@ -1,7 +1,6 @@
 <template lang='slm'>
-  #editor [
-    :class='{ "sidebar-open": sidebarOpen }'
-  ]
+  #editor
+
     .editor [
       v-for='file, index in filesOpen'
       :style='editorStyle(index)'
@@ -29,10 +28,6 @@
     },
 
     computed: {
-      sidebarOpen () {
-        return Sidebar.sidebarOpen
-      },
-
       filesOpen () {
         return Project.filesOpen
       },
@@ -61,9 +56,6 @@
     right: 0
     bottom: 0
     transition: left .2s ease
-
-    &.sidebar-open
-      left: $sidebar-width
 
     .editor
       position: relative
