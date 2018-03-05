@@ -45,6 +45,6 @@
     <key>NSHumanReadableCopyright</key>
     <string>Copyright © 2018 Alex</string>
     <key>AsarIntegrity</key>
-    <string>{"checksums":{"app.asar":"J3OXD2afpXcrl6Uvl9wpVQiLDuiBAPhSCleSVpgMVNBWUxQDkmXix4r/RGdC7cR021q98slz8ETt/R0eLjtXgw==","electron.asar":"LXx7HqGz9YmMQIKl7awYmelmwvxSjvWYujLzuFjcyTm/PgE0Fgru9Ubpt+dAkiunBfGPlf16Fh5c/TAOnZLVGQ=="}}</string>
+    <string>{"checksums":{"app.asar":"Y9RD5UaqFlaaGDwRzetasIQOxQxaPyzNHDtuSOyNMlQi9Y470+AMbUr9X5H7Be9FiGRqkwtrS06LWJtie96Srw==","electron.asar":"LXx7HqGz9YmMQIKl7awYmelmwvxSjvWYujLzuFjcyTm/PgE0Fgru9Ubpt+dAkiunBfGPlf16Fh5c/TAOnZLVGQ=="}}</string>
   </dict>
 </plist>
