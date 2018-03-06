@@ -2,8 +2,9 @@
 
 > Writing application
 
-[Screenshot](https://raw.githubusercontent.com/alexkurowski/bookva-app/master/screenshots/screenshot-1.png)
-[Screenshot](https://raw.githubusercontent.com/alexkurowski/bookva-app/master/screenshots/screenshot-2.png)
+![Screenshot](https://raw.githubusercontent.com/alexkurowski/bookva-app/master/screenshots/screenshot-1.png)
+
+![Screenshot](https://raw.githubusercontent.com/alexkurowski/bookva-app/master/screenshots/screenshot-2.png)
 
 ## Build Preparations
 
