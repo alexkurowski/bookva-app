@@ -143,7 +143,6 @@
       transition: background .1s
 
       &.divider
-        background: $color-less-subtle
         width: 100%
         height: 1px
         margin: .25rem 0
